@@ -1,0 +1,177 @@
+@import 'tailwindcss';
+
+/* Latin subsets only — the full families ship Cyrillic, Greek and Latin-ext
+   faces that this interface never renders. */
+@import '@fontsource/ibm-plex-sans/latin-400.css';
+@import '@fontsource/ibm-plex-sans/latin-500.css';
+@import '@fontsource/ibm-plex-sans/latin-600.css';
+@import '@fontsource/ibm-plex-mono/latin-400.css';
+@import '@fontsource/ibm-plex-mono/latin-500.css';
+
+/*
+ * Design tokens extracted from design-reference/project/Stack Radar.dc.html.
+ * The prototype used inline OKLCH values throughout; these are the semantic
+ * equivalents. Surfaces ramp on hue 255 at very low chroma; the accent is a
+ * mint green on hue 162 which also carries tracked / match / link states.
+ */
+@theme {
+  --font-sans: 'IBM Plex Sans', system-ui, -apple-system, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+
+  /* Surfaces — low-chroma neutral ramp */
+  --color-base: oklch(0.16 0.006 255);
+  --color-header: oklch(0.17 0.006 255 / 0.88);
+  --color-input: oklch(0.165 0.008 255);
+  --color-surface: oklch(0.19 0.008 255);
+  --color-surface-alt: oklch(0.185 0.008 255);
+  --color-card: oklch(0.195 0.008 255);
+  --color-card-hover: oklch(0.215 0.009 255);
+  --color-row-hover: oklch(0.225 0.009 255);
+  --color-control: oklch(0.21 0.008 255);
+  --color-control-alt: oklch(0.20 0.008 255);
+  --color-chip: oklch(0.225 0.008 255);
+  --color-elevated: oklch(0.22 0.009 255);
+  --color-elevated-hover: oklch(0.28 0.012 255);
+  --color-tooltip: oklch(0.25 0.01 255);
+  --color-scrim: oklch(0.10 0.004 255 / 0.72);
+
+  /* Borders — ascending emphasis */
+  --color-line-faint: oklch(0.24 0.009 255);
+  --color-line-soft: oklch(0.245 0.009 255);
+  --color-line: oklch(0.27 0.01 255);
+  --color-line-card: oklch(0.275 0.01 255);
+  --color-line-strong: oklch(0.29 0.01 255);
+  --color-line-control: oklch(0.30 0.01 255);
+  --color-line-modal: oklch(0.31 0.01 255);
+  --color-line-raised: oklch(0.33 0.012 255);
+  --color-line-tooltip: oklch(0.36 0.012 255);
+  --color-line-hover: oklch(0.40 0.012 255);
+
+  /* Text — descending emphasis */
+  --color-ink: oklch(0.96 0.004 255);
+  --color-ink-strong: oklch(0.95 0.004 255);
+  --color-ink-soft: oklch(0.92 0.005 255);
+  --color-ink-muted: oklch(0.68 0.008 255);
+  --color-ink-dim: oklch(0.64 0.008 255);
+  --color-ink-dimmer: oklch(0.60 0.008 255);
+  --color-ink-faint: oklch(0.55 0.008 255);
+  --color-ink-fainter: oklch(0.50 0.008 255);
+  --color-ink-ghost: oklch(0.46 0.008 255);
+  --color-ink-separator: oklch(0.35 0.008 255);
+
+  /* Accent — mint, hue 162 */
+  --color-accent: oklch(0.78 0.14 162);
+  --color-accent-bright: oklch(0.88 0.13 162);
+  --color-accent-hover: oklch(0.84 0.13 162);
+  --color-accent-bar: oklch(0.62 0.10 162);
+  --color-accent-link: oklch(0.80 0.13 162);
+  --color-accent-link-hover: oklch(0.88 0.11 162);
+  --color-accent-ink: oklch(0.17 0.03 162);
+  --color-accent-surface: oklch(0.24 0.03 162);
+  --color-accent-surface-strong: oklch(0.26 0.04 162);
+  --color-accent-surface-active: oklch(0.30 0.05 162);
+  --color-accent-line: oklch(0.38 0.06 162);
+  --color-accent-line-strong: oklch(0.42 0.07 162);
+  --color-accent-line-hover: oklch(0.42 0.03 162);
+  --color-accent-text: oklch(0.86 0.10 162);
+  --color-accent-text-bright: oklch(0.93 0.07 162);
+  --color-accent-text-soft: oklch(0.80 0.05 162);
+
+  /* Verification states */
+  --color-fresh-surface: oklch(0.23 0.03 162);
+  --color-fresh-text: oklch(0.86 0.10 162);
+  --color-fresh-line: oklch(0.38 0.06 162);
+  --color-stale-surface: oklch(0.24 0.04 80);
+  --color-stale-text: oklch(0.88 0.11 80);
+  --color-stale-line: oklch(0.42 0.08 80);
+  --color-unverified-surface: oklch(0.22 0.008 255);
+  --color-unverified-text: oklch(0.66 0.008 255);
+  --color-unverified-line: oklch(0.32 0.01 255);
+
+  /* Work model dots */
+  --color-dot-remote: oklch(0.78 0.14 162);
+  --color-dot-hybrid: oklch(0.80 0.13 90);
+  --color-dot-onsite: oklch(0.66 0.02 255);
+  --color-dot-unknown: oklch(0.50 0.008 255);
+
+  /* Danger */
+  --color-danger-surface: oklch(0.22 0.02 25);
+  --color-danger-line: oklch(0.38 0.06 25);
+  --color-danger-text: oklch(0.86 0.08 25);
+  --color-danger-bright: oklch(0.78 0.12 25);
+
+  /* Status palette — mirrors statusStyle() in the prototype:
+     bg oklch(0.26 c h) · border oklch(0.42 c+0.02 h) · text oklch(0.90 c+0.04 h) */
+  --color-status-tracked-bg: oklch(0.26 0.05 162);
+  --color-status-tracked-line: oklch(0.42 0.07 162);
+  --color-status-tracked-text: oklch(0.90 0.09 162);
+  --color-status-applied-bg: oklch(0.26 0.06 230);
+  --color-status-applied-line: oklch(0.42 0.08 230);
+  --color-status-applied-text: oklch(0.90 0.10 230);
+  --color-status-waiting-bg: oklch(0.26 0.06 90);
+  --color-status-waiting-line: oklch(0.42 0.08 90);
+  --color-status-waiting-text: oklch(0.90 0.10 90);
+  --color-status-interviewing-bg: oklch(0.26 0.06 285);
+  --color-status-interviewing-line: oklch(0.42 0.08 285);
+  --color-status-interviewing-text: oklch(0.90 0.10 285);
+  --color-status-offer-bg: oklch(0.26 0.08 150);
+  --color-status-offer-line: oklch(0.42 0.10 150);
+  --color-status-offer-text: oklch(0.90 0.12 150);
+  --color-status-rejected-bg: oklch(0.26 0.05 25);
+  --color-status-rejected-line: oklch(0.42 0.07 25);
+  --color-status-rejected-text: oklch(0.90 0.09 25);
+
+  --animate-enter: sp-in 0.28s ease both;
+  --animate-fade: sp-fade 0.3s ease both;
+}
+
+@keyframes sp-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes sp-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html { color-scheme: dark; }
+
+  body {
+    margin: 0;
+    background: var(--color-base);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 14px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  input, textarea, select, button { font: inherit; outline: none; }
+  textarea { resize: vertical; }
+  ::placeholder { color: oklch(0.48 0.008 255); }
+
+  /* Visible focus for keyboard users only — the prototype had none at all. */
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@utility scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-line-control) transparent;
+}

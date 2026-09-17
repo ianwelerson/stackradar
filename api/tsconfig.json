@@ -1,0 +1,25 @@
+{
+  "//": "Build config for the serverless API. Kept separate from the app's project because the API targets Node globals (Request/Response from @types/node) rather than the DOM. The `@/*` path mapping exists so that the shared modules under src/ typecheck when imported from here — every `@/` import they make is type-only, so nothing needs that alias to resolve at runtime, which matters because Vercel's Node runtime does not support tsconfig path mappings.",
+  "compilerOptions": {
+    "target": "ES2023",
+    "lib": ["ES2023"],
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "types": ["node"],
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "moduleDetection": "force",
+    "verbatimModuleSyntax": true,
+    "noEmit": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+    "baseUrl": "..",
+    "paths": { "@/*": ["./src/*"] }
+  },
+  "include": ["**/*.ts"]
+}

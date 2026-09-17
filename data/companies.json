@@ -1,0 +1,4372 @@
+{
+  "$schema": "./companies.schema.json",
+  "generatedAt": "2026-09-17T05:39:13.649Z",
+  "companies": [
+    {
+      "id": "resend",
+      "name": "Resend",
+      "logoUrl": "/logos/resend.png",
+      "description": "Developer-first email API platform — sending, deliverability, webhooks, audiences.",
+      "website": "https://resend.com",
+      "careersUrl": "https://resend.com/careers",
+      "sizeRange": "~45",
+      "sizeMin": 45,
+      "sizeMax": 45,
+      "hqLocation": "Remote, Americas/EU",
+      "country": "United States",
+      "remotePolicy": "remote",
+      "remoteRegions": [
+        "Americas",
+        "Europe"
+      ],
+      "keywords": [
+        "email",
+        "developer-tools",
+        "api",
+        "webhooks",
+        "deliverability"
+      ],
+      "currentOpenings": [
+        {
+          "title": "Product Engineer",
+          "url": "https://jobs.ashbyhq.com/resend/9b68ba51-3895-4d29-8fd1-364bdf8956e7",
+          "location": "Americas",
+          "postedDate": "2026-06-03",
+          "detectedKeywords": [
+            "typescript",
+            "react",
+            "nextjs"
+          ]
+        },
+        {
+          "title": "Product Engineer",
+          "url": "https://jobs.ashbyhq.com/resend/61dbb0e7-95a6-4cd9-ab2d-1a5471fe0dd8",
+          "location": "Europe",
+          "postedDate": "2026-06-03",
+          "detectedKeywords": [
+            "typescript",
+            "react",
+            "nextjs"
+          ]
+        },
+        {
+          "title": "Security Engineer, Platform",
+          "url": "https://jobs.ashbyhq.com/resend/cde17f7c-4c70-435f-be38-ef5abe94ff22",
+          "location": "Americas",
+          "postedDate": "2026-06-03",
+          "detectedKeywords": [
+            "nextjs",
+            "kubernetes",
+            "terraform",
+            "aws"
+          ]
+        },
+        {
+          "title": "Backend Engineer (MTA), Trust & Safety",
+          "url": "https://jobs.ashbyhq.com/resend/053bde8f-294e-4cce-9d62-2301282120a2",
+          "location": "Americas",
+          "postedDate": "2026-05-29",
+          "detectedKeywords": [
+            "typescript",
+            "go",
+            "postgres",
+            "aws"
+          ]
+        },
+        {
+          "title": "Security Engineer, Platform",
+          "url": "https://jobs.ashbyhq.com/resend/8c290ac4-22b4-4072-86e0-b6f5a97213d6",
+          "location": "Europe",
+          "postedDate": "2026-06-03",
+          "detectedKeywords": [
+            "nextjs",
+            "kubernetes",
+            "terraform",
+            "aws"
+          ]
+        },
+        {
+          "title": "Customer Success Engineer",
+          "url": "https://jobs.ashbyhq.com/resend/01e6eb42-142b-4f33-9944-ca153bd3ae86",
+          "location": "Americas",
+          "postedDate": "2026-07-20",
+          "detectedKeywords": [
+            "nextjs"
+          ]
+        },
+        {
+          "title": "Technical Account Executive",
+          "url": "https://jobs.ashbyhq.com/resend/50cc0eb8-4a93-455d-bcdb-fe8eb080b55d",
+          "location": "Americas",
+          "postedDate": "2026-07-29",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Product Designer",
+          "url": "https://jobs.ashbyhq.com/resend/8d7e13ac-4c08-4981-9589-c163a4b29dee",
+          "location": "Americas",
+          "postedDate": "2026-07-31",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Product Designer",
+          "url": "https://jobs.ashbyhq.com/resend/b4d679e8-f41b-4c59-b091-dc5581345fcb",
+          "location": "Europe",
+          "postedDate": "2026-09-02",
+          "detectedKeywords": []
+        }
+      ],
+      "history": [
+        {
+          "weekOf": "2026-09-14",
+          "openCount": 9,
+          "keywordCounts": {
+            "typescript": 3,
+            "react": 2,
+            "nextjs": 5,
+            "kubernetes": 2,
+            "terraform": 2,
+            "aws": 3,
+            "go": 1,
+            "postgres": 1
+          }
+        }
+      ],
+      "lastVerified": "2026-09-17T05:31:55.543Z",
+      "dataNotes": "The Product Engineer role found at verification time has since closed — re-verify the current state."
+    },
+    {
+      "id": "framer",
+      "name": "Framer",
+      "logoUrl": "/logos/framer.png",
+      "description": "React-based website design-and-code tool; editor, canvas, plugins, CMS",
+      "website": "https://framer.com",
+      "careersUrl": "https://framer.com/careers",
+      "sizeRange": "Small-mid",
+      "sizeMin": null,
+      "sizeMax": null,
+      "hqLocation": "Remote-first",
+      "country": null,
+      "remotePolicy": "remote",
+      "remoteRegions": [],
+      "keywords": [
+        "react",
+        "design-tools",
+        "website-builder",
+        "cms",
+        "plugins"
+      ],
+      "currentOpenings": [
+        {
+          "title": "Senior Product Engineer",
+          "url": null,
+          "location": null,
+          "postedDate": null,
+          "detectedKeywords": []
+        },
+        {
+          "title": "Staff Product Engineer",
+          "url": null,
+          "location": null,
+          "postedDate": null,
+          "detectedKeywords": []
+        },
+        {
+          "title": "Tech Lead",
+          "url": null,
+          "location": null,
+          "postedDate": null,
+          "detectedKeywords": []
+        }
+      ],
+      "history": [],
+      "lastVerified": "2026-09-16T00:00:00Z",
+      "dataNotes": "Research recorded the openings together as \"Senior Product Engineer; also Staff Product Engineer, Tech Lead\" — split into three roles here."
+    },
+    {
+      "id": "attio",
+      "name": "Attio",
+      "logoUrl": "/logos/attio.ico",
+      "description": "AI-era CRM; React/TS frontend, Node backend",
+      "website": "https://attio.com",
+      "careersUrl": "https://attio.com/careers",
+      "sizeRange": "Growth, $116M raised",
+      "sizeMin": null,
+      "sizeMax": null,
+      "hqLocation": "Remote — UK/US/Europe",
+      "country": null,
+      "remotePolicy": "remote",
+      "remoteRegions": [
+        "United Kingdom",
+        "United States",
+        "Europe"
+      ],
+      "keywords": [
+        "crm",
+        "react",
+        "typescript",
+        "nodejs",
+        "ai",
+        "sales"
+      ],
+      "currentOpenings": [
+        {
+          "title": "Product Engineer",
+          "url": "https://jobs.ashbyhq.com/attio/8fb5c68d-84e3-45ac-b4dd-471addaa3eca",
+          "location": "Poland",
+          "postedDate": "2026-05-28",
+          "detectedKeywords": [
+            "typescript",
+            "javascript",
+            "react",
+            "nodejs"
+          ]
+        },
+        {
+          "title": "Product Engineer",
+          "url": "https://jobs.ashbyhq.com/attio/70c55694-4f19-4077-b7fc-aa130048af62",
+          "location": "London",
+          "postedDate": "2026-05-28",
+          "detectedKeywords": [
+            "typescript",
+            "javascript",
+            "react",
+            "nodejs"
+          ]
+        },
+        {
+          "title": "Sales Manager",
+          "url": "https://jobs.ashbyhq.com/attio/37d2b9e6-ca94-4132-9e52-052a03d8024b",
+          "location": "London",
+          "postedDate": "2026-06-23",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Engineering Lead",
+          "url": "https://jobs.ashbyhq.com/attio/ecbad555-41d3-41d0-a38a-435cfac65576",
+          "location": "London",
+          "postedDate": "2025-11-13",
+          "detectedKeywords": [
+            "typescript",
+            "react",
+            "nodejs",
+            "go",
+            "aws",
+            "gcp"
+          ]
+        },
+        {
+          "title": "Account Executive",
+          "url": "https://jobs.ashbyhq.com/attio/01869e97-176e-4f53-a701-86d6c69ef0ea",
+          "location": "London",
+          "postedDate": "2026-05-26",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Senior Product Engineer [Backend]",
+          "url": "https://jobs.ashbyhq.com/attio/0c324962-7ae8-4f1b-9eb4-2047babc4bd8",
+          "location": "London",
+          "postedDate": "2026-05-12",
+          "detectedKeywords": [
+            "typescript",
+            "nodejs",
+            "gcp"
+          ]
+        },
+        {
+          "title": "Senior Product Engineer [Backend]",
+          "url": "https://jobs.ashbyhq.com/attio/433cfa12-a43d-435e-9f69-8fb8688d1b10",
+          "location": "Poland",
+          "postedDate": "2026-05-12",
+          "detectedKeywords": [
+            "typescript",
+            "nodejs",
+            "gcp"
+          ]
+        },
+        {
+          "title": "Solutions Engineer [Pre and Post-Sales] - Mid-Market",
+          "url": "https://jobs.ashbyhq.com/attio/d48617ff-be9b-41cd-aff7-3ad2f826ca74",
+          "location": "New York",
+          "postedDate": "2026-07-21",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Solutions Engineer [Pre and Post-Sales] - SMB",
+          "url": "https://jobs.ashbyhq.com/attio/ce226be1-8237-41ce-b5ca-97c18d3ca8e6",
+          "location": "New York",
+          "postedDate": "2025-12-15",
+          "detectedKeywords": [
+            "javascript",
+            "python"
+          ]
+        },
+        {
+          "title": "Senior Platform Engineer",
+          "url": "https://jobs.ashbyhq.com/attio/c05a61a4-ae7c-4d93-a920-08d60c7448ad",
+          "location": "London",
+          "postedDate": "2026-08-27",
+          "detectedKeywords": [
+            "typescript",
+            "go",
+            "rust",
+            "python",
+            "kubernetes",
+            "docker",
+            "terraform",
+            "aws"
+          ]
+        },
+        {
+          "title": "General Application",
+          "url": "https://jobs.ashbyhq.com/attio/021659c3-1fda-41c3-9f1b-ac91cf712566",
+          "location": "All locations",
+          "postedDate": "2025-12-11",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Engineering Lead",
+          "url": "https://jobs.ashbyhq.com/attio/12b5faed-50b9-4b7a-80e8-af17b621cbe2",
+          "location": "Poland",
+          "postedDate": "2025-12-11",
+          "detectedKeywords": [
+            "typescript",
+            "react",
+            "nodejs",
+            "go",
+            "aws",
+            "gcp"
+          ]
+        },
+        {
+          "title": "Scaled Customer Success Manager",
+          "url": "https://jobs.ashbyhq.com/attio/2be8c78b-34cc-414b-a580-6cc39a38655d",
+          "location": "New York",
+          "postedDate": "2026-06-08",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Technical Support Specialist",
+          "url": "https://jobs.ashbyhq.com/attio/72a5fc84-9236-4544-b777-6ce24fe71e79",
+          "location": "Portugal",
+          "postedDate": "2026-08-18",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Solutions Engineer [Pre and Post-Sales] - SMB",
+          "url": "https://jobs.ashbyhq.com/attio/010b8206-5968-4a03-8052-d9339762f766",
+          "location": "London",
+          "postedDate": "2026-03-30",
+          "detectedKeywords": [
+            "javascript",
+            "python"
+          ]
+        },
+        {
+          "title": "Staff Product Engineer",
+          "url": "https://jobs.ashbyhq.com/attio/a7ef676f-ba62-4316-afd6-43e9ff619378",
+          "location": "Poland",
+          "postedDate": "2026-03-31",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Staff Product Engineer",
+          "url": "https://jobs.ashbyhq.com/attio/cf068f31-891d-4646-b95f-09f9700543d7",
+          "location": "London",
+          "postedDate": "2026-03-31",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Forward Deployed GTM Engineer",
+          "url": "https://jobs.ashbyhq.com/attio/cef00929-63ab-4927-8a3c-1ea1d4224606",
+          "location": "New York",
+          "postedDate": "2026-05-29",
+          "detectedKeywords": [
+            "javascript"
+          ]
+        },
+        {
+          "title": "Account Executive",
+          "url": "https://jobs.ashbyhq.com/attio/d3f7d63a-2646-449e-b244-cd74e270fb5c",
+          "location": "New York",
+          "postedDate": "2026-05-29",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Product Lead",
+          "url": "https://jobs.ashbyhq.com/attio/51876281-f2ca-4375-b07d-af54544fc27c",
+          "location": "Europe",
+          "postedDate": "2026-06-08",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Senior/Lead Product Marketing Manager",
+          "url": "https://jobs.ashbyhq.com/attio/779defe3-be99-478e-8328-223ae504950f",
+          "location": "New York",
+          "postedDate": "2026-06-12",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Senior/Lead Product Marketing Manager",
+          "url": "https://jobs.ashbyhq.com/attio/7d26f135-045a-4ceb-aaf5-9dc2cc13243e",
+          "location": "San Francisco",
+          "postedDate": "2026-06-12",
+          "detectedKeywords": []
+        },
+        {
+          "title": "GTM Partnerships Lead",
+          "url": "https://jobs.ashbyhq.com/attio/38dcbd9f-75c6-4122-b1ce-b07d1630244d",
+          "location": "New York",
+          "postedDate": "2026-07-24",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Demand Generation Lead",
+          "url": "https://jobs.ashbyhq.com/attio/423d0ef3-daa7-4e8a-92e5-260908495d28",
+          "location": "New York",
+          "postedDate": "2026-08-04",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Security Engineering Lead",
+          "url": "https://jobs.ashbyhq.com/attio/0dc1c85e-6240-4fe7-8e59-106fb876c34c",
+          "location": "London",
+          "postedDate": "2026-08-19",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Senior Product Engineer [Backend]",
+          "url": "https://jobs.ashbyhq.com/attio/1e6c62e8-d50e-49ab-a7b2-4e54b2e7bcbb",
+          "location": "United Kingdom",
+          "postedDate": "2026-08-19",
+          "detectedKeywords": [
+            "typescript",
+            "nodejs",
+            "gcp"
+          ]
+        },
+        {
+          "title": "Staff Product Engineer",
+          "url": "https://jobs.ashbyhq.com/attio/88050a69-b889-43e2-875b-fe8bfcdb8763",
+          "location": "United Kingdom",
+          "postedDate": "2026-08-19",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Engineering Lead",
+          "url": "https://jobs.ashbyhq.com/attio/86caf0e3-5a14-41f8-988c-b62c359a292a",
+          "location": "United Kingdom",
+          "postedDate": "2026-08-19",
+          "detectedKeywords": [
+            "typescript",
+            "react",
+            "nodejs",
+            "go",
+            "aws",
+            "gcp"
+          ]
+        },
+        {
+          "title": "Security Engineering Lead",
+          "url": "https://jobs.ashbyhq.com/attio/df8fe2cf-b2f7-47b8-a4ab-656e86fbfb90",
+          "location": "United Kingdom",
+          "postedDate": "2026-08-19",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Security Engineering Lead",
+          "url": "https://jobs.ashbyhq.com/attio/1052773e-0d30-480c-89bc-25dd667aa8a2",
+          "location": "Poland",
+          "postedDate": "2026-08-19",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Product Engineer",
+          "url": "https://jobs.ashbyhq.com/attio/7e30ecb6-db60-45b0-8132-d48169f7b964",
+          "location": "United Kingdom",
+          "postedDate": "2026-08-19",
+          "detectedKeywords": [
+            "typescript",
+            "javascript",
+            "react",
+            "nodejs"
+          ]
+        },
+        {
+          "title": "Senior Platform Engineer",
+          "url": "https://jobs.ashbyhq.com/attio/792c4476-49aa-46eb-a77a-01e821531806",
+          "location": "London",
+          "postedDate": "2026-08-27",
+          "detectedKeywords": [
+            "typescript",
+            "go",
+            "rust",
+            "python",
+            "kubernetes",
+            "docker",
+            "terraform",
+            "aws"
+          ]
+        },
+        {
+          "title": "Senior Platform Engineer",
+          "url": "https://jobs.ashbyhq.com/attio/47b583e0-9d7c-4451-9c58-4fce60821d7a",
+          "location": "Poland",
+          "postedDate": "2026-08-27",
+          "detectedKeywords": [
+            "typescript",
+            "go",
+            "rust",
+            "python",
+            "kubernetes",
+            "docker",
+            "terraform",
+            "aws"
+          ]
+        },
+        {
+          "title": "Talent Partner [Technical]",
+          "url": "https://jobs.ashbyhq.com/attio/d1f3257c-7bcc-4281-99da-3e21f86b0502",
+          "location": "London",
+          "postedDate": "2026-09-02",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Named Customer Success Manager",
+          "url": "https://jobs.ashbyhq.com/attio/72c41b8f-7a33-4285-8204-fff00ca4b9c8",
+          "location": "London",
+          "postedDate": "2026-09-14",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Startups Lead",
+          "url": "https://jobs.ashbyhq.com/attio/044a5bce-168a-4712-95b8-e11735075300",
+          "location": "San Francisco",
+          "postedDate": "2026-09-16",
+          "detectedKeywords": [
+            "go"
+          ]
+        }
+      ],
+      "history": [
+        {
+          "weekOf": "2026-09-14",
+          "openCount": 36,
+          "keywordCounts": {
+            "typescript": 12,
+            "javascript": 6,
+            "react": 6,
+            "nodejs": 9,
+            "go": 7,
+            "aws": 6,
+            "gcp": 6,
+            "python": 5,
+            "rust": 3,
+            "kubernetes": 3,
+            "docker": 3,
+            "terraform": 3
+          }
+        }
+      ],
+      "lastVerified": "2026-09-17T05:31:56.858Z",
+      "dataNotes": "Hiring regions are listed as UK/US/Europe, so no single HQ country could be confirmed from the research."
+    },
+    {
+      "id": "posthog",
+      "name": "PostHog",
+      "logoUrl": "/logos/posthog.png",
+      "description": "Open-source product analytics; transparent public handbook",
+      "website": "https://posthog.com",
+      "careersUrl": "https://posthog.com/careers",
+      "sizeRange": "Mid-size",
+      "sizeMin": null,
+      "sizeMax": null,
+      "hqLocation": "Fully remote, broad hiring (some country-specific EOR limitations noted in their own handbook)",
+      "country": null,
+      "remotePolicy": "remote",
+      "remoteRegions": [],
+      "keywords": [
+        "product-analytics",
+        "open-source",
+        "developer-tools",
+        "data"
+      ],
+      "currentOpenings": [
+        {
+          "title": "Technical Customer Success Manager - EMEA",
+          "url": "https://jobs.ashbyhq.com/posthog/0be1b52c-2401-4ae2-b7fc-5d018c1ff96f",
+          "location": "Remote (EMEA)",
+          "postedDate": "2026-08-12",
+          "detectedKeywords": [
+            "go"
+          ]
+        },
+        {
+          "title": "ClickHouse Operations Engineer",
+          "url": "https://jobs.ashbyhq.com/posthog/43dbf072-0fc1-48c9-8c1e-7416db7d4a14",
+          "location": "Remote",
+          "postedDate": "2026-08-25",
+          "detectedKeywords": [
+            "clickhouse",
+            "nodejs",
+            "python",
+            "kubernetes",
+            "terraform",
+            "aws"
+          ]
+        },
+        {
+          "title": "AI Research Engineer",
+          "url": "https://jobs.ashbyhq.com/posthog/8dc3f33a-b930-4c54-b4c4-3e6bd2ff28d3",
+          "location": "Hybrid (UK)",
+          "postedDate": "2026-08-18",
+          "detectedKeywords": [
+            "rust"
+          ]
+        },
+        {
+          "title": "Site Reliability Engineer (US - Pacific time)",
+          "url": "https://jobs.ashbyhq.com/posthog/1464036f-94d5-4dbd-aef8-fe99246a26d4",
+          "location": "San Francisco, CA",
+          "postedDate": "2026-08-06",
+          "detectedKeywords": [
+            "nodejs",
+            "kubernetes",
+            "terraform",
+            "aws"
+          ]
+        },
+        {
+          "title": "Technical Customer Success Manager - Americas",
+          "url": "https://jobs.ashbyhq.com/posthog/8854fb74-8457-40cd-bc10-60125a0c0cd4",
+          "location": "Remote",
+          "postedDate": "2026-06-26",
+          "detectedKeywords": [
+            "go"
+          ]
+        },
+        {
+          "title": "Business Development Lead - Americas",
+          "url": "https://jobs.ashbyhq.com/posthog/84de4a11-ad69-4b1d-abf9-c7d7b46152d9",
+          "location": "Remote",
+          "postedDate": "2026-07-02",
+          "detectedKeywords": [
+            "go"
+          ]
+        },
+        {
+          "title": "Security Engineer",
+          "url": "https://jobs.ashbyhq.com/posthog/36d5ce14-851c-450f-879a-45cbb896225e",
+          "location": "Remote (EMEA)",
+          "postedDate": "2026-09-14",
+          "detectedKeywords": [
+            "aws"
+          ]
+        },
+        {
+          "title": "Technical Staff Writer (Blogs & Newsletters)",
+          "url": "https://jobs.ashbyhq.com/posthog/693ba66a-1f4b-4fd0-9fb4-0861b268a55d",
+          "location": "Remote",
+          "postedDate": "2026-09-08",
+          "detectedKeywords": [
+            "go",
+            "clickhouse"
+          ]
+        },
+        {
+          "title": "Finance Manager, Revenue Accounting",
+          "url": "https://jobs.ashbyhq.com/posthog/2a78f2f8-4fd3-413b-9c7d-55db568e68c1",
+          "location": "Remote (US)",
+          "postedDate": "2026-09-14",
+          "detectedKeywords": []
+        }
+      ],
+      "history": [
+        {
+          "weekOf": "2026-09-14",
+          "openCount": 9,
+          "keywordCounts": {
+            "go": 4,
+            "clickhouse": 2,
+            "nodejs": 2,
+            "python": 1,
+            "kubernetes": 2,
+            "terraform": 2,
+            "aws": 3,
+            "rust": 1
+          }
+        }
+      ],
+      "lastVerified": "2026-09-17T05:31:58.027Z",
+      "dataNotes": "Product Engineer listings rotate — some lean frontend, some backend/Rust. Their handbook notes country-specific EOR limits on where they can hire."
+    },
+    {
+      "id": "workos",
+      "name": "WorkOS",
+      "logoUrl": "/logos/workos.png",
+      "description": "Enterprise-readiness infra — SSO, SCIM, Audit Logs, AuthKit, Feature Flags",
+      "website": "https://workos.com",
+      "careersUrl": "https://workos.com/careers",
+      "sizeRange": "~$2B valuation, $100M Series C",
+      "sizeMin": null,
+      "sizeMax": null,
+      "hqLocation": "Remote — US/Canada or \"North American time zones\" depending on listing",
+      "country": "United States",
+      "remotePolicy": "remote",
+      "remoteRegions": [
+        "United States",
+        "Canada",
+        "North America"
+      ],
+      "keywords": [
+        "authentication",
+        "sso",
+        "scim",
+        "enterprise",
+        "developer-tools",
+        "feature-flags",
+        "audit-logs"
+      ],
+      "currentOpenings": [
+        {
+          "title": "Site Reliability Engineer",
+          "url": "https://jobs.ashbyhq.com/workos/cff5a16f-fd1c-4b64-9b66-8a8321122375",
+          "location": "United States & Canada",
+          "postedDate": "2026-01-14",
+          "detectedKeywords": [
+            "typescript",
+            "kubernetes",
+            "aws",
+            "ai"
+          ]
+        },
+        {
+          "title": "Engineering Manager",
+          "url": "https://jobs.ashbyhq.com/workos/96a03aa5-c2da-4f10-a0d1-951160188f9b",
+          "location": "San Francisco",
+          "postedDate": "2026-01-14",
+          "detectedKeywords": [
+            "ai"
+          ]
+        },
+        {
+          "title": "Product Engineer - Enterprise",
+          "url": "https://jobs.ashbyhq.com/workos/d76843a8-2a45-444a-b187-3336b45a7934",
+          "location": "United States & Canada",
+          "postedDate": "2026-01-14",
+          "detectedKeywords": [
+            "typescript",
+            "react",
+            "postgres",
+            "ai"
+          ]
+        },
+        {
+          "title": "Product Engineer - Identity and Auth",
+          "url": "https://jobs.ashbyhq.com/workos/8317f6f4-3d85-4a9f-bec3-753e4b646fc2",
+          "location": "United States & Canada",
+          "postedDate": "2026-01-14",
+          "detectedKeywords": [
+            "typescript",
+            "react",
+            "postgres",
+            "ai"
+          ]
+        },
+        {
+          "title": "Recruiter",
+          "url": "https://jobs.ashbyhq.com/workos/6b10b885-395d-458f-9739-ff04f7a0d15e",
+          "location": "United States & Canada",
+          "postedDate": "2026-04-28",
+          "detectedKeywords": [
+            "ai"
+          ]
+        },
+        {
+          "title": "Infrastructure Engineer",
+          "url": "https://jobs.ashbyhq.com/workos/26a54ffa-9465-4d13-bc5f-db41a2bbe505",
+          "location": "United States & Canada",
+          "postedDate": "2026-01-14",
+          "detectedKeywords": [
+            "typescript",
+            "kubernetes",
+            "aws",
+            "ai"
+          ]
+        },
+        {
+          "title": "Software Engineer - Platform & Productivity",
+          "url": "https://jobs.ashbyhq.com/workos/07a7d732-ac5d-4aab-b4bf-ee89951660c2",
+          "location": "United States & Canada",
+          "postedDate": "2026-01-14",
+          "detectedKeywords": [
+            "typescript",
+            "react",
+            "nodejs",
+            "postgres",
+            "terraform",
+            "aws",
+            "ai"
+          ]
+        },
+        {
+          "title": "Enterprise Account Executive",
+          "url": "https://jobs.ashbyhq.com/workos/70cedfd9-1ed8-4e4e-bc6a-9f0bbcc4756d",
+          "location": "San Francisco",
+          "postedDate": "2026-01-14",
+          "detectedKeywords": [
+            "ai"
+          ]
+        },
+        {
+          "title": "Business Development Representative",
+          "url": "https://jobs.ashbyhq.com/workos/0b8ebc20-37a2-484a-9220-ce1679764b08",
+          "location": "San Francisco",
+          "postedDate": "2026-01-14",
+          "detectedKeywords": [
+            "ai"
+          ]
+        },
+        {
+          "title": "Product Engineer - Radar",
+          "url": "https://jobs.ashbyhq.com/workos/10d184bd-7b94-4205-8dc5-d3e3ede9bdc2",
+          "location": "United States & Canada",
+          "postedDate": "2026-01-14",
+          "detectedKeywords": [
+            "machine-learning",
+            "ai"
+          ]
+        },
+        {
+          "title": "Product Engineer - Pipes & Vault",
+          "url": "https://jobs.ashbyhq.com/workos/1269a212-2b49-4e99-a379-fc47f1d76e46",
+          "location": "United States & Canada",
+          "postedDate": "2026-01-14",
+          "detectedKeywords": [
+            "typescript",
+            "react",
+            "postgres",
+            "ai"
+          ]
+        },
+        {
+          "title": "Solutions Engineer",
+          "url": "https://jobs.ashbyhq.com/workos/dc23fd7b-ee4c-4e6a-959a-209b2eab8b17",
+          "location": "San Francisco",
+          "postedDate": "2026-01-14",
+          "detectedKeywords": [
+            "ai"
+          ]
+        },
+        {
+          "title": "Developer Relations",
+          "url": "https://jobs.ashbyhq.com/workos/bb4e927b-5bbd-4704-954d-5b716c3ff1f3",
+          "location": "San Francisco",
+          "postedDate": "2026-01-13",
+          "detectedKeywords": [
+            "ai"
+          ]
+        },
+        {
+          "title": "Account Executive - AI Native",
+          "url": "https://jobs.ashbyhq.com/workos/afdd651f-c97a-4ba2-88af-c790eb9e1a1d",
+          "location": "San Francisco",
+          "postedDate": "2026-01-14",
+          "detectedKeywords": [
+            "ai"
+          ]
+        },
+        {
+          "title": "Developer & Agent Experience Engineer",
+          "url": "https://jobs.ashbyhq.com/workos/b6c03b24-b4ee-4ee3-ac62-5e5718c502d4",
+          "location": "United States & Canada",
+          "postedDate": "2026-01-22",
+          "detectedKeywords": [
+            "typescript",
+            "nextjs",
+            "nodejs",
+            "go",
+            "python",
+            "ruby",
+            "java",
+            "php"
+          ]
+        },
+        {
+          "title": "Product Engineer - Feature Flags",
+          "url": "https://jobs.ashbyhq.com/workos/639bcb50-f1dd-4756-aa45-ce176494b4b1",
+          "location": "United States & Canada",
+          "postedDate": "2026-01-22",
+          "detectedKeywords": [
+            "typescript",
+            "react",
+            "postgres",
+            "ai"
+          ]
+        },
+        {
+          "title": "Account Manager",
+          "url": "https://jobs.ashbyhq.com/workos/821bcec6-7149-47fb-93a4-49cee4aaae74",
+          "location": "United States & Canada",
+          "postedDate": "2026-08-27",
+          "detectedKeywords": [
+            "ai"
+          ]
+        },
+        {
+          "title": "Applied AI Engineer",
+          "url": "https://jobs.ashbyhq.com/workos/5e650527-d8dd-413a-9cfb-d7d68143274b",
+          "location": "United States & Canada",
+          "postedDate": "2026-02-27",
+          "detectedKeywords": [
+            "ai"
+          ]
+        },
+        {
+          "title": "Product Design",
+          "url": "https://jobs.ashbyhq.com/workos/bd5dab2b-fa93-4441-9ca0-558593f02b9a",
+          "location": "United States & Canada",
+          "postedDate": "2026-04-01",
+          "detectedKeywords": [
+            "ai"
+          ]
+        },
+        {
+          "title": "GTM Engineer",
+          "url": "https://jobs.ashbyhq.com/workos/990c41b1-e3c3-4a75-83c2-ca916899c110",
+          "location": "United States & Canada",
+          "postedDate": "2026-04-10",
+          "detectedKeywords": [
+            "typescript",
+            "python",
+            "ai"
+          ]
+        },
+        {
+          "title": "Product Manager",
+          "url": "https://jobs.ashbyhq.com/workos/5550ddd5-c3eb-459a-aa4d-8b1216346d88",
+          "location": "United States & Canada",
+          "postedDate": "2026-04-13",
+          "detectedKeywords": [
+            "ai"
+          ]
+        },
+        {
+          "title": "Brand Design | Web",
+          "url": "https://jobs.ashbyhq.com/workos/aff2e0f3-c5e7-47ff-b7c6-50baa9c822aa",
+          "location": "United States & Canada",
+          "postedDate": "2026-05-07",
+          "detectedKeywords": [
+            "ai"
+          ]
+        },
+        {
+          "title": "Product Manager - Growth",
+          "url": "https://jobs.ashbyhq.com/workos/257e30d0-eaa3-4ce1-a47d-2b2c4f65cf1a",
+          "location": "United States & Canada",
+          "postedDate": "2026-07-17",
+          "detectedKeywords": [
+            "ai"
+          ]
+        },
+        {
+          "title": "Systems Engineer",
+          "url": "https://jobs.ashbyhq.com/workos/3e8fb2cb-de91-4221-bfdc-37d81057cc0f",
+          "location": "United States & Canada",
+          "postedDate": "2026-07-23",
+          "detectedKeywords": [
+            "python",
+            "terraform",
+            "aws",
+            "gcp",
+            "ai"
+          ]
+        },
+        {
+          "title": "Sales Manager",
+          "url": "https://jobs.ashbyhq.com/workos/f87390b8-199c-4d1d-8c0c-bc87572c8636",
+          "location": "San Francisco",
+          "postedDate": "2026-08-05",
+          "detectedKeywords": [
+            "ai"
+          ]
+        },
+        {
+          "title": "Design Engineer",
+          "url": "https://jobs.ashbyhq.com/workos/dbc4f497-fbb5-415e-b2b0-69321150424e",
+          "location": "United States & Canada",
+          "postedDate": "2026-08-13",
+          "detectedKeywords": [
+            "typescript",
+            "react",
+            "ai"
+          ]
+        },
+        {
+          "title": "Employee Programs",
+          "url": "https://jobs.ashbyhq.com/workos/40b1102c-4bc2-4aa0-a558-d64bab7e0b6d",
+          "location": "San Francisco",
+          "postedDate": "2026-08-18",
+          "detectedKeywords": [
+            "ai"
+          ]
+        }
+      ],
+      "history": [
+        {
+          "weekOf": "2026-09-14",
+          "openCount": 27,
+          "keywordCounts": {
+            "typescript": 10,
+            "kubernetes": 2,
+            "aws": 4,
+            "ai": 26,
+            "react": 6,
+            "postgres": 5,
+            "nodejs": 2,
+            "terraform": 2,
+            "machine-learning": 1,
+            "nextjs": 1,
+            "go": 1,
+            "python": 3,
+            "ruby": 1,
+            "java": 1,
+            "php": 1,
+            "gcp": 1
+          }
+        }
+      ],
+      "lastVerified": "2026-09-17T05:31:59.244Z",
+      "dataNotes": "The careers page is Ashby-hosted. The Feature Flags role listed a $175K–$250K base salary range."
+    },
+    {
+      "id": "spacelift",
+      "name": "Spacelift",
+      "logoUrl": "/logos/spacelift.png",
+      "description": "Infrastructure-orchestration platform (Terraform/OpenTofu/Pulumi)",
+      "website": "https://spacelift.io",
+      "careersUrl": "https://careers.spacelift.io",
+      "sizeRange": "130+, $82M raised",
+      "sizeMin": 130,
+      "sizeMax": null,
+      "hqLocation": "Remote — US/Europe",
+      "country": null,
+      "remotePolicy": "remote",
+      "remoteRegions": [
+        "United States",
+        "Europe"
+      ],
+      "keywords": [
+        "infrastructure",
+        "terraform",
+        "opentofu",
+        "pulumi",
+        "devops",
+        "iac"
+      ],
+      "currentOpenings": [
+        {
+          "title": "Frontend Engineer (React)",
+          "url": null,
+          "location": null,
+          "postedDate": null,
+          "detectedKeywords": [
+            "frontend",
+            "react"
+          ]
+        }
+      ],
+      "history": [],
+      "lastVerified": "2026-09-16T00:00:00Z",
+      "dataNotes": null
+    },
+    {
+      "id": "linear",
+      "name": "Linear",
+      "logoUrl": "/logos/linear.png",
+      "description": "Project/product development tool, used by 40,000+ companies",
+      "website": "https://linear.app",
+      "careersUrl": "https://linear.app/careers",
+      "sizeRange": "Small, high-craft",
+      "sizeMin": null,
+      "sizeMax": null,
+      "hqLocation": "Remote-first — North America / Europe / Australia (varies by level)",
+      "country": "United States",
+      "remotePolicy": "remote",
+      "remoteRegions": [
+        "North America",
+        "Europe",
+        "Australia"
+      ],
+      "keywords": [
+        "project-management",
+        "issue-tracking",
+        "product-development",
+        "saas",
+        "developer-tools"
+      ],
+      "currentOpenings": [
+        {
+          "title": "Senior / Staff Fullstack Engineer",
+          "url": "https://jobs.ashbyhq.com/Linear/d3bc1ced-3ce4-4086-a050-555055dbb1ff",
+          "location": "Europe",
+          "postedDate": "2021-04-27",
+          "detectedKeywords": [
+            "typescript",
+            "javascript",
+            "react",
+            "nodejs",
+            "postgres",
+            "redis",
+            "graphql",
+            "kubernetes"
+          ]
+        },
+        {
+          "title": "Senior / Staff Fullstack Engineer",
+          "url": "https://jobs.ashbyhq.com/Linear/cd5ae036-0223-427a-b038-ba16ef9dcb32",
+          "location": "North America",
+          "postedDate": "2021-08-18",
+          "detectedKeywords": [
+            "typescript",
+            "react",
+            "nodejs",
+            "postgres",
+            "redis",
+            "graphql",
+            "kubernetes",
+            "gcp"
+          ]
+        },
+        {
+          "title": "Senior / Staff Product Engineer",
+          "url": "https://jobs.ashbyhq.com/Linear/069c4628-88d7-4e4d-b393-c996fc7f3076",
+          "location": "Europe",
+          "postedDate": "2022-01-22",
+          "detectedKeywords": [
+            "typescript",
+            "react",
+            "nodejs",
+            "postgres",
+            "redis",
+            "graphql",
+            "kubernetes",
+            "gcp"
+          ]
+        },
+        {
+          "title": "Design Engineer (Web & Brand)",
+          "url": "https://jobs.ashbyhq.com/Linear/f04f398b-6320-499d-8a60-290239d62da8",
+          "location": "North America",
+          "postedDate": "2026-09-15",
+          "detectedKeywords": [
+            "typescript",
+            "react"
+          ]
+        },
+        {
+          "title": "Design Engineer (Web & Brand)",
+          "url": "https://jobs.ashbyhq.com/Linear/ea0b5868-6d7a-46fa-99d8-207cd19357a6",
+          "location": "Europe",
+          "postedDate": "2026-09-15",
+          "detectedKeywords": [
+            "typescript",
+            "react"
+          ]
+        },
+        {
+          "title": "Senior / Staff Product Engineer",
+          "url": "https://jobs.ashbyhq.com/Linear/12f8f208-0b9c-4569-bb3d-41c8a197029e",
+          "location": "North America",
+          "postedDate": "2026-03-04",
+          "detectedKeywords": [
+            "typescript",
+            "react",
+            "nodejs",
+            "postgres",
+            "redis",
+            "graphql",
+            "kubernetes",
+            "gcp"
+          ]
+        },
+        {
+          "title": "Product Engineer",
+          "url": "https://jobs.ashbyhq.com/Linear/0c7c2e26-0a98-42cf-a47c-9a3999fb513b",
+          "location": "North America",
+          "postedDate": "2026-06-09",
+          "detectedKeywords": [
+            "typescript",
+            "react",
+            "nodejs",
+            "postgres",
+            "redis",
+            "graphql",
+            "kubernetes",
+            "gcp"
+          ]
+        },
+        {
+          "title": "Product Manager",
+          "url": "https://jobs.ashbyhq.com/Linear/b7669c4b-eeca-421d-ba9a-d90203f6fcb2",
+          "location": "North America",
+          "postedDate": "2026-01-21",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Product Manager",
+          "url": "https://jobs.ashbyhq.com/Linear/86abcce0-04b2-405c-9a8e-e0ca84813914",
+          "location": "Europe",
+          "postedDate": "2026-01-21",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Product Support Specialist, Pacific/Mountain Time",
+          "url": "https://jobs.ashbyhq.com/Linear/d062065e-05bb-42ce-a430-ec205695cc2e",
+          "location": "North America",
+          "postedDate": "2026-05-28",
+          "detectedKeywords": [
+            "javascript"
+          ]
+        },
+        {
+          "title": "Account Executive, Startups",
+          "url": "https://jobs.ashbyhq.com/Linear/c21af93e-210f-4969-8eaa-90fb16a5b720",
+          "location": "North America",
+          "postedDate": "2025-11-14",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Senior / Staff Product Engineer, AI",
+          "url": "https://jobs.ashbyhq.com/Linear/b4a7764e-c680-4bdf-9956-dc78f2ca94d5",
+          "location": "North America",
+          "postedDate": "2025-07-10",
+          "detectedKeywords": [
+            "typescript",
+            "react",
+            "nodejs",
+            "postgres",
+            "redis",
+            "graphql",
+            "kubernetes",
+            "gcp"
+          ]
+        },
+        {
+          "title": "Senior / Staff Product Designer",
+          "url": "https://jobs.ashbyhq.com/Linear/a264869e-f058-487c-ab7f-9b77dffa427c",
+          "location": "North America",
+          "postedDate": "2026-04-23",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Principal Product Designer",
+          "url": "https://jobs.ashbyhq.com/Linear/ba8a41d2-4198-481a-a7f4-e09c5364ff7f",
+          "location": "Europe",
+          "postedDate": "2026-04-29",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Customer Success Manager, Growth",
+          "url": "https://jobs.ashbyhq.com/Linear/26c77e48-b4ef-455d-a02c-3ef68fc6f9f9",
+          "location": "North America",
+          "postedDate": "2026-09-04",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Solutions Engineer, Europe",
+          "url": "https://jobs.ashbyhq.com/Linear/d37b3d76-3080-47f9-8a19-60505573112c",
+          "location": "London",
+          "postedDate": "2026-04-08",
+          "detectedKeywords": [
+            "javascript",
+            "python",
+            "graphql"
+          ]
+        },
+        {
+          "title": "Developer Relations",
+          "url": "https://jobs.ashbyhq.com/Linear/1d652292-04d9-405c-8101-578efd020e94",
+          "location": "North America",
+          "postedDate": "2026-04-24",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Developer Relations",
+          "url": "https://jobs.ashbyhq.com/Linear/62a4524c-75da-499e-b150-7f68ce9f2da3",
+          "location": "Europe",
+          "postedDate": "2026-04-24",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Product Support Specialist, Europe",
+          "url": "https://jobs.ashbyhq.com/Linear/820d0d5a-0930-475c-b494-23e18ad2aa68",
+          "location": "Europe",
+          "postedDate": "2026-09-10",
+          "detectedKeywords": [
+            "javascript"
+          ]
+        },
+        {
+          "title": "Customer Success Manager, Enterprise",
+          "url": "https://jobs.ashbyhq.com/Linear/370d9605-f02f-44f9-97fa-ebf769bed93d",
+          "location": "North America",
+          "postedDate": "2026-06-17",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Product Marketing Manager",
+          "url": "https://jobs.ashbyhq.com/Linear/c0abc97e-b4d7-4ad7-bd13-bc40f4023227",
+          "location": "North America",
+          "postedDate": "2026-06-30",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Product Marketing Manager",
+          "url": "https://jobs.ashbyhq.com/Linear/b3346acf-44be-4565-b1c0-10d482d3ad4e",
+          "location": "London",
+          "postedDate": "2026-07-01",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Recruiting & HR Operations Specialist",
+          "url": "https://jobs.ashbyhq.com/Linear/2ef60eea-7cff-45c2-abf2-eaedc4ea89bd",
+          "location": "North America",
+          "postedDate": "2026-07-02",
+          "detectedKeywords": [
+            "go"
+          ]
+        },
+        {
+          "title": "Implementation Manager",
+          "url": "https://jobs.ashbyhq.com/Linear/cec84487-60f2-4216-a514-dcf190c86c1e",
+          "location": "North America",
+          "postedDate": "2026-05-27",
+          "detectedKeywords": [
+            "go"
+          ]
+        },
+        {
+          "title": "Mobile Product Designer",
+          "url": "https://jobs.ashbyhq.com/Linear/eac7f181-d658-4943-9430-51bae2bcd110",
+          "location": "North America",
+          "postedDate": "2026-08-03",
+          "detectedKeywords": [
+            "swift",
+            "android"
+          ]
+        },
+        {
+          "title": "Production Designer",
+          "url": "https://jobs.ashbyhq.com/Linear/5b9997fd-7507-4437-8fd7-14178c99ab5d",
+          "location": "Europe",
+          "postedDate": "2026-08-06",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Production Designer",
+          "url": "https://jobs.ashbyhq.com/Linear/b32de590-06ce-47d4-8994-66b936df908d",
+          "location": "North America",
+          "postedDate": "2026-08-06",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Revenue Operations",
+          "url": "https://jobs.ashbyhq.com/Linear/29aeb82d-f00e-4283-b332-057efd487d6f",
+          "location": "North America",
+          "postedDate": "2026-08-10",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Deal Desk",
+          "url": "https://jobs.ashbyhq.com/Linear/1aa6f672-5917-49aa-b015-70ebff901923",
+          "location": "North America",
+          "postedDate": "2026-08-10",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Analytics Engineer",
+          "url": "https://jobs.ashbyhq.com/Linear/f272fc4a-91a7-4dcf-9cb5-3600ebaf14e1",
+          "location": "North America",
+          "postedDate": "2026-08-11",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Solutions Engineer, Growth",
+          "url": "https://jobs.ashbyhq.com/Linear/a8041e0e-350e-47d0-9190-454089216fb8",
+          "location": "North America",
+          "postedDate": "2025-11-25",
+          "detectedKeywords": [
+            "javascript",
+            "go",
+            "python",
+            "graphql"
+          ]
+        },
+        {
+          "title": "Technical Recruiter",
+          "url": "https://jobs.ashbyhq.com/Linear/fb4b6076-b943-4d95-bb9b-a66aef8275f2",
+          "location": "North America",
+          "postedDate": "2026-08-14",
+          "detectedKeywords": []
+        }
+      ],
+      "history": [
+        {
+          "weekOf": "2026-09-14",
+          "openCount": 32,
+          "keywordCounts": {
+            "typescript": 8,
+            "javascript": 5,
+            "react": 8,
+            "nodejs": 6,
+            "postgres": 6,
+            "redis": 6,
+            "graphql": 8,
+            "kubernetes": 6,
+            "gcp": 5,
+            "python": 2,
+            "go": 3,
+            "swift": 1,
+            "android": 1
+          }
+        }
+      ],
+      "lastVerified": "2026-09-17T05:32:00.441Z",
+      "dataNotes": "Eligible regions vary by level — the mid-level role was North America only, the senior/staff role US/Europe."
+    },
+    {
+      "id": "supabase",
+      "name": "Supabase",
+      "logoUrl": "/logos/supabase.png",
+      "description": "Open-source backend-as-a-service (Postgres, auth, storage)",
+      "website": "https://supabase.com",
+      "careersUrl": "https://jobs.ashbyhq.com/supabase",
+      "sizeRange": "~400, $1B+ raised",
+      "sizeMin": 400,
+      "sizeMax": 400,
+      "hqLocation": "Fully remote, globally, no offices",
+      "country": null,
+      "remotePolicy": "remote",
+      "remoteRegions": [
+        "Global"
+      ],
+      "keywords": [
+        "postgres",
+        "open-source",
+        "backend-as-a-service",
+        "database",
+        "auth",
+        "storage"
+      ],
+      "currentOpenings": [
+        {
+          "title": "Product Manager - Marketplace",
+          "url": "https://jobs.ashbyhq.com/supabase/23c9ce7e-6b7b-4316-8f00-8f318e902441",
+          "location": "Remote, Global",
+          "postedDate": "2026-07-24",
+          "detectedKeywords": [
+            "postgres"
+          ]
+        },
+        {
+          "title": "Customer Solution Architect (AMER)",
+          "url": "https://jobs.ashbyhq.com/supabase/d5573afa-636c-4219-832f-386f498243bf",
+          "location": "Remote, AMER",
+          "postedDate": "2024-11-14",
+          "detectedKeywords": [
+            "javascript",
+            "react",
+            "vue",
+            "svelte",
+            "nodejs",
+            "python",
+            "csharp",
+            "postgres"
+          ]
+        },
+        {
+          "title": "Support Engineer (EMEA)",
+          "url": "https://jobs.ashbyhq.com/supabase/c01f7436-1fdd-4a3e-8b96-8cadc33b006e",
+          "location": "Remote, EMEA",
+          "postedDate": "2025-05-30",
+          "detectedKeywords": [
+            "javascript",
+            "react",
+            "vue",
+            "svelte",
+            "nodejs",
+            "postgres"
+          ]
+        },
+        {
+          "title": "Support Engineer (AMER)",
+          "url": "https://jobs.ashbyhq.com/supabase/e4e3ccb7-7b7d-42a2-be0f-26cbb5ae4abd",
+          "location": "Remote, AMER",
+          "postedDate": "2025-01-15",
+          "detectedKeywords": [
+            "javascript",
+            "react",
+            "vue",
+            "svelte",
+            "nodejs",
+            "postgres"
+          ]
+        },
+        {
+          "title": "Support Engineer (APAC)",
+          "url": "https://jobs.ashbyhq.com/supabase/142135ae-a15f-4ec7-90bb-cb4e7968bc09",
+          "location": "Remote, APAC",
+          "postedDate": "2025-03-20",
+          "detectedKeywords": [
+            "javascript",
+            "react",
+            "vue",
+            "svelte",
+            "nodejs",
+            "postgres"
+          ]
+        },
+        {
+          "title": "Multigres Engineer",
+          "url": "https://jobs.ashbyhq.com/supabase/2e718684-4f75-4a99-8d6b-3b6bd44e4228",
+          "location": "Remote, Global",
+          "postedDate": "2025-06-04",
+          "detectedKeywords": [
+            "postgres"
+          ]
+        },
+        {
+          "title": "Developer Relations Engineer",
+          "url": "https://jobs.ashbyhq.com/supabase/a1320bbf-bfae-49a8-a1b7-12eeccaf39ca",
+          "location": "Remote, San Francisco, CA",
+          "postedDate": "2026-08-21",
+          "detectedKeywords": [
+            "typescript",
+            "javascript",
+            "react",
+            "vue",
+            "svelte",
+            "nextjs",
+            "postgres"
+          ]
+        },
+        {
+          "title": "Support Engineer (AMER - Weekends)",
+          "url": "https://jobs.ashbyhq.com/supabase/dcf09dfe-55bc-44ba-b5db-1a2de7f33216",
+          "location": "Remote, AMER",
+          "postedDate": "2026-07-31",
+          "detectedKeywords": [
+            "javascript",
+            "react",
+            "vue",
+            "svelte",
+            "nodejs",
+            "postgres"
+          ]
+        },
+        {
+          "title": "Support Engineer (EMEA - Weekends)",
+          "url": "https://jobs.ashbyhq.com/supabase/590a0742-97f1-47f4-81a2-567efc939ae2",
+          "location": "Remote, Global",
+          "postedDate": "2026-07-31",
+          "detectedKeywords": [
+            "javascript",
+            "react",
+            "vue",
+            "svelte",
+            "nodejs",
+            "postgres"
+          ]
+        },
+        {
+          "title": "Account Executive (EMEA)",
+          "url": "https://jobs.ashbyhq.com/supabase/a069c886-1107-408e-88b4-e1aa8d33d4bc",
+          "location": "Remote, EMEA",
+          "postedDate": "2026-08-26",
+          "detectedKeywords": [
+            "postgres"
+          ]
+        },
+        {
+          "title": "Postgres Engineer (AMER)",
+          "url": "https://jobs.ashbyhq.com/supabase/c16bd707-29f2-46fb-8409-7270ff00978b",
+          "location": "Remote, AMER",
+          "postedDate": "2026-02-27",
+          "detectedKeywords": [
+            "postgres",
+            "rust"
+          ]
+        },
+        {
+          "title": "Multigres Deployment Engineer",
+          "url": "https://jobs.ashbyhq.com/supabase/f035bda1-b5d3-4c5b-8736-b9c335fe1c3b",
+          "location": "Remote, Global",
+          "postedDate": "2026-04-15",
+          "detectedKeywords": [
+            "go",
+            "postgres",
+            "kubernetes",
+            "terraform"
+          ]
+        },
+        {
+          "title": "Customer Solution Architect, Team Lead",
+          "url": "https://jobs.ashbyhq.com/supabase/66bab062-b769-43cf-ac3c-a2630257624c",
+          "location": "Remote, AMER",
+          "postedDate": "2026-05-29",
+          "detectedKeywords": [
+            "react",
+            "vue",
+            "svelte",
+            "nodejs",
+            "postgres"
+          ]
+        },
+        {
+          "title": "Database Support Engineer (AMER)",
+          "url": "https://jobs.ashbyhq.com/supabase/f18b1173-51c3-4ff6-bcda-89f8111931f4",
+          "location": "Remote, AMER",
+          "postedDate": "2025-12-17",
+          "detectedKeywords": [
+            "postgres",
+            "aws"
+          ]
+        },
+        {
+          "title": "Database Support Engineer (EMEA)",
+          "url": "https://jobs.ashbyhq.com/supabase/3889002e-536e-4046-a330-70e942b0cc96",
+          "location": "Remote, EMEA",
+          "postedDate": "2025-12-17",
+          "detectedKeywords": [
+            "postgres",
+            "aws"
+          ]
+        },
+        {
+          "title": "Database Support Engineer (APAC)",
+          "url": "https://jobs.ashbyhq.com/supabase/62945518-2468-4cf5-9f36-904b60f75183",
+          "location": "Remote, APAC",
+          "postedDate": "2025-12-17",
+          "detectedKeywords": [
+            "postgres",
+            "aws"
+          ]
+        },
+        {
+          "title": "Account Executive (APAC)",
+          "url": "https://jobs.ashbyhq.com/supabase/4859464f-afab-4409-b295-4f4cbbfc41eb",
+          "location": "Remote, APAC",
+          "postedDate": "2026-03-06",
+          "detectedKeywords": [
+            "postgres"
+          ]
+        },
+        {
+          "title": "Postgres Deployment Engineer (Nix)",
+          "url": "https://jobs.ashbyhq.com/supabase/48950725-e0d9-4025-92d9-f75e1b60ce45",
+          "location": "Remote, Global",
+          "postedDate": "2026-06-26",
+          "detectedKeywords": [
+            "postgres",
+            "javascript",
+            "go",
+            "rust",
+            "cpp",
+            "kubernetes",
+            "docker",
+            "aws"
+          ]
+        },
+        {
+          "title": "Software Engineer - Auth",
+          "url": "https://jobs.ashbyhq.com/supabase/e569b7f7-fa8f-4139-86f6-4f52b456882d",
+          "location": "Remote, Global",
+          "postedDate": "2026-04-08",
+          "detectedKeywords": [
+            "typescript",
+            "javascript",
+            "nextjs",
+            "go",
+            "ruby",
+            "php",
+            "postgres",
+            "mysql"
+          ]
+        },
+        {
+          "title": "Product Manager - Security & Trust (EMEA/AMER)",
+          "url": "https://jobs.ashbyhq.com/supabase/b8010a28-109c-46a9-b8b7-c7f9b24077fa",
+          "location": "Remote, Global",
+          "postedDate": "2026-04-29",
+          "detectedKeywords": [
+            "postgres"
+          ]
+        },
+        {
+          "title": "Software Engineer: IaC Platform Experience",
+          "url": "https://jobs.ashbyhq.com/supabase/b7206c22-979f-444a-809b-e70d9ee23c7f",
+          "location": "Remote, Global",
+          "postedDate": "2026-05-13",
+          "detectedKeywords": [
+            "typescript",
+            "go",
+            "postgres",
+            "terraform"
+          ]
+        },
+        {
+          "title": "Edge Functions Engineer",
+          "url": "https://jobs.ashbyhq.com/supabase/3ab0b926-c9b5-4197-aff2-88d5bf009e13",
+          "location": "Remote, Global",
+          "postedDate": "2026-05-13",
+          "detectedKeywords": [
+            "typescript",
+            "javascript",
+            "rust",
+            "postgres",
+            "redis",
+            "kubernetes",
+            "aws",
+            "wasm"
+          ]
+        },
+        {
+          "title": "Product Lead - Infrastructure",
+          "url": "https://jobs.ashbyhq.com/supabase/47bcfdb8-b954-423e-8a9e-85256434575c",
+          "location": "Remote, Global",
+          "postedDate": "2026-06-01",
+          "detectedKeywords": [
+            "postgres"
+          ]
+        },
+        {
+          "title": "OrioleDB Developer (AMER)",
+          "url": "https://jobs.ashbyhq.com/supabase/621516b5-4d8f-4ee9-8287-2da12e63d023",
+          "location": "Remote, AMER",
+          "postedDate": "2026-05-19",
+          "detectedKeywords": [
+            "postgres"
+          ]
+        },
+        {
+          "title": "Engineering Manager",
+          "url": "https://jobs.ashbyhq.com/supabase/99a80436-89ec-412b-b782-1dd462bd16dc",
+          "location": "Remote, Global",
+          "postedDate": "2026-06-22",
+          "detectedKeywords": [
+            "postgres"
+          ]
+        },
+        {
+          "title": "Site Reliability Engineer",
+          "url": "https://jobs.ashbyhq.com/supabase/ed6cedb1-b9bf-4609-ac5c-c75c33b31bf3",
+          "location": "Remote, Global",
+          "postedDate": "2026-06-19",
+          "detectedKeywords": [
+            "postgres",
+            "kubernetes",
+            "terraform",
+            "aws"
+          ]
+        },
+        {
+          "title": "Brand Designer",
+          "url": "https://jobs.ashbyhq.com/supabase/4a85c92b-1d0d-43ee-8dbc-0e45a58be208",
+          "location": "Remote, Global",
+          "postedDate": "2026-06-23",
+          "detectedKeywords": [
+            "postgres"
+          ]
+        },
+        {
+          "title": "API Engineer",
+          "url": "https://jobs.ashbyhq.com/supabase/620bcab3-787c-4ffe-bd37-5d45e209925e",
+          "location": "Remote, AMER",
+          "postedDate": "2026-07-03",
+          "detectedKeywords": [
+            "typescript",
+            "javascript",
+            "nodejs",
+            "postgres",
+            "docker"
+          ]
+        },
+        {
+          "title": "Executive Assistant to the CEO",
+          "url": "https://jobs.ashbyhq.com/supabase/b566fbf8-2894-4314-9533-8fa920e80c19",
+          "location": "Remote, APAC",
+          "postedDate": "2026-07-06",
+          "detectedKeywords": [
+            "postgres"
+          ]
+        },
+        {
+          "title": "Partnerships Manager, Ecosystem",
+          "url": "https://jobs.ashbyhq.com/supabase/f0f277ac-b96c-478a-81ca-7bd80612533f",
+          "location": "Remote, AMER",
+          "postedDate": "2026-09-11",
+          "detectedKeywords": [
+            "postgres"
+          ]
+        },
+        {
+          "title": "Partner Operations & Systems Lead",
+          "url": "https://jobs.ashbyhq.com/supabase/577bdf6d-f34b-4b9e-8d6b-b96776675c94",
+          "location": "Remote, US West",
+          "postedDate": "2026-09-03",
+          "detectedKeywords": [
+            "postgres"
+          ]
+        },
+        {
+          "title": "Strategic Partner Manager",
+          "url": "https://jobs.ashbyhq.com/supabase/cb04ae3a-3a47-4e21-928f-c2456b7b214e",
+          "location": "Remote, Global",
+          "postedDate": "2026-07-14",
+          "detectedKeywords": [
+            "postgres"
+          ]
+        },
+        {
+          "title": "Supalite Engineer",
+          "url": "https://jobs.ashbyhq.com/supabase/b75ba81e-54cc-4393-a575-bc41776b0113",
+          "location": "Remote, Global",
+          "postedDate": "2026-07-17",
+          "detectedKeywords": [
+            "typescript",
+            "go",
+            "postgres"
+          ]
+        },
+        {
+          "title": "Event Programs Manager, Developer Community & Ecosystem",
+          "url": "https://jobs.ashbyhq.com/supabase/715ba1ea-bd0b-4960-9d5a-defca99f2e24",
+          "location": "Remote, San Francisco, CA",
+          "postedDate": "2026-07-17",
+          "detectedKeywords": [
+            "postgres",
+            "aws"
+          ]
+        },
+        {
+          "title": "Partnerships Lead (APAC)",
+          "url": "https://jobs.ashbyhq.com/supabase/180257c0-ad46-4fae-b34f-36d8ddc2fe2e",
+          "location": "Remote, Singapore",
+          "postedDate": "2026-07-29",
+          "detectedKeywords": [
+            "postgres",
+            "aws",
+            "gcp",
+            "azure"
+          ]
+        },
+        {
+          "title": "Product Designer",
+          "url": "https://jobs.ashbyhq.com/supabase/97fe8e68-28c5-42db-a763-60113f0b31fd",
+          "location": "Remote, Global",
+          "postedDate": "2026-07-22",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Partnerships Lead (EMEA)",
+          "url": "https://jobs.ashbyhq.com/supabase/79dd0887-e54c-484c-a988-c8720040dd0b",
+          "location": "Remote, London UK",
+          "postedDate": "2026-07-26",
+          "detectedKeywords": [
+            "postgres",
+            "aws",
+            "gcp",
+            "azure"
+          ]
+        },
+        {
+          "title": "Release Engineer",
+          "url": "https://jobs.ashbyhq.com/supabase/f6035bf8-4f44-4425-9944-d5509a3c8652",
+          "location": "Remote, Global",
+          "postedDate": "2026-07-27",
+          "detectedKeywords": [
+            "postgres",
+            "kubernetes",
+            "terraform",
+            "aws"
+          ]
+        },
+        {
+          "title": "Performance Engineer - Performance Analysis & Tuning",
+          "url": "https://jobs.ashbyhq.com/supabase/98ef6a11-9898-4960-9931-1264285849f3",
+          "location": "Remote, Global",
+          "postedDate": "2026-07-28",
+          "detectedKeywords": [
+            "postgres",
+            "aws"
+          ]
+        },
+        {
+          "title": "Performance Engineer - Benchmarking",
+          "url": "https://jobs.ashbyhq.com/supabase/11beb619-0c25-4b11-9818-3f18e278c65b",
+          "location": "Remote, Global",
+          "postedDate": "2026-07-28",
+          "detectedKeywords": [
+            "postgres"
+          ]
+        },
+        {
+          "title": "Engineering Productivity Engineer",
+          "url": "https://jobs.ashbyhq.com/supabase/8229db66-dc3f-4ffe-8d86-90ce9ffb4c90",
+          "location": "Remote, Global",
+          "postedDate": "2026-08-02",
+          "detectedKeywords": [
+            "typescript",
+            "go",
+            "rust",
+            "python",
+            "postgres",
+            "docker"
+          ]
+        },
+        {
+          "title": "Frontend Engineer",
+          "url": "https://jobs.ashbyhq.com/supabase/f048dd68-63f8-4f98-9860-3d5a43c09a01",
+          "location": "Remote, Global",
+          "postedDate": "2026-07-29",
+          "detectedKeywords": [
+            "typescript",
+            "react"
+          ]
+        },
+        {
+          "title": "Senior Data Analyst - Marketing",
+          "url": "https://jobs.ashbyhq.com/supabase/59083a14-b2b6-4dd8-8037-739aa1ad1e22",
+          "location": "Remote, Global",
+          "postedDate": "2026-08-04",
+          "detectedKeywords": [
+            "go",
+            "python",
+            "postgres"
+          ]
+        },
+        {
+          "title": "Partner Solution Architect (AWS)",
+          "url": "https://jobs.ashbyhq.com/supabase/afd359ea-d37a-4bc4-b58d-7b851511988f",
+          "location": "Remote, Global",
+          "postedDate": "2026-08-07",
+          "detectedKeywords": [
+            "aws",
+            "react",
+            "nextjs",
+            "postgres"
+          ]
+        },
+        {
+          "title": "Field Marketing Manager, Startups",
+          "url": "https://jobs.ashbyhq.com/supabase/f8fc6aae-d2b4-456a-97db-012a1970c398",
+          "location": "Remote, San Francisco, CA",
+          "postedDate": "2026-08-17",
+          "detectedKeywords": [
+            "postgres"
+          ]
+        },
+        {
+          "title": "Developer Relations Engineer (New York, NY)",
+          "url": "https://jobs.ashbyhq.com/supabase/98ae5c78-eab7-4879-b143-96b98e4d0dbb",
+          "location": "Remote, New York, US",
+          "postedDate": "2026-08-21",
+          "detectedKeywords": [
+            "typescript",
+            "javascript",
+            "react",
+            "vue",
+            "svelte",
+            "nextjs",
+            "postgres"
+          ]
+        },
+        {
+          "title": "Developer Relations Engineer",
+          "url": "https://jobs.ashbyhq.com/supabase/26f7817d-ca92-4094-a2b5-f22e07a218c4",
+          "location": "Remote, Global",
+          "postedDate": "2026-08-21",
+          "detectedKeywords": [
+            "typescript",
+            "javascript",
+            "react",
+            "vue",
+            "svelte",
+            "nextjs",
+            "postgres"
+          ]
+        },
+        {
+          "title": "Developer Relations Engineer (London, UK)",
+          "url": "https://jobs.ashbyhq.com/supabase/1acade7a-0b80-4c6c-9253-7c27a165739d",
+          "location": "Remote, London UK",
+          "postedDate": "2026-08-21",
+          "detectedKeywords": [
+            "typescript",
+            "javascript",
+            "react",
+            "vue",
+            "svelte",
+            "nextjs",
+            "postgres"
+          ]
+        },
+        {
+          "title": "Pre-Sales Solutions Architect (SA) Leader",
+          "url": "https://jobs.ashbyhq.com/supabase/624d48cc-8d34-4607-bace-e6d045df70b8",
+          "location": "Remote, Global",
+          "postedDate": "2026-08-24",
+          "detectedKeywords": [
+            "postgres",
+            "aws",
+            "gcp",
+            "azure"
+          ]
+        },
+        {
+          "title": "Technical Account Management (TAM) Leader",
+          "url": "https://jobs.ashbyhq.com/supabase/f52fd120-5fbe-4e0d-949d-01e217ec77d6",
+          "location": "Remote, Global",
+          "postedDate": "2026-08-24",
+          "detectedKeywords": [
+            "postgres"
+          ]
+        },
+        {
+          "title": "Founding Technical Program Manager",
+          "url": "https://jobs.ashbyhq.com/supabase/7a5d81a2-c586-4d7f-a179-89c95869ca33",
+          "location": "Remote, Global",
+          "postedDate": "2026-08-21",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Product Manager - Branching",
+          "url": "https://jobs.ashbyhq.com/supabase/9773ea1b-e25b-437c-bdbd-3fce0c69101e",
+          "location": "Remote, Global",
+          "postedDate": "2026-08-21",
+          "detectedKeywords": [
+            "postgres"
+          ]
+        },
+        {
+          "title": "Product Manager - Strategic Partner Integrations (Bay Area based)",
+          "url": "https://jobs.ashbyhq.com/supabase/68a397e7-8a1a-4566-ae41-e8c61dd6ed93",
+          "location": "Remote, Bay Area, CA",
+          "postedDate": "2026-08-21",
+          "detectedKeywords": [
+            "go",
+            "postgres"
+          ]
+        },
+        {
+          "title": "AWS Enterprise Segment Lead",
+          "url": "https://jobs.ashbyhq.com/supabase/f3a7c4bf-3e79-4556-a4e9-04d6987a0e8f",
+          "location": "Remote, AMER",
+          "postedDate": "2026-08-28",
+          "detectedKeywords": [
+            "aws",
+            "postgres"
+          ]
+        },
+        {
+          "title": "AWS Game Development Segment Lead",
+          "url": "https://jobs.ashbyhq.com/supabase/344787f2-d115-4056-87ca-7668fc14be3d",
+          "location": "Remote, AMER",
+          "postedDate": "2026-08-28",
+          "detectedKeywords": [
+            "aws",
+            "postgres"
+          ]
+        },
+        {
+          "title": "Platform Engineer - Compute Capacity",
+          "url": "https://jobs.ashbyhq.com/supabase/4eb14408-51e6-4c58-812a-3782d5c0b045",
+          "location": "Remote, Global",
+          "postedDate": "2026-09-02",
+          "detectedKeywords": [
+            "typescript",
+            "go",
+            "python",
+            "postgres",
+            "terraform",
+            "aws"
+          ]
+        },
+        {
+          "title": "Software Engineer - Branching",
+          "url": "https://jobs.ashbyhq.com/supabase/06752423-eebb-472c-95b5-c7ff2559fd60",
+          "location": "Remote, Global",
+          "postedDate": "2026-09-02",
+          "detectedKeywords": [
+            "typescript",
+            "go",
+            "postgres",
+            "terraform",
+            "aws"
+          ]
+        },
+        {
+          "title": "Platform Security Engineer (AMER/APAC)",
+          "url": "https://jobs.ashbyhq.com/supabase/8fa1c7a0-a85c-4562-a1f5-4dd22cadae27",
+          "location": "Remote, Global",
+          "postedDate": "2026-09-02",
+          "detectedKeywords": [
+            "postgres",
+            "kubernetes",
+            "aws"
+          ]
+        },
+        {
+          "title": "Engineering Manager, Billing",
+          "url": "https://jobs.ashbyhq.com/supabase/b4a2f5e5-5c51-4c1a-abde-a89de27451c7",
+          "location": "Remote, Global",
+          "postedDate": "2026-09-12",
+          "detectedKeywords": [
+            "postgres"
+          ]
+        },
+        {
+          "title": "Platform Engineer, Edge & Networking",
+          "url": "https://jobs.ashbyhq.com/supabase/6c9de03c-e289-4612-9045-492985d0274b",
+          "location": "Remote, Global",
+          "postedDate": "2026-09-14",
+          "detectedKeywords": [
+            "go",
+            "postgres",
+            "terraform",
+            "aws",
+            "gcp",
+            "azure"
+          ]
+        }
+      ],
+      "history": [
+        {
+          "weekOf": "2026-09-14",
+          "openCount": 60,
+          "keywordCounts": {
+            "postgres": 57,
+            "javascript": 14,
+            "react": 13,
+            "vue": 11,
+            "svelte": 11,
+            "nodejs": 8,
+            "python": 4,
+            "csharp": 1,
+            "typescript": 13,
+            "nextjs": 6,
+            "rust": 4,
+            "go": 11,
+            "kubernetes": 6,
+            "terraform": 7,
+            "aws": 19,
+            "cpp": 1,
+            "docker": 3,
+            "ruby": 1,
+            "php": 1,
+            "mysql": 1,
+            "redis": 1,
+            "wasm": 1,
+            "gcp": 4,
+            "azure": 4
+          }
+        }
+      ],
+      "lastVerified": "2026-09-17T05:32:01.597Z",
+      "dataNotes": "Careers are hosted on Ashby rather than on their own domain."
+    },
+    {
+      "id": "veriff",
+      "name": "Veriff",
+      "logoUrl": "/logos/veriff.png",
+      "description": "AI-powered identity verification and digital trust infrastructure (YC, Accel-backed)",
+      "website": "https://veriff.com",
+      "careersUrl": "https://veriff.com/careers",
+      "sizeRange": "600+",
+      "sizeMin": 600,
+      "sizeMax": null,
+      "hqLocation": "Hybrid — Estonia/Spain, relocation support offered",
+      "country": "Estonia",
+      "remotePolicy": "hybrid",
+      "remoteRegions": [
+        "Estonia",
+        "Spain"
+      ],
+      "keywords": [
+        "identity-verification",
+        "kyc",
+        "fraud-prevention",
+        "regtech",
+        "ai",
+        "digital-trust"
+      ],
+      "currentOpenings": [
+        {
+          "title": "AP Accountant (Parental Leave Cover)",
+          "url": "https://www.veriff.com/careers/position/8699371002?gh_jid=8699371002",
+          "location": "Tallinn",
+          "postedDate": "2026-08-13",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Lead Product Manager, Customer Portal",
+          "url": "https://www.veriff.com/careers/position/8653259002?gh_jid=8653259002",
+          "location": "Tallinn, Spain (Remote)",
+          "postedDate": "2026-08-31",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Senior Account Executive, EMEA",
+          "url": "https://www.veriff.com/careers/position/8549987002?gh_jid=8549987002",
+          "location": "London, Spain, Estonia",
+          "postedDate": "2026-05-15",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Senior Account Executive, USA",
+          "url": "https://www.veriff.com/careers/position/8469040002?gh_jid=8469040002",
+          "location": "USA",
+          "postedDate": "2026-03-19",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Senior Product Manager (Document Verification)",
+          "url": "https://www.veriff.com/careers/position/8725220002?gh_jid=8725220002",
+          "location": "Tallinn, Spain (Remote)",
+          "postedDate": "2026-08-25",
+          "detectedKeywords": [
+            "machine-learning"
+          ]
+        },
+        {
+          "title": "Senior Software Engineer (Trust)",
+          "url": "https://www.veriff.com/careers/position/8696103002?gh_jid=8696103002",
+          "location": "Tallinn, Spain (Remote)",
+          "postedDate": "2026-09-01",
+          "detectedKeywords": [
+            "python",
+            "kubernetes"
+          ]
+        },
+        {
+          "title": "Senior Software Engineer - Verification Platform",
+          "url": "https://www.veriff.com/careers/position/8609896002?gh_jid=8609896002",
+          "location": "Tallinn, Spain (Remote)",
+          "postedDate": "2026-06-26",
+          "detectedKeywords": [
+            "python",
+            "kubernetes"
+          ]
+        },
+        {
+          "title": "Senior Technical Product Manager (Biometric Authentication)",
+          "url": "https://www.veriff.com/careers/position/8578293002?gh_jid=8578293002",
+          "location": "USA (Remote), UK (Remote), Spain (Remote)",
+          "postedDate": "2026-06-04",
+          "detectedKeywords": [
+            "machine-learning"
+          ]
+        }
+      ],
+      "history": [
+        {
+          "weekOf": "2026-09-14",
+          "openCount": 8,
+          "keywordCounts": {
+            "machine-learning": 2,
+            "python": 2,
+            "kubernetes": 2
+          }
+        }
+      ],
+      "lastVerified": "2026-09-17T05:32:02.916Z",
+      "dataNotes": "Two research passes disagree on size: one recorded \"Growth, $175M raised\", the other 600+ employees. The 600+ figure is used here. Relocation support is offered."
+    },
+    {
+      "id": "loops",
+      "name": "Loops",
+      "logoUrl": "/logos/loops.png",
+      "description": "Email-sending platform for SaaS products",
+      "website": "https://loops.so",
+      "careersUrl": "https://loops.so/careers",
+      "sizeRange": "Small, YC-backed",
+      "sizeMin": null,
+      "sizeMax": null,
+      "hqLocation": "Remote — US citizens/visa holders only",
+      "country": "United States",
+      "remotePolicy": "remote",
+      "remoteRegions": [
+        "United States"
+      ],
+      "keywords": [
+        "email",
+        "marketing-automation",
+        "saas",
+        "developer-tools"
+      ],
+      "currentOpenings": [
+        {
+          "title": "Senior Frontend Engineer",
+          "url": null,
+          "location": null,
+          "postedDate": null,
+          "detectedKeywords": [
+            "frontend"
+          ]
+        }
+      ],
+      "history": [],
+      "lastVerified": "2026-09-16T00:00:00Z",
+      "dataNotes": "Remote, but hiring is restricted to US citizens and visa holders."
+    },
+    {
+      "id": "raycast",
+      "name": "Raycast",
+      "logoUrl": "/logos/raycast.png",
+      "description": "Productivity/launcher app with an extensions ecosystem",
+      "website": "https://raycast.com",
+      "careersUrl": "https://raycast.com/careers",
+      "sizeRange": "~40, YC-backed",
+      "sizeMin": 40,
+      "sizeMax": 40,
+      "hqLocation": "Fully remote",
+      "country": null,
+      "remotePolicy": "remote",
+      "remoteRegions": [],
+      "keywords": [
+        "productivity",
+        "developer-tools",
+        "extensions",
+        "launcher"
+      ],
+      "currentOpenings": [],
+      "history": [],
+      "lastVerified": "2026-09-16T00:00:00Z",
+      "dataNotes": "Their careers page stated no open positions at last check."
+    },
+    {
+      "id": "clerk",
+      "name": "Clerk",
+      "logoUrl": "/logos/clerk.ico",
+      "description": "Auth/user-management infrastructure",
+      "website": "https://clerk.com",
+      "careersUrl": "https://clerk.com/careers",
+      "sizeRange": null,
+      "sizeMin": null,
+      "sizeMax": null,
+      "hqLocation": "Remote, global",
+      "country": "United States",
+      "remotePolicy": "remote",
+      "remoteRegions": [
+        "Global"
+      ],
+      "keywords": [
+        "authentication",
+        "user-management",
+        "identity",
+        "developer-tools",
+        "saas"
+      ],
+      "currentOpenings": [
+        {
+          "title": "Brand Designer",
+          "url": "https://jobs.ashbyhq.com/Clerk/22d74851-1657-4dc6-9a44-b81900131486",
+          "location": "Remote or In-Office in San Francisco",
+          "postedDate": "2026-08-14",
+          "detectedKeywords": [
+            "react"
+          ]
+        }
+      ],
+      "history": [
+        {
+          "weekOf": "2026-09-14",
+          "openCount": 1,
+          "keywordCounts": {
+            "react": 1
+          }
+        }
+      ],
+      "lastVerified": "2026-09-17T05:32:04.043Z",
+      "dataNotes": "No roles posted at last check; the careers page says they hire opportunistically at Staff+ level. Company size was not recorded."
+    },
+    {
+      "id": "cal-com",
+      "name": "Cal.com",
+      "logoUrl": "/logos/cal-com.png",
+      "description": "Open-source scheduling infrastructure",
+      "website": "https://cal.com",
+      "careersUrl": "https://cal.com/careers",
+      "sizeRange": "~40",
+      "sizeMin": 40,
+      "sizeMax": 40,
+      "hqLocation": "Remote, explicitly global/location-agnostic pay",
+      "country": null,
+      "remotePolicy": "remote",
+      "remoteRegions": [
+        "Global"
+      ],
+      "keywords": [
+        "scheduling",
+        "open-source",
+        "developer-tools",
+        "calendar",
+        "saas"
+      ],
+      "currentOpenings": [],
+      "history": [],
+      "lastVerified": "2026-09-16T00:00:00Z",
+      "dataNotes": "No openings could be confirmed at last check. Hiring is explicitly global with location-agnostic pay."
+    },
+    {
+      "id": "katana",
+      "name": "Katana Cloud",
+      "logoUrl": "/logos/katana.png",
+      "description": "Cloud manufacturing/inventory management SaaS",
+      "website": "https://katanamrp.com",
+      "careersUrl": "https://katanamrp.com/careers",
+      "sizeRange": "51–200",
+      "sizeMin": 51,
+      "sizeMax": 200,
+      "hqLocation": "Estonia",
+      "country": "Estonia",
+      "remotePolicy": "remote",
+      "remoteRegions": [],
+      "keywords": [
+        "manufacturing",
+        "inventory-management",
+        "erp",
+        "mrp",
+        "saas"
+      ],
+      "currentOpenings": [
+        {
+          "title": "Senior Sales Engineer",
+          "url": "https://jobs.ashbyhq.com/katana/ce520a78-c334-4a8d-a6a9-474d279a4c3a",
+          "location": "Toronto",
+          "postedDate": "2026-08-18",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Senior Account Executive",
+          "url": "https://jobs.ashbyhq.com/katana/8d40c480-95f9-4156-8124-d30b3c817530",
+          "location": "Toronto",
+          "postedDate": "2026-06-16",
+          "detectedKeywords": [
+            "go"
+          ]
+        }
+      ],
+      "history": [
+        {
+          "weekOf": "2026-09-14",
+          "openCount": 2,
+          "keywordCounts": {
+            "go": 1
+          }
+        }
+      ],
+      "lastVerified": "2026-09-17T05:32:05.814Z",
+      "dataNotes": "Appears in research as both \"Katana MRP\" and \"Katana Cloud\" — same company, merged here. The frontend role found had already closed. No remote policy recorded."
+    },
+    {
+      "id": "mintlify",
+      "name": "Mintlify",
+      "logoUrl": "/logos/mintlify.ico",
+      "description": "Developer documentation platform",
+      "website": "https://mintlify.com",
+      "careersUrl": "https://mintlify.com/careers",
+      "sizeRange": "~65, YC-backed, $45M Series B",
+      "sizeMin": 65,
+      "sizeMax": 65,
+      "hqLocation": "Signals conflict — some sources say SF in-person, others show remote listings; needs direct confirmation",
+      "country": "United States",
+      "remotePolicy": "onsite",
+      "remoteRegions": [],
+      "keywords": [
+        "documentation",
+        "developer-tools",
+        "docs-as-code",
+        "api-docs",
+        "saas"
+      ],
+      "currentOpenings": [
+        {
+          "title": "Mid-Market Account Executive (SF)",
+          "url": "https://jobs.ashbyhq.com/mintlify/db16fe6d-e564-4fb3-a3ff-22564a8de699",
+          "location": "San Francisco",
+          "postedDate": "2026-06-23",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Senior Brand / Web Designer (SF/NYC In-Person)",
+          "url": "https://jobs.ashbyhq.com/mintlify/f4661035-7dce-4dbe-b5f5-6f1288d5ec07",
+          "location": "San Francisco | New York City",
+          "postedDate": "2026-08-18",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Senior Solutions Engineer - Pre Sales (SF)",
+          "url": "https://jobs.ashbyhq.com/mintlify/a4245873-582a-48d7-8a07-b92784ec7be3",
+          "location": "San Francisco",
+          "postedDate": "2026-03-04",
+          "detectedKeywords": [
+            "javascript",
+            "react",
+            "nodejs",
+            "go"
+          ]
+        },
+        {
+          "title": "Customer Success Manager",
+          "url": "https://jobs.ashbyhq.com/mintlify/108d6b90-b2ce-4583-bf32-9c164cf89ed0",
+          "location": "San Francisco | New York City",
+          "postedDate": "2025-09-28",
+          "detectedKeywords": [
+            "javascript"
+          ]
+        },
+        {
+          "title": "Recruiter",
+          "url": "https://jobs.ashbyhq.com/mintlify/fc6c0de3-a50f-4d85-b8bb-5ae5437eb02b",
+          "location": "San Francisco",
+          "postedDate": "2026-08-28",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Senior Solutions Engineer - Pre Sales (NYC)",
+          "url": "https://jobs.ashbyhq.com/mintlify/6dcd6527-b5c2-4c3f-9058-b3434877adb1",
+          "location": "New York City",
+          "postedDate": "2026-04-29",
+          "detectedKeywords": [
+            "javascript",
+            "react",
+            "nodejs",
+            "go"
+          ]
+        },
+        {
+          "title": "Product Engineer",
+          "url": "https://jobs.ashbyhq.com/mintlify/31adc1b5-e99a-4f33-bd0b-a49e331226a8",
+          "location": "San Francisco",
+          "postedDate": "2026-05-28",
+          "detectedKeywords": [
+            "typescript",
+            "react",
+            "nextjs"
+          ]
+        },
+        {
+          "title": "Mid-Market Account Executive (NYC)",
+          "url": "https://jobs.ashbyhq.com/mintlify/c59870b5-a568-41ae-ab9e-8a65969d76bf",
+          "location": "New York City",
+          "postedDate": "2026-06-24",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Generalist Marketer",
+          "url": "https://jobs.ashbyhq.com/mintlify/85f927d5-efce-4389-b346-d02b78abf1b5",
+          "location": "San Francisco",
+          "postedDate": "2026-07-08",
+          "detectedKeywords": []
+        },
+        {
+          "title": "DevRel",
+          "url": "https://jobs.ashbyhq.com/mintlify/dedb7b58-3372-4804-8a3e-20a8fc816200",
+          "location": "San Francisco",
+          "postedDate": "2026-07-22",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Head of People",
+          "url": "https://jobs.ashbyhq.com/mintlify/c671d842-82de-4bc9-9d23-26c7d5b6516f",
+          "location": "San Francisco",
+          "postedDate": "2026-07-28",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Backend Engineer",
+          "url": "https://jobs.ashbyhq.com/mintlify/4da2f7a2-3d5a-4652-bf01-aed59f4cb72b",
+          "location": "San Francisco",
+          "postedDate": "2026-08-14",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Applied AI Engineer",
+          "url": "https://jobs.ashbyhq.com/mintlify/ec55d98f-6e94-4ffb-9a55-4adad39297c3",
+          "location": "San Francisco",
+          "postedDate": "2026-08-17",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Senior Product Engineer",
+          "url": "https://jobs.ashbyhq.com/mintlify/1e231925-7a38-41c9-a31c-26bf15457888",
+          "location": "San Francisco",
+          "postedDate": "2026-09-10",
+          "detectedKeywords": [
+            "typescript",
+            "react",
+            "nextjs"
+          ]
+        },
+        {
+          "title": "Senior Backend Engineer",
+          "url": "https://jobs.ashbyhq.com/mintlify/7df478a7-8116-48cf-8e51-70176ca36f6e",
+          "location": "San Francisco",
+          "postedDate": "2026-09-10",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Senior Applied AI Engineer",
+          "url": "https://jobs.ashbyhq.com/mintlify/0050e75d-c840-44a8-ae87-28a7024fcc9d",
+          "location": "San Francisco",
+          "postedDate": "2026-09-10",
+          "detectedKeywords": []
+        }
+      ],
+      "history": [
+        {
+          "weekOf": "2026-09-14",
+          "openCount": 16,
+          "keywordCounts": {
+            "javascript": 3,
+            "react": 4,
+            "nodejs": 2,
+            "go": 2,
+            "typescript": 2,
+            "nextjs": 2
+          }
+        }
+      ],
+      "lastVerified": "2026-09-17T05:32:07.104Z",
+      "dataNotes": "Full-stack/frontend roles appeared on third-party boards only, unconfirmed on their own site. Location signals conflict: SF in-person vs remote listings."
+    },
+    {
+      "id": "storyblok",
+      "name": "Storyblok",
+      "logoUrl": "/logos/storyblok.png",
+      "description": "Headless CMS (Vue/TypeScript/Vite stack)",
+      "website": "https://storyblok.com",
+      "careersUrl": "https://storyblok.com/careers",
+      "sizeRange": null,
+      "sizeMin": null,
+      "sizeMax": null,
+      "hqLocation": "Remote, international",
+      "country": null,
+      "remotePolicy": "remote",
+      "remoteRegions": [
+        "Global"
+      ],
+      "keywords": [
+        "headless-cms",
+        "vue",
+        "typescript",
+        "vite",
+        "content-management"
+      ],
+      "currentOpenings": [
+        {
+          "title": "Business Development Representative - UK&I",
+          "url": "https://www.storyblok.com/job?gh_jid=4966384101",
+          "location": "Remote",
+          "postedDate": "2026-09-04",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Deal Operations Manager - Canada, Europe",
+          "url": "https://www.storyblok.com/job?gh_jid=4908484101",
+          "location": "Remote",
+          "postedDate": "2026-06-25",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Developer Relations Engineer - UK",
+          "url": "https://www.storyblok.com/job?gh_jid=4969714101",
+          "location": "Remote",
+          "postedDate": "2026-09-09",
+          "detectedKeywords": [
+            "javascript",
+            "react",
+            "vue",
+            "svelte",
+            "graphql"
+          ]
+        },
+        {
+          "title": "Director of People Experience (Europe)",
+          "url": "https://www.storyblok.com/job?gh_jid=4957599101",
+          "location": "Remote",
+          "postedDate": "2026-09-09",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Director of Product Marketing - USA",
+          "url": "https://www.storyblok.com/job?gh_jid=4924580101",
+          "location": "Remote",
+          "postedDate": "2026-07-16",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Documentation Engineer II",
+          "url": "https://www.storyblok.com/job?gh_jid=4815246101",
+          "location": "Remote",
+          "postedDate": "2026-03-19",
+          "detectedKeywords": [
+            "javascript",
+            "react",
+            "vue",
+            "svelte",
+            "graphql"
+          ]
+        },
+        {
+          "title": "Documentation Engineer II - Poland",
+          "url": "https://www.storyblok.com/job?gh_jid=4962120101",
+          "location": "Remote",
+          "postedDate": "2026-08-27",
+          "detectedKeywords": [
+            "javascript",
+            "react",
+            "vue",
+            "svelte",
+            "graphql"
+          ]
+        },
+        {
+          "title": "Engineering Manager - Foundations & Enablement",
+          "url": "https://www.storyblok.com/job?gh_jid=4966487101",
+          "location": "Remote",
+          "postedDate": "2026-09-02",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Enterprise Account Executive - Chicago, USA",
+          "url": "https://www.storyblok.com/job?gh_jid=4958277101",
+          "location": "Remote",
+          "postedDate": "2026-08-25",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Salesforce Lead",
+          "url": "https://www.storyblok.com/job?gh_jid=4908520101",
+          "location": "Remote",
+          "postedDate": "2026-06-25",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Senior Legal Counsel (EMEA)",
+          "url": "https://www.storyblok.com/job?gh_jid=4958157101",
+          "location": "Remote",
+          "postedDate": "2026-08-24",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Senior Legal Counsel - USA",
+          "url": "https://www.storyblok.com/job?gh_jid=4882529101",
+          "location": "Remote - USA",
+          "postedDate": "2026-06-08",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Senior QA Engineer - Europe",
+          "url": "https://www.storyblok.com/job?gh_jid=4749653101",
+          "location": "Remote",
+          "postedDate": "2026-01-08",
+          "detectedKeywords": [
+            "typescript",
+            "ruby"
+          ]
+        },
+        {
+          "title": "Senior Solutions Engineer - UK",
+          "url": "https://www.storyblok.com/job?gh_jid=4929776101",
+          "location": "Remote",
+          "postedDate": "2026-08-10",
+          "detectedKeywords": [
+            "javascript",
+            "react",
+            "vue",
+            "nextjs"
+          ]
+        },
+        {
+          "title": "Senior Technical Product Manager II - Europe",
+          "url": "https://www.storyblok.com/job?gh_jid=4973061101",
+          "location": "Remote",
+          "postedDate": "2026-09-10",
+          "detectedKeywords": []
+        }
+      ],
+      "history": [
+        {
+          "weekOf": "2026-09-14",
+          "openCount": 15,
+          "keywordCounts": {
+            "javascript": 4,
+            "react": 4,
+            "vue": 4,
+            "svelte": 3,
+            "graphql": 3,
+            "typescript": 1,
+            "ruby": 1,
+            "nextjs": 1
+          }
+        }
+      ],
+      "lastVerified": "2026-09-17T05:32:08.385Z",
+      "dataNotes": "A Senior Frontend Engineer II listing appeared on a Vue-specific job board but was unconfirmed on their own careers page. Company size was not recorded."
+    },
+    {
+      "id": "svix",
+      "name": "Svix",
+      "logoUrl": "/logos/svix.png",
+      "description": "Webhook infrastructure (the tech underlying Resend's own webhook system)",
+      "website": "https://svix.com",
+      "careersUrl": "https://svix.com/careers",
+      "sizeRange": null,
+      "sizeMin": null,
+      "sizeMax": null,
+      "hqLocation": "Remote",
+      "country": "United States",
+      "remotePolicy": "remote",
+      "remoteRegions": [],
+      "keywords": [
+        "webhooks",
+        "rust",
+        "developer-tools",
+        "api",
+        "infrastructure"
+      ],
+      "currentOpenings": [
+        {
+          "title": "Rust Backend Engineer",
+          "url": "https://jobs.ashbyhq.com/svix/84e99bc9-5cd6-4af0-af84-17d63a7494b5",
+          "location": "San Francisco (On-Site)",
+          "postedDate": "2024-01-15",
+          "detectedKeywords": [
+            "rust"
+          ]
+        },
+        {
+          "title": "Team lead",
+          "url": "https://jobs.ashbyhq.com/svix/3a4bc7e8-0756-4033-b210-bd6d275cfbee",
+          "location": "San Francisco (On-Site)",
+          "postedDate": "2023-06-26",
+          "detectedKeywords": [
+            "rust",
+            "postgres",
+            "redis"
+          ]
+        },
+        {
+          "title": "Founder associate",
+          "url": "https://jobs.ashbyhq.com/svix/c1776c54-7d9e-43a3-87be-35f0e5ec5809",
+          "location": "San Francisco (On-Site)",
+          "postedDate": "2026-06-01",
+          "detectedKeywords": []
+        }
+      ],
+      "history": [
+        {
+          "weekOf": "2026-09-14",
+          "openCount": 3,
+          "keywordCounts": {
+            "rust": 2,
+            "postgres": 1,
+            "redis": 1
+          }
+        }
+      ],
+      "lastVerified": "2026-09-17T05:32:09.485Z",
+      "dataNotes": "The roles open at last check were Rust-backend only; no individual role titles were recorded, so none are listed. Company size was not recorded."
+    },
+    {
+      "id": "flowstep",
+      "name": "Flowstep",
+      "logoUrl": "/logos/flowstep.png",
+      "description": "AI-powered design/product development platform",
+      "website": "https://flowstep.ai",
+      "careersUrl": null,
+      "sizeRange": "10–20",
+      "sizeMin": 10,
+      "sizeMax": 20,
+      "hqLocation": "Estonia",
+      "country": "Estonia",
+      "remotePolicy": null,
+      "remoteRegions": [],
+      "keywords": [
+        "ai",
+        "design-tools",
+        "product-development",
+        "saas"
+      ],
+      "currentOpenings": [],
+      "history": [],
+      "lastVerified": null,
+      "dataNotes": null
+    },
+    {
+      "id": "eid-easy",
+      "name": "eID Easy",
+      "logoUrl": "/logos/eid-easy.jpg",
+      "description": "API platform for electronic identification and digital signatures",
+      "website": "https://eideasy.com",
+      "careersUrl": null,
+      "sizeRange": "2–10",
+      "sizeMin": 2,
+      "sizeMax": 10,
+      "hqLocation": "Estonia",
+      "country": "Estonia",
+      "remotePolicy": null,
+      "remoteRegions": [],
+      "keywords": [
+        "digital-identity",
+        "e-signatures",
+        "api",
+        "govtech"
+      ],
+      "currentOpenings": [],
+      "history": [],
+      "lastVerified": null,
+      "dataNotes": null
+    },
+    {
+      "id": "salv",
+      "name": "Salv",
+      "logoUrl": "/logos/salv.png",
+      "description": "RegTech platform for AML, fraud detection, transaction monitoring",
+      "website": "https://salv.com",
+      "careersUrl": null,
+      "sizeRange": "11–50",
+      "sizeMin": 11,
+      "sizeMax": 50,
+      "hqLocation": "Estonia",
+      "country": "Estonia",
+      "remotePolicy": null,
+      "remoteRegions": [],
+      "keywords": [
+        "fintech",
+        "aml",
+        "regtech",
+        "compliance",
+        "fraud-detection"
+      ],
+      "currentOpenings": [],
+      "history": [],
+      "lastVerified": null,
+      "dataNotes": null
+    },
+    {
+      "id": "fairown",
+      "name": "Fairown",
+      "logoUrl": null,
+      "description": "Fintech/SaaS for product subscriptions, buyback, circular commerce",
+      "website": "https://fairown.com",
+      "careersUrl": null,
+      "sizeRange": "11–50",
+      "sizeMin": 11,
+      "sizeMax": 50,
+      "hqLocation": "Estonia",
+      "country": "Estonia",
+      "remotePolicy": null,
+      "remoteRegions": [],
+      "keywords": [
+        "fintech",
+        "saas",
+        "subscriptions",
+        "circular-commerce"
+      ],
+      "currentOpenings": [],
+      "history": [],
+      "lastVerified": null,
+      "dataNotes": null
+    },
+    {
+      "id": "patchstack",
+      "name": "Patchstack",
+      "logoUrl": "/logos/patchstack.png",
+      "description": "WordPress/open-source vulnerability intelligence and web security",
+      "website": "https://patchstack.com",
+      "careersUrl": null,
+      "sizeRange": "11–50",
+      "sizeMin": 11,
+      "sizeMax": 50,
+      "hqLocation": "Estonia",
+      "country": "Estonia",
+      "remotePolicy": "remote",
+      "remoteRegions": [],
+      "keywords": [
+        "security",
+        "wordpress",
+        "open-source",
+        "vulnerability-intelligence"
+      ],
+      "currentOpenings": [
+        {
+          "title": "VP of Growth & Revenue",
+          "url": "https://apply.workable.com/j/E2B5667D88",
+          "location": "Estonia",
+          "postedDate": "2026-04-22",
+          "detectedKeywords": []
+        }
+      ],
+      "history": [
+        {
+          "weekOf": "2026-09-14",
+          "openCount": 1,
+          "keywordCounts": {}
+        }
+      ],
+      "lastVerified": "2026-09-17T05:31:50.046Z",
+      "dataNotes": null
+    },
+    {
+      "id": "fleetfox",
+      "name": "FleetFox",
+      "logoUrl": "/logos/fleetfox.ico",
+      "description": "Fleet operations and service-management platform",
+      "website": "https://fleetfox.eu",
+      "careersUrl": null,
+      "sizeRange": "11–50",
+      "sizeMin": 11,
+      "sizeMax": 50,
+      "hqLocation": "Estonia",
+      "country": "Estonia",
+      "remotePolicy": null,
+      "remoteRegions": [],
+      "keywords": [
+        "fleet-management",
+        "logistics",
+        "operations",
+        "saas"
+      ],
+      "currentOpenings": [
+        {
+          "title": "Head of Service Product (Fleet Logistics)",
+          "url": "https://fleetfox.jobs.personio.de/job/2770433",
+          "location": "Berlin",
+          "postedDate": "2026-08-27",
+          "detectedKeywords": []
+        }
+      ],
+      "history": [
+        {
+          "weekOf": "2026-09-14",
+          "openCount": 1,
+          "keywordCounts": {}
+        }
+      ],
+      "lastVerified": "2026-09-17T05:31:51.725Z",
+      "dataNotes": null
+    },
+    {
+      "id": "mydello",
+      "name": "MyDello",
+      "logoUrl": "/logos/mydello.png",
+      "description": "Digital freight/logistics platform with instant shipping quotes",
+      "website": "https://mydello.com",
+      "careersUrl": null,
+      "sizeRange": "11–50",
+      "sizeMin": 11,
+      "sizeMax": 50,
+      "hqLocation": "Estonia",
+      "country": "Estonia",
+      "remotePolicy": null,
+      "remoteRegions": [],
+      "keywords": [
+        "logistics",
+        "freight",
+        "shipping",
+        "saas"
+      ],
+      "currentOpenings": [],
+      "history": [],
+      "lastVerified": null,
+      "dataNotes": null
+    },
+    {
+      "id": "cachet",
+      "name": "Cachet",
+      "logoUrl": "/logos/cachet.ico",
+      "description": "Insurance infrastructure for gig/mobility/platform businesses",
+      "website": "https://cachet.me",
+      "careersUrl": null,
+      "sizeRange": "11–50",
+      "sizeMin": 11,
+      "sizeMax": 50,
+      "hqLocation": "Estonia",
+      "country": "Estonia",
+      "remotePolicy": null,
+      "remoteRegions": [],
+      "keywords": [
+        "insurtech",
+        "insurance",
+        "mobility",
+        "gig-economy"
+      ],
+      "currentOpenings": [],
+      "history": [],
+      "lastVerified": null,
+      "dataNotes": null
+    },
+    {
+      "id": "timbeter",
+      "name": "Timbeter",
+      "logoUrl": "/logos/timbeter.png",
+      "description": "Computer-vision/cloud software for measuring and managing timber",
+      "website": "https://timbeter.com",
+      "careersUrl": null,
+      "sizeRange": "11–50",
+      "sizeMin": 11,
+      "sizeMax": 50,
+      "hqLocation": "Estonia",
+      "country": "Estonia",
+      "remotePolicy": null,
+      "remoteRegions": [],
+      "keywords": [
+        "computer-vision",
+        "forestry",
+        "timber",
+        "saas"
+      ],
+      "currentOpenings": [],
+      "history": [],
+      "lastVerified": null,
+      "dataNotes": null
+    },
+    {
+      "id": "lingvist",
+      "name": "Lingvist",
+      "logoUrl": "/logos/lingvist.png",
+      "description": "Adaptive language-learning software using learning analytics",
+      "website": "https://lingvist.com",
+      "careersUrl": null,
+      "sizeRange": "11–50",
+      "sizeMin": 11,
+      "sizeMax": 50,
+      "hqLocation": "Estonia",
+      "country": "Estonia",
+      "remotePolicy": null,
+      "remoteRegions": [],
+      "keywords": [
+        "edtech",
+        "language-learning",
+        "learning-analytics",
+        "adaptive-learning"
+      ],
+      "currentOpenings": [],
+      "history": [],
+      "lastVerified": null,
+      "dataNotes": null
+    },
+    {
+      "id": "multilogin",
+      "name": "Multilogin",
+      "logoUrl": "/logos/multilogin.jpg",
+      "description": "Browser-profile/anti-detect software",
+      "website": "https://multilogin.com",
+      "careersUrl": null,
+      "sizeRange": "11–50 / 50–200 (sources vary)",
+      "sizeMin": 11,
+      "sizeMax": 200,
+      "hqLocation": "Estonia",
+      "country": "Estonia",
+      "remotePolicy": null,
+      "remoteRegions": [],
+      "keywords": [
+        "browser-profiles",
+        "anti-detect",
+        "privacy"
+      ],
+      "currentOpenings": [],
+      "history": [],
+      "lastVerified": null,
+      "dataNotes": "Sources disagree on headcount — some report 11–50 employees, others 50–200. The range here is widened to cover both."
+    },
+    {
+      "id": "betterpic",
+      "name": "BetterPic",
+      "logoUrl": "/logos/betterpic.png",
+      "description": "AI-generated professional imagery/headshots",
+      "website": "https://betterpic.io",
+      "careersUrl": null,
+      "sizeRange": "~10–50",
+      "sizeMin": 10,
+      "sizeMax": 50,
+      "hqLocation": "Estonia",
+      "country": "Estonia",
+      "remotePolicy": null,
+      "remoteRegions": [],
+      "keywords": [
+        "ai",
+        "image-generation",
+        "headshots",
+        "photography"
+      ],
+      "currentOpenings": [],
+      "history": [],
+      "lastVerified": null,
+      "dataNotes": null
+    },
+    {
+      "id": "eagronom",
+      "name": "eAgronom",
+      "logoUrl": "/logos/eagronom.png",
+      "description": "Farm-management and agricultural sustainability/carbon platform",
+      "website": "https://eagronom.com",
+      "careersUrl": null,
+      "sizeRange": "~70",
+      "sizeMin": 70,
+      "sizeMax": 70,
+      "hqLocation": "Estonia",
+      "country": "Estonia",
+      "remotePolicy": null,
+      "remoteRegions": [],
+      "keywords": [
+        "agtech",
+        "farm-management",
+        "sustainability",
+        "carbon"
+      ],
+      "currentOpenings": [],
+      "history": [],
+      "lastVerified": null,
+      "dataNotes": "Listed under the 11–50 employee table but with an approximate size of ~70, which is what is recorded here."
+    },
+    {
+      "id": "pactum-ai",
+      "name": "Pactum AI",
+      "logoUrl": "/logos/pactum-ai.png",
+      "description": "AI-powered autonomous negotiation platform for enterprises",
+      "website": "https://pactum.com",
+      "careersUrl": null,
+      "sizeRange": "130+",
+      "sizeMin": 130,
+      "sizeMax": null,
+      "hqLocation": "Estonia",
+      "country": "Estonia",
+      "remotePolicy": null,
+      "remoteRegions": [],
+      "keywords": [
+        "ai",
+        "negotiation",
+        "enterprise",
+        "automation"
+      ],
+      "currentOpenings": [],
+      "history": [],
+      "lastVerified": null,
+      "dataNotes": null
+    },
+    {
+      "id": "modash",
+      "name": "Modash",
+      "logoUrl": "/logos/modash.png",
+      "description": "SaaS for influencer discovery, analytics, creator marketing",
+      "website": "https://modash.io",
+      "careersUrl": null,
+      "sizeRange": "51–200",
+      "sizeMin": 51,
+      "sizeMax": 200,
+      "hqLocation": "Estonia",
+      "country": "Estonia",
+      "remotePolicy": "remote",
+      "remoteRegions": [],
+      "keywords": [
+        "influencer-marketing",
+        "creator-economy",
+        "analytics",
+        "saas"
+      ],
+      "currentOpenings": [
+        {
+          "title": "Senior Product Data Engineer (remote, Europe)",
+          "url": "https://apply.workable.com/j/97D6FCDD7B",
+          "location": "Tallinn, Estonia",
+          "postedDate": "2026-09-08",
+          "detectedKeywords": [
+            "typescript",
+            "nodejs",
+            "scala",
+            "postgres",
+            "terraform",
+            "aws",
+            "gcp",
+            "ai"
+          ]
+        },
+        {
+          "title": "Senior Product Engineer (remote, Europe)",
+          "url": "https://apply.workable.com/j/C1507B65C3",
+          "location": "Tallinn, Estonia",
+          "postedDate": "2025-07-01",
+          "detectedKeywords": [
+            "typescript",
+            "vue",
+            "nodejs",
+            "clickhouse",
+            "mongodb",
+            "aws",
+            "ai"
+          ]
+        },
+        {
+          "title": "Technical Customer Success Manager",
+          "url": "https://apply.workable.com/j/483A16E3C1",
+          "location": "Tallinn, Estonia",
+          "postedDate": "2026-06-02",
+          "detectedKeywords": []
+        }
+      ],
+      "history": [
+        {
+          "weekOf": "2026-09-14",
+          "openCount": 3,
+          "keywordCounts": {
+            "typescript": 2,
+            "nodejs": 2,
+            "scala": 1,
+            "postgres": 1,
+            "terraform": 1,
+            "aws": 2,
+            "gcp": 1,
+            "ai": 2,
+            "vue": 1,
+            "clickhouse": 1,
+            "mongodb": 1
+          }
+        }
+      ],
+      "lastVerified": "2026-09-17T05:32:11.433Z",
+      "dataNotes": null
+    },
+    {
+      "id": "tuum",
+      "name": "Tuum",
+      "logoUrl": null,
+      "description": "Cloud-native core banking platform",
+      "website": "https://tuum.com",
+      "careersUrl": null,
+      "sizeRange": "51–200",
+      "sizeMin": 51,
+      "sizeMax": 200,
+      "hqLocation": "Estonia",
+      "country": "Estonia",
+      "remotePolicy": null,
+      "remoteRegions": [],
+      "keywords": [
+        "fintech",
+        "core-banking",
+        "banking",
+        "saas"
+      ],
+      "currentOpenings": [],
+      "history": [],
+      "lastVerified": null,
+      "dataNotes": "A separate entity named Tuum Technologies (decentralized identity) also appears in research. The relationship is unconfirmed and needs verification before treating them as one company."
+    },
+    {
+      "id": "montonio",
+      "name": "Montonio",
+      "logoUrl": "/logos/montonio.png",
+      "description": "Payments, financing, ecommerce infrastructure",
+      "website": "https://montonio.com",
+      "careersUrl": null,
+      "sizeRange": "51–200",
+      "sizeMin": 51,
+      "sizeMax": 200,
+      "hqLocation": "Estonia",
+      "country": "Estonia",
+      "remotePolicy": null,
+      "remoteRegions": [],
+      "keywords": [
+        "fintech",
+        "payments",
+        "ecommerce",
+        "financing"
+      ],
+      "currentOpenings": [],
+      "history": [],
+      "lastVerified": null,
+      "dataNotes": null
+    },
+    {
+      "id": "xolo",
+      "name": "Xolo",
+      "logoUrl": "/logos/xolo.png",
+      "description": "Online company formation, accounting, financial platform",
+      "website": "https://xolo.io",
+      "careersUrl": null,
+      "sizeRange": "51–200",
+      "sizeMin": 51,
+      "sizeMax": 200,
+      "hqLocation": "Estonia",
+      "country": "Estonia",
+      "remotePolicy": null,
+      "remoteRegions": [],
+      "keywords": [
+        "fintech",
+        "accounting",
+        "company-formation",
+        "saas"
+      ],
+      "currentOpenings": [],
+      "history": [],
+      "lastVerified": null,
+      "dataNotes": null
+    },
+    {
+      "id": "jobbatical",
+      "name": "Jobbatical",
+      "logoUrl": "/logos/jobbatical.png",
+      "description": "Global employee relocation/immigration software",
+      "website": "https://jobbatical.com",
+      "careersUrl": null,
+      "sizeRange": "51–200",
+      "sizeMin": 51,
+      "sizeMax": 200,
+      "hqLocation": "Estonia",
+      "country": "Estonia",
+      "remotePolicy": null,
+      "remoteRegions": [],
+      "keywords": [
+        "hr-tech",
+        "relocation",
+        "immigration",
+        "saas"
+      ],
+      "currentOpenings": [],
+      "history": [],
+      "lastVerified": null,
+      "dataNotes": null
+    },
+    {
+      "id": "blackwall",
+      "name": "Blackwall",
+      "logoUrl": "/logos/blackwall.png",
+      "description": "AI/web infrastructure, automated-threat protection",
+      "website": "https://blackwall.com",
+      "careersUrl": null,
+      "sizeRange": "51–200",
+      "sizeMin": 51,
+      "sizeMax": 200,
+      "hqLocation": "Estonia",
+      "country": "Estonia",
+      "remotePolicy": null,
+      "remoteRegions": [],
+      "keywords": [
+        "security",
+        "web-infrastructure",
+        "threat-protection",
+        "ai"
+      ],
+      "currentOpenings": [],
+      "history": [],
+      "lastVerified": null,
+      "dataNotes": null
+    },
+    {
+      "id": "cybexer-technologies",
+      "name": "CybExer Technologies",
+      "logoUrl": null,
+      "description": "Cyber ranges, cybersecurity simulation, AI security",
+      "website": "https://cybexer.com",
+      "careersUrl": null,
+      "sizeRange": "51–200",
+      "sizeMin": 51,
+      "sizeMax": 200,
+      "hqLocation": "Estonia",
+      "country": "Estonia",
+      "remotePolicy": null,
+      "remoteRegions": [],
+      "keywords": [
+        "cybersecurity",
+        "cyber-range",
+        "simulation",
+        "ai-security"
+      ],
+      "currentOpenings": [],
+      "history": [],
+      "lastVerified": null,
+      "dataNotes": null
+    },
+    {
+      "id": "r8-technologies",
+      "name": "R8 Technologies",
+      "logoUrl": "/logos/r8-technologies.png",
+      "description": "AI/IoT building-management, energy optimization",
+      "website": "https://r8tech.io",
+      "careersUrl": null,
+      "sizeRange": "51–200",
+      "sizeMin": 51,
+      "sizeMax": 200,
+      "hqLocation": "Estonia",
+      "country": "Estonia",
+      "remotePolicy": null,
+      "remoteRegions": [],
+      "keywords": [
+        "ai",
+        "iot",
+        "building-management",
+        "energy"
+      ],
+      "currentOpenings": [],
+      "history": [],
+      "lastVerified": null,
+      "dataNotes": null
+    },
+    {
+      "id": "estateguru",
+      "name": "Estateguru",
+      "logoUrl": "/logos/estateguru.png",
+      "description": "Property-finance/crowdlending fintech",
+      "website": "https://estateguru.co",
+      "careersUrl": null,
+      "sizeRange": "51–200",
+      "sizeMin": 51,
+      "sizeMax": 200,
+      "hqLocation": "Estonia",
+      "country": "Estonia",
+      "remotePolicy": null,
+      "remoteRegions": [],
+      "keywords": [
+        "fintech",
+        "real-estate",
+        "crowdlending",
+        "property-finance"
+      ],
+      "currentOpenings": [],
+      "history": [],
+      "lastVerified": null,
+      "dataNotes": null
+    },
+    {
+      "id": "bondora",
+      "name": "Bondora",
+      "logoUrl": "/logos/bondora.ico",
+      "description": "Consumer-finance/investment fintech",
+      "website": "https://bondora.group",
+      "careersUrl": null,
+      "sizeRange": "51–200",
+      "sizeMin": 51,
+      "sizeMax": 200,
+      "hqLocation": "Estonia",
+      "country": "Estonia",
+      "remotePolicy": "remote",
+      "remoteRegions": [],
+      "keywords": [
+        "fintech",
+        "consumer-finance",
+        "investing"
+      ],
+      "currentOpenings": [
+        {
+          "title": "Brand Marketing Manager",
+          "url": "https://job-boards.eu.greenhouse.io/bondora/jobs/4963379101",
+          "location": "Tallinn, Harju, Estonia",
+          "postedDate": "2026-08-28",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Engineering Manager",
+          "url": "https://job-boards.eu.greenhouse.io/bondora/jobs/4951163101",
+          "location": "Tallinn, Harju, Estonia; Tartu, Tartu, Estonia",
+          "postedDate": "2026-08-12",
+          "detectedKeywords": [
+            "go",
+            "rust",
+            "csharp",
+            "cpp",
+            "ai"
+          ]
+        },
+        {
+          "title": "Head of Credit Management",
+          "url": "https://job-boards.eu.greenhouse.io/bondora/jobs/4914888101",
+          "location": "Remote",
+          "postedDate": "2026-07-01",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Head of CRM & Lifecycle Marketing",
+          "url": "https://job-boards.eu.greenhouse.io/bondora/jobs/4940508101",
+          "location": "Denmark; Finland; Latvia; Netherlands; Remote; Spain; Tallinn, Harju, Estonia",
+          "postedDate": "2026-07-29",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Senior Affiliate Marketing Manager",
+          "url": "https://job-boards.eu.greenhouse.io/bondora/jobs/4951988101",
+          "location": "Remote",
+          "postedDate": "2026-08-14",
+          "detectedKeywords": [
+            "go"
+          ]
+        },
+        {
+          "title": "Senior Data Platform Engineer",
+          "url": "https://job-boards.eu.greenhouse.io/bondora/jobs/4934554101",
+          "location": "Tallinn, Harju, Estonia",
+          "postedDate": "2026-08-26",
+          "detectedKeywords": [
+            "azure"
+          ]
+        },
+        {
+          "title": "Senior Lawyer, Denmark",
+          "url": "https://job-boards.eu.greenhouse.io/bondora/jobs/4668856101",
+          "location": "Denmark; Remote",
+          "postedDate": "2025-09-05",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Senior Talent Acquisition Partner",
+          "url": "https://job-boards.eu.greenhouse.io/bondora/jobs/4821850101",
+          "location": "Tallinn, Harju, Estonia; Tartu, Tartu, Estonia",
+          "postedDate": "2026-03-25",
+          "detectedKeywords": []
+        }
+      ],
+      "history": [
+        {
+          "weekOf": "2026-09-14",
+          "openCount": 8,
+          "keywordCounts": {
+            "go": 2,
+            "rust": 1,
+            "csharp": 1,
+            "cpp": 1,
+            "ai": 1,
+            "azure": 1
+          }
+        }
+      ],
+      "lastVerified": "2026-09-17T05:31:52.130Z",
+      "dataNotes": null
+    },
+    {
+      "id": "funderbeam",
+      "name": "Funderbeam",
+      "logoUrl": "/logos/funderbeam.png",
+      "description": "Private-market investment/trading infrastructure",
+      "website": "https://funderbeam.com",
+      "careersUrl": null,
+      "sizeRange": "~50–100",
+      "sizeMin": 50,
+      "sizeMax": 100,
+      "hqLocation": "Estonia",
+      "country": "Estonia",
+      "remotePolicy": null,
+      "remoteRegions": [],
+      "keywords": [
+        "fintech",
+        "private-markets",
+        "investing",
+        "trading"
+      ],
+      "currentOpenings": [],
+      "history": [],
+      "lastVerified": null,
+      "dataNotes": null
+    },
+    {
+      "id": "erply",
+      "name": "Erply",
+      "logoUrl": "/logos/erply.webp",
+      "description": "Cloud retail/POS, inventory, CRM, ecommerce software",
+      "website": "https://erply.com",
+      "careersUrl": null,
+      "sizeRange": "100+",
+      "sizeMin": 100,
+      "sizeMax": null,
+      "hqLocation": "Estonia",
+      "country": "Estonia",
+      "remotePolicy": null,
+      "remoteRegions": [],
+      "keywords": [
+        "retail",
+        "point-of-sale",
+        "inventory-management",
+        "crm",
+        "ecommerce"
+      ],
+      "currentOpenings": [],
+      "history": [],
+      "lastVerified": null,
+      "dataNotes": null
+    },
+    {
+      "id": "testlio",
+      "name": "Testlio",
+      "logoUrl": "/logos/testlio.png",
+      "description": "Distributed software testing/quality platform",
+      "website": "https://testlio.com",
+      "careersUrl": null,
+      "sizeRange": "100+",
+      "sizeMin": 100,
+      "sizeMax": null,
+      "hqLocation": "Estonia",
+      "country": "Estonia",
+      "remotePolicy": "remote",
+      "remoteRegions": [],
+      "keywords": [
+        "software-testing",
+        "qa",
+        "quality-assurance"
+      ],
+      "currentOpenings": [
+        {
+          "title": "Account Director (100% remote role in US)",
+          "url": "https://job-boards.greenhouse.io/testlio/jobs/8186522",
+          "location": "Remote in AMER",
+          "postedDate": "2026-09-08",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Chief Marketing Officer",
+          "url": "https://job-boards.greenhouse.io/testlio/jobs/8055231",
+          "location": "Remote in AMER",
+          "postedDate": "2026-07-10",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Engineering Manager, EMEA (Core)",
+          "url": "https://job-boards.greenhouse.io/testlio/jobs/8124695",
+          "location": "Remote in EMEA",
+          "postedDate": "2026-08-18",
+          "detectedKeywords": [
+            "typescript",
+            "react",
+            "nodejs",
+            "kafka",
+            "graphql",
+            "aws",
+            "ai"
+          ]
+        },
+        {
+          "title": "Engineering Manager, EMEA (Platform)",
+          "url": "https://job-boards.greenhouse.io/testlio/jobs/8179579",
+          "location": "Remote in EMEA",
+          "postedDate": "2026-09-07",
+          "detectedKeywords": [
+            "typescript",
+            "react",
+            "nodejs",
+            "python",
+            "kafka",
+            "graphql",
+            "aws",
+            "azure"
+          ]
+        },
+        {
+          "title": "Freelancer- Get Paid to Visit and Test Airports Across the US",
+          "url": "https://job-boards.greenhouse.io/testlio/jobs/8158547",
+          "location": "United States",
+          "postedDate": "2026-08-26",
+          "detectedKeywords": [
+            "swift",
+            "android"
+          ]
+        },
+        {
+          "title": "Freelancer in Greenland",
+          "url": "https://job-boards.greenhouse.io/testlio/jobs/8158556",
+          "location": "Greenland",
+          "postedDate": "2026-08-26",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Freelance Software Tester for German Voice Commands (On-Site in Vienna)",
+          "url": "https://job-boards.greenhouse.io/testlio/jobs/8184710",
+          "location": "Remote in EMEA",
+          "postedDate": "2026-09-08",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Freelance Software Tester With Apple Vision Pro (Remote Worldwide)",
+          "url": "https://job-boards.greenhouse.io/testlio/jobs/8195507",
+          "location": "Global",
+          "postedDate": "2026-09-11",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Freelance Software Tester With Smart TVs (Remote in Austria)",
+          "url": "https://job-boards.greenhouse.io/testlio/jobs/8185386",
+          "location": "Remote in EMEA",
+          "postedDate": "2026-09-08",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Freelance Tester (Faroe Islands) – Global Payment Research ($100/hr)",
+          "url": "https://job-boards.greenhouse.io/testlio/jobs/8148101",
+          "location": "Remote in EMEA",
+          "postedDate": "2026-09-01",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Freelance Tester (Greenland) – Paid International Payment Study",
+          "url": "https://job-boards.greenhouse.io/testlio/jobs/8129525",
+          "location": "Greenland",
+          "postedDate": "2026-08-17",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Payments Solutions Architect (US or EMEA)",
+          "url": "https://job-boards.greenhouse.io/testlio/jobs/8121637",
+          "location": "Remote in EMEA",
+          "postedDate": "2026-08-25",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Principal Software Architect",
+          "url": "https://job-boards.greenhouse.io/testlio/jobs/8024146",
+          "location": "Remote in EMEA",
+          "postedDate": "2026-06-23",
+          "detectedKeywords": [
+            "aws",
+            "ai"
+          ]
+        },
+        {
+          "title": "Principal Software Architect",
+          "url": "https://job-boards.greenhouse.io/testlio/jobs/8024079",
+          "location": "Remote in AMER",
+          "postedDate": "2026-06-23",
+          "detectedKeywords": [
+            "aws",
+            "ai"
+          ]
+        },
+        {
+          "title": "QA Analyst (Future Roles)",
+          "url": "https://job-boards.greenhouse.io/testlio/jobs/6979353",
+          "location": "Global",
+          "postedDate": "2025-06-18",
+          "detectedKeywords": [
+            "swift",
+            "android"
+          ]
+        },
+        {
+          "title": "QA Tester (Future Roles)",
+          "url": "https://job-boards.greenhouse.io/testlio/jobs/6953297",
+          "location": "Global",
+          "postedDate": "2025-06-11",
+          "detectedKeywords": [
+            "swift",
+            "android"
+          ]
+        },
+        {
+          "title": "Test a Streaming Platform in France",
+          "url": "https://job-boards.greenhouse.io/testlio/jobs/8180060",
+          "location": "France",
+          "postedDate": "2026-09-04",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Testing a Financial App for Italian Business Owners",
+          "url": "https://job-boards.greenhouse.io/testlio/jobs/8114240",
+          "location": "Remote in EMEA",
+          "postedDate": "2026-08-11",
+          "detectedKeywords": [
+            "go",
+            "swift",
+            "android"
+          ]
+        }
+      ],
+      "history": [
+        {
+          "weekOf": "2026-09-14",
+          "openCount": 18,
+          "keywordCounts": {
+            "typescript": 2,
+            "react": 2,
+            "nodejs": 2,
+            "kafka": 2,
+            "graphql": 2,
+            "aws": 4,
+            "ai": 3,
+            "python": 1,
+            "azure": 1,
+            "swift": 4,
+            "android": 4,
+            "go": 1
+          }
+        }
+      ],
+      "lastVerified": "2026-09-17T05:31:53.266Z",
+      "dataNotes": null
+    },
+    {
+      "id": "scoro",
+      "name": "Scoro",
+      "logoUrl": "/logos/scoro.png",
+      "description": "Work-management/business-management SaaS",
+      "website": "https://scoro.com",
+      "careersUrl": null,
+      "sizeRange": "100+",
+      "sizeMin": 100,
+      "sizeMax": null,
+      "hqLocation": "Estonia",
+      "country": "Estonia",
+      "remotePolicy": null,
+      "remoteRegions": [],
+      "keywords": [
+        "work-management",
+        "business-management",
+        "saas",
+        "productivity"
+      ],
+      "currentOpenings": [],
+      "history": [],
+      "lastVerified": null,
+      "dataNotes": null
+    },
+    {
+      "id": "pipedrive",
+      "name": "Pipedrive",
+      "logoUrl": "/logos/pipedrive.png",
+      "description": "CRM and sales-management SaaS",
+      "website": "https://pipedrive.com",
+      "careersUrl": null,
+      "sizeRange": "1,000+",
+      "sizeMin": 1000,
+      "sizeMax": null,
+      "hqLocation": "Estonia",
+      "country": "Estonia",
+      "remotePolicy": "hybrid",
+      "remoteRegions": [],
+      "keywords": [
+        "crm",
+        "sales",
+        "saas"
+      ],
+      "currentOpenings": [
+        {
+          "title": "Principal AI/ML Scientist & Engineer",
+          "url": "https://jobs.lever.co/pipedrive/27906eb6-51df-4dbc-a860-72e911bdd2c8",
+          "location": "Portugal, Lisbon",
+          "postedDate": "2026-04-16",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Principal AI/ML Scientist & Engineer",
+          "url": "https://jobs.lever.co/pipedrive/4dbe8cb4-cce6-4091-899e-04f69d4dbaae",
+          "location": "Germany, Berlin",
+          "postedDate": "2026-01-20",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Principal AI/ML Scientist & Engineer",
+          "url": "https://jobs.lever.co/pipedrive/88c70b1e-26dd-4c55-9436-9363a6f87b2c",
+          "location": "UK, London",
+          "postedDate": "2026-04-16",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Principal AI/ML Scientist & Engineer",
+          "url": "https://jobs.lever.co/pipedrive/a6488b4b-c09b-4daa-b7d5-2270335dac35",
+          "location": "Ireland, Dublin",
+          "postedDate": "2026-07-20",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Principal AI/ML Scientist & Engineer",
+          "url": "https://jobs.lever.co/pipedrive/bfaffe50-ecc7-42c6-8c88-996d920d60df",
+          "location": "Estonia, Tallinn",
+          "postedDate": "2026-04-16",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Principal Security Engineer",
+          "url": "https://jobs.lever.co/pipedrive/04a0b763-5d9e-4ff4-9ee0-dc6fbc29a2d8",
+          "location": "Estonia, Tallinn",
+          "postedDate": "2026-05-04",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Principal Security Engineer",
+          "url": "https://jobs.lever.co/pipedrive/54fb52bb-95f1-49a4-b3c0-68b42f2d69ce",
+          "location": "UK, London",
+          "postedDate": "2026-05-04",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Principal Security Engineer",
+          "url": "https://jobs.lever.co/pipedrive/8cec2e9a-e52e-4000-9dc5-4d6e6daf544a",
+          "location": "Germany, Berlin",
+          "postedDate": "2026-05-04",
+          "detectedKeywords": []
+        }
+      ],
+      "history": [
+        {
+          "weekOf": "2026-09-14",
+          "openCount": 8,
+          "keywordCounts": {}
+        }
+      ],
+      "lastVerified": "2026-09-17T05:31:54.735Z",
+      "dataNotes": null
+    },
+    {
+      "id": "bolt",
+      "name": "Bolt",
+      "logoUrl": "/logos/bolt.png",
+      "description": "Mobility, ride-hailing, delivery, micromobility",
+      "website": "https://bolt.eu",
+      "careersUrl": null,
+      "sizeRange": "1,000+",
+      "sizeMin": 1000,
+      "sizeMax": null,
+      "hqLocation": "Estonia",
+      "country": "Estonia",
+      "remotePolicy": null,
+      "remoteRegions": [],
+      "keywords": [
+        "mobility",
+        "ride-hailing",
+        "delivery",
+        "micromobility"
+      ],
+      "currentOpenings": [],
+      "history": [],
+      "lastVerified": null,
+      "dataNotes": null
+    },
+    {
+      "id": "playtech-estonia",
+      "name": "Playtech (Estonia)",
+      "logoUrl": "/logos/playtech-estonia.png",
+      "description": "Software/platform technology for the gaming industry",
+      "website": "https://playtech.com",
+      "careersUrl": null,
+      "sizeRange": "1,000+",
+      "sizeMin": 1000,
+      "sizeMax": null,
+      "hqLocation": "Estonia",
+      "country": "Estonia",
+      "remotePolicy": null,
+      "remoteRegions": [],
+      "keywords": [
+        "gaming",
+        "gaming-technology",
+        "platform"
+      ],
+      "currentOpenings": [],
+      "history": [],
+      "lastVerified": null,
+      "dataNotes": "This entry covers Playtech's Estonian operation; the parent group is a multinational, so the size figure may refer to either."
+    },
+    {
+      "id": "wallester",
+      "name": "Wallester",
+      "logoUrl": "/logos/wallester.png",
+      "description": "Corporate cards and payment infrastructure",
+      "website": "https://wallester.com",
+      "careersUrl": null,
+      "sizeRange": "200+",
+      "sizeMin": 200,
+      "sizeMax": null,
+      "hqLocation": "Estonia",
+      "country": "Estonia",
+      "remotePolicy": null,
+      "remoteRegions": [],
+      "keywords": [
+        "fintech",
+        "payments",
+        "corporate-cards",
+        "card-issuing"
+      ],
+      "currentOpenings": [],
+      "history": [],
+      "lastVerified": null,
+      "dataNotes": null
+    },
+    {
+      "id": "ridango",
+      "name": "Ridango",
+      "logoUrl": "/logos/ridango.png",
+      "description": "Public-transport payment, ticketing, mobility technology",
+      "website": "https://ridango.com",
+      "careersUrl": null,
+      "sizeRange": "150+",
+      "sizeMin": 150,
+      "sizeMax": null,
+      "hqLocation": "Estonia",
+      "country": "Estonia",
+      "remotePolicy": null,
+      "remoteRegions": [],
+      "keywords": [
+        "public-transport",
+        "ticketing",
+        "payments",
+        "mobility"
+      ],
+      "currentOpenings": [],
+      "history": [],
+      "lastVerified": null,
+      "dataNotes": null
+    },
+    {
+      "id": "skeleton-technologies",
+      "name": "Skeleton Technologies",
+      "logoUrl": "/logos/skeleton-technologies.png",
+      "description": "Ultracapacitor energy-storage technology",
+      "website": "https://skeletontech.com",
+      "careersUrl": null,
+      "sizeRange": "200+",
+      "sizeMin": 200,
+      "sizeMax": null,
+      "hqLocation": "Estonia",
+      "country": "Estonia",
+      "remotePolicy": null,
+      "remoteRegions": [],
+      "keywords": [
+        "energy-storage",
+        "ultracapacitors",
+        "cleantech"
+      ],
+      "currentOpenings": [],
+      "history": [],
+      "lastVerified": null,
+      "dataNotes": null
+    },
+    {
+      "id": "milrem-robotics",
+      "name": "Milrem Robotics",
+      "logoUrl": "/logos/milrem-robotics.png",
+      "description": "Autonomous robotics and defence technology",
+      "website": "https://milremrobotics.com",
+      "careersUrl": null,
+      "sizeRange": "200+",
+      "sizeMin": 200,
+      "sizeMax": null,
+      "hqLocation": "Estonia",
+      "country": "Estonia",
+      "remotePolicy": null,
+      "remoteRegions": [],
+      "keywords": [
+        "robotics",
+        "autonomous-systems",
+        "defence"
+      ],
+      "currentOpenings": [],
+      "history": [],
+      "lastVerified": null,
+      "dataNotes": null
+    },
+    {
+      "id": "starship-technologies",
+      "name": "Starship Technologies",
+      "logoUrl": "/logos/starship-technologies.png",
+      "description": "Autonomous delivery robots and robotics infrastructure",
+      "website": "https://starship.xyz",
+      "careersUrl": null,
+      "sizeRange": "500+",
+      "sizeMin": 500,
+      "sizeMax": null,
+      "hqLocation": "Estonia",
+      "country": "Estonia",
+      "remotePolicy": null,
+      "remoteRegions": [],
+      "keywords": [
+        "robotics",
+        "autonomous-delivery",
+        "logistics",
+        "delivery"
+      ],
+      "currentOpenings": [],
+      "history": [],
+      "lastVerified": null,
+      "dataNotes": null
+    },
+    {
+      "id": "threod-systems",
+      "name": "Threod Systems",
+      "logoUrl": "/logos/threod-systems.png",
+      "description": "Autonomous unmanned systems and aerospace technology",
+      "website": "https://threod.com",
+      "careersUrl": null,
+      "sizeRange": "100+",
+      "sizeMin": 100,
+      "sizeMax": null,
+      "hqLocation": "Estonia",
+      "country": "Estonia",
+      "remotePolicy": null,
+      "remoteRegions": [],
+      "keywords": [
+        "unmanned-systems",
+        "aerospace",
+        "autonomous-systems"
+      ],
+      "currentOpenings": [],
+      "history": [],
+      "lastVerified": null,
+      "dataNotes": null
+    },
+    {
+      "id": "defsecintel",
+      "name": "DefSecIntel",
+      "logoUrl": "/logos/defsecintel.png",
+      "description": "Defence intelligence and autonomous systems",
+      "website": "https://defsecintel.com",
+      "careersUrl": null,
+      "sizeRange": "100+",
+      "sizeMin": 100,
+      "sizeMax": null,
+      "hqLocation": "Estonia",
+      "country": "Estonia",
+      "remotePolicy": null,
+      "remoteRegions": [],
+      "keywords": [
+        "defence",
+        "intelligence",
+        "autonomous-systems",
+        "security"
+      ],
+      "currentOpenings": [],
+      "history": [],
+      "lastVerified": null,
+      "dataNotes": null
+    },
+    {
+      "id": "creem",
+      "name": "Creem",
+      "logoUrl": "/logos/creem.png",
+      "description": "Developer-focused payments/billing infrastructure",
+      "website": "https://creem.io",
+      "careersUrl": null,
+      "sizeRange": null,
+      "sizeMin": null,
+      "sizeMax": null,
+      "hqLocation": "Estonia",
+      "country": "Estonia",
+      "remotePolicy": "onsite",
+      "remoteRegions": [],
+      "keywords": [
+        "payments",
+        "billing",
+        "developer-tools",
+        "fintech"
+      ],
+      "currentOpenings": [
+        {
+          "title": "Senior Accountant",
+          "url": "https://jobs.ashbyhq.com/creem/1d1cda2e-cebd-404b-a62d-6ba719d8c5f5",
+          "location": "Tallinn",
+          "postedDate": "2026-05-20",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Customer Success Specialist",
+          "url": "https://jobs.ashbyhq.com/creem/aa8e899b-1f5a-4e09-9ea3-41233094514d",
+          "location": "Tallinn",
+          "postedDate": "2026-09-09",
+          "detectedKeywords": []
+        },
+        {
+          "title": "GTM Engineer",
+          "url": "https://jobs.ashbyhq.com/creem/5f1eb4e2-fe4f-4982-8be1-04e56acc0448",
+          "location": "Tallinn",
+          "postedDate": "2026-06-17",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Senior Fraud Analyst",
+          "url": "https://jobs.ashbyhq.com/creem/914a8eb1-6562-49f8-8070-eb5c06a43a5a",
+          "location": "Tallinn",
+          "postedDate": "2026-08-07",
+          "detectedKeywords": [
+            "python"
+          ]
+        },
+        {
+          "title": "Senior Fraud Investigator",
+          "url": "https://jobs.ashbyhq.com/creem/93b91995-085c-4bfa-8208-fa68763b86dd",
+          "location": "Tallinn",
+          "postedDate": "2026-08-07",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Founding Account Executive",
+          "url": "https://jobs.ashbyhq.com/creem/38925519-a91d-4000-8ae8-2572c5b888e3",
+          "location": "Tallinn",
+          "postedDate": "2026-08-14",
+          "detectedKeywords": []
+        },
+        {
+          "title": "Founding Growth Marketer",
+          "url": "https://jobs.ashbyhq.com/creem/9c750bff-2ff9-40bb-b581-d162f6524234",
+          "location": "Tallinn",
+          "postedDate": "2026-08-14",
+          "detectedKeywords": []
+        }
+      ],
+      "history": [
+        {
+          "weekOf": "2026-09-14",
+          "openCount": 7,
+          "keywordCounts": {
+            "python": 1
+          }
+        }
+      ],
+      "lastVerified": "2026-09-17T05:32:12.170Z",
+      "dataNotes": "Early-stage watch-list entry — size, remote policy and other details were not established at research time."
+    },
+    {
+      "id": "cleveron",
+      "name": "Cleveron",
+      "logoUrl": "/logos/cleveron.png",
+      "description": "Robotics and automated retail technology",
+      "website": "https://cleveron.com",
+      "careersUrl": null,
+      "sizeRange": null,
+      "sizeMin": null,
+      "sizeMax": null,
+      "hqLocation": "Estonia",
+      "country": "Estonia",
+      "remotePolicy": null,
+      "remoteRegions": [],
+      "keywords": [
+        "robotics",
+        "automation",
+        "retail-technology"
+      ],
+      "currentOpenings": [],
+      "history": [],
+      "lastVerified": null,
+      "dataNotes": "Early-stage watch-list entry — size, remote policy and other details were not established at research time."
+    },
+    {
+      "id": "ampler",
+      "name": "Ampler",
+      "logoUrl": null,
+      "description": "Connected electric bikes",
+      "website": "https://ampler.bike",
+      "careersUrl": null,
+      "sizeRange": null,
+      "sizeMin": null,
+      "sizeMax": null,
+      "hqLocation": "Estonia",
+      "country": "Estonia",
+      "remotePolicy": null,
+      "remoteRegions": [],
+      "keywords": [
+        "electric-bikes",
+        "mobility",
+        "connected-devices"
+      ],
+      "currentOpenings": [],
+      "history": [],
+      "lastVerified": null,
+      "dataNotes": "Early-stage watch-list entry — size, remote policy and other details were not established at research time."
+    }
+  ]
+}

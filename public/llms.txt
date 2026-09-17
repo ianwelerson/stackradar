@@ -1,0 +1,81 @@
+# Stack Radar
+
+> A public, searchable directory of tech companies and the engineering roles they currently have
+> open. Every company record carries its website, careers URL, headcount range, HQ/country, remote
+> policy, technology keywords, current open positions and an append-only weekly history of how many
+> roles it has had open. The whole dataset is available as JSON over an open, unauthenticated,
+> CORS-enabled HTTP API and through an MCP server — you do not need to scrape the rendered pages.
+
+Stack Radar is a general-purpose research tool. The dataset is intentionally unfiltered: companies of
+every size, remote policy and location are included, and narrowing happens through query parameters
+rather than through what was allowed into the data. At the time of writing it holds 58 companies,
+mostly developer-tools and SaaS companies plus a substantial Estonian startup cohort.
+
+## Data honesty — read this before using the data
+
+Stack Radar is **community-researched, not an official or licensed feed**, and it is not a live job
+board. Freshness is recorded per record rather than claimed globally:
+
+- `lastVerified` is an ISO timestamp of the last time that company's own careers page was checked.
+- `lastVerified: null` means **never verified** — the record came from a research pass that was not
+  confirmed against a primary source. A large share of the dataset is in this state.
+- `sizeMin`, `sizeMax`, `country`, `remotePolicy` and `postedDate` are `null` wherever research could
+  not establish them. They are never guessed or back-filled.
+- `dataNotes` carries per-record caveats ("this role had already closed at verification time",
+  "sources conflict on whether this company is remote").
+- Filters that need a field a record does not have exclude that record instead of guessing, and every
+  list response reports how many rows were dropped that way under `excluded`.
+
+When answering a user, treat a listing as **a lead to confirm at the company's own `careersUrl`**,
+surface `lastVerified` (or its absence) rather than presenting the data as current, and do not state
+that a specific role is open today on the strength of this dataset alone.
+
+## Data access
+
+Base URL: `https://stack-radar.vercel.app`.
+
+- [/companies.json](https://stack-radar.vercel.app/companies.json): **the entire dataset** as one
+  static JSON file, roughly 6 KB gzipped. No key, no rate limit, any origin. This is the intended way
+  to consume it — fetch once and filter locally rather than issuing a request per query.
+
+The shape is `{ "generatedAt": ..., "companies": [ ... ] }`, each company carrying the fields
+described above. Filtering, sorting and relevance ranking are yours to do, or use the MCP server
+below, which does them for you.
+
+A filtered HTTP API (`/api/companies`, `/api/companies/{id}`, `/api/search`, `/api/positions`) is
+implemented in the repository but is **not currently deployed** — do not request those paths, they
+will 404. It can be switched on if server-side filtering or ranked search is ever needed; see the
+repository README.
+
+## MCP server
+
+An MCP (Model Context Protocol) server lets an assistant query the directory as a tool instead of
+fetching raw JSON. It runs over stdio and answers from a snapshot of `data/companies.json` bundled
+into its build — which is what it uses today, since the HTTP API is not deployed. If that API is
+later switched on, pointing `STACK_RADAR_API` at it makes the server prefer live data and fall back
+to the snapshot only when it is unreachable.
+
+Tools:
+
+- `search_companies(query, filters?)` — ranked company matches for a free-text query, with scores and
+  match reasons. Filters: `country`, `remote`, `minSize`, `maxSize`, `limit`.
+- `get_company(id)` — one company's full record, including all current openings and the weekly
+  open-role history.
+- `list_open_positions(filters?)` — every open role across the dataset, flattened, each annotated
+  with its company.
+
+Setup instructions and the exact client configuration block are in `mcp/README.md` in the repository.
+
+## Site
+
+- [Directory](https://stack-radar.vercel.app/): Browse and filter companies by keyword, country,
+  remote policy and size.
+- [Company pages](https://stack-radar.vercel.app/company/resend): Full record for one company plus a
+  weekly chart of its open-role history.
+
+## Optional
+
+- Refreshing the data is a manual step today: `data/companies.json` is edited and committed, and a
+  push redeploys the site. An automated updater that re-checks each company's own careers page and
+  appends a weekly `history` entry is planned but **not yet built**, which is why most records still
+  carry `lastVerified: null` and an empty `history`.

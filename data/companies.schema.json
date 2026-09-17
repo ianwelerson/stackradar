@@ -1,0 +1,269 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stackradar.dev/schemas/companies.schema.json",
+  "title": "Company Directory Dataset",
+  "description": "Seed dataset for the dev company directory. Nulls are first-class: a null means the underlying research did not establish the value, and must not be filled in with a guess.",
+  "type": "object",
+  "required": [
+    "generatedAt",
+    "companies"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "Relative path to this schema file."
+    },
+    "generatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp for when this dataset file was generated."
+    },
+    "companies": {
+      "type": "array",
+      "description": "Every company in the directory.",
+      "items": {
+        "$ref": "#/$defs/company"
+      }
+    }
+  },
+  "$defs": {
+    "company": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "name",
+        "logoUrl",
+        "description",
+        "website",
+        "careersUrl",
+        "sizeRange",
+        "sizeMin",
+        "sizeMax",
+        "hqLocation",
+        "country",
+        "remotePolicy",
+        "remoteRegions",
+        "keywords",
+        "currentOpenings",
+        "history",
+        "lastVerified",
+        "dataNotes"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+          "description": "Stable kebab-case slug derived from the name. Unique across the file; used as the merge key by the update script."
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Display name of the company."
+        },
+        "logoUrl": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^(https://.|/logos/[a-z0-9][a-z0-9-]*\\.[a-z0-9]+$)",
+          "description": "Root-relative path to a logo stored in this repo, e.g. \"/logos/resend.png\". The update script downloads the logo once and commits it, so the visitor's browser never requests a company's CDN. An https URL is permitted by the pattern but should not be used: a remote one would break the no-third-party-requests guarantee and the img-src 'self' CSP. Null when no logo is held."
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "description": "One-line description of what the company does."
+        },
+        "website": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^https://",
+          "description": "Full company URL including the https:// scheme, or null when no domain is known."
+        },
+        "careersUrl": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^https://",
+          "description": "Careers page URL. Non-null only where the research explicitly recorded one."
+        },
+        "sizeRange": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The original free-text size from the research, preserved verbatim (e.g. \"~45\", \"51\u2013200\", \"1,000+\", \"Small, YC-backed\"). Null when no size was recorded."
+        },
+        "sizeMin": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0,
+          "description": "Parsed lower bound of sizeRange. Null when the free text carries no usable number (funding amounts and vague adjectives are never converted into headcounts)."
+        },
+        "sizeMax": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0,
+          "description": "Parsed upper bound of sizeRange. Null when unparseable or open-ended (e.g. \"200+\")."
+        },
+        "hqLocation": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The location/remote string as recorded in the research, or the country for entries known only by country. Null when nothing was recorded."
+        },
+        "country": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Normalized country name only (e.g. \"Estonia\", \"United States\"). Null when the research does not unambiguously establish a country."
+        },
+        "remotePolicy": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "remote",
+            "hybrid",
+            "onsite",
+            null
+          ],
+          "description": "Normalized working model. Null when the research recorded no policy or the signals conflict."
+        },
+        "remoteRegions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Region strings extracted from the location text (e.g. \"Americas\", \"Europe\", \"Global\"). Empty when unknown."
+        },
+        "keywords": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+          },
+          "minItems": 1,
+          "description": "Lowercase kebab-case domain and (only where the research names one) tech-stack tags. Tech-stack tags are never inferred for companies whose stack was not recorded."
+        },
+        "currentOpenings": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/opening"
+          },
+          "description": "Open roles confirmed at verification time. Empty for every unverified entry and for roles that had already closed."
+        },
+        "history": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/historyEntry"
+          },
+          "description": "Append-only weekly scan log written by the update script. Always empty in the seed data \u2014 no synthetic history is shipped."
+        },
+        "lastVerified": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time",
+          "description": "When the company's own careers page was last checked. Null for entries never verified against a primary source."
+        },
+        "dataNotes": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Plain-language honesty note about caveats in this record (closed roles, conflicting sources, unconfirmed listings, size disagreements, hiring restrictions). Null when there is nothing to flag."
+        }
+      }
+    },
+    "opening": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "title",
+        "url",
+        "location",
+        "postedDate",
+        "detectedKeywords"
+      ],
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Role title as recorded, with salary details moved to the company's dataNotes."
+        },
+        "url": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Direct link to the role posting. Null in the seed data \u2014 no per-role URLs were recorded."
+        },
+        "postedDate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date",
+          "description": "Posting date. Null in the seed data \u2014 no posting dates were recorded."
+        },
+        "detectedKeywords": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+          },
+          "description": "Keywords derived from the role title only. Empty when the title implies no specific technology or discipline."
+        },
+        "location": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Where the role is advertised, as the job board states it. Null when the board gives no location."
+        }
+      }
+    },
+    "historyEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "weekOf",
+        "openCount",
+        "keywordCounts"
+      ],
+      "properties": {
+        "weekOf": {
+          "type": "string",
+          "format": "date",
+          "description": "ISO date of the Monday of the scanned week."
+        },
+        "openCount": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of open roles seen in that week's scan."
+        },
+        "keywordCounts": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "description": "Per-keyword counts across that week's open roles."
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,196 @@
+{
+  "$comment": "Parameters for the update script. Kept out of code so a run can be scoped without edits.",
+  "discovery": {
+    "sources": [
+      "ycombinator"
+    ],
+    "keywords": [
+      "developer tools",
+      "SaaS",
+      "API platform",
+      "infrastructure",
+      "fintech",
+      "devops",
+      "open source",
+      "data"
+    ],
+    "excludeKeywords": [
+      "crypto casino",
+      "adult",
+      "gambling"
+    ],
+    "regions": [],
+    "minEmployeeCount": null,
+    "maxEmployeeCount": null,
+    "maxNewPerRun": 25,
+    "requireWebsite": true,
+    "requireActive": true,
+    "excludeNames": [
+      "Y Combinator"
+    ],
+    "$comment_exclude": "excludeNames drops directory entries that are not companies we want to list (YC lists itself, for instance).",
+    "preferHiring": true
+  },
+  "refresh": {
+    "$comment": "Per-run caps keep a single invocation bounded and polite.",
+    "maxCompaniesPerRun": 60,
+    "staleAfterDays": 14,
+    "refreshVerifiedWithinDays": 3,
+    "requestTimeoutMs": 12000,
+    "perHostDelayMs": 1200,
+    "maxRetries": 2,
+    "userAgent": "stack-radar/1.0 (+https://github.com/; contact via repo issues)"
+  },
+  "positions": {
+    "$comment": "Titles matching excludePatterns are dropped; the directory is about engineering hiring.",
+    "includeNonEngineering": true,
+    "excludePatterns": [
+      "internship",
+      "intern ",
+      "werkstudent",
+      "praktikum"
+    ],
+    "maxPerCompany": 60
+  },
+  "keywordVocabulary": {
+    "$comment": "Detected in job titles and descriptions to populate detectedKeywords and company keywords. Left-hand side is the canonical tag; right-hand side are the surface forms matched case-insensitively as whole words.",
+    "typescript": [
+      "typescript",
+      "ts"
+    ],
+    "javascript": [
+      "javascript"
+    ],
+    "react": [
+      "react",
+      "react.js",
+      "reactjs"
+    ],
+    "vue": [
+      "vue",
+      "vue.js",
+      "vuejs"
+    ],
+    "svelte": [
+      "svelte",
+      "sveltekit"
+    ],
+    "nextjs": [
+      "next.js",
+      "nextjs"
+    ],
+    "nodejs": [
+      "node.js",
+      "nodejs",
+      "node"
+    ],
+    "go": [
+      "golang",
+      "go"
+    ],
+    "rust": [
+      "rust"
+    ],
+    "python": [
+      "python"
+    ],
+    "ruby": [
+      "ruby",
+      "rails",
+      "ruby on rails"
+    ],
+    "java": [
+      "java"
+    ],
+    "kotlin": [
+      "kotlin"
+    ],
+    "scala": [
+      "scala"
+    ],
+    "elixir": [
+      "elixir",
+      "phoenix"
+    ],
+    "php": [
+      "php",
+      "laravel"
+    ],
+    "csharp": [
+      "c#",
+      ".net",
+      "dotnet"
+    ],
+    "cpp": [
+      "c++"
+    ],
+    "swift": [
+      "swift",
+      "ios"
+    ],
+    "android": [
+      "android"
+    ],
+    "postgres": [
+      "postgres",
+      "postgresql"
+    ],
+    "mysql": [
+      "mysql"
+    ],
+    "redis": [
+      "redis"
+    ],
+    "clickhouse": [
+      "clickhouse"
+    ],
+    "mongodb": [
+      "mongodb",
+      "mongo"
+    ],
+    "kafka": [
+      "kafka"
+    ],
+    "graphql": [
+      "graphql"
+    ],
+    "grpc": [
+      "grpc"
+    ],
+    "kubernetes": [
+      "kubernetes",
+      "k8s"
+    ],
+    "docker": [
+      "docker"
+    ],
+    "terraform": [
+      "terraform"
+    ],
+    "aws": [
+      "aws",
+      "amazon web services"
+    ],
+    "gcp": [
+      "gcp",
+      "google cloud"
+    ],
+    "azure": [
+      "azure"
+    ],
+    "wasm": [
+      "webassembly",
+      "wasm"
+    ],
+    "machine-learning": [
+      "machine learning",
+      "ml engineer",
+      "deep learning"
+    ],
+    "ai": [
+      "artificial intelligence",
+      "llm",
+      "genai"
+    ]
+  }
+}

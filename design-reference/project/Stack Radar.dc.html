@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:oklch(0.16 0.006 255);-webkit-font-smoothing:antialiased}
+a{color:oklch(0.80 0.13 162);text-decoration:none}
+a:hover{color:oklch(0.88 0.11 162)}
+input,textarea,select,button{font:inherit;outline:none}
+input:focus,textarea:focus{border-color:oklch(0.62 0.10 162)!important}
+::placeholder{color:oklch(0.48 0.008 255)}
+textarea{resize:vertical}
+@keyframes sp-in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@keyframes sp-fade{from{opacity:0}to{opacity:1}}
+</style>
+</helmet>
+<div style="min-height:100vh;background:oklch(0.16 0.006 255);color:oklch(0.96 0.004 255);font-family:'IBM Plex Sans',system-ui,sans-serif;font-size:14px;line-height:1.5">
+
+  <header style="position:sticky;top:0;z-index:20;background:oklch(0.17 0.006 255 / 0.88);backdrop-filter:blur(12px);border-bottom:1px solid oklch(0.27 0.01 255)">
+    <div style="max-width:1180px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+      <div onClick="{{ goHome }}" style="display:flex;align-items:center;gap:10px;cursor:pointer;margin-right:auto">
+        <div style="width:22px;height:22px;border-radius:5px;background:oklch(0.78 0.14 162);display:flex;align-items:center;justify-content:center">
+          <div style="width:7px;height:7px;background:oklch(0.18 0.02 162);border-radius:1px"></div>
+        </div>
+        <div style="display:flex;align-items:baseline;gap:9px">
+          <span style="font-weight:600;font-size:15px;letter-spacing:-0.01em">Stack&nbsp;Radar</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:oklch(0.55 0.008 255);letter-spacing:0.02em">who's hiring your stack</span>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:oklch(0.52 0.008 255);padding-right:4px">{{ indexLine }}</span>
+        <button onClick="{{ goSaved }}" style="background:oklch(0.21 0.008 255);border:1px solid oklch(0.30 0.01 255);color:oklch(0.80 0.008 255);border-radius:7px;padding:7px 11px;font-size:12.5px;cursor:pointer;white-space:nowrap" style-hover="border-color:oklch(0.42 0.03 162);color:oklch(0.96 0.004 255)">{{ savedNavLabel }}</button>
+        <button onClick="{{ openModal }}" style="display:flex;align-items:center;gap:7px;background:oklch(0.21 0.008 255);border:1px solid oklch(0.30 0.01 255);color:oklch(0.80 0.008 255);border-radius:7px;padding:7px 11px;font-size:12.5px;cursor:pointer" style-hover="border-color:oklch(0.40 0.012 255);color:oklch(0.96 0.004 255)">
+          <span style="width:6px;height:6px;border-radius:50%;background:{{ storageDot }}"></span>{{ storageLabel }}
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <sc-if value="{{ showList }}" hint-placeholder-val="{{ true }}">
+  <main style="max-width:1180px;margin:0 auto;padding:28px 20px 72px">
+    <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:26px">
+      <div style="display:flex;align-items:center;gap:10px;background:oklch(0.19 0.008 255);border:1px solid oklch(0.29 0.01 255);border-radius:10px;padding:0 14px">
+        <span style="font-family:'IBM Plex Mono',monospace;color:oklch(0.78 0.14 162);font-size:13px">/</span>
+        <input value="{{ query }}" onChange="{{ onQuery }}" placeholder="Search stack, role, or company — e.g. Go, Postgres, design engineer" style="flex:1;min-width:0;background:transparent;border:none;color:oklch(0.96 0.004 255);padding:13px 0;font-size:14.5px">
+        <sc-if value="{{ query }}" hint-placeholder-val="{{ false }}">
+          <button onClick="{{ clearQuery }}" style="background:none;border:none;color:oklch(0.55 0.008 255);cursor:pointer;font-size:12px;padding:4px" style-hover="color:oklch(0.9 0.004 255)">clear</button>
+        </sc-if>
+      </div>
+
+      <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+        <div style="display:flex;background:oklch(0.19 0.008 255);border:1px solid oklch(0.29 0.01 255);border-radius:8px;padding:3px;gap:2px;flex:0 1 auto;overflow:auto">
+          <sc-for list="{{ remoteOpts }}" as="o" hint-placeholder-count="4">
+            <button onClick="{{ o.onClick }}" style="border:none;border-radius:6px;padding:6px 11px;font-size:12.5px;cursor:pointer;white-space:nowrap;background:{{ o.bg }};color:{{ o.fg }};font-weight:{{ o.fw }}">{{ o.label }}</button>
+          </sc-for>
+        </div>
+        <select value="{{ loc }}" onChange="{{ onLoc }}" style="flex:1 1 130px;min-width:0;appearance:none;background:oklch(0.19 0.008 255);border:1px solid oklch(0.29 0.01 255);border-radius:8px;color:oklch(0.86 0.006 255);padding:8px 11px;font-size:12.5px;cursor:pointer">
+          <sc-for list="{{ locOpts }}" as="o" hint-placeholder-count="5"><option value="{{ o.v }}">{{ o.label }}</option></sc-for>
+        </select>
+        <select value="{{ size }}" onChange="{{ onSize }}" style="flex:1 1 130px;min-width:0;appearance:none;background:oklch(0.19 0.008 255);border:1px solid oklch(0.29 0.01 255);border-radius:8px;color:oklch(0.86 0.006 255);padding:8px 11px;font-size:12.5px;cursor:pointer">
+          <sc-for list="{{ sizeOpts }}" as="o" hint-placeholder-count="5"><option value="{{ o.v }}">{{ o.label }}</option></sc-for>
+        </select>
+        <select value="{{ sort }}" onChange="{{ onSort }}" style="flex:1 1 130px;min-width:0;appearance:none;background:oklch(0.19 0.008 255);border:1px solid oklch(0.29 0.01 255);border-radius:8px;color:oklch(0.86 0.006 255);padding:8px 11px;font-size:12.5px;cursor:pointer">
+          <sc-for list="{{ sortOpts }}" as="o" hint-placeholder-count="4"><option value="{{ o.v }}">{{ o.label }}</option></sc-for>
+        </select>
+      </div>
+
+      <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;min-height:22px">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:oklch(0.58 0.008 255)">{{ resultLine }}</span>
+        <sc-for list="{{ activeChips }}" as="c" hint-placeholder-count="0">
+          <button onClick="{{ c.onClear }}" style="display:flex;align-items:center;gap:6px;background:oklch(0.24 0.02 162);border:1px solid oklch(0.38 0.05 162);color:oklch(0.86 0.09 162);border-radius:20px;padding:3px 9px;font-size:11.5px;cursor:pointer;font-family:'IBM Plex Mono',monospace">{{ c.label }} <span style="opacity:0.6">✕</span></button>
+        </sc-for>
+      </div>
+    </div>
+
+    <sc-if value="{{ hasResults }}" hint-placeholder-val="{{ true }}">
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,335px),1fr));gap:12px">
+      <sc-for list="{{ list }}" as="c" hint-placeholder-count="6">
+        <div onClick="{{ c.onOpen }}" style="background:oklch(0.195 0.008 255);border:1px solid oklch(0.275 0.01 255);border-radius:11px;padding:15px 16px 13px;cursor:pointer;display:flex;flex-direction:column;gap:11px;animation:sp-in .28s ease both" style-hover="border-color:oklch(0.42 0.03 162);background:oklch(0.215 0.009 255)">
+          <div style="display:flex;align-items:flex-start;gap:11px">
+            <div style="width:32px;height:32px;flex:none;border-radius:8px;background:{{ c.tile }};display:flex;align-items:center;justify-content:center;font-weight:600;font-size:14px;color:oklch(0.17 0.02 255)">{{ c.initial }}</div>
+            <div style="flex:1;min-width:0">
+              <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+                <span style="font-weight:600;font-size:14.5px;letter-spacing:-0.005em">{{ c.name }}</span>
+                <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;padding:2px 6px;border-radius:5px;background:{{ c.openBg }};color:{{ c.openFg }};border:1px solid {{ c.openBd }};white-space:nowrap">{{ c.openBadge }}</span>
+                <sc-if value="{{ c.hasStatus }}" hint-placeholder-val="{{ false }}">
+                  <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;padding:2px 6px;border-radius:5px;background:{{ c.stBg }};color:{{ c.stFg }};border:1px solid {{ c.stBd }};white-space:nowrap">{{ c.statusIcon }} {{ c.statusLabel }}</span>
+                </sc-if>
+              </div>
+              <div style="color:oklch(0.64 0.008 255);font-size:12.5px;margin-top:3px;text-wrap:pretty">{{ c.desc }}</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:5px;flex-wrap:wrap">
+            <sc-for list="{{ c.chips }}" as="t" hint-placeholder-count="4">
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;padding:2.5px 7px;border-radius:5px;background:{{ t.bg }};color:{{ t.fg }};border:1px solid {{ t.bd }}">{{ t.label }}</span>
+            </sc-for>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding-top:10px;border-top:1px solid oklch(0.245 0.009 255);font-size:11.5px;color:oklch(0.60 0.008 255);font-family:'IBM Plex Mono',monospace">
+            <span style="display:flex;align-items:center;gap:6px"><span style="width:6px;height:6px;border-radius:50%;background:{{ c.remoteDot }}"></span>{{ c.remote }}</span>
+            <span style="color:oklch(0.35 0.008 255)">·</span>
+            <span>{{ c.country }}</span>
+            <sc-if value="{{ c.showScore }}" hint-placeholder-val="{{ false }}">
+              <span style="margin-left:auto;display:flex;align-items:center;gap:7px" title="{{ c.scoreWhy }}">
+                <span style="width:42px;height:4px;border-radius:2px;background:oklch(0.28 0.01 255);overflow:hidden;display:block"><span style="display:block;height:4px;background:oklch(0.78 0.14 162);width:{{ c.scorePct }}"></span></span>
+                <span style="color:oklch(0.78 0.14 162)">{{ c.scoreLabel }}</span>
+              </span>
+            </sc-if>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+    </sc-if>
+
+    <sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ false }}">
+    <div style="border:1px dashed oklch(0.30 0.01 255);border-radius:12px;padding:48px 24px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:14px;animation:sp-fade .3s ease both">
+      <div style="width:34px;height:34px;border-radius:9px;border:1px solid oklch(0.32 0.01 255);display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;color:oklch(0.55 0.008 255)">0</div>
+      <div style="font-size:16px;font-weight:600">No companies match these filters</div>
+      <div style="color:oklch(0.62 0.008 255);font-size:13px;max-width:420px;text-wrap:pretty">{{ emptyHint }}</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:2px">
+        <button onClick="{{ resetAll }}" style="background:oklch(0.78 0.14 162);border:none;color:oklch(0.17 0.03 162);border-radius:7px;padding:8px 14px;font-size:12.5px;font-weight:500;cursor:pointer">Reset all filters</button>
+        <sc-for list="{{ suggestions }}" as="s" hint-placeholder-count="3">
+          <button onClick="{{ s.onClick }}" style="background:oklch(0.21 0.008 255);border:1px solid oklch(0.30 0.01 255);color:oklch(0.82 0.008 255);border-radius:7px;padding:8px 12px;font-size:12.5px;cursor:pointer;font-family:'IBM Plex Mono',monospace" style-hover="border-color:oklch(0.42 0.03 162)">{{ s.label }}</button>
+        </sc-for>
+      </div>
+    </div>
+    </sc-if>
+  </main>
+  </sc-if>
+
+  <sc-if value="{{ showDetail }}" hint-placeholder-val="{{ false }}">
+  <main style="max-width:1000px;margin:0 auto;padding:22px 20px 80px;animation:sp-in .26s ease both">
+    <button onClick="{{ goHome }}" style="background:none;border:none;color:oklch(0.62 0.008 255);font-size:12.5px;cursor:pointer;padding:4px 0;margin-bottom:18px;font-family:'IBM Plex Mono',monospace" style-hover="color:oklch(0.96 0.004 255)">← all companies</button>
+
+    <div style="display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap;margin-bottom:22px">
+      <div style="width:52px;height:52px;flex:none;border-radius:12px;background:{{ co.tile }};display:flex;align-items:center;justify-content:center;font-weight:600;font-size:22px;color:oklch(0.17 0.02 255)">{{ co.initial }}</div>
+      <div style="flex:1;min-width:220px">
+        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+          <h1 style="margin:0;font-size:25px;font-weight:600;letter-spacing:-0.02em">{{ co.name }}</h1>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;padding:3px 8px;border-radius:6px;background:{{ co.verifyBg }};color:{{ co.verifyFg }};border:1px solid {{ co.verifyBd }}">{{ co.verifyLabel }}</span>
+        </div>
+        <div style="color:oklch(0.68 0.008 255);font-size:14px;margin-top:6px;max-width:560px;text-wrap:pretty">{{ co.desc }}</div>
+        <div style="display:flex;gap:14px;margin-top:10px;font-size:12.5px;font-family:'IBM Plex Mono',monospace;flex-wrap:wrap">
+          <a href="{{ co.site }}" target="_blank">{{ co.siteLabel }} ↗</a>
+          <a href="{{ co.careers }}" target="_blank">careers page ↗</a>
+        </div>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;position:relative">
+        <button onClick="{{ toggleTrack }}" style="display:flex;align-items:center;gap:7px;border-radius:8px;padding:9px 13px;font-size:12.5px;cursor:pointer;white-space:nowrap;background:{{ trackBg }};border:1px solid {{ trackBd }};color:{{ trackFg }}">
+          <span style="font-size:12px;opacity:0.9">{{ trackIcon }}</span>{{ trackLabel }}
+        </button>
+        <button onClick="{{ toggleStatusMenu }}" style="display:flex;align-items:center;gap:7px;border-radius:8px;padding:9px 13px;font-size:12.5px;cursor:pointer;white-space:nowrap;background:{{ statusBg }};border:1px solid {{ statusBd }};color:{{ statusFg }}">
+          <span style="font-size:12px;opacity:0.9">{{ statusIcon }}</span>{{ statusLabel }}<span style="font-size:9px;opacity:0.6;margin-left:1px">▾</span>
+        </button>
+        <button onClick="{{ focusNote }}" style="display:flex;align-items:center;gap:7px;border-radius:8px;padding:9px 13px;font-size:12.5px;cursor:pointer;background:oklch(0.21 0.008 255);border:1px solid oklch(0.30 0.01 255);color:oklch(0.84 0.006 255);white-space:nowrap" style-hover="border-color:oklch(0.44 0.03 162);color:oklch(0.96 0.004 255)">
+          <span style="font-size:12px;opacity:0.9">✎</span>{{ noteCta }}
+        </button>
+        <sc-if value="{{ statusMenu }}" hint-placeholder-val="{{ false }}">
+          <div onClick="{{ closeStatusMenu }}" style="position:fixed;inset:0;z-index:30"></div>
+          <div style="position:absolute;top:calc(100% + 6px);right:0;z-index:31;min-width:206px;background:oklch(0.22 0.009 255);border:1px solid oklch(0.33 0.012 255);border-radius:10px;padding:5px;box-shadow:0 14px 40px oklch(0.08 0 0 / 0.55);animation:sp-in .16s ease both">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:oklch(0.55 0.008 255);text-transform:uppercase;letter-spacing:0.07em;padding:7px 9px 5px">Application status</div>
+            <sc-for list="{{ statusItems }}" as="i" hint-placeholder-count="5">
+              <button onClick="{{ i.onClick }}" style="width:100%;display:flex;align-items:center;gap:9px;border:none;border-radius:7px;padding:8px 9px;font-size:12.5px;cursor:pointer;text-align:left;background:{{ i.bg }};color:{{ i.fg }}" style-hover="background:oklch(0.28 0.012 255)">
+                <span style="width:14px;text-align:center;opacity:0.95">{{ i.icon }}</span>
+                <span style="flex:1">{{ i.label }}</span>
+                <span style="color:oklch(0.80 0.13 162);font-size:11px">{{ i.check }}</span>
+              </button>
+            </sc-for>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));gap:1px;background:oklch(0.27 0.01 255);border:1px solid oklch(0.27 0.01 255);border-radius:11px;overflow:hidden;margin-bottom:26px">
+      <sc-for list="{{ co.meta }}" as="m" hint-placeholder-count="4">
+        <div style="background:oklch(0.19 0.008 255);padding:13px 15px">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:oklch(0.55 0.008 255);text-transform:uppercase;letter-spacing:0.06em">{{ m.k }}</div>
+          <div style="font-size:13.5px;margin-top:5px;color:oklch(0.92 0.005 255)">{{ m.v }}</div>
+        </div>
+      </sc-for>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:26px;align-items:start">
+      <section>
+        <div style="display:flex;align-items:baseline;gap:9px;margin-bottom:12px">
+          <h2 style="margin:0;font-size:15px;font-weight:600">Open positions</h2>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:oklch(0.55 0.008 255)">{{ co.posCount }}</span>
+        </div>
+        <sc-if value="{{ co.showCats }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px">
+          <sc-for list="{{ co.posCats }}" as="k" hint-placeholder-count="4">
+            <button onClick="{{ k.onClick }}" style="font-family:'IBM Plex Mono',monospace;font-size:11px;padding:4px 9px;border-radius:6px;cursor:pointer;background:{{ k.bg }};color:{{ k.fg }};border:1px solid {{ k.bd }}">{{ k.label }}</button>
+          </sc-for>
+        </div>
+        </sc-if>
+        <sc-if value="{{ co.hasPositions }}" hint-placeholder-val="{{ true }}">
+        <div style="display:flex;flex-direction:column;gap:1px;background:oklch(0.27 0.01 255);border:1px solid oklch(0.27 0.01 255);border-radius:10px;overflow:hidden">
+          <sc-for list="{{ co.positions }}" as="p" hint-placeholder-count="3">
+            <a href="{{ p.link }}" target="_blank" style="background:oklch(0.19 0.008 255);padding:13px 15px;display:flex;gap:12px;align-items:center;color:inherit" style-hover="background:oklch(0.225 0.009 255)">
+              <div style="flex:1;min-width:0">
+                <div style="font-size:13.5px;font-weight:500;color:oklch(0.95 0.004 255)">{{ p.title }}</div>
+                <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:oklch(0.58 0.008 255);margin-top:4px">{{ p.sub }}</div>
+              </div>
+              <span style="color:oklch(0.78 0.14 162);font-size:13px">↗</span>
+            </a>
+          </sc-for>
+        </div>
+        <sc-if value="{{ co.hasMore }}" hint-placeholder-val="{{ false }}">
+          <button onClick="{{ co.toggleMore }}" style="margin-top:10px;width:100%;background:oklch(0.20 0.008 255);border:1px solid oklch(0.29 0.01 255);color:oklch(0.82 0.006 255);border-radius:8px;padding:9px 12px;font-size:12.5px;cursor:pointer;font-family:'IBM Plex Mono',monospace" style-hover="border-color:oklch(0.44 0.03 162);color:oklch(0.96 0.004 255)">{{ co.moreLabel }}</button>
+        </sc-if>
+        </sc-if>
+        <sc-if value="{{ co.noPositions }}" hint-placeholder-val="{{ false }}">
+        <div style="border:1px dashed oklch(0.30 0.01 255);border-radius:10px;padding:20px;color:oklch(0.62 0.008 255);font-size:13px;text-wrap:pretty">{{ co.emptyCat }}</div>
+        </sc-if>
+      </section>
+
+      <section>
+        <div style="display:flex;align-items:baseline;gap:9px;margin-bottom:12px">
+          <h2 style="margin:0;font-size:15px;font-weight:600">Hiring history</h2>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:oklch(0.55 0.008 255)">last 16 weeks</span>
+        </div>
+        <div style="background:oklch(0.19 0.008 255);border:1px solid oklch(0.27 0.01 255);border-radius:10px;padding:14px 15px 12px;position:relative">
+          <div style="font-size:12.5px;color:oklch(0.68 0.008 255);margin-bottom:14px;text-wrap:pretty">{{ co.historyNote }}</div>
+          <sc-if value="{{ hoverWeek }}" hint-placeholder-val="{{ false }}">
+            <div style="position:absolute;bottom:30px;right:10px;background:oklch(0.25 0.01 255);border:1px solid oklch(0.36 0.012 255);border-radius:8px;padding:8px 10px;z-index:4;min-width:140px;box-shadow:0 8px 24px oklch(0.10 0 0 / 0.5)">
+              <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:oklch(0.60 0.008 255)">{{ hoverWeek.label }}</div>
+              <div style="font-size:12.5px;margin-top:4px;font-weight:500">{{ hoverWeek.countLabel }}</div>
+              <div style="display:flex;flex-direction:column;gap:2px;margin-top:6px">
+                <sc-for list="{{ hoverWeek.breakdown }}" as="b" hint-placeholder-count="2">
+                  <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:oklch(0.80 0.05 162)">{{ b }}</div>
+                </sc-for>
+              </div>
+            </div>
+          </sc-if>
+          <div style="display:flex;align-items:flex-end;gap:3px;height:74px">
+            <sc-for list="{{ co.weeks }}" as="w" hint-placeholder-count="16">
+              <div onMouseEnter="{{ w.onEnter }}" onMouseLeave="{{ w.onLeave }}" onClick="{{ w.onEnter }}" style="flex:1;min-width:0;display:flex;flex-direction:column;justify-content:flex-end;height:74px;cursor:default">
+                <div style="border-radius:3px 3px 1px 1px;background:{{ w.bg }};height:{{ w.h }}"></div>
+              </div>
+            </sc-for>
+          </div>
+          <div style="display:flex;justify-content:space-between;margin-top:8px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:oklch(0.50 0.008 255)">
+            <span>{{ co.weekStart }}</span><span>now</span>
+          </div>
+        </div>
+        <div style="display:flex;gap:5px;flex-wrap:wrap;margin-top:12px">
+          <sc-for list="{{ co.histTags }}" as="t" hint-placeholder-count="3">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;padding:2.5px 7px;border-radius:5px;background:oklch(0.22 0.008 255);color:oklch(0.70 0.008 255);border:1px solid oklch(0.30 0.01 255)">{{ t }}</span>
+          </sc-for>
+        </div>
+      </section>
+    </div>
+
+    <section style="margin-top:28px">
+      <div style="display:flex;align-items:baseline;gap:9px;margin-bottom:12px">
+        <h2 style="margin:0;font-size:15px;font-weight:600">Your notes</h2>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:oklch(0.55 0.008 255)">{{ notesStatus }}</span>
+      </div>
+      <sc-if value="{{ connected }}" hint-placeholder-val="{{ false }}">
+        <textarea ref="{{ noteRef }}" value="{{ noteText }}" onChange="{{ onNote }}" placeholder="Referral from Maya? Ask about the platform team's Go migration." style="width:100%;min-height:92px;background:oklch(0.19 0.008 255);border:1px solid oklch(0.29 0.01 255);border-radius:10px;padding:12px 14px;color:oklch(0.94 0.005 255);font-size:13.5px;line-height:1.55"></textarea>
+      </sc-if>
+      <sc-if value="{{ notConnected }}" hint-placeholder-val="{{ true }}">
+        <div style="border:1px dashed oklch(0.30 0.01 255);background:oklch(0.185 0.008 255);border-radius:10px;padding:18px;display:flex;gap:14px;align-items:center;flex-wrap:wrap">
+          <div style="flex:1;min-width:200px;font-size:13px;color:oklch(0.68 0.008 255);text-wrap:pretty">Notes are written to a database you own, so they need storage connected first. Takes about two minutes with a free Upstash Redis — nothing is ever stored on our side.</div>
+          <button onClick="{{ openModal }}" style="background:oklch(0.78 0.14 162);border:none;color:oklch(0.17 0.03 162);border-radius:7px;padding:9px 14px;font-size:12.5px;font-weight:500;cursor:pointer;white-space:nowrap">Connect storage</button>
+        </div>
+      </sc-if>
+    </section>
+  </main>
+  </sc-if>
+
+  <sc-if value="{{ posModal }}" hint-placeholder-val="{{ false }}">
+  <div onClick="{{ closePosModal }}" style="position:fixed;inset:0;z-index:55;background:oklch(0.10 0.004 255 / 0.72);backdrop-filter:blur(3px);display:flex;align-items:flex-start;justify-content:center;padding:24px 16px;overflow:auto;animation:sp-fade .18s ease both">
+    <div onClick="{{ stop }}" style="width:100%;max-width:640px;margin:auto;background:oklch(0.195 0.008 255);border:1px solid oklch(0.31 0.01 255);border-radius:14px;box-shadow:0 24px 60px oklch(0.08 0 0 / 0.6);animation:sp-in .22s ease both;display:flex;flex-direction:column;max-height:86vh">
+      <div style="padding:18px 20px 14px;border-bottom:1px solid oklch(0.26 0.01 255);display:flex;flex-direction:column;gap:13px">
+        <div style="display:flex;align-items:flex-start;gap:12px">
+          <div style="width:28px;height:28px;flex:none;border-radius:7px;background:{{ co.tile }};display:flex;align-items:center;justify-content:center;font-weight:600;font-size:13px;color:oklch(0.17 0.02 255)">{{ co.initial }}</div>
+          <div style="flex:1;min-width:0">
+            <div style="font-size:15.5px;font-weight:600;letter-spacing:-0.01em">{{ co.name }} — all open positions</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:oklch(0.57 0.008 255);margin-top:3px">{{ co.modalCount }}</div>
+          </div>
+          <button onClick="{{ closePosModal }}" style="background:none;border:none;color:oklch(0.55 0.008 255);font-size:15px;cursor:pointer;padding:2px 4px" style-hover="color:oklch(0.95 0.004 255)">✕</button>
+        </div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap">
+          <sc-for list="{{ co.posCats }}" as="k" hint-placeholder-count="5">
+            <button onClick="{{ k.onClick }}" style="font-family:'IBM Plex Mono',monospace;font-size:11px;padding:5px 9px;border-radius:6px;cursor:pointer;white-space:nowrap;background:{{ k.bg }};color:{{ k.fg }};border:1px solid {{ k.bd }}">{{ k.label }}</button>
+          </sc-for>
+        </div>
+      </div>
+      <div style="overflow:auto;padding:14px 20px 20px">
+        <sc-if value="{{ co.hasPositions }}" hint-placeholder-val="{{ true }}">
+        <div style="display:flex;flex-direction:column;gap:1px;background:oklch(0.27 0.01 255);border:1px solid oklch(0.27 0.01 255);border-radius:10px;overflow:hidden">
+          <sc-for list="{{ co.allPositions }}" as="p" hint-placeholder-count="6">
+            <a href="{{ p.link }}" target="_blank" style="background:oklch(0.185 0.008 255);padding:13px 15px;display:flex;gap:12px;align-items:center;color:inherit" style-hover="background:oklch(0.225 0.009 255)">
+              <div style="flex:1;min-width:0">
+                <div style="font-size:13.5px;font-weight:500;color:oklch(0.95 0.004 255)">{{ p.title }}</div>
+                <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:oklch(0.58 0.008 255);margin-top:4px">{{ p.sub }}</div>
+              </div>
+              <span style="color:oklch(0.78 0.14 162);font-size:13px">↗</span>
+            </a>
+          </sc-for>
+        </div>
+        </sc-if>
+        <sc-if value="{{ co.noPositions }}" hint-placeholder-val="{{ false }}">
+          <div style="border:1px dashed oklch(0.30 0.01 255);border-radius:10px;padding:24px;color:oklch(0.64 0.008 255);font-size:13px;text-align:center;text-wrap:pretty">{{ co.emptyCat }}</div>
+        </sc-if>
+      </div>
+    </div>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ showSaved }}" hint-placeholder-val="{{ false }}">
+  <main style="max-width:1000px;margin:0 auto;padding:22px 20px 80px;animation:sp-in .26s ease both">
+    <button onClick="{{ goHome }}" style="background:none;border:none;color:oklch(0.62 0.008 255);font-size:12.5px;cursor:pointer;padding:4px 0;margin-bottom:18px;font-family:'IBM Plex Mono',monospace" style-hover="color:oklch(0.96 0.004 255)">← all companies</button>
+    <div style="display:flex;align-items:flex-end;gap:12px;flex-wrap:wrap;margin-bottom:8px">
+      <h1 style="margin:0;font-size:24px;font-weight:600;letter-spacing:-0.02em">My list</h1>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:oklch(0.58 0.008 255);padding-bottom:3px">{{ savedSummary }}</span>
+    </div>
+    <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:20px">
+      <span style="display:flex;align-items:center;gap:7px;font-size:12.5px;color:oklch(0.64 0.008 255);text-wrap:pretty"><span style="width:6px;height:6px;border-radius:50%;background:{{ storageDot }};flex:none"></span>{{ savedStorageLine }}</span>
+      <button onClick="{{ openModal }}" style="background:oklch(0.21 0.008 255);border:1px solid oklch(0.30 0.01 255);color:oklch(0.84 0.006 255);border-radius:7px;padding:7px 12px;font-size:12.5px;cursor:pointer;white-space:nowrap" style-hover="border-color:oklch(0.44 0.03 162)">{{ storageLabel }}</button>
+    </div>
+
+    <sc-if value="{{ hasSaved }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px">
+        <sc-for list="{{ byStatus }}" as="b" hint-placeholder-count="3">
+          <span style="display:inline-flex;align-items:center;gap:6px;white-space:nowrap;font-family:'IBM Plex Mono',monospace;font-size:11px;padding:4px 9px;border-radius:6px;background:{{ b.bg }};border:1px solid {{ b.bd }};color:{{ b.fg }}"><span style="opacity:0.9">{{ b.icon }}</span><span>{{ b.k }}</span><span style="opacity:0.75">{{ b.v }}</span></span>
+        </sc-for>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <sc-for list="{{ savedRows }}" as="r" hint-placeholder-count="3">
+          <div onClick="{{ r.onOpen }}" style="background:oklch(0.195 0.008 255);border:1px solid oklch(0.275 0.01 255);border-radius:11px;padding:14px 16px;cursor:pointer;display:flex;flex-direction:column;gap:10px" style-hover="border-color:oklch(0.42 0.03 162);background:oklch(0.215 0.009 255)">
+            <div style="display:flex;gap:11px;align-items:flex-start">
+              <div style="width:30px;height:30px;flex:none;border-radius:8px;background:{{ r.tile }};display:flex;align-items:center;justify-content:center;font-weight:600;font-size:13px;color:oklch(0.17 0.02 255)">{{ r.initial }}</div>
+              <div style="flex:1;min-width:0">
+                <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+                  <span style="font-weight:600;font-size:14.5px">{{ r.name }}</span>
+                  <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;padding:2px 7px;border-radius:5px;background:{{ r.stBg }};border:1px solid {{ r.stBd }};color:{{ r.stFg }};white-space:nowrap">{{ r.stIcon }} {{ r.status }}</span>
+                  <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:oklch(0.56 0.008 255)">{{ r.openLabel }}</span>
+                </div>
+                <div style="color:oklch(0.62 0.008 255);font-size:12.5px;margin-top:4px;text-wrap:pretty">{{ r.desc }}</div>
+              </div>
+            </div>
+            <sc-if value="{{ r.hasNote }}" hint-placeholder-val="{{ false }}">
+              <div style="border-left:2px solid oklch(0.45 0.06 162);padding:2px 0 2px 11px;font-size:12.5px;color:oklch(0.76 0.008 255);line-height:1.55;text-wrap:pretty">{{ r.noteText }}</div>
+            </sc-if>
+          </div>
+        </sc-for>
+      </div>
+    </sc-if>
+    <sc-if value="{{ noSaved }}" hint-placeholder-val="{{ true }}">
+      <div style="border:1px dashed oklch(0.30 0.01 255);border-radius:12px;padding:44px 24px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:13px">
+        <div style="font-size:16px;font-weight:600">Nothing tracked yet</div>
+        <div style="color:oklch(0.62 0.008 255);font-size:13px;max-width:420px;text-wrap:pretty">Open a company and set a status — Tracked, Applied, Interviewing — or leave a note. Everything you mark shows up here.</div>
+        <button onClick="{{ goHome }}" style="background:oklch(0.78 0.14 162);border:none;color:oklch(0.17 0.03 162);border-radius:7px;padding:9px 15px;font-size:12.5px;font-weight:500;cursor:pointer">Browse companies</button>
+      </div>
+    </sc-if>
+  </main>
+  </sc-if>
+
+  <sc-if value="{{ modalOpen }}" hint-placeholder-val="{{ false }}">
+  <div onClick="{{ closeModal }}" style="position:fixed;inset:0;z-index:60;background:oklch(0.10 0.004 255 / 0.72);backdrop-filter:blur(3px);display:flex;align-items:flex-start;justify-content:center;padding:24px 16px;overflow:auto;animation:sp-fade .18s ease both">
+    <div onClick="{{ stop }}" style="width:100%;max-width:520px;margin:auto;background:oklch(0.195 0.008 255);border:1px solid oklch(0.31 0.01 255);border-radius:14px;box-shadow:0 24px 60px oklch(0.08 0 0 / 0.6);animation:sp-in .22s ease both">
+      <div style="padding:18px 20px;border-bottom:1px solid oklch(0.26 0.01 255);display:flex;align-items:flex-start;gap:12px">
+        <div style="flex:1">
+          <div style="font-size:16px;font-weight:600;letter-spacing:-0.01em">Connect your own storage</div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:oklch(0.55 0.008 255);margin-top:4px">optional · upstash redis · client-side only</div>
+        </div>
+        <button onClick="{{ closeModal }}" style="background:none;border:none;color:oklch(0.55 0.008 255);font-size:15px;cursor:pointer;padding:2px 4px" style-hover="color:oklch(0.95 0.004 255)">✕</button>
+      </div>
+
+      <sc-if value="{{ connected }}" hint-placeholder-val="{{ false }}">
+      <div style="padding:20px;display:flex;flex-direction:column;gap:16px">
+        <div style="display:flex;align-items:center;gap:10px;background:oklch(0.22 0.025 162);border:1px solid oklch(0.38 0.06 162);border-radius:10px;padding:13px 14px">
+          <span style="width:7px;height:7px;border-radius:50%;background:oklch(0.80 0.15 162);flex:none"></span>
+          <div style="flex:1;min-width:0">
+            <div style="font-size:13.5px;font-weight:500;color:oklch(0.93 0.03 162)">Connected and syncing</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:oklch(0.72 0.04 162);margin-top:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ maskedUrl }}</div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,120px),1fr));gap:1px;background:oklch(0.27 0.01 255);border:1px solid oklch(0.27 0.01 255);border-radius:10px;overflow:hidden">
+          <sc-for list="{{ syncStats }}" as="s" hint-placeholder-count="3">
+            <div style="background:oklch(0.185 0.008 255);padding:12px 14px">
+              <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:oklch(0.55 0.008 255);text-transform:uppercase;letter-spacing:0.06em">{{ s.k }}</div>
+              <div style="font-size:14px;margin-top:5px">{{ s.v }}</div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="font-size:12.5px;color:oklch(0.62 0.008 255);text-wrap:pretty">Your notes and tracked companies are written to your own database. Disconnecting clears the credentials from this browser; the data stays in your Redis instance.</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <button onClick="{{ disconnect }}" style="background:oklch(0.22 0.02 25);border:1px solid oklch(0.38 0.06 25);color:oklch(0.86 0.08 25);border-radius:8px;padding:9px 14px;font-size:12.5px;cursor:pointer">Disconnect &amp; clear credentials</button>
+          <button onClick="{{ closeModal }}" style="background:oklch(0.21 0.008 255);border:1px solid oklch(0.30 0.01 255);color:oklch(0.85 0.006 255);border-radius:8px;padding:9px 14px;font-size:12.5px;cursor:pointer">Done</button>
+        </div>
+      </div>
+      </sc-if>
+
+      <sc-if value="{{ notConnected }}" hint-placeholder-val="{{ true }}">
+      <div style="padding:20px;display:flex;flex-direction:column;gap:18px">
+        <div style="font-size:13.5px;color:oklch(0.74 0.008 255);line-height:1.6;text-wrap:pretty">Stack Radar works fine without an account. Connecting a database of your own adds persistence: <span style="color:oklch(0.95 0.004 255)">notes on companies, a tracked list, and your last search</span> come back the next time you visit — on any browser you connect.</div>
+
+        <div style="border:1px solid oklch(0.28 0.01 255);background:oklch(0.175 0.008 255);border-radius:10px;padding:14px 15px;display:flex;flex-direction:column;gap:9px">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:oklch(0.78 0.10 162);text-transform:uppercase;letter-spacing:0.07em">Where your data lives</div>
+          <sc-for list="{{ trustPoints }}" as="t" hint-placeholder-count="3">
+            <div style="display:flex;gap:9px;font-size:12.5px;color:oklch(0.72 0.008 255);line-height:1.55">
+              <span style="color:oklch(0.78 0.14 162);flex:none">—</span><span style="text-wrap:pretty">{{ t }}</span>
+            </div>
+          </sc-for>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="font-size:13px;font-weight:600">Setup — about two minutes</div>
+          <sc-for list="{{ steps }}" as="s" hint-placeholder-count="4">
+            <div style="display:flex;gap:11px;align-items:flex-start">
+              <div style="width:19px;height:19px;flex:none;border-radius:5px;background:oklch(0.24 0.01 255);border:1px solid oklch(0.32 0.012 255);display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:oklch(0.78 0.10 162);margin-top:1px">{{ s.n }}</div>
+              <div style="font-size:12.5px;color:oklch(0.72 0.008 255);line-height:1.55;text-wrap:pretty">{{ s.t }}</div>
+            </div>
+          </sc-for>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <label style="display:flex;flex-direction:column;gap:6px">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:oklch(0.60 0.008 255)">UPSTASH_REDIS_REST_URL</span>
+            <input value="{{ draftUrl }}" onChange="{{ onUrl }}" placeholder="https://your-db-12345.upstash.io" style="background:oklch(0.165 0.008 255);border:1px solid oklch(0.30 0.01 255);border-radius:8px;padding:10px 12px;color:oklch(0.95 0.004 255);font-family:'IBM Plex Mono',monospace;font-size:12.5px;width:100%">
+          </label>
+          <label style="display:flex;flex-direction:column;gap:6px">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:oklch(0.60 0.008 255)">UPSTASH_REDIS_REST_TOKEN</span>
+            <input value="{{ draftToken }}" onChange="{{ onToken }}" type="password" placeholder="AX••••••••••••••••••••••" style="background:oklch(0.165 0.008 255);border:1px solid oklch(0.30 0.01 255);border-radius:8px;padding:10px 12px;color:oklch(0.95 0.004 255);font-family:'IBM Plex Mono',monospace;font-size:12.5px;width:100%">
+          </label>
+          <sc-if value="{{ credError }}" hint-placeholder-val="{{ false }}">
+            <div style="font-size:12px;color:oklch(0.78 0.12 25);font-family:'IBM Plex Mono',monospace">{{ credError }}</div>
+          </sc-if>
+        </div>
+
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+          <button onClick="{{ connect }}" style="background:oklch(0.78 0.14 162);border:none;color:oklch(0.17 0.03 162);border-radius:8px;padding:10px 16px;font-size:13px;font-weight:500;cursor:pointer" style-hover="background:oklch(0.84 0.13 162)">{{ connectLabel }}</button>
+          <button onClick="{{ closeModal }}" style="background:none;border:1px solid oklch(0.29 0.01 255);color:oklch(0.72 0.008 255);border-radius:8px;padding:10px 14px;font-size:13px;cursor:pointer" style-hover="color:oklch(0.95 0.004 255)">Not now</button>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:oklch(0.50 0.008 255);margin-left:auto">free tier is plenty</span>
+        </div>
+      </div>
+      </sc-if>
+    </div>
+  </div>
+  </sc-if>
+
+  <footer style="border-top:1px solid oklch(0.24 0.009 255);padding:20px;text-align:center;font-family:'IBM Plex Mono',monospace;font-size:11px;color:oklch(0.46 0.008 255)">{{ footerLine }}</footer>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;showMatchScores&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Directory&quot;},&quot;defaultSort&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;Best match&quot;,&quot;options&quot;:[&quot;Best match&quot;,&quot;Most open roles&quot;,&quot;Recently verified&quot;,&quot;Company name&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Directory&quot;},&quot;staleAfterDays&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:14,&quot;min&quot;:3,&quot;max&quot;:60,&quot;unit&quot;:&quot;days&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Data honesty&quot;}}">
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = {
+      view: 'list', cid: null, query: '', remote: 'Any', loc: 'Any', size: 'Any',
+      sort: props.defaultSort || 'Best match', modalOpen: false,
+      creds: null, draftUrl: '', draftToken: '', credError: '', connecting: false,
+      notes: {}, statuses: {}, hoverWeek: null, posFilter: 'All roles', posExpanded: false,
+      posModal: false, statusMenu: false
+    };
+    this.data = this.build();
+    this.noteRef = React.createRef();
+  }
+
+  static get STATUSES() { return ['Tracked', 'Applied', 'Waiting response', 'Interviewing', 'Offer', 'Not hired']; }
+
+  icon(st) {
+    return { 'Tracked': '◇', 'Applied': '↗', 'Waiting response': '◷', 'Interviewing': '◑', 'Offer': '★', 'Not hired': '✕' }[st] || '○';
+  }
+
+  statusStyle(st) {
+    const map = {
+      'Tracked': [162, 0.05], 'Applied': [230, 0.06], 'Waiting response': [90, 0.06],
+      'Interviewing': [285, 0.06], 'Offer': [150, 0.08], 'Not hired': [25, 0.05]
+    };
+    const m = map[st];
+    if (!m) return { bg: 'oklch(0.21 0.008 255)', bd: 'oklch(0.30 0.01 255)', fg: 'oklch(0.80 0.006 255)' };
+    return { bg: 'oklch(0.26 ' + m[1] + ' ' + m[0] + ')', bd: 'oklch(0.42 ' + (m[1] + 0.02) + ' ' + m[0] + ')', fg: 'oklch(0.90 ' + (m[1] + 0.04) + ' ' + m[0] + ')' };
+  }
+
+  category(title) {
+    const t = title.toLowerCase();
+    if (/recruit|people|talent|hr|marketing|sales|finance|operations lead/.test(t)) return 'Non-engineering';
+    if (/docs|technical writ|developer relations|devrel|support|content/.test(t)) return 'Docs & DevRel';
+    if (/frontend|design engineer|editor|console|dashboard|ui|react/.test(t)) return 'Frontend';
+    if (/sre|infra|platform|kubernetes|reliability|network|devops|runtime|performance/.test(t)) return 'Infra & SRE';
+    if (/backend|systems|ledger|api|queue|data|media|full-stack|fullstack|engineer/.test(t)) return 'Backend';
+    return 'Other';
+  }
+
+  componentDidMount() {
+    try {
+      const g = (k) => localStorage.getItem('stackradar.' + k) || localStorage.getItem('stackpoint.' + k);
+      const c = g('upstash');
+      const n = g('notes');
+      const t = g('status');
+      const legacy = localStorage.getItem('stackpoint.tracked');
+      let statuses = t ? JSON.parse(t) : {};
+      if (!t && legacy) { JSON.parse(legacy).forEach(id => { statuses[id] = 'Tracked'; }); }
+      this.setState({
+        creds: c ? JSON.parse(c) : null,
+        notes: n ? JSON.parse(n) : {},
+        statuses: statuses
+      });
+    } catch (e) {}
+  }
+
+  persist(key, val) { try { localStorage.setItem('stackradar.' + key, JSON.stringify(val)); } catch (e) {} }
+
+  rng(seed) { let s = seed; return () => { s = (s * 1103515245 + 12345) % 2147483648; return s / 2147483648; }; }
+
+  build() {
+    const raw = [
+      ['Northwind', 'Typed job queues and workflow orchestration for TypeScript teams', 'northwind.dev', '11–30', 'Berlin, Germany', 'Germany', 'Remote', 'Europe', 23, 2, ['TypeScript', 'Node', 'Postgres', 'Redis', 'gRPC'], [['Senior Backend Engineer', 'Remote · Europe', 3], ['Developer Experience Engineer', 'Berlin or remote', 11]]],
+      ['Halcyon', 'Realtime collaborative canvas primitives, shipped as an SDK', 'halcyon.io', '31–60', 'San Francisco, US', 'United States', 'Hybrid', '', 41, 5, ['React', 'TypeScript', 'Rust', 'WebGL', 'CRDT'], [['Design Engineer', 'SF · 3 days onsite', 1], ['Rust Systems Engineer', 'SF or remote US', 8], ['Product Engineer, Editor', 'SF · hybrid', 19]]],
+      ['Tessel', 'Postgres branching and preview databases for every pull request', 'tessel.sh', '11–30', 'Lisbon, Portugal', 'Portugal', 'Remote', 'Global', 17, 1, ['Go', 'Postgres', 'Kubernetes', 'Terraform'], [['Infrastructure Engineer', 'Remote · global', 2], ['Support Engineer', 'Remote · Europe/Americas', 14]]],
+      ['Luminary', 'Transactional email and notification infrastructure with a real API', 'luminary.email', '31–60', 'New York, US', 'United States', 'Remote', 'US & Europe', 38, 3, ['TypeScript', 'React', 'Go', 'AWS', 'Kafka'], [['Senior Frontend Engineer', 'Remote · US/EU', 6], ['Deliverability Engineer', 'Remote · US', 9], ['Engineering Manager, Platform', 'Remote · US/EU', 22], ['Docs Engineer', 'Remote · global', 4], ['Design Engineer, Dashboard', 'Remote · US/EU', 12], ['Site Reliability Engineer', 'Remote · US', 16], ['Technical Recruiter', 'Remote · US', 8], ['People Operations Lead', 'New York · hybrid', 25], ['Product Marketing Manager', 'Remote · US', 13], ['Support Engineer, Tier 2', 'Remote · global', 5], ['Staff Backend Engineer, Queues', 'Remote · US/EU', 19]]],
+      ['Kilnworks', 'Self-hostable feature flags and experiment tooling', 'kilnworks.com', '1–10', 'Toronto, Canada', 'Canada', 'Remote', 'Americas', 8, 9, ['Elixir', 'Phoenix', 'Postgres', 'LiveView'], [['Founding Product Engineer', 'Remote · Americas', 5]]],
+      ['Aperture', 'Observability for data pipelines — lineage, freshness, and alerting', 'aperture.dev', '61–200', 'London, UK', 'United Kingdom', 'Hybrid', '', 120, 4, ['Python', 'Rust', 'ClickHouse', 'Airflow', 'React'], [['Senior Rust Engineer', 'London · hybrid', 7], ['Data Platform Engineer', 'London or remote UK', 13], ['Frontend Engineer', 'London · hybrid', 26]]],
+      ['Margin', 'Financial primitives API for product teams in fintech', 'margin.co', '31–60', 'Singapore', 'Singapore', 'On-site', '', 52, 12, ['Go', 'gRPC', 'Postgres', 'TypeScript'], [['Backend Engineer, Ledger', 'Singapore · onsite', 10]]],
+      ['Slate & Signal', 'Component library and design-token pipeline as a service', 'slateandsignal.com', '1–10', 'Copenhagen, Denmark', 'Denmark', 'Remote', 'Europe', 9, 2, ['React', 'TypeScript', 'Figma API', 'Vite'], [['Design Engineer', 'Remote · Europe', 1], ['Founding Full-stack Engineer', 'Remote · Europe', 16]]],
+      ['Overtone', 'Audio and video processing pipelines with a developer-first API', 'overtone.audio', '11–30', 'Amsterdam, Netherlands', 'Netherlands', 'Hybrid', '', 26, 7, ['Rust', 'C++', 'Python', 'FFmpeg', 'WASM'], [['Media Systems Engineer', 'Amsterdam · hybrid', 12]]],
+      ['Brackets', 'Git-native project tracking built for engineers who hate tickets', 'brackets.app', '11–30', 'Remote-first', 'Distributed', 'Remote', 'Global', 22, 1, ['TypeScript', 'React', 'Rust', 'SQLite', 'Tauri'], [['Senior Product Engineer', 'Remote · global', 2], ['Rust Desktop Engineer', 'Remote · global', 6], ['Head of Developer Relations', 'Remote · global', 20]]],
+      ['Cadence Labs', 'Scheduling and cron infrastructure that never silently fails', 'cadencelabs.dev', '1–10', 'Melbourne, Australia', 'Australia', 'Remote', 'APAC', 7, 18, ['Go', 'Redis', 'Postgres', 'Docker'], []],
+      ['Vellum', 'Docs-as-code platform with versioned API references', 'vellum.dev', '31–60', 'Austin, US', 'United States', 'Remote', 'US & Canada', 44, 3, ['TypeScript', 'Next.js', 'MDX', 'Postgres'], [['Senior Full-stack Engineer', 'Remote · US/CA', 4], ['Content Systems Engineer', 'Remote · US/CA', 15]]],
+      ['Ironwood', 'Edge runtime for latency-sensitive inference workloads', 'ironwood.systems', '61–200', 'Zurich, Switzerland', 'Switzerland', 'Hybrid', '', 88, 6, ['Rust', 'WASM', 'Kubernetes', 'CUDA', 'Go'], [['Edge Runtime Engineer', 'Zurich · hybrid', 3], ['Performance Engineer', 'Zurich or remote CH', 17], ['SRE, Global Network', 'Zurich · hybrid', 24], ['Frontend Engineer, Console', 'Zurich · hybrid', 9], ['Kubernetes Platform Engineer', 'Zurich or remote CH', 14], ['Technical Writer', 'Remote · Europe', 6], ['Talent Partner, Engineering', 'Zurich · hybrid', 21]]],
+      ['Pallet', 'Headless commerce backend for teams that want to own the frontend', 'pallet.store', '61–200', 'São Paulo, Brazil', 'Brazil', 'Remote', 'Americas', 96, 23, ['Ruby', 'Rails', 'Postgres', 'React', 'GraphQL'], [['Staff Backend Engineer', 'Remote · Americas', 8]]]
+    ];
+    const hues = [162, 210, 92, 265, 34, 300, 190, 130, 250, 60, 175, 220, 20, 140];
+    return raw.map((r, i) => {
+      const tags = r[10];
+      const rand = this.rng(i * 7919 + 13);
+      const weeks = [];
+      for (let w = 0; w < 16; w++) {
+        const base = r[11].length;
+        let n = Math.max(0, Math.round(base + (rand() * 3 - 1.2) + (w > 12 ? 0.4 : 0)));
+        if (w === 15) n = r[11].length;
+        const bd = [];
+        let left = n;
+        for (let t = 0; t < tags.length && left > 0; t++) {
+          if (rand() > 0.45) { const k = Math.min(left, 1 + Math.floor(rand() * 2)); bd.push(k + '× ' + tags[t]); left -= k; }
+        }
+        if (n > 0 && bd.length === 0) bd.push(n + '× ' + tags[0]);
+        weeks.push({ n, bd, wk: 16 - w });
+      }
+      const recent = weeks.slice(8).reduce((a, w) => a + w.n, 0);
+      return {
+        id: 'c' + i, name: r[0], initial: r[0][0], desc: r[1], site: r[2],
+        sizeLabel: r[3], hq: r[4], country: r[5], remote: r[6], regions: r[7],
+        sizeNum: r[8], verifiedDays: r[9], tags: tags,
+        positions: r[11].map(p => ({ title: p[0], loc: p[1], days: p[2] })),
+        weeks, recent, hue: hues[i % hues.length]
+      };
+    });
+  }
+
+  rel(d) { return d === 0 ? 'today' : d === 1 ? '1 day ago' : d < 14 ? d + ' days ago' : d < 60 ? Math.round(d / 7) + ' weeks ago' : Math.round(d / 30) + ' months ago'; }
+
+  score(c, q) {
+    const toks = q.toLowerCase().split(/[\s,]+/).filter(Boolean);
+    if (!toks.length) return null;
+    let hits = 0, why = [];
+    toks.forEach(t => {
+      const tag = c.tags.find(x => x.toLowerCase().includes(t));
+      if (tag) { hits += 1; why.push(tag + ' in stack'); return; }
+      if (c.name.toLowerCase().includes(t)) { hits += 0.85; why.push('name match'); return; }
+      const pos = c.positions.find(p => p.title.toLowerCase().includes(t));
+      if (pos) { hits += 0.7; why.push('open role: ' + pos.title); return; }
+      if (c.desc.toLowerCase().includes(t)) { hits += 0.45; why.push('description match'); return; }
+      if ((c.country + ' ' + c.hq + ' ' + c.regions).toLowerCase().includes(t)) { hits += 0.5; why.push('location match'); }
+    });
+    if (!hits) return null;
+    return { pct: Math.min(100, Math.round((hits / toks.length) * 100)), why: why.join(' · ') };
+  }
+
+  renderVals() {
+    const s = this.state;
+    const showScores = this.props.showMatchScores !== false;
+    const stale = this.props.staleAfterDays || 14;
+    const set = (k) => (e) => this.setState({ [k]: e.target.value });
+
+    const sizeBands = { 'Any': null, '1–20 people': [0, 20], '21–60 people': [21, 60], '61–200 people': [61, 200], '200+ people': [201, 1e6] };
+    const countries = Array.from(new Set(this.data.map(c => c.country))).sort();
+
+    let list = this.data.map(c => ({ c, m: this.score(c, s.query) }));
+    if (s.query.trim()) list = list.filter(x => x.m);
+    if (s.remote !== 'Any') list = list.filter(x => x.c.remote === s.remote);
+    if (s.loc !== 'Any') list = list.filter(x => x.c.country === s.loc);
+    if (s.size !== 'Any') { const b = sizeBands[s.size]; list = list.filter(x => x.c.sizeNum >= b[0] && x.c.sizeNum <= b[1]); }
+
+    const sorters = {
+      'Best match': (a, b) => (b.m ? b.m.pct : 0) - (a.m ? a.m.pct : 0) || b.c.positions.length - a.c.positions.length,
+      'Most open roles': (a, b) => b.c.positions.length - a.c.positions.length,
+      'Recently verified': (a, b) => a.c.verifiedDays - b.c.verifiedDays,
+      'Company name': (a, b) => a.c.name.localeCompare(b.c.name)
+    };
+    list.sort(sorters[s.sort] || sorters['Best match']);
+
+    const tileOf = (c) => 'oklch(0.76 0.11 ' + c.hue + ')';
+    const remoteDot = (r) => r === 'Remote' ? 'oklch(0.78 0.14 162)' : r === 'Hybrid' ? 'oklch(0.80 0.13 90)' : 'oklch(0.66 0.02 255)';
+    const qToks = s.query.toLowerCase().split(/[\s,]+/).filter(Boolean);
+
+    const cards = list.map(({ c, m }) => {
+      const open = c.positions.length;
+      return {
+        name: c.name, initial: c.initial, desc: c.desc, country: c.country, remote: c.remote,
+        tile: tileOf(c), remoteDot: remoteDot(c.remote),
+        openBadge: open === 0 ? 'no roles open' : open + (open === 1 ? ' role open' : ' roles open'),
+        openBg: open ? 'oklch(0.24 0.03 162)' : 'oklch(0.21 0.008 255)',
+        openFg: open ? 'oklch(0.86 0.10 162)' : 'oklch(0.58 0.008 255)',
+        openBd: open ? 'oklch(0.38 0.06 162)' : 'oklch(0.29 0.01 255)',
+        chips: c.tags.slice(0, 5).map(t => {
+          const hit = qToks.some(q => t.toLowerCase().includes(q));
+          return {
+            label: t,
+            bg: hit ? 'oklch(0.26 0.04 162)' : 'oklch(0.225 0.008 255)',
+            fg: hit ? 'oklch(0.90 0.09 162)' : 'oklch(0.72 0.008 255)',
+            bd: hit ? 'oklch(0.42 0.07 162)' : 'oklch(0.30 0.01 255)'
+          };
+        }),
+        showScore: showScores && !!m, scorePct: (m ? m.pct : 0) + '%',
+        scoreLabel: m ? m.pct + '% match' : '', scoreWhy: m ? m.why : '',
+        statusLabel: s.statuses[c.id] && s.statuses[c.id] !== 'Not tracked' ? s.statuses[c.id] : '',
+        statusIcon: this.icon(s.statuses[c.id]),
+        hasStatus: !!(s.statuses[c.id] && s.statuses[c.id] !== 'Not tracked'),
+        stBg: this.statusStyle(s.statuses[c.id]).bg,
+        stBd: this.statusStyle(s.statuses[c.id]).bd,
+        stFg: this.statusStyle(s.statuses[c.id]).fg,
+        onOpen: () => this.setState({ view: 'detail', cid: c.id, hoverWeek: null, posFilter: 'All roles', posExpanded: false })
+      };
+    });
+
+    const active = [];
+    if (s.remote !== 'Any') active.push({ label: s.remote, onClear: () => this.setState({ remote: 'Any' }) });
+    if (s.loc !== 'Any') active.push({ label: s.loc, onClear: () => this.setState({ loc: 'Any' }) });
+    if (s.size !== 'Any') active.push({ label: s.size, onClear: () => this.setState({ size: 'Any' }) });
+    if (s.query.trim()) active.push({ label: '“' + s.query.trim() + '”', onClear: () => this.setState({ query: '' }) });
+
+    const totalOpen = this.data.reduce((a, c) => a + c.positions.length, 0);
+    const co = this.data.find(c => c.id === s.cid);
+    let detail = {};
+    if (co) {
+      const max = Math.max(1, ...co.weeks.map(w => w.n));
+      const last8 = co.weeks.slice(8);
+      const nowTags = {};
+      last8.forEach(w => w.bd.forEach(b => { const k = b.split('× ')[1]; nowTags[k] = Math.max(nowTags[k] || 0, parseInt(b, 10)); }));
+      const peak = Math.max(...last8.map(w => w.n));
+      const avg = Math.round((last8.reduce((a, w) => a + w.n, 0) / last8.length) * 10) / 10;
+      const activeWeeks = last8.filter(w => w.n > 0).length;
+      const open = co.positions.length;
+      const fresh = co.verifiedDays <= stale;
+      detail = {
+        name: co.name, initial: co.initial, desc: co.desc, tile: tileOf(co),
+        site: 'https://' + co.site, siteLabel: co.site, careers: 'https://' + co.site + '/careers',
+        verifyLabel: (fresh ? 'verified ' : 'stale · last checked ') + this.rel(co.verifiedDays),
+        verifyBg: fresh ? 'oklch(0.23 0.03 162)' : 'oklch(0.24 0.04 80)',
+        verifyFg: fresh ? 'oklch(0.86 0.10 162)' : 'oklch(0.88 0.11 80)',
+        verifyBd: fresh ? 'oklch(0.38 0.06 162)' : 'oklch(0.42 0.08 80)',
+        meta: [
+          { k: 'Team size', v: co.sizeLabel + ' people' },
+          { k: 'Headquarters', v: co.hq },
+          { k: 'Work model', v: co.remote + (co.regions ? ' · ' + co.regions : '') },
+          { k: 'Stack', v: co.tags.join(', ') }
+        ],
+        posCount: open ? open + ' open' : 'none right now',
+        hasPositions: open > 0, noPositions: open === 0,
+        weeks: co.weeks.map((w, i) => ({
+          h: Math.round(5 + 64 * (w.n / max)) + 'px',
+          bg: w.n === 0 ? 'oklch(0.27 0.01 255)' : (s.hoverWeek && s.hoverWeek.i === i ? 'oklch(0.88 0.13 162)' : 'oklch(0.62 0.10 162)'),
+          onEnter: () => this.setState({ hoverWeek: { i, label: w.wk === 1 ? 'this week' : w.wk + ' weeks ago', countLabel: w.n === 0 ? 'no roles open' : w.n + (w.n === 1 ? ' role open' : ' roles open'), breakdown: w.bd } }),
+          onLeave: () => this.setState({ hoverWeek: null })
+        })),
+        weekStart: '16 wks ago',
+        historyNote: peak === 0
+          ? 'Nothing open in any of the last 8 weeks — this one looks quiet.'
+          : 'Peaked at ' + peak + ' role' + (peak === 1 ? '' : 's') + ' open, averaging ' + avg + ' across the last 8 weeks (' + activeWeeks + ' of 8 weeks with anything open). ' + (open ? open + ' open right now.' : 'Nothing open right now — but they do hire for this stack.'),
+        histTags: Object.keys(nowTags).sort((a, b) => nowTags[b] - nowTags[a]).slice(0, 4).map(k => 'up to ' + nowTags[k] + '× ' + k)
+      };
+    }
+
+    if (co) {
+      const withCat = co.positions.map(p => ({
+        title: p.title, cat: this.category(p.title),
+        sub: this.category(p.title) + '  ·  ' + p.loc + '  ·  posted ' + this.rel(p.days),
+        link: 'https://' + co.site + '/careers'
+      }));
+      const cats = ['All roles'].concat(Array.from(new Set(withCat.map(p => p.cat))));
+      const active = cats.indexOf(s.posFilter) > -1 ? s.posFilter : 'All roles';
+      const matched = active === 'All roles' ? withCat : withCat.filter(p => p.cat === active);
+      const limit = 5;
+      const shown = s.posExpanded ? matched : matched.slice(0, limit);
+      detail.posCats = cats.map(c => {
+        const n = c === 'All roles' ? withCat.length : withCat.filter(p => p.cat === c).length;
+        const on = c === active;
+        return {
+          label: c + ' ' + n,
+          bg: on ? 'oklch(0.30 0.05 162)' : 'oklch(0.20 0.008 255)',
+          fg: on ? 'oklch(0.93 0.07 162)' : 'oklch(0.66 0.008 255)',
+          bd: on ? 'oklch(0.44 0.07 162)' : 'oklch(0.29 0.01 255)',
+          onClick: () => this.setState({ posFilter: c, posExpanded: false })
+        };
+      });
+      detail.showCats = withCat.length > 3;
+      detail.positions = shown;
+      detail.posCount = active === 'All roles' ? co.positions.length + ' open' : matched.length + ' of ' + co.positions.length + ' open';
+      detail.hasPositions = matched.length > 0;
+      detail.noPositions = matched.length === 0;
+      detail.emptyCat = co.positions.length > 0
+        ? 'No ' + active.toLowerCase() + ' open here right now — they have ' + co.positions.length + ' other role' + (co.positions.length === 1 ? '' : 's') + ' listed.'
+        : detail.historyNote;
+      detail.hasMore = matched.length > limit;
+      detail.moreLabel = 'View all ' + co.positions.length + ' positions';
+      detail.allPositions = matched;
+      detail.modalCount = matched.length + (active === 'All roles' ? ' open position' + (matched.length === 1 ? '' : 's') : ' in ' + active.toLowerCase());
+      detail.toggleMore = () => this.setState({ posModal: true });
+    }
+
+    const connected = !!s.creds;
+    const status = co ? (s.statuses[co.id] || 'Not tracked') : 'Not tracked';
+    const sst = this.statusStyle(status);
+    const trackedIds = Object.keys(s.statuses).filter(k => s.statuses[k] && s.statuses[k] !== 'Not tracked');
+    const savedRows = trackedIds.map(id => {
+      const c = this.data.find(x => x.id === id);
+      if (!c) return null;
+      const st = s.statuses[id], style = this.statusStyle(st);
+      return {
+        name: c.name, initial: c.initial, tile: tileOf(c), desc: c.desc,
+        status: st, stIcon: this.icon(st), stBg: style.bg, stBd: style.bd, stFg: style.fg,
+        openLabel: c.positions.length ? c.positions.length + ' open' : 'nothing open',
+        note: s.notes[id] || '', hasNote: !!(s.notes[id] || '').trim(),
+        noteText: (s.notes[id] || '').slice(0, 160),
+        onOpen: () => this.setState({ view: 'detail', cid: id, hoverWeek: null, posFilter: 'All roles', posExpanded: false })
+      };
+    }).filter(Boolean);
+    const byStatus = Component.STATUSES.map(st => ({
+      st, n: savedRows.filter(r => r.status === st).length, style: this.statusStyle(st)
+    })).filter(x => x.n > 0).map(x => ({ k: x.st, v: x.n, icon: this.icon(x.st), bg: x.style.bg, bd: x.style.bd, fg: x.style.fg }));
+
+    return {
+      showList: s.view === 'list', showDetail: s.view === 'detail' && !!co, showSaved: s.view === 'saved',
+      goSaved: () => this.setState({ view: 'saved' }),
+      savedNavLabel: trackedIds.length ? 'My list · ' + trackedIds.length : 'My list',
+      savedRows, hasSaved: savedRows.length > 0, noSaved: savedRows.length === 0,
+      byStatus,
+      savedSummary: savedRows.length + (savedRows.length === 1 ? ' company' : ' companies') + ' · ' + savedRows.filter(r => r.hasNote).length + ' with notes',
+      savedStorageLine: connected
+        ? 'Synced to your Upstash database. Everything below is read from your own storage.'
+        : 'Held in this browser session only. Connect your own database to keep this list across visits and devices.',
+      isTracked: status !== 'Not tracked',
+      trackLabel: status !== 'Not tracked' ? 'Tracking' : 'Track',
+      trackIcon: status !== 'Not tracked' ? '✓' : '+',
+      trackBg: status !== 'Not tracked' ? 'oklch(0.26 0.05 162)' : 'oklch(0.21 0.008 255)',
+      trackBd: status !== 'Not tracked' ? 'oklch(0.42 0.07 162)' : 'oklch(0.30 0.01 255)',
+      trackFg: status !== 'Not tracked' ? 'oklch(0.92 0.08 162)' : 'oklch(0.84 0.006 255)',
+      toggleTrack: () => {
+        const next = Object.assign({}, s.statuses);
+        if (status === 'Not tracked') next[co.id] = 'Tracked'; else delete next[co.id];
+        this.setState({ statuses: next, statusMenu: false });
+        this.persist('status', next);
+      },
+      statusLabel: status === 'Not tracked' || status === 'Tracked' ? 'Set status' : status,
+      statusIcon: status === 'Not tracked' || status === 'Tracked' ? '○' : this.icon(status),
+      statusBg: status === 'Not tracked' || status === 'Tracked' ? 'oklch(0.21 0.008 255)' : sst.bg,
+      statusBd: status === 'Not tracked' || status === 'Tracked' ? 'oklch(0.30 0.01 255)' : sst.bd,
+      statusFg: status === 'Not tracked' || status === 'Tracked' ? 'oklch(0.80 0.006 255)' : sst.fg,
+      statusMenu: s.statusMenu,
+      toggleStatusMenu: () => this.setState({ statusMenu: !s.statusMenu }),
+      closeStatusMenu: () => this.setState({ statusMenu: false }),
+      statusItems: Component.STATUSES.slice(1).map(st => {
+        const on = status === st, style = this.statusStyle(st);
+        return {
+          label: st, icon: this.icon(st), check: on ? '✓' : '',
+          bg: on ? style.bg : 'transparent', fg: on ? style.fg : 'oklch(0.80 0.006 255)',
+          onClick: () => {
+            const next = Object.assign({}, s.statuses, { [co.id]: on ? 'Tracked' : st });
+            this.setState({ statuses: next, statusMenu: false });
+            this.persist('status', next);
+          }
+        };
+      }),
+      posModal: s.posModal,
+      closePosModal: () => this.setState({ posModal: false }),
+      focusNote: () => {
+        if (!connected) return this.setState({ modalOpen: true, credError: '' });
+        if (!s.statuses[co.id]) {
+          const next = Object.assign({}, s.statuses, { [co.id]: 'Tracked' });
+          this.setState({ statuses: next });
+          this.persist('status', next);
+        }
+        const el = this.noteRef.current;
+        if (el) { el.focus(); }
+      },
+      noteRef: this.noteRef,
+      noteCta: !connected ? 'Add note' : ((s.notes[s.cid] || '').trim() ? 'Edit note' : 'Add note'),
+      query: s.query, onQuery: set('query'), clearQuery: () => this.setState({ query: '' }),
+      loc: s.loc, onLoc: set('loc'), size: s.size, onSize: set('size'), sort: s.sort, onSort: set('sort'),
+      remoteOpts: ['Any', 'Remote', 'Hybrid', 'On-site'].map(o => ({
+        label: o === 'Any' ? 'All models' : o,
+        bg: s.remote === o ? 'oklch(0.30 0.05 162)' : 'transparent',
+        fg: s.remote === o ? 'oklch(0.93 0.07 162)' : 'oklch(0.66 0.008 255)',
+        fw: s.remote === o ? '500' : '400',
+        onClick: () => this.setState({ remote: o })
+      })),
+      locOpts: ['Any'].concat(countries).map(v => ({ v, label: v === 'Any' ? 'Any location' : v })),
+      sizeOpts: Object.keys(sizeBands).map(v => ({ v, label: v === 'Any' ? 'Any size' : v })),
+      sortOpts: Object.keys(sorters).map(v => ({ v, label: v })),
+      list: cards, hasResults: cards.length > 0, isEmpty: cards.length === 0,
+      resultLine: cards.length + ' of ' + this.data.length + ' companies' + (cards.length ? ' · ' + list.reduce((a, x) => a + x.c.positions.length, 0) + ' open roles' : ''),
+      activeChips: active,
+      emptyHint: s.query.trim()
+        ? 'Nothing indexed matches “' + s.query.trim() + '” with these filters. Try a broader stack term, or drop a filter.'
+        : 'These filters exclude every company in the index. Widen the size range or work model.',
+      suggestions: [
+        { label: 'TypeScript', onClick: () => this.setState({ query: 'TypeScript', remote: 'Any', loc: 'Any', size: 'Any' }) },
+        { label: 'Rust', onClick: () => this.setState({ query: 'Rust', remote: 'Any', loc: 'Any', size: 'Any' }) },
+        { label: 'Postgres', onClick: () => this.setState({ query: 'Postgres', remote: 'Any', loc: 'Any', size: 'Any' }) }
+      ],
+      resetAll: () => this.setState({ query: '', remote: 'Any', loc: 'Any', size: 'Any' }),
+      goHome: () => this.setState({ view: 'list', cid: null, hoverWeek: null }),
+      co: detail, hoverWeek: s.hoverWeek,
+      connected, notConnected: !connected,
+      noteText: co ? (s.notes[co.id] || '') : '',
+      onNote: (e) => {
+        const next = Object.assign({}, s.notes, { [co.id]: e.target.value });
+        this.setState({ notes: next });
+        this.persist('notes', next);
+      },
+      notesStatus: connected ? 'synced to your redis · ' + trackedIds.length + ' companies tracked' : 'requires connected storage',
+      storageLabel: connected ? 'Storage connected' : 'Connect storage',
+      storageDot: connected ? 'oklch(0.80 0.15 162)' : 'oklch(0.50 0.008 255)',
+      openModal: () => this.setState({ modalOpen: true, credError: '' }),
+      closeModal: () => this.setState({ modalOpen: false }),
+      stop: (e) => e.stopPropagation(),
+      modalOpen: s.modalOpen,
+      draftUrl: s.draftUrl, draftToken: s.draftToken,
+      onUrl: set('draftUrl'), onToken: set('draftToken'),
+      credError: s.credError,
+      connectLabel: s.connecting ? 'Connecting…' : 'Connect database',
+      maskedUrl: s.creds ? s.creds.url.replace(/^https?:\/\//, '') + ' · token ••••' + (s.creds.token || '').slice(-4) : '',
+      syncStats: [
+        { k: 'Notes', v: Object.keys(s.notes).filter(k => s.notes[k]).length },
+        { k: 'Tracked', v: trackedIds.length },
+        { k: 'Stored at', v: 'your database' }
+      ],
+      trustPoints: [
+        'Your REST URL and token are saved in this browser’s local storage and sent only from your browser, straight to Upstash.',
+        'Stack Radar has no server-side account for you — we never see, log, or proxy your credentials or your notes.',
+        'Disconnect at any time: the credentials are wiped from this browser and the data stays in the database you own.'
+      ],
+      steps: [
+        { n: '1', t: 'Create a free account at upstash.com — no card required.' },
+        { n: '2', t: 'Create a new Redis database in the region closest to you.' },
+        { n: '3', t: 'Open the database, scroll to the REST API section, and copy the UPSTASH_REDIS_REST_URL and UPSTASH_REDIS_REST_TOKEN values.' },
+        { n: '4', t: 'Paste both below and hit Connect. Nothing is written until you save a note or track a company.' }
+      ],
+      connect: () => {
+        const url = s.draftUrl.trim(), token = s.draftToken.trim();
+        if (!/^https:\/\/.+\..+/.test(url)) return this.setState({ credError: 'That REST URL looks off — it should start with https:// and end in upstash.io' });
+        if (token.length < 12) return this.setState({ credError: 'That token looks too short. Copy the full REST token from the Upstash console.' });
+        this.setState({ connecting: true, credError: '' });
+        setTimeout(() => {
+          const creds = { url, token };
+          this.persist('upstash', creds);
+          this.persist('notes', s.notes);
+          this.persist('status', s.statuses);
+          this.setState({ creds, connecting: false, draftUrl: '', draftToken: '' });
+        }, 700);
+      },
+      disconnect: () => {
+        try { localStorage.removeItem('stackradar.upstash'); } catch (e) {}
+        this.setState({ creds: null });
+      },
+      indexLine: this.data.length + ' companies · ' + totalOpen + ' roles',
+      footerLine: 'Stack Radar · index refreshed weekly · every listing links to the company’s own careers page'
+    };
+  }
+}
+</script>
+</body>
+</html>

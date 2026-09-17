@@ -1,0 +1,11 @@
+# The JSON API is built and tested but intentionally not deployed yet.
+# Excluding api/ stops Vercel turning those files into serverless functions.
+# The directory stays in the repo — the MCP server bundles api/_lib/* at build
+# time, and `pnpm typecheck` still covers it.
+#
+# To switch the API on: delete the api/ line below, restore the API typecheck
+# in the `build` script, and re-enable the endpoints in public/llms.txt.
+# See "Enabling the JSON API" in README.md.
+api/
+
+design-reference/

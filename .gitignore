@@ -1,0 +1,10 @@
+node_modules
+dist
+.vercel
+.DS_Store
+*.local
+public/companies.json
+mcp/dist
+mcp/node_modules
+scripts/update/.backups
+scripts/update/tasks
