@@ -150,6 +150,7 @@ async function cmdRefresh(flags) {
 
     const { company: updated, changed, reason } = applyScan(company, {
       openings: result.openings,
+      totalListed: result.totalListed ?? null,
       scannedAt: new Date(),
     });
     if (!changed) {
@@ -211,6 +212,16 @@ async function cmdDiscover(flags) {
         }
         dataset.companies = upsertCompany(dataset.companies, merged);
         report.change(existing.company.id, `filled ${filled.join(', ')}`);
+        continue;
+      }
+
+      // The dataset schema requires a non-empty description, and there is no
+      // honest way to manufacture one — inventing a sentence about a company we
+      // have not read is exactly what this pipeline refuses to do. So a
+      // candidate that arrives without one is reported and skipped rather than
+      // written as a record that fails validation on the next build.
+      if (typeof candidate.description !== 'string' || candidate.description.trim() === '') {
+        report.skip(candidate.name, 'no description from the source — not created');
         continue;
       }
 
@@ -282,9 +293,15 @@ function cmdApply(flags) {
 
   for (const entry of accepted) {
     const existing = dataset.companies.find((c) => c.id === entry.id);
-    const { company: merged, filled } = mergeFacts(existing, entry.facts, entry.trust);
+    const { company: merged, filled, blocked } = mergeFacts(existing, entry.facts, entry.trust);
     if (filled.length === 0) {
-      report.skip(entry.id, 'nothing new');
+      // Distinguish "we already knew this" from "you were not allowed to change
+      // it". The second is the one that looks like the tool is broken.
+      const reason = blocked.length > 0 && entry.trust !== 'primary'
+        ? `${blocked.join(', ')} already set — directory trust only fills blanks.`
+          + ' Use trust: "primary" if you read it on the company\'s own site'
+        : 'nothing new — the record already holds these values';
+      report.skip(entry.id, reason);
       continue;
     }
     if (entry.note !== null) merged.dataNotes = entry.note;

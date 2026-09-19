@@ -44,6 +44,12 @@ export interface Company {
   readonly remoteRegions: readonly string[];
   readonly keywords: readonly string[];
   readonly currentOpenings: readonly Opening[];
+  /**
+   * What the company's job board listed before de-duplication and the
+   * per-company cap. Larger than `currentOpenings.length` means the stored list
+   * is a sample, and the UI says so. Null when never scanned.
+   */
+  readonly openingsTotal: number | null;
   /** Append-only weekly scan log. Empty until the update script has run. */
   readonly history: readonly HistoryEntry[];
   /** ISO datetime, or null when never verified against a primary source. */

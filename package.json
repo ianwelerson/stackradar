@@ -15,7 +15,10 @@
     "validate:data": "node scripts/validate-data.mjs",
     "verify": "pnpm validate:data && pnpm typecheck && pnpm lint && pnpm build",
     "set-site-url": "node scripts/set-site-url.mjs",
-    "typecheck:api": "tsc -p api/tsconfig.json --noEmit"
+    "typecheck:api": "tsc -p api/tsconfig.json --noEmit",
+    "data:gaps": "node scripts/update/gaps.mjs",
+    "data:status": "node scripts/update/cli.mjs status",
+    "data:brief": "node scripts/update/brief.mjs"
   },
   "dependencies": {
     "@fontsource/ibm-plex-mono": "^5.3.0",

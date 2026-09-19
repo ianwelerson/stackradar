@@ -59,7 +59,14 @@ export function buildTasks(companies, { limit = 20, only = null } = {}) {
       'Only include facts you actually confirmed — omit a field rather than guessing, since null is a ' +
       'first-class value in this dataset and a wrong value is worse than a missing one. ' +
       'Set "trust" to "primary" only when the fact came from the company\'s own site; use "directory" otherwise. ' +
-      `Allowed fact fields: ${ENRICHABLE_FIELDS.join(', ')}.`,
+      'Both values are case-sensitive and nothing else is accepted. This matters: "directory" only fills ' +
+      'fields that are currently empty, so a correct fact submitted at directory trust against a field that ' +
+      'already has a value changes nothing. If you read it on the company\'s own site, say "primary". ' +
+      `Allowed fact fields, spelled exactly: ${ENRICHABLE_FIELDS.join(', ')}. ` +
+      'The "missing" list on each task names gaps, not field names — two of its labels have no matching ' +
+      'field: report a headcount as "sizeMin" and "sizeMax" (plus "sizeRange" for display) rather than ' +
+      '"size", and "neverVerified" is not something you can supply at all — it means no job-board scan has ' +
+      'confirmed this company yet, which only a refresh run can change.',
     tasks: candidates.map(({ company, gaps }) => ({
       id: company.id,
       name: company.name,
@@ -201,6 +208,18 @@ export function validateResults(payload, companies) {
     }
     if (typeof facts !== 'object' || facts === null) {
       errors.push(`${id}: "facts" must be an object`);
+      continue;
+    }
+
+    // A trust level that is present but not one of the two valid values used to
+    // fall through to 'directory', which then silently refused to overwrite
+    // anything already set — so "Primary" instead of "primary" looked exactly
+    // like a successful run that changed nothing. Say so instead of guessing.
+    if (trust !== undefined && trust !== 'primary' && trust !== 'directory') {
+      errors.push(
+        `${id}: "trust" must be "primary" or "directory", got ${JSON.stringify(trust)}`
+        + ' (it is case-sensitive)',
+      );
       continue;
     }
 

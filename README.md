@@ -94,7 +94,7 @@ Or drive the pieces directly:
 ```bash
 node scripts/update/cli.mjs status              # what's missing
 node scripts/update/cli.mjs refresh --limit 25  # scan job boards, update positions + history
-node scripts/update/cli.mjs discover            # find new companies
+node scripts/update/cli.mjs discover            # find new companies (all sources)
 node scripts/update/cli.mjs enrich              # write out gaps needing research
 node scripts/update/cli.mjs apply --file r.json # validate + merge researched findings
 node scripts/update/cli.mjs history             # record this week's counts
@@ -115,7 +115,9 @@ These are enforced in `scripts/update/lib/merge.mjs`, not left to the caller:
   that week's entry instead of appending a duplicate, so the script is safe to run as often
   as you like.
 - **Directory data never overrides primary data.** A fact read from the company's own site
-  (`trust: "primary"`) outranks one from a listing; listings only fill blanks.
+  (`trust: "primary"`) outranks one from a listing; listings only fill blanks. When a merge
+  declines a field for that reason it says so by name, rather than reporting an
+  indistinguishable "nothing changed".
 - **Model output is untrusted input.** `apply` validates every field against a fixed
   allow-list with type and range checks, rejects unknown company ids outright (enrichment
   can never create a record), and rejects non-https URLs. Anything invalid is reported, not
@@ -147,7 +149,50 @@ They are stored locally rather than hot-linked on purpose: pointing `logoUrl` at
 CDNs would fire a cross-origin request per card and disclose every visitor's IP to every
 company listed. Local files keep `img-src 'self'` intact and the privacy claim above true.
 
-Discovery sources are configured in `research.config.json`.
+### Discovery sources
+
+Which sources run is set by `discovery.sources` in `research.config.json`. Each one's
+job is to produce a company **name plus its own domain** — not jobs. The refresh scan
+then finds that company's real job board and takes the per-posting links from there,
+which is why a candidate without a usable domain is dropped rather than stored.
+
+`scripts/update/SOURCES.md` is the playbook: the record shape and verified endpoint for
+every source that works, the ones that were evaluated and rejected and why, the sources
+that are permanently blocked, and a checklist for assessing a new one. Read it before
+adding a source — it will usually save the probing.
+
+Companies can also be added by hand through the `seeds` source, which reads
+`discovery.seeds.companies` and makes no network requests at all. That is how ecosystems
+with no reachable directory are covered: Startup Estonia publishes its database through a
+Cloudflare-protected portal that blocks every automated request, including its own
+`robots.txt`. **Check each domain resolves before adding it** — of the first 46 candidates
+considered, six were dead, parked, or redirected to an acquirer's site, and would have
+entered the dataset as records nothing could ever fill in. SOURCES.md has the one-line
+`curl` that catches all six, and notes the extra step that one of them needed: a
+domain can answer 200 and still be a wound-up company, so read what the page says.
+
+Each seed also needs a `description`. The schema requires one and the pipeline will
+not invent it, so `discover` skips a candidate that arrives without one; take it from
+the company's own `og:description`.
+
+### Research notes
+
+`scripts/update/RESEARCH-NOTES.md` is the accumulated record of what previous research
+rounds found: per-company careers URLs, which job-board platform each uses, which sites are
+dead ends, and which work-model signals turned out to be reliable. Read it before
+researching and update it after — including the failures, which are as useful as the hits.
+
+### Seeing what is missing
+
+```bash
+pnpm data:status   # coverage counts
+pnpm data:gaps     # what is missing, grouped by why
+```
+
+`data:gaps` groups by cause rather than by field, because that is what tells you
+what to do next: "45 companies have no discoverable job board" is a different
+problem from "45 companies are missing a work model", even when they are the same
+45 companies.
 
 ## For agents and other tools
 

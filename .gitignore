@@ -7,4 +7,7 @@ public/companies.json
 mcp/dist
 mcp/node_modules
 scripts/update/.backups
-scripts/update/tasks
+scripts/update/tasks/*
+# The brief and the accumulated research notes are the point of the exercise —
+# they must survive between rounds, unlike the throwaway enrich payloads.
+!scripts/update/tasks/research-brief.tsv

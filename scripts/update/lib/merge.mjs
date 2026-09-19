@@ -39,6 +39,7 @@ export function emptyCompany(id, name) {
     remoteRegions: [],
     keywords: [],
     currentOpenings: [],
+    openingsTotal: null,
     history: [],
     lastVerified: null,
     dataNotes: null,
@@ -49,7 +50,7 @@ export function emptyCompany(id, name) {
  * Apply a successful position scan to a company.
  * `openings` must come from a confirmed read; pass null for a failed scan.
  */
-export function applyScan(company, { openings, scannedAt = new Date(), note = null }) {
+export function applyScan(company, { openings, scannedAt = new Date(), note = null, totalListed = null }) {
   if (openings === null) {
     // Failed scan: touch nothing. lastVerified deliberately stays where it was,
     // so the UI keeps showing the record ageing rather than implying a check.
@@ -60,6 +61,9 @@ export function applyScan(company, { openings, scannedAt = new Date(), note = nu
   const before = company.currentOpenings.length;
 
   next.currentOpenings = openings;
+  // Null when the board's own total is unknown; otherwise the count before
+  // de-duplication and capping, so a truncated list is visibly truncated.
+  next.openingsTotal = Number.isInteger(totalListed) ? totalListed : openings.length;
   next.lastVerified = scannedAt.toISOString();
   if (note !== null) next.dataNotes = note;
 
@@ -103,6 +107,11 @@ function countKeywords(openings) {
 export function mergeFacts(company, facts, trust = 'directory') {
   const next = { ...company };
   const filled = [];
+  // Fields a directory-trust merge declined to touch because the company
+  // already has a value. Returned rather than dropped: "nothing changed" and
+  // "nothing changed *because you are not allowed to overwrite this*" are very
+  // different messages to the person who just researched the company.
+  const blocked = [];
 
   for (const [key, value] of Object.entries(facts)) {
     if (value === null || value === undefined || value === '') continue;
@@ -118,6 +127,8 @@ export function mergeFacts(company, facts, trust = 'directory') {
           next[key] = value;
           filled.push(key);
         }
+      } else if (current !== value) {
+        blocked.push(key);
       }
       continue;
     }
@@ -143,10 +154,12 @@ export function mergeFacts(company, facts, trust = 'directory') {
     if (isEmpty && current !== value) {
       next[key] = value;
       filled.push(key);
+    } else if (!isEmpty && current !== value) {
+      blocked.push(key);
     }
   }
 
-  return { company: next, filled };
+  return { company: next, filled, blocked };
 }
 
 /** Insert or replace a company in the dataset, keyed on id. */

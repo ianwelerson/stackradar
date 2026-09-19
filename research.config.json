@@ -2,7 +2,11 @@
   "$comment": "Parameters for the update script. Kept out of code so a run can be scoped without edits.",
   "discovery": {
     "sources": [
-      "ycombinator"
+      "workatastartup",
+      "ycombinator",
+      "hnhiring",
+      "weworkremotely",
+      "seeds"
     ],
     "keywords": [
       "developer tools",
@@ -22,18 +26,250 @@
     "regions": [],
     "minEmployeeCount": null,
     "maxEmployeeCount": null,
-    "maxNewPerRun": 25,
+    "maxNewPerRun": 60,
     "requireWebsite": true,
     "requireActive": true,
     "excludeNames": [
       "Y Combinator"
     ],
     "$comment_exclude": "excludeNames drops directory entries that are not companies we want to list (YC lists itself, for instance).",
-    "preferHiring": true
+    "preferHiring": true,
+    "seeds": {
+      "$comment": "Companies added by hand, for ecosystems with no reachable directory feed. Startup Estonia publishes its database through a Cloudflare-protected Dealroom portal (ecosystem.startupestonia.ee) that blocks every automated request, including robots.txt, so Estonian coverage is curated here instead. A seed is a pointer, not a claim: name and website are required and everything else is established by the refresh scan. Descriptions are each company's own meta description, read from its homepage on 2026-09-18, not written by us. Every domain was checked live the same day; Grünfin was dropped because its site now says only \"Grünfin is closed\".",
+      "companies": [
+        {
+          "name": "Wise",
+          "website": "https://wise.com",
+          "description": "150+ countries, 40 currencies, one account. Save when you send, spend and manage your money internationally.",
+          "note": "Estonian-founded; the engineering org is split across Tallinn and London."
+        },
+        {
+          "name": "Nortal",
+          "website": "https://nortal.com",
+          "description": "Digital Transformation for Governments, Healthcare & Enterprises.",
+          "country": "Estonia"
+        },
+        {
+          "name": "Helmes",
+          "website": "https://helmes.com",
+          "description": "Software development company.",
+          "country": "Estonia"
+        },
+        {
+          "name": "Glia",
+          "website": "https://glia.com",
+          "description": "Grow loans & deposits, unlock efficiency, and elevate interactions with AI for community banks and credit unions.",
+          "note": "Estonian-founded; US headquarters, Tallinn engineering."
+        },
+        {
+          "name": "Messente",
+          "website": "https://messente.com",
+          "description": "Messente's homepage provides communication tools for businesses.",
+          "country": "Estonia"
+        },
+        {
+          "name": "Proekspert",
+          "website": "https://proekspert.com",
+          "description": "We provide full-cycle software services for device and machine manufacturers, including smart products, device-to-cloud connectivity, and digital services.",
+          "country": "Estonia"
+        },
+        {
+          "name": "Sportlyzer",
+          "website": "https://sportlyzer.com",
+          "description": "Sportlyzer is a player development and team management software for youth and amateur sports clubs. The platform connects coaches, managers, players and parents.",
+          "country": "Estonia"
+        },
+        {
+          "name": "Comodule",
+          "website": "https://comodule.com",
+          "description": "IoT solutions for light electric vehicles. Empowering emissionless transport and thus, making our world a cleaner and happier place to live.",
+          "country": "Estonia"
+        },
+        {
+          "name": "Elcogen",
+          "website": "https://elcogen.com",
+          "description": "Elcogen develops highly efficient solid oxide cells, stacks and modules for SOFC and SOEC systems. Enabling green hydrogen production and zero-emission power generation.",
+          "country": "Estonia"
+        },
+        {
+          "name": "Bikeep",
+          "website": "https://bikeep.com",
+          "description": "Smart bike and e-scooter stations with app access, fire-safe e-charging, and real-time monitoring from anywhere. 10,000+ devices across 30+ countries.",
+          "country": "Estonia"
+        },
+        {
+          "name": "Planet42",
+          "website": "https://planet42.com",
+          "description": "Having your own car has never been easier. Planet42 is a vehicle rental company offering rent-to-buy car service for private clients.",
+          "country": "Estonia"
+        },
+        {
+          "name": "Mooncascade",
+          "website": "https://mooncascade.com",
+          "description": "Mooncascade is an advisory, design, and software development company specialising in product development, tech strategy, and UX / UI design.",
+          "country": "Estonia"
+        },
+        {
+          "name": "Thorgate",
+          "website": "https://thorgate.eu",
+          "description": "Top software development, web development and web design agency with offices in London, Oslo and Tallinn. Our skills include: Python, Django, React.js, React Native & UX/UI design.",
+          "country": "Estonia"
+        },
+        {
+          "name": "Lightyear",
+          "website": "https://lightyear.com",
+          "description": "Invest in stocks & funds from around the world with Lightyear. Low cost, no order fees for ETFs and AI-powered market data tools.",
+          "note": "Estonian-founded investing app."
+        },
+        {
+          "name": "Fractory",
+          "website": "https://fractory.com",
+          "description": "Custom metal fabrication services | Prototyping, project & volume production | 1-1 engineering support, flexible payment terms, instant quotes & lead times.",
+          "country": "Estonia"
+        },
+        {
+          "name": "Toggl",
+          "website": "https://toggl.com",
+          "description": "The best time tracker and capacity planning software. Track employee time, plan capacity, manage tasks and projects, and calculate profitability. Try for free.",
+          "note": "Estonian-founded and fully distributed."
+        },
+        {
+          "name": "Plausible Analytics",
+          "website": "https://plausible.io",
+          "description": "Plausible is a lightweight and open-source Google Analytics alternative. Your website data is 100% yours and the privacy of your visitors is respected.",
+          "note": "Estonian-registered, fully remote."
+        },
+        {
+          "name": "Doist",
+          "website": "https://doist.com",
+          "description": "From Minneapolis to the Philippines, Brazil to Bratislava, the Todoist team is united by one goal: empowering humanity with simple yet powerful productivity tools.",
+          "note": "Remote-first since founding."
+        },
+        {
+          "name": "Remote",
+          "website": "https://remote.com",
+          "description": "The intelligent infrastructure for global employment. EOR, global payroll, contractor management, and compliant payments — worldwide, on one system of record."
+        },
+        {
+          "name": "Automattic",
+          "website": "https://automattic.com",
+          "description": "Making the web a better place"
+        },
+        {
+          "name": "GitLab",
+          "website": "https://about.gitlab.com",
+          "description": "The intelligent orchestration platform for DevSecOps, enabling teams and agents to ship trusted software at enterprise scale."
+        },
+        {
+          "name": "Buffer",
+          "website": "https://buffer.com",
+          "description": "Use Buffer to manage your social media so that you can create and share your content everywhere, consistently. Try our forever free plan or upgrade for more."
+        },
+        {
+          "name": "Ghost",
+          "website": "https://ghost.org",
+          "description": "Beautiful, modern publishing with email newsletters and paid subscriptions built-in. Used by Platformer, 404Media, Lever News, Tangle, The Browser, and thousands more."
+        },
+        {
+          "name": "Tailscale",
+          "website": "https://tailscale.com",
+          "description": "The connectivity platform for devs, IT, and security teams. Zero Trust identity-based access that deploys in minutes and scales to every resource. Start free."
+        },
+        {
+          "name": "Grafana Labs",
+          "website": "https://grafana.com",
+          "description": "Avoid lock-in and ensure reliability with Grafana Cloud. The AI-powered platform built on open standards unifies metrics, logs, traces, profiles, and business data."
+        },
+        {
+          "name": "Canonical",
+          "website": "https://canonical.com",
+          "description": "Drive innovation in your enterprise with trusted open source from Canonical — simple, cost-effective, and supported."
+        },
+        {
+          "name": "Neon",
+          "website": "https://neon.com",
+          "description": "The backend for apps and agents. Build with Lakebase Postgres, Auth, Functions, Storage, and an AI Gateway: instant, branchable, serverless."
+        },
+        {
+          "name": "Railway",
+          "website": "https://railway.com",
+          "description": "Railway is a full-stack cloud for deploying web apps, servers, databases, and more with automatic scaling, monitoring, and security."
+        },
+        {
+          "name": "Fly.io",
+          "website": "https://fly.io",
+          "description": "Sandboxes aren't enough. Give your agent a real computer and get back to building."
+        },
+        {
+          "name": "Deno",
+          "website": "https://deno.com",
+          "description": "A drop-in JavaScript runtime with built-in TypeScript, npm support, and security by default. Run your existing Node project on Deno with no setup."
+        },
+        {
+          "name": "Prisma",
+          "website": "https://prisma.io",
+          "description": "Prisma gives TypeScript and Node.js teams Prisma ORM, Prisma Postgres, and Prisma Compute: a type-safe ORM, managed Postgres, and Compute for deploying TypeScript apps, from schema to deployed app."
+        },
+        {
+          "name": "Temporal",
+          "website": "https://temporal.io",
+          "description": "Build invincible apps with Temporal"
+        },
+        {
+          "name": "Airbyte",
+          "website": "https://airbyte.com",
+          "description": "Airbyte is the open-source data movement platform. Run ELT pipelines across 700+ connectors to any warehouse, lake, vector database, or AI agent."
+        },
+        {
+          "name": "Metabase",
+          "website": "https://metabase.com",
+          "description": "Metabase grounds every answer in your semantic layer — your metrics and business logic — so you can inspect the query behind it."
+        },
+        {
+          "name": "Appwrite",
+          "website": "https://appwrite.io",
+          "description": "Appwrite is an open-source developer platform with Auth, Databases, Storage, Functions, Messaging, and Sites. The open-source cloud for agents and developers."
+        },
+        {
+          "name": "Strapi",
+          "website": "https://strapi.io",
+          "description": "Strapi is the next-gen headless CMS, open-source, JavaScript/TypeScript, enabling content-rich experiences to be created, managed and exposed to any device."
+        },
+        {
+          "name": "Directus",
+          "website": "https://directus.com",
+          "description": "The collaborative backend and self-hostable headless CMS over any database. No-code interface, REST + GraphQL APIs, and MCP for Claude, ChatGPT, and Cursor."
+        },
+        {
+          "name": "Mattermost",
+          "website": "https://mattermost.com",
+          "description": "Accelerate your mission critical workflow by integrating people, processes, tools and AI infrastructure on a resilient and adaptable platform."
+        },
+        {
+          "name": "Sourcegraph",
+          "website": "https://sourcegraph.com",
+          "description": "Give humans and agents complete context to understand, oversee, and evolve the world"
+        }
+      ]
+    },
+    "$comment_sources": "Registered but deliberately absent: 'remoteok'. Its API carries no company website field, so every record is skipped under the own-domain rule (measured: 0 of 99), and its terms require a follow link back to Remote OK from any site using the data. See scripts/update/SOURCES.md.",
+    "hnhiring": {
+      "$comment": "months = how many recent 'Ask HN: Who is hiring?' threads to read. remoteOnly keeps only candidates the post itself describes as remote or hybrid, which is the reason this source is here.",
+      "months": 3,
+      "remoteOnly": true
+    },
+    "weworkremotely": {
+      "$comment": "RSS category feeds. Roughly a third of postings link the employer's own domain; the rest are skipped rather than stored with an aggregator link.",
+      "feeds": [
+        "https://weworkremotely.com/categories/remote-programming-jobs.rss",
+        "https://weworkremotely.com/categories/remote-devops-sysadmin-jobs.rss",
+        "https://weworkremotely.com/categories/remote-design-jobs.rss"
+      ]
+    }
   },
   "refresh": {
     "$comment": "Per-run caps keep a single invocation bounded and polite.",
-    "maxCompaniesPerRun": 60,
+    "maxCompaniesPerRun": 150,
     "staleAfterDays": 14,
     "refreshVerifiedWithinDays": 3,
     "requestTimeoutMs": 12000,
@@ -185,12 +421,43 @@
     "machine-learning": [
       "machine learning",
       "ml engineer",
-      "deep learning"
+      "deep learning",
+      "ml",
+      "pytorch",
+      "tensorflow"
     ],
     "ai": [
       "artificial intelligence",
       "llm",
-      "genai"
+      "genai",
+      "gen ai",
+      "ai"
+    ],
+    "security": [
+      "security",
+      "appsec",
+      "infosec",
+      "cryptography",
+      "penetration testing",
+      "vulnerability"
+    ],
+    "data-engineering": [
+      "data engineering",
+      "analytics engineer",
+      "etl",
+      "dbt",
+      "spark",
+      "snowflake",
+      "bigquery",
+      "airflow",
+      "data pipeline"
+    ],
+    "elasticsearch": [
+      "elasticsearch",
+      "opensearch"
+    ],
+    "rabbitmq": [
+      "rabbitmq"
     ]
   }
 }

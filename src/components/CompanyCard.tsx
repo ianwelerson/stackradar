@@ -30,7 +30,7 @@ export function CompanyCard({ company, match, status, queryTokens }: Props) {
   return (
     <Link
       to={`/company/${company.id}`}
-      className="group bg-card border border-line-card rounded-[11px] px-4 pt-[15px] pb-[13px] flex flex-col gap-[11px] no-underline text-ink animate-[sp-in_.28s_ease_both] hover:border-accent-line-hover hover:bg-card-hover transition-colors"
+      className="group h-full bg-card border border-line-card rounded-[11px] px-4 pt-[15px] pb-[13px] flex flex-col gap-[11px] no-underline text-ink animate-[sp-in_.28s_ease_both] hover:border-accent-line-hover hover:bg-card-hover transition-colors"
     >
       <div className="flex items-start gap-[11px]">
         <CompanyTile
@@ -79,7 +79,7 @@ export function CompanyCard({ company, match, status, queryTokens }: Props) {
         </div>
       )}
 
-      <div className="flex items-center gap-[10px] flex-wrap pt-[10px] border-t border-line-soft text-[11.5px] text-ink-dimmer font-mono">
+      <div className="mt-auto flex items-center gap-[10px] flex-wrap pt-[10px] border-t border-line-soft text-[11.5px] text-ink-dimmer font-mono">
         <span className="flex items-center gap-[6px]">
           <span className="w-[6px] h-[6px] rounded-full flex-none" style={{ background: dot }} />
           {remoteLabel(company)}

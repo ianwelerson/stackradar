@@ -46,20 +46,47 @@ enough and should be `null`.
 ## 3. Discover new companies
 
 ```bash
-node scripts/update/cli.mjs discover --source ycombinator
+node scripts/update/cli.mjs discover                      # every source in config
+node scripts/update/cli.mjs discover --source hnhiring    # or one at a time
 ```
+
+**Read `scripts/update/SOURCES.md` first.** It records every source's verified endpoint
+and record shape, the parsing traps that have already bitten, the sources that were
+evaluated and rejected, and the ones that are permanently blocked. Checking it before
+adding a source will usually save the probing.
+
+The configured sources and what each is for:
+
+| source | what it finds |
+|---|---|
+| `workatastartup` | YC startups **currently hiring engineers**, with their own website, team size and a public per-posting link |
+| `ycombinator` | the YC directory — companies that exist, hiring or not |
+| `hnhiring` | non-YC remote startups, from the monthly "Who is hiring?" thread |
+| `weworkremotely` | remote-first companies, from the RSS category feeds |
+| `seeds` | anything added by hand, including all Estonian coverage |
 
 New records are created unverified, with no history and no positions — step 2 fills those
 on the next run. Existing companies only get their blanks filled; a directory listing
 never overrides something confirmed from the company itself.
 
-To widen discovery beyond the configured sources, search the web for relevant hubs
-(Estonian startup directories, regional accelerators, "who's hiring" threads) and add what
-you find through step 4. `ecosystem.startupestonia.ee` is behind Cloudflare and
-`startupestonia.ee/startup-database` loads its data client-side, so those need searching
-rather than fetching.
+To widen beyond these, add the company to `discovery.seeds.companies` in
+`research.config.json` — but **check the domain resolves first**, with
+`curl -sS -o /dev/null -L -w "%{http_code}|%{url_effective}\n" <url>`. Six of the first 46
+seed candidates were dead, parked, or redirected to an acquirer, and each would have become
+a record nothing could ever fill in.
+
+Do not spend time on `ecosystem.startupestonia.ee`: it is a Dealroom portal that returns a
+Cloudflare challenge on every path including its own `robots.txt`. That is why Estonian
+coverage is curated in `seeds`.
 
 ## 4. Research the gaps
+
+**Read `scripts/update/RESEARCH-NOTES.md` first.** It records what previous rounds already
+established for each company — the careers URL that worked, which job-board platform they
+use, whether they publish openings at all, and which sites are dead ends that 403, are
+JS-only, or redirect to a homepage. It also records which work-model signals proved
+reliable and which look convincing but are not. Starting there avoids re-doing lookups
+that have already been done and failed.
 
 ```bash
 node scripts/update/cli.mjs enrich --limit 20
@@ -88,9 +115,18 @@ This writes a task file under `scripts/update/tasks/`. Read it, then research ea
 ```
 
 - `trust: "primary"` **only** when the fact came from the company's own site. Primary facts
-  may overwrite existing values; `"directory"` facts only fill blanks.
+  may overwrite existing values; `"directory"` facts only fill blanks. **This is the single
+  most common reason an apply appears to do nothing**: a correct fact at directory trust,
+  against a field that already has a value, is silently declined. `apply` now names the
+  blocked fields when that happens. Both values are case-sensitive — `"Primary"` is
+  rejected rather than quietly downgraded.
 - Allowed fields are listed in the task file's `instructions`. Anything else is rejected.
+- **The `missing` list names gaps, not fields.** Two of its labels have no matching field:
+  a headcount goes in `sizeMin`/`sizeMax` (not `size`), and `neverVerified` cannot be
+  supplied at all — it means no job-board scan has confirmed the company yet, which only
+  step 2 can change.
 - Omit a field rather than guessing at it.
+- `apply` is a dry run without `--write`, and prints `DRY RUN - nothing written` when it is.
 
 Then:
 
@@ -100,6 +136,14 @@ node scripts/update/cli.mjs apply --file <your-results.json>
 
 Anything rejected is printed with the reason. Fix and re-run; nothing partial is written.
 Add `--write` when clean.
+
+**Then update `scripts/update/RESEARCH-NOTES.md`** with what this round learned — including
+the failures. A company you checked and found has no careers page is worth recording, so
+the next round does not spend a lookup rediscovering it.
+
+Researching a batch this size is a good use of a subagent on a cheaper model: the work is
+mechanical lookups with a strict output contract. Give it the honesty rule explicitly —
+omit rather than guess — since that is the thing most likely to go wrong.
 
 ## 5. Record history
 

@@ -22,6 +22,9 @@ import * as workable from './workable.mjs';
 import * as recruitee from './recruitee.mjs';
 import * as smartrecruiters from './smartrecruiters.mjs';
 import * as personio from './personio.mjs';
+import * as bamboohr from './bamboohr.mjs';
+import * as teamtailor from './teamtailor.mjs';
+import * as workatastartup from './workatastartup.mjs';
 
 export const adapters = {
   ashby,
@@ -31,6 +34,9 @@ export const adapters = {
   recruitee,
   smartrecruiters,
   personio,
+  bamboohr,
+  teamtailor,
+  workatastartup,
 };
 
 /**
@@ -56,6 +62,13 @@ export const adapters = {
 // off on 429, and reaching it at all means the other three already missed.
 const PROBEABLE = ['ashby', 'greenhouse', 'lever', 'workable'];
 
+/**
+ * Boards that mirror someone else's postings rather than being the employer's
+ * own. Detected like any other platform, but only used once every route to a
+ * first-party board has been tried — see step 4 of `fetchPositions`.
+ */
+const FALLBACK_PLATFORMS = new Set(['workatastartup']);
+
 /** At most this many guessed-token requests per company. */
 const MAX_PROBES = 8;
 
@@ -64,13 +77,25 @@ const RESERVED_TOKENS = new Set([
   'embed', 'js', 'jobs', 'job', 'api', 'assets', 'static', 'search', 'apply',
   'application', 'www', 'careers', 'board', 'boards', 'j', 'o', 'c', 'widget',
   'postings', 'company', 'companies', 'null', 'undefined',
+  // Section labels. A company whose site lives at career.example.com or
+  // blog.example.com hands `domainLabel` the section, not the brand, and the
+  // probe then guesses a board under that generic word. `lever/career` really
+  // exists — it is somebody's test account, one posting titled "Test Job" dated
+  // 2024 — and Operations1 (career.operations1.com) was recorded as hiring for
+  // it. These are never a real board token, so they are never guessed.
+  'career', 'blog', 'learn', 'trust', 'docs', 'documentation', 'help',
+  'support', 'news', 'press', 'media', 'status', 'community', 'academy',
+  'resources', 'events', 'hire', 'hiring', 'join', 'work', 'about',
 ]);
 
 const TOKEN_SHAPE = /^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$/;
 
 /**
  * Direct host rules. `path` takes the first path segment as the token,
- * `subdomain` takes the leading hostname label.
+ * `subdomain` takes the leading hostname label, and `path2` takes the second
+ * path segment — for boards that namespace under a fixed prefix, such as Work
+ * at a Startup's /companies/{slug}, whose first segment is the literal word
+ * "companies" and is rejected by RESERVED_TOKENS.
  */
 const HOST_RULES = [
   { platform: 'ashby', host: /^jobs\.ashbyhq\.com$/i, from: 'path' },
@@ -80,6 +105,15 @@ const HOST_RULES = [
   { platform: 'smartrecruiters', host: /^(?:careers|jobs)\.smartrecruiters\.com$/i, from: 'path' },
   { platform: 'recruitee', host: /^([A-Za-z0-9-]+)\.recruitee\.com$/i, from: 'subdomain' },
   { platform: 'personio', host: /^([A-Za-z0-9-]+)\.jobs\.personio\.(?:de|com)$/i, from: 'subdomain' },
+  { platform: 'bamboohr', host: /^([A-Za-z0-9-]+)\.bamboohr\.com$/i, from: 'subdomain' },
+  { platform: 'teamtailor', host: /^([A-Za-z0-9-]+)\.teamtailor\.com$/i, from: 'subdomain' },
+  // Last on purpose: a company's own board always outranks its YC listing.
+  {
+    platform: 'workatastartup',
+    host: /^(?:www\.)?workatastartup\.com$/i,
+    from: 'path2',
+    prefix: 'companies',
+  },
 ];
 
 /**
@@ -101,6 +135,19 @@ const EMBED_PATTERNS = [
   { platform: 'recruitee', regex: /([A-Za-z0-9-]+)\.recruitee\.com/gi },
   { platform: 'smartrecruiters', regex: /(?:careers|jobs)\.smartrecruiters\.com\/([A-Za-z0-9][A-Za-z0-9._-]{0,63})/gi },
   { platform: 'personio', regex: /([A-Za-z0-9-]+)\.jobs\.personio\.(?:de|com)/gi },
+  { platform: 'bamboohr', regex: /([A-Za-z0-9-]+)\.bamboohr\.com/gi },
+  { platform: 'teamtailor', regex: /([A-Za-z0-9-]+)\.teamtailor\.com/gi },
+  // A Teamtailor board moved to a custom domain has no {token}.teamtailor.com
+  // subdomain left to find (pactum.com/careers is careers.pactum.com, and every
+  // pactum*.teamtailor.com 404s). The only thing naming it is Teamtailor's own
+  // "powered by" link, which carries the live host in utm_content. The capture
+  // is a hostname shape and nothing else — labels plus a letters-only TLD, so
+  // no bare words, ports, paths or addresses — and teamtailor.mjs still has to
+  // find a real JSON Feed there before any of it counts.
+  {
+    platform: 'teamtailor',
+    regex: /teamtailor\.com\/\?[^"'\s<>]{0,120}utm_content=([A-Za-z0-9](?:[A-Za-z0-9-]*\.)+[A-Za-z]{2,24})/gi,
+  },
 ];
 
 /** Careers pages routinely run to a megabyte of inlined app state. */
@@ -127,10 +174,16 @@ function matchUrl(value) {
     const hostMatch = rule.host.exec(url.hostname);
     if (hostMatch === null) continue;
 
+    const segments = url.pathname.split('/').filter(Boolean);
     const raw =
       rule.from === 'subdomain'
         ? hostMatch[1]
-        : (url.pathname.split('/').filter(Boolean)[0] ?? null);
+        : rule.from === 'path2'
+          // `prefix` is required, not cosmetic: without it /jobs/13302 would
+          // yield the token "13302" and send the adapter hunting for a company
+          // board under a posting id.
+          ? (segments[0] === rule.prefix ? (segments[1] ?? null) : null)
+          : (segments[0] ?? null);
 
     // Greenhouse's embed route puts the token in the query string instead.
     const token =
@@ -265,7 +318,7 @@ function buildOpenings(jobs, config) {
   const vocabulary = config?.keywordVocabulary ?? {};
 
   const openings = [];
-  const seen = new Set();
+  const seen = new Map();
   let excluded = 0;
   let duplicates = 0;
 
@@ -275,23 +328,41 @@ function buildOpenings(jobs, config) {
       continue;
     }
 
-    // The same role can appear once per location on some boards - Workable's
-    // widget repeats each posting for all six of its locations, so 18 "jobs"
-    // are three roles.
-    const key = job.url ?? `title:${job.title.toLowerCase()}`;
-    if (seen.has(key)) {
+    // The same role is very often posted once per location — Flexport listed 7
+    // roles as 28, Pipedrive 2 as 8 — each with its own URL, so deduplicating
+    // on URL alone does not catch it. Collapse on the title instead and gather
+    // the locations, which is both an honest count and a shorter list to read.
+    const key = job.title.trim().toLowerCase();
+    const existing = seen.get(key);
+    if (existing !== undefined) {
       duplicates += 1;
+      if (typeof job.location === 'string' && job.location !== '') {
+        existing.locations.add(job.location);
+      }
+      // Keep the earliest posting date; a role re-listed per city should read
+      // as old as it actually is.
+      if (job.postedDate !== null && (existing.postedDate === null || job.postedDate < existing.postedDate)) {
+        existing.postedDate = job.postedDate;
+      }
       continue;
     }
-    seen.add(key);
 
-    openings.push({
+    const entry = {
       title: job.title,
       url: job.url ?? null,
-      location: job.location ?? null,
+      locations: new Set(typeof job.location === 'string' && job.location !== '' ? [job.location] : []),
       postedDate: job.postedDate ?? null,
       detectedKeywords: extractFromPosition({ title: job.title, description: job.text }, vocabulary),
-    });
+    };
+    seen.set(key, entry);
+    openings.push(entry);
+  }
+
+  // Flatten the gathered locations into the stored shape.
+  for (const opening of openings) {
+    const list = [...opening.locations];
+    opening.location = list.length === 0 ? null : list.length <= 3 ? list.join(' · ') : `${list.slice(0, 3).join(' · ')} +${list.length - 3} more`;
+    delete opening.locations;
   }
 
   return {
@@ -385,6 +456,10 @@ async function runAdapter(http, detection, company, config, { requireJobs = fals
   return {
     openings: built.openings,
     platform: detection.platform,
+    // What the board actually listed, before exclusions, de-duplication and the
+    // per-company cap. Stored so the UI can say "60 of 656" rather than
+    // presenting a truncated count as the whole truth.
+    totalListed: raw.jobs.length,
     // Company-level location evidence derived from the postings themselves.
     signals: built.signals,
     diagnostics: describe(detection, raw, built),
@@ -403,25 +478,63 @@ export async function fetchPositions(http, company, config) {
 
   // 1. The URLs already on the record point straight at a board.
   const direct = detectAts(company);
-  if (direct !== null) {
+  if (direct !== null && !FALLBACK_PLATFORMS.has(direct.platform)) {
     // An explicit, unambiguous board that fails to load is a failure, not an
     // invitation to start guessing other tokens at other vendors.
     return runAdapter(http, direct, company, config);
   }
 
+  // A mirror is held back rather than used here. Discovery writes the company's
+  // Work at a Startup profile into `careersUrl` because for many YC startups it
+  // is the only public board they have — but when a company also runs its own
+  // Ashby or Greenhouse board, that board is strictly better: real posted dates,
+  // the full description per role, and an apply link that is not behind YC's
+  // login. Taking the mirror here would mean never looking.
+  const fallback = direct;
+
   // 2. The careers page (or, failing that, the site) embeds someone's board.
   //    One page fetch per company, whichever URL we have.
-  const pageUrl =
-    typeof company.careersUrl === 'string' && company.careersUrl !== ''
-      ? company.careersUrl
-      : typeof company.website === 'string' && company.website !== ''
-        ? company.website
-        : null;
+  // Pages worth reading, best first. The conventional /careers and /jobs paths
+  // matter more than they look: most records carry no careersUrl, and a
+  // company's homepage rarely embeds its job board even when /careers does.
+  // Six companies already on platforms we support — Apollo and Ironclad on
+  // Ashby, Razorpay on Greenhouse, Xolo on Workable, Salv and eAgronom on
+  // Personio — were being missed purely because only the homepage was read.
+  const site = typeof company.website === 'string' && company.website !== ''
+    ? company.website.replace(/\/$/, '')
+    : null;
 
-  if (pageUrl !== null) {
-    const source = pageUrl === company.careersUrl ? 'careers-page' : 'website';
-    const embedded = await detectFromPage(http, pageUrl, source);
-    if (embedded !== null) return runAdapter(http, embedded, company, config);
+  const pages = [];
+  if (typeof company.careersUrl === 'string' && company.careersUrl !== '') {
+    pages.push([company.careersUrl, 'careers-page']);
+  }
+  if (site !== null) {
+    pages.push([`${site}/careers`, 'careers-path']);
+    pages.push([`${site}/jobs`, 'jobs-path']);
+    pages.push([site, 'website']);
+  }
+
+  for (const [url, source] of pages) {
+    const embedded = await detectFromPage(http, url, source);
+    if (embedded === null) continue;
+    // `pages` starts with careersUrl, which for a YC-discovered company is the
+    // mirror itself — and detectFromPage's redirect check matches it, which
+    // would hand back the mirror before /careers was ever read. Same rule as
+    // step 1: note it and keep looking for something first-party.
+    if (FALLBACK_PLATFORMS.has(embedded.platform)) continue;
+
+    // A board named on the bare homepage is the weakest of these four signals,
+    // and the one most likely to belong to somebody else: bymason.com links
+    // masonamerica.bamboohr.com, an unrelated company whose board loads fine and
+    // is empty. Trusting that would publish "Mason has no openings" on the
+    // strength of a name collision. A homepage embed therefore has to produce
+    // at least one posting to count; failing that we learn nothing and the
+    // record is left alone, which is the honest answer. A board linked from the
+    // company's own /careers page keeps the stronger reading, so a genuinely
+    // empty one still registers as confirmed-empty.
+    const requireJobs = source === 'website';
+    const result = await runAdapter(http, embedded, company, config, { requireJobs });
+    if (result !== null) return result;
   }
 
   // 3. Last resort: try the company's own slug on the platforms where a wrong
@@ -442,6 +555,10 @@ export async function fetchPositions(http, company, config) {
       if (result !== null) return result;
     }
   }
+
+  // 4. Nothing of the company's own turned up, so the mirror is the best link
+  //    we have to the actual postings.
+  if (fallback !== null) return runAdapter(http, fallback, company, config);
 
   return null;
 }

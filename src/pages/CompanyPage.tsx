@@ -214,7 +214,11 @@ export function CompanyPage({ onOpenStorage }: { readonly onOpenStorage: () => v
               {openings.length === 0
                 ? 'none recorded'
                 : activeCategory === ALL_ROLES
-                  ? `${openings.length} open`
+                  ? // A big board is sampled rather than stored whole, so say so
+                    // instead of presenting the sample as the full picture.
+                    company.openingsTotal !== null && company.openingsTotal > openings.length
+                    ? `${openings.length} of ${company.openingsTotal} listed`
+                    : `${openings.length} open`
                   : `${matched.length} of ${openings.length} open`}
             </span>
           </div>

@@ -499,3 +499,63 @@ time: `typescript` 2 → 8 companies, `rust` 0 → 7, `go` → 14.
 The five positions still without a link are the original hand-entered Set A roles
 for companies with no findable board (framer, spacelift, loops) — preserved rather
 than destroyed, which is the failed-scan rule doing its job.
+
+
+---
+
+## Data quality pass — 2026-09-17
+
+Ran the full updater over the dataset and fixed what the gap report exposed.
+
+### Detection was the real bottleneck, not adapter coverage
+
+Probing the 47 companies with no positions showed **32 run bespoke careers pages**
+(research only), but **6 were already on platforms we support** and were being
+missed for one reason: detection read `careersUrl`, then the homepage, and
+nothing else. Most records carry no `careersUrl`, and a homepage rarely embeds
+the job board even when `/careers` does.
+
+Adding `/careers` and `/jobs` to the pages tried recovered five of them
+immediately — Apollo and Ironclad on Ashby, Razorpay on Greenhouse, Salv and
+eAgronom on Personio. Their board tokens are `apollo-graphql`, `ironcladhq` and
+`razorpaysoftwareprivatelimited`: slug-probing would never have guessed any of
+them, so this was never a probing problem.
+
+### Positions were inflated by per-city duplicates
+
+87 of 624 positions were the same role posted once per location, each with its
+own URL, so URL-based de-duplication missed them entirely — Flexport listed 7
+roles as 28, Pipedrive 2 as 8. Now collapsed on title with the locations gathered
+into one field ("Berlin · London · Lisbon"), keeping the earliest posting date.
+One duplicate title remains across the whole dataset.
+
+### Truncated boards said so
+
+Three companies exceed the per-company cap, Stripe worst at 655 roles stored as
+60. Presenting that as "60 roles open" is wrong, and it corrupts the "most open
+roles" sort. Companies now carry `openingsTotal` — the count the board reported
+before de-duplication and capping — and the detail page reads "60 of 655 listed".
+A validator rule rejects a stored list larger than the total it claims.
+
+### Keyword vocabulary had real gaps
+
+Of 346 positions with no stack keywords, 279 were genuinely non-engineering and
+correctly empty; 67 were engineering roles the vocabulary simply did not cover —
+"Applied AI Engineer", "Security Engineering Lead", "Analytics Engineer". Added
+`security`, `data-engineering`, `elasticsearch`, `rabbitmq` and surface forms for
+`ai`/`ml`, checked against false friends ("Email", "HTML/CSS", "we aim to") and
+rescanned: **278 → 479** positions with detected stack.
+
+### Research filled careers URLs, not work models
+
+Probed conventional careers paths for the 30 unverified companies. 21 responded,
+but the heuristic produced real false positives — `blackwall` matched an
+`/about/login` page, `scoro` and `milrem` redirect to their homepages, and
+`betterpic` matched a careers page on an unrelated domain. After verifying each,
+**14 careers URLs** were written at `primary` trust.
+
+Work model was deliberately **not** written from this pass. The page-text signals
+were too crude to trust — "hybrid" matched a paragraph about bonuses, "remote"
+matched a visa FAQ — and a wrong value is worse than a missing one. Work model is
+better derived from actual postings, which is exactly what filling `careersUrl`
+unlocks on the next scan.

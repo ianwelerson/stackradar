@@ -47,6 +47,7 @@
         "remoteRegions",
         "keywords",
         "currentOpenings",
+        "openingsTotal",
         "history",
         "lastVerified",
         "dataNotes"
@@ -185,6 +186,14 @@
             "null"
           ],
           "description": "Plain-language honesty note about caveats in this record (closed roles, conflicting sources, unconfirmed listings, size disagreements, hiring restrictions). Null when there is nothing to flag."
+        },
+        "openingsTotal": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0,
+          "description": "Roles the board listed before de-duplication and the per-company cap. Larger than currentOpenings means the stored list is a sample. Null when never scanned."
         }
       }
     },
