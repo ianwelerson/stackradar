@@ -86,6 +86,13 @@ const RESERVED_TOKENS = new Set([
   'career', 'blog', 'learn', 'trust', 'docs', 'documentation', 'help',
   'support', 'news', 'press', 'media', 'status', 'community', 'academy',
   'resources', 'events', 'hire', 'hiring', 'join', 'work', 'about',
+  // Vendors' own infrastructure hosts. `app.teamtailor.com` is where a
+  // Teamtailor board's assets are served from, so it appears dozens of times in
+  // the markup of a board running on a custom domain — enough to outvote the
+  // single "powered by" utm_content link that names the real host. scanMarkup
+  // picks the most-referenced token, so without this the board at
+  // jobs.thorgate.eu resolved to the token "app" and the scan found nothing.
+  'app', 'cdn',
 ]);
 
 const TOKEN_SHAPE = /^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$/;

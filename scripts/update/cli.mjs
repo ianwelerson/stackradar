@@ -295,12 +295,21 @@ function cmdApply(flags) {
     const existing = dataset.companies.find((c) => c.id === entry.id);
     const { company: merged, filled, blocked } = mergeFacts(existing, entry.facts, entry.trust);
     if (filled.length === 0) {
-      // Distinguish "we already knew this" from "you were not allowed to change
-      // it". The second is the one that looks like the tool is broken.
-      const reason = blocked.length > 0 && entry.trust !== 'primary'
-        ? `${blocked.join(', ')} already set — directory trust only fills blanks.`
-          + ' Use trust: "primary" if you read it on the company\'s own site'
-        : 'nothing new — the record already holds these values';
+      // Three genuinely different outcomes, which must not share a message:
+      // the record already agrees; directory trust was refused and primary
+      // would work; or the field is identity (website, careersUrl) which even
+      // primary trust may not rewrite, because a model silently repointing a
+      // company at another domain would redirect every later scan with it.
+      let reason;
+      if (blocked.length === 0) {
+        reason = 'nothing new — the record already holds these values';
+      } else if (entry.trust !== 'primary') {
+        reason = `${blocked.join(', ')} already set — directory trust only fills blanks.`
+          + ' Use trust: "primary" if you read it on the company\'s own site';
+      } else {
+        reason = `${blocked.join(', ')} already set and not overwritable even at primary trust`
+          + ' — identity fields are edited by hand, on purpose';
+      }
       report.skip(entry.id, reason);
       continue;
     }

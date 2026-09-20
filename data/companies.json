@@ -1,6 +1,6 @@
 {
   "$schema": "./companies.schema.json",
-  "generatedAt": "2026-09-18T20:07:45.850Z",
+  "generatedAt": "2026-09-20T01:39:47.475Z",
   "companies": [
     {
       "id": "resend",
@@ -1053,7 +1053,7 @@
           }
         }
       ],
-      "lastVerified": "2026-09-17T19:26:51.701Z",
+      "lastVerified": "2026-09-20T01:25:14.985Z",
       "dataNotes": null,
       "openingsTotal": 7
     },
@@ -3610,7 +3610,7 @@
           "keywordCounts": {}
         }
       ],
-      "lastVerified": "2026-09-17T19:59:08.152Z",
+      "lastVerified": "2026-09-20T01:25:00.104Z",
       "dataNotes": "Own branded ATS subdomain, linked from the homepage footer. Currently shows 'No matching jobs' but is a live, functioning careers portal (not a 404/redirect), so it still qualifies. No remotePolicy or country statement found on the main site. Checked 2026-09-17.",
       "openingsTotal": 0
     },
@@ -3707,11 +3707,161 @@
         "threat-protection",
         "ai"
       ],
-      "currentOpenings": [],
-      "history": [],
-      "lastVerified": null,
+      "currentOpenings": [
+        {
+          "title": "VP of Sales, DACH",
+          "url": "https://careers.blackwall.com/jobs/8379766-vp-of-sales-dach",
+          "postedDate": "2026-09-15",
+          "detectedKeywords": [
+            "ai",
+            "security"
+          ],
+          "location": "Berlin, Germany"
+        },
+        {
+          "title": "Sales Executive - Distribution",
+          "url": "https://careers.blackwall.com/jobs/8266176-sales-executive-distribution",
+          "postedDate": "2026-08-25",
+          "detectedKeywords": [
+            "go",
+            "ai",
+            "security"
+          ],
+          "location": "São Paulo, Brazil"
+        },
+        {
+          "title": "Sales Executive - LATAM",
+          "url": "https://careers.blackwall.com/jobs/8249268-sales-executive-latam",
+          "postedDate": "2026-08-20",
+          "detectedKeywords": [
+            "ai",
+            "security"
+          ],
+          "location": "São Paulo, Brazil"
+        },
+        {
+          "title": "Senior Product Manager - Conversion Optimisation",
+          "url": "https://careers.blackwall.com/jobs/8124220-senior-product-manager-conversion-optimisation",
+          "postedDate": "2026-07-24",
+          "detectedKeywords": [
+            "security"
+          ],
+          "location": "Warszawa, Poland"
+        },
+        {
+          "title": "Pre-Sales Solutions Architect",
+          "url": "https://careers.blackwall.com/jobs/7992371-pre-sales-solutions-architect",
+          "postedDate": "2026-06-30",
+          "detectedKeywords": [
+            "ai",
+            "security"
+          ],
+          "location": "Madrid, Spain · São Paulo, Brazil"
+        },
+        {
+          "title": "Pre-Sales Solutions Architect - ANZ",
+          "url": "https://careers.blackwall.com/jobs/7827687-pre-sales-solutions-architect-anz",
+          "postedDate": "2026-06-01",
+          "detectedKeywords": [
+            "ai",
+            "security"
+          ],
+          "location": "Melbourne, Australia"
+        },
+        {
+          "title": "Sales Executive - ANZ",
+          "url": "https://careers.blackwall.com/jobs/7792536-sales-executive-anz",
+          "postedDate": "2026-05-25",
+          "detectedKeywords": [
+            "ai",
+            "security"
+          ],
+          "location": "Melbourne, Australia"
+        },
+        {
+          "title": "Senior Sales Engineer (US)",
+          "url": "https://careers.blackwall.com/jobs/7716130-senior-sales-engineer-us",
+          "postedDate": "2026-05-11",
+          "detectedKeywords": [
+            "ai",
+            "security"
+          ],
+          "location": "Austin, United States"
+        },
+        {
+          "title": "Machine Learning Engineer",
+          "url": "https://careers.blackwall.com/jobs/7392053-machine-learning-engineer",
+          "postedDate": "2026-03-16",
+          "detectedKeywords": [
+            "machine-learning",
+            "python",
+            "ai",
+            "security",
+            "data-engineering"
+          ],
+          "location": "Warszawa, Poland"
+        },
+        {
+          "title": "Regional Sales Manager",
+          "url": "https://careers.blackwall.com/jobs/7389457-regional-sales-manager",
+          "postedDate": "2026-03-16",
+          "detectedKeywords": [
+            "ai",
+            "security"
+          ],
+          "location": "Rawang, Malaysia · Singapore"
+        },
+        {
+          "title": "VP Sales, South Korea",
+          "url": "https://careers.blackwall.com/jobs/7216979-vp-sales-south-korea",
+          "postedDate": "2026-02-12",
+          "detectedKeywords": [
+            "ai",
+            "security"
+          ],
+          "location": "Shibuya, Japan"
+        },
+        {
+          "title": "Senior DevOps Engineer",
+          "url": "https://careers.blackwall.com/jobs/6635527-senior-devops-engineer",
+          "postedDate": "2025-10-20",
+          "detectedKeywords": [
+            "go",
+            "cpp",
+            "postgres",
+            "redis",
+            "clickhouse",
+            "kubernetes",
+            "docker",
+            "terraform"
+          ],
+          "location": "Tallinn, Estonia"
+        }
+      ],
+      "history": [
+        {
+          "weekOf": "2026-09-14",
+          "openCount": 12,
+          "keywordCounts": {
+            "ai": 10,
+            "security": 11,
+            "go": 2,
+            "machine-learning": 1,
+            "python": 1,
+            "data-engineering": 1,
+            "cpp": 1,
+            "postgres": 1,
+            "redis": 1,
+            "clickhouse": 1,
+            "kubernetes": 1,
+            "docker": 1,
+            "terraform": 1
+          }
+        }
+      ],
+      "lastVerified": "2026-09-20T01:28:13.557Z",
       "dataNotes": "Real ATS subdomain with 5 open roles, all individually tagged remote (3 'Fully Remote', 2 regional 'Remote - Germany'/'Remote - LATAM'). No general company-wide work-model statement exists outside the job listings themselves, so remotePolicy was deliberately left unset per the brief's caution agains",
-      "openingsTotal": null
+      "openingsTotal": 12
     },
     {
       "id": "cybexer-technologies",
@@ -4272,15 +4422,6 @@
           "location": "Tallinn, Estonia · Rīga, Latvia"
         },
         {
-          "title": "Business Development Representative",
-          "url": "https://careers.scoro.com/jobs/7909803-business-development-representative",
-          "postedDate": "2026-06-15",
-          "detectedKeywords": [
-            "go"
-          ],
-          "location": "Tallinn, Estonia · Rīga, Latvia"
-        },
-        {
           "title": "Customer Onboarding Expert",
           "url": "https://careers.scoro.com/jobs/7853920-customer-onboarding-expert",
           "postedDate": "2026-06-04",
@@ -4293,22 +4434,22 @@
       "history": [
         {
           "weekOf": "2026-09-14",
-          "openCount": 4,
+          "openCount": 3,
           "keywordCounts": {
             "typescript": 1,
             "javascript": 1,
             "react": 1,
             "vue": 1,
-            "go": 4,
+            "go": 3,
             "php": 1,
             "mysql": 1,
             "redis": 1
           }
         }
       ],
-      "lastVerified": "2026-09-17T19:59:32.185Z",
+      "lastVerified": "2026-09-20T01:25:17.297Z",
       "dataNotes": "Careers page states explicitly: 'Work from the office, remotely, or a mix of both. Our UK and US colleagues work fully remotely.' Classified as hybrid given that's the general flexible policy, with UK/US remote-only as a stated exception. Checked 2026-09-17.",
-      "openingsTotal": 4
+      "openingsTotal": 3
     },
     {
       "id": "pipedrive",
@@ -4965,7 +5106,7 @@
           "keywordCounts": {}
         }
       ],
-      "lastVerified": "2026-09-17T19:59:42.941Z",
+      "lastVerified": "2026-09-20T01:25:19.156Z",
       "dataNotes": "Real careers portal on the group's own subdomain (parent brand 'Milrem', not milremrobotics.com). Only one specific role was tagged 'Hybrid'; no general company-wide statement exists, so remotePolicy omitted. Checked 2026-09-17.",
       "openingsTotal": 2
     },
@@ -5027,7 +5168,7 @@
           }
         }
       ],
-      "lastVerified": "2026-09-17T19:25:20.117Z",
+      "lastVerified": "2026-09-20T01:25:13.631Z",
       "dataNotes": null,
       "openingsTotal": 4
     },
@@ -5196,7 +5337,7 @@
           }
         }
       ],
-      "lastVerified": "2026-09-17T19:59:52.137Z",
+      "lastVerified": "2026-09-20T01:25:21.869Z",
       "dataNotes": "Real ATS on the company's own subdomain (linked from the About page), 5 open roles listed. Per-role work model varies (2 hybrid, 1 onsite, 2 unspecified/Tallinn-only) with no company-wide statement, so remotePolicy omitted. Checked 2026-09-17.",
       "openingsTotal": 8
     },
@@ -21029,7 +21170,7 @@
       "logoUrl": "/logos/rappi.png",
       "description": "On-demand delivery and financial services for Latin America.",
       "website": "https://www.rappi.com",
-      "careersUrl": null,
+      "careersUrl": "https://careers.rappi.com/en",
       "sizeRange": "4800",
       "sizeMin": 4800,
       "sizeMax": 4800,
@@ -21048,7 +21189,7 @@
       "openingsTotal": null,
       "history": [],
       "lastVerified": null,
-      "dataNotes": "Discovered via Y Combinator directory (Winter 2016 batch)."
+      "dataNotes": "Own careers site; listings appear JS-rendered. Found 2026-09-19."
     },
     {
       "id": "joy",
@@ -21794,7 +21935,7 @@
       "logoUrl": "/logos/retool.png",
       "description": "Build internal tools fast.",
       "website": "https://retool.com",
-      "careersUrl": null,
+      "careersUrl": "https://careers.retool.com/",
       "sizeRange": "300",
       "sizeMin": 300,
       "sizeMax": 300,
@@ -21811,7 +21952,7 @@
       "openingsTotal": null,
       "history": [],
       "lastVerified": null,
-      "dataNotes": "Discovered via Y Combinator directory (Winter 2017 batch)."
+      "dataNotes": "Own careers subdomain; listings appear JS-rendered. Found 2026-09-19."
     },
     {
       "id": "bloom-institute-of-technology",
@@ -21959,7 +22100,7 @@
       "logoUrl": "/logos/we-the-flywheel.png",
       "description": "We're a remote-first digital product studio building across sports media, AI, fitness, and personal branding — 500+ web properties and deeply AI-native workflows. AI does the heavy lifting here, but i",
       "website": "https://wetheflywheel.com",
-      "careersUrl": null,
+      "careersUrl": "https://wetheflywheel.com/en/careers/",
       "sizeRange": null,
       "sizeMin": null,
       "sizeMax": null,
@@ -21972,7 +22113,7 @@
       "openingsTotal": null,
       "history": [],
       "lastVerified": null,
-      "dataNotes": "Discovered via Hacker News \"Who is hiring?\" (September 2026)."
+      "dataNotes": "Real careers page, 60 open roles (Brand & Editorial + Tech & Engineering tracks). Only location text found: 'team members across Vietnam, Europe, the Balkans, and Latin America' — too distributed for a single country, left unset. No human headcount found (page cites ~3,900 AI agents, not people). Re"
     },
     {
       "id": "origamics",
@@ -22407,7 +22548,7 @@
       "sizeMin": null,
       "sizeMax": null,
       "hqLocation": null,
-      "country": null,
+      "country": "United States",
       "remotePolicy": "remote",
       "remoteRegions": [],
       "keywords": [],
@@ -22415,7 +22556,7 @@
       "openingsTotal": null,
       "history": [],
       "lastVerified": null,
-      "dataNotes": "Discovered via Hacker News \"Who is hiring?\" (September 2026)."
+      "dataNotes": "No careers page found anywhere (checked /careers, /jobs, /company — all 404; homepage nav has no careers link). Country comes from a press-release dateline on their own /news page: 'SEATTLE, Wash.' — a standard company-location convention on their own site, but weaker than an explicit HQ statement, "
     },
     {
       "id": "astronomer",
@@ -22705,12 +22846,12 @@
       "logoUrl": "/logos/yardstik.png",
       "description": "- Head of Security and Infrastructure | $160,000 - $230,000 | apply at https://app.trinethire.com/companies/135023-yardstik/jobs/12... - Senior Software Engineer | $120,000 - $200,000 | apply at https",
       "website": "https://yardstik.com",
-      "careersUrl": null,
+      "careersUrl": "https://yardstik.com/careers/",
       "sizeRange": null,
       "sizeMin": null,
       "sizeMax": null,
       "hqLocation": "Minneapolis, MN (Hybrid)",
-      "country": null,
+      "country": "United States",
       "remotePolicy": "hybrid",
       "remoteRegions": [],
       "keywords": [],
@@ -22718,7 +22859,7 @@
       "openingsTotal": null,
       "history": [],
       "lastVerified": null,
-      "dataNotes": "Discovered via Hacker News \"Who is hiring?\" (September 2026)."
+      "dataNotes": "Real careers page (Best-Places-to-Work messaging, no explicit total headcount). Address given on their own site: '100 Washington Ave S. Suite 600 Minneapolis, MN 55401'. Read 2026-09-19."
     },
     {
       "id": "sudowrite",
@@ -22768,12 +22909,12 @@
       "logoUrl": "/logos/renaissance-philanthropy.png",
       "description": "Renaissance Philanthropy's aim is to activate a virtuous circle of increasing ambition and impact between philanthropists and innovators: by identifying frontier experts both in science and in new way",
       "website": "https://www.renaissancephilanthropy.org",
-      "careersUrl": null,
+      "careersUrl": "https://www.renaissancephilanthropy.org/careers",
       "sizeRange": null,
       "sizeMin": null,
       "sizeMax": null,
       "hqLocation": "Remote (worldwide)",
-      "country": null,
+      "country": "United States",
       "remotePolicy": "remote",
       "remoteRegions": [],
       "keywords": [],
@@ -22781,7 +22922,7 @@
       "openingsTotal": null,
       "history": [],
       "lastVerified": null,
-      "dataNotes": "Discovered via Hacker News \"Who is hiring?\" (September 2026)."
+      "dataNotes": "Real careers page, 3 open roles (Launch479 Fund, Mathlib Initiative). Country inferred from their own site's disclosure of 501(c)(3) status with a US EIN (99-1953380) — that status requires a US organization — since no street address was found on the site. Read 2026-09-19."
     },
     {
       "id": "klarasystems-com",
@@ -22789,7 +22930,7 @@
       "logoUrl": "/logos/klarasystems-com.png",
       "description": "We have successfully hired from HN in previous rounds and are looking for another OpenZFS Developer (4+ years of experience) to join our team! Klara Inc. provides development & solutions focused on op",
       "website": "https://klarasystems.com",
-      "careersUrl": null,
+      "careersUrl": "https://klarasystems.com/company/careers/",
       "sizeRange": null,
       "sizeMin": null,
       "sizeMax": null,
@@ -22802,7 +22943,7 @@
       "openingsTotal": null,
       "history": [],
       "lastVerified": null,
-      "dataNotes": "Discovered via Hacker News \"Who is hiring?\" (September 2026)."
+      "dataNotes": "Real careers page, 4 open roles (OpenZFS Developer, FreeBSD Sysadmin, etc). No reliable country signal — contact page has a US (213, LA-area) phone number but a footer LinkedIn link points to ca.linkedin.com — contradictory and too weak to use. No team size found. Read 2026-09-19."
     },
     {
       "id": "plantingspace",
@@ -23230,7 +23371,7 @@
       "logoUrl": "/logos/odk.ico",
       "description": "ODK is an open-source platform used by thousands of organizations worldwide to collect billions of data points for disease surveillance, supply chain traceability, environmental monitoring, and more. ",
       "website": "https://getodk.org",
-      "careersUrl": null,
+      "careersUrl": "https://getodk.org/about/jobs/",
       "sizeRange": null,
       "sizeMin": null,
       "sizeMax": null,
@@ -23243,7 +23384,7 @@
       "openingsTotal": null,
       "history": [],
       "lastVerified": null,
-      "dataNotes": "Discovered via Hacker News \"Who is hiring?\" (September 2026)."
+      "dataNotes": "Real jobs page: 'ODK is made by a small, diverse, and fully-remote team' (confirms the already-on-file remote policy). No roles open right now, invites resumes by email. No HQ/country or exact headcount found. Read 2026-09-19."
     },
     {
       "id": "enrollment123",
@@ -23362,7 +23503,7 @@
       "logoUrl": "/logos/greywatch.png",
       "description": "Greywatch is building an AI security and governance platform that gives companies visibility into how AI agents are operating across their infrastructure, from the kernel to the network. We’re activel",
       "website": "https://greywatch.co",
-      "careersUrl": null,
+      "careersUrl": "https://greywatch.co/careers",
       "sizeRange": null,
       "sizeMin": null,
       "sizeMax": null,
@@ -23375,7 +23516,7 @@
       "openingsTotal": null,
       "history": [],
       "lastVerified": null,
-      "dataNotes": "Discovered via Hacker News \"Who is hiring?\" (September 2026)."
+      "dataNotes": "Real careers page ('we're a small team'), one open Co-Founder/CEO-track role tagged Remote. No HQ/country found; site says Greywatch was built by parent company Greyhaven. Read 2026-09-19."
     },
     {
       "id": "channable",
@@ -23383,12 +23524,12 @@
       "logoUrl": null,
       "description": "We're expanding our leadership team! We're looking to hire two Team Leads in our Engineering department: 1. IT Support Team Lead: https://jobs.channable.com/o/it-support-team-lead 2. Team Lead- Haskel",
       "website": "https://www.channable.com",
-      "careersUrl": null,
+      "careersUrl": "https://jobs.channable.com",
       "sizeRange": null,
       "sizeMin": null,
       "sizeMax": null,
       "hqLocation": "Hybrid from the NL",
-      "country": null,
+      "country": "Netherlands",
       "remotePolicy": "hybrid",
       "remoteRegions": [],
       "keywords": [],
@@ -23396,7 +23537,7 @@
       "openingsTotal": null,
       "history": [],
       "lastVerified": null,
-      "dataNotes": "Discovered via Hacker News \"Who is hiring?\" (September 2026)."
+      "dataNotes": "Live jobs board, 15 open roles, all tagged Hybrid (matches already-on-file remotePolicy). HQ address on their own jobs page: 'Kromme Nieuwegracht 66, 3512 HL, The Netherlands' (Utrecht); other offices in Berlin, Aarhus and NYC. Read 2026-09-19."
     },
     {
       "id": "infohawk",
@@ -23599,7 +23740,7 @@
       "name": "Mingla",
       "logoUrl": "/logos/mingla.png",
       "description": "Mingla makes strangers meet at in-person events: attendees scan a QR code and are straight in — no App Store, no signup — gamified missions start real conversations, and the organizer gets proof of wh",
-      "website": "https://mingla.com",
+      "website": "https://mingla.io",
       "careersUrl": null,
       "sizeRange": null,
       "sizeMin": null,
@@ -23613,7 +23754,7 @@
       "openingsTotal": null,
       "history": [],
       "lastVerified": null,
-      "dataNotes": "Discovered via Hacker News \"Who is hiring?\" (September 2026)."
+      "dataNotes": "mingla.com 302s to mingla.io; record points at the live domain. Verified 2026-09-19."
     },
     {
       "id": "ohr",
@@ -24958,12 +25099,12 @@
       "logoUrl": "/logos/dat.png",
       "description": "I'm hiring for a frontline EM building the automation and trust layer for freight pricing, matching, onboarding, and settlement.Lead 1-3 teams (FTE + contractors), own delivery end-to-end, ~8 yrs exp ",
       "website": "https://dat.com",
-      "careersUrl": null,
+      "careersUrl": "https://careers.dat.com/",
       "sizeRange": null,
       "sizeMin": null,
       "sizeMax": null,
       "hqLocation": "Seattle, Portland, Denver",
-      "country": null,
+      "country": "United States",
       "remotePolicy": "hybrid",
       "remoteRegions": [],
       "keywords": [],
@@ -24971,7 +25112,7 @@
       "openingsTotal": null,
       "history": [],
       "lastVerified": null,
-      "dataNotes": "Discovered via Hacker News \"Who is hiring?\" (September 2026)."
+      "dataNotes": "Own site: 'Headquartered in Portland, Oregon... a business unit of Roper Technologies.' Careers link confirmed in footer. No standalone DAT headcount (only parent-company scale figures like transaction volume). Read 2026-09-19."
     },
     {
       "id": "rinse",
@@ -24979,12 +25120,12 @@
       "logoUrl": "/logos/rinse.png",
       "description": "Rinse provides dry cleaning and laundry delivery services to customers in twelve metropolitan areas in the US and Canada. We have sophisticated logistics optimization software, a polished consumer pro",
       "website": "https://www.rinse.com",
-      "careersUrl": null,
+      "careersUrl": "https://www.rinse.com/careers/",
       "sizeRange": null,
       "sizeMin": null,
       "sizeMax": null,
       "hqLocation": null,
-      "country": null,
+      "country": "United States",
       "remotePolicy": "remote",
       "remoteRegions": [],
       "keywords": [],
@@ -24992,7 +25133,7 @@
       "openingsTotal": null,
       "history": [],
       "lastVerified": null,
-      "dataNotes": "Discovered via Hacker News \"Who is hiring?\" (September 2026)."
+      "dataNotes": "Real careers page, multiple open roles across Engineering/Ops/CX. Job listings tag 'San Francisco (HQ)', used as the country/HQ signal. No total headcount found. Read 2026-09-19."
     },
     {
       "id": "solution-street",
@@ -25800,7 +25941,7 @@
       "sizeMin": null,
       "sizeMax": null,
       "hqLocation": "Hybrid (Remote Possible)",
-      "country": null,
+      "country": "United States",
       "remotePolicy": "hybrid",
       "remoteRegions": [],
       "keywords": [],
@@ -25808,7 +25949,7 @@
       "openingsTotal": null,
       "history": [],
       "lastVerified": null,
-      "dataNotes": "Discovered via Hacker News \"Who is hiring?\" (September 2026)."
+      "dataNotes": "No real careers page — the homepage's apparent 'Join Us' link is actually an obfuscated Cloudflare email-protection mailto, not a page; /careers and /join-us both 404. Country from the homepage footer: 'Seattle, WA'. Read 2026-09-19."
     },
     {
       "id": "brilliant-org",
@@ -26005,7 +26146,7 @@
       "logoUrl": "/logos/puma-tech.png",
       "description": "Hi all, I’m Yuriy, founder of Puma.tech. Prev. worked at Cloudant (YC S08), Meteor (YC S11), Parse (YC S11, Facebook/Meta), and explored AI/ML (computer vision for self-driving cars). We have 2 produc",
       "website": "https://puma.tech",
-      "careersUrl": null,
+      "careersUrl": "https://puma.tech/careers",
       "sizeRange": null,
       "sizeMin": null,
       "sizeMax": null,
@@ -26018,7 +26159,7 @@
       "openingsTotal": null,
       "history": [],
       "lastVerified": null,
-      "dataNotes": "Discovered via Hacker News \"Who is hiring?\" (September 2026)."
+      "dataNotes": "Real open-roles page, 4 listings, mentions 'Remote-first roles' (matches already-on-file remotePolicy). No HQ/country or headcount found anywhere on the site. Read 2026-09-19."
     },
     {
       "id": "ml6",
@@ -26252,12 +26393,12 @@
       "logoUrl": "/logos/chainsecurity.png",
       "description": "ChainSecurity is a young and innovative cybersecurity company that operates in the blockchain and cryptocurrency space. Our mission is to make the blockchain space secure and trustworthy for people, c",
       "website": "https://chainsecurity.com",
-      "careersUrl": null,
+      "careersUrl": "https://chainsecurity.com/about",
       "sizeRange": null,
       "sizeMin": null,
       "sizeMax": null,
       "hqLocation": null,
-      "country": null,
+      "country": "Switzerland",
       "remotePolicy": "hybrid",
       "remoteRegions": [],
       "keywords": [],
@@ -26265,7 +26406,7 @@
       "openingsTotal": null,
       "history": [],
       "lastVerified": null,
-      "dataNotes": "Discovered via Hacker News \"Who is hiring?\" (September 2026)."
+      "dataNotes": "'Team & Careers' page lists 3 open roles plus a hiring statement. HQ address on their own site: 'Decentralized Security AG, Thurgauerstrasse 40, 8050 Zürich, Switzerland.' No headcount stated (page shows ~26 team profiles but never totals them). Read 2026-09-19."
     },
     {
       "id": "biobase",
@@ -26454,7 +26595,7 @@
       "logoUrl": "/logos/deya.png",
       "description": "Everyone in health AI is chasing scribes and diagnostics. Almost no one is building the longitudinal data layer that captures what actually happens to patients over time. That is the real moat, and we",
       "website": "https://deya.health",
-      "careersUrl": null,
+      "careersUrl": "https://deya.health/careers/",
       "sizeRange": null,
       "sizeMin": null,
       "sizeMax": null,
@@ -26467,7 +26608,7 @@
       "openingsTotal": null,
       "history": [],
       "lastVerified": null,
-      "dataNotes": "Discovered via Hacker News \"Who is hiring?\" (September 2026)."
+      "dataNotes": "Real careers page, 3 open engineering roles, 'Most roles offer full remote flexibility. We care about output, not where you sit.' Location tag 'NYC / Hybrid / Remote' appears on every posting but is job-level, not a company-wide HQ statement, so country left unset. No headcount found. Read 2026-09-1"
     },
     {
       "id": "cora-ai",
@@ -27101,12 +27242,12 @@
       "logoUrl": "/logos/smartcat.png",
       "description": "Headquarters: Serbia - Remote About Smartcat Smartcat is building the future of work, where human expertise meets digital teammates to drive 10x to 1000x productivity gains for the world’s leading ent…",
       "website": "https://smartcat.com",
-      "careersUrl": null,
-      "sizeRange": null,
-      "sizeMin": null,
+      "careersUrl": "https://www.smartcat.com/careers/",
+      "sizeRange": "200+",
+      "sizeMin": 200,
       "sizeMax": null,
       "hqLocation": "Anywhere in the World",
-      "country": null,
+      "country": "United States",
       "remotePolicy": "remote",
       "remoteRegions": [],
       "keywords": [],
@@ -27114,7 +27255,7 @@
       "openingsTotal": null,
       "history": [],
       "lastVerified": null,
-      "dataNotes": "Discovered via We Work Remotely (\"Senior Product Manager\" listing)."
+      "dataNotes": "Careers page: 'Our HQ is in Boston, United States, but our workforce is global'; 'a remote-first global team of 200+ extraordinary professionals'. Note: the site footer's legal address is a Wilmington, DE registered-agent mailbox — used the careers page's explicit Boston HQ statement instead as the "
     },
     {
       "id": "highlevel",
@@ -32825,7 +32966,7 @@
       "logoUrl": "/logos/ixdf-interaction-design-foundation.png",
       "description": "Headquarters: Denmark URL: https://ixdf.org/about/careers You've been designing long enough to have watched tools become essential and then disappear. You know which design skills are timeless and whi…",
       "website": "https://ixdf.org",
-      "careersUrl": null,
+      "careersUrl": "https://ixdf.org/about/careers",
       "sizeRange": null,
       "sizeMin": null,
       "sizeMax": null,
@@ -32838,7 +32979,7 @@
       "openingsTotal": null,
       "history": [],
       "lastVerified": null,
-      "dataNotes": "Discovered via We Work Remotely (\"Course Director: UX, UI, and AI\" listing)."
+      "dataNotes": "Careers page: 'IxDF is 100% remote' / '24 years building a fully remote culture', 4 open roles. Country left unset — /terms-of-use and /privacy-policy both 404 on their domain, so the 'Headquarters: Denmark' line from the seed description could not be verified on their own site. Read 2026-09-19."
     },
     {
       "id": "launchdarkly",
@@ -33414,12 +33555,12 @@
       "logoUrl": "/logos/wise.png",
       "description": "150+ countries, 40 currencies, one account. Save when you send, spend and manage your money internationally.",
       "website": "https://wise.com",
-      "careersUrl": null,
-      "sizeRange": null,
-      "sizeMin": null,
+      "careersUrl": "https://wise.jobs/",
+      "sizeRange": "8000+",
+      "sizeMin": 8000,
       "sizeMax": null,
       "hqLocation": null,
-      "country": null,
+      "country": "United Kingdom",
       "remotePolicy": null,
       "remoteRegions": [],
       "keywords": [],
@@ -33552,8 +33693,8 @@
           "keywordCounts": {}
         }
       ],
-      "lastVerified": "2026-09-18T18:28:01.814Z",
-      "dataNotes": "Estonian-founded; the engineering org is split across Tallinn and London."
+      "lastVerified": "2026-09-20T01:38:13.019Z",
+      "dataNotes": "wise.jobs: 'over 8,000+ people, from 124 nationalities, working in 11 key locations.' Country from wise.com's own privacy-notices page: primary retail entity is 'Wise Payments Limited', authorised and regulated by the UK Financial Conduct Authority. remotePolicy left unset — only a 'Flexible working"
     },
     {
       "id": "nortal",
@@ -34020,20 +34161,20 @@
       "logoUrl": "/logos/helmes.png",
       "description": "Software development company.",
       "website": "https://helmes.com",
-      "careersUrl": null,
-      "sizeRange": null,
-      "sizeMin": null,
-      "sizeMax": null,
+      "careersUrl": "https://www.helmes.com/career/",
+      "sizeRange": "1400",
+      "sizeMin": 1400,
+      "sizeMax": 1400,
       "hqLocation": null,
       "country": "Estonia",
-      "remotePolicy": null,
+      "remotePolicy": "hybrid",
       "remoteRegions": [],
       "keywords": [],
       "currentOpenings": [],
       "openingsTotal": null,
       "history": [],
       "lastVerified": null,
-      "dataNotes": "Added from the curated seed list (Curated seed list)."
+      "dataNotes": "Career page: 'We fully support hybrid work principles and ensure that every person and team have both comfortable and ergonomic workspaces.' Homepage: '1,400 employees' across '20 offices around the world.' Read 2026-09-19."
     },
     {
       "id": "glia",
@@ -34309,7 +34450,7 @@
       "logoUrl": "/logos/messente.png",
       "description": "Messente's homepage provides communication tools for businesses.",
       "website": "https://messente.com",
-      "careersUrl": null,
+      "careersUrl": "https://messente.com/company/jobs",
       "sizeRange": null,
       "sizeMin": null,
       "sizeMax": null,
@@ -34322,7 +34463,7 @@
       "openingsTotal": null,
       "history": [],
       "lastVerified": null,
-      "dataNotes": "Added from the curated seed list (Curated seed list)."
+      "dataNotes": "Real jobs page, 2 internship roles open in Tallinn. Work-policy language ('Total flexibility... we've done flexwork for years') never commits to remote/hybrid/onsite as a specific word, so left remotePolicy unset per project convention on vague flexible-work copy. No team-size figure found. Read 202"
     },
     {
       "id": "proekspert",
@@ -34330,9 +34471,9 @@
       "logoUrl": "/logos/proekspert.png",
       "description": "We provide full-cycle software services for device and machine manufacturers, including smart products, device-to-cloud connectivity, and digital services.",
       "website": "https://proekspert.com",
-      "careersUrl": null,
-      "sizeRange": null,
-      "sizeMin": null,
+      "careersUrl": "https://proekspert.com/join-us/",
+      "sizeRange": "150+",
+      "sizeMin": 150,
       "sizeMax": null,
       "hqLocation": null,
       "country": "Estonia",
@@ -34343,7 +34484,7 @@
       "openingsTotal": null,
       "history": [],
       "lastVerified": null,
-      "dataNotes": "Added from the curated seed list (Curated seed list)."
+      "dataNotes": "Join-us page: '150+ experts' across '5 offices' (Estonia & Finland). Work language ('Work where you like and how you like... hundreds of home offices worldwide') is flexible marketing copy that never commits to a specific remote/hybrid/onsite word, so left remotePolicy unset. Read 2026-09-19."
     },
     {
       "id": "sportlyzer",
@@ -34425,7 +34566,7 @@
       "logoUrl": null,
       "description": "Elcogen develops highly efficient solid oxide cells, stacks and modules for SOFC and SOEC systems. Enabling green hydrogen production and zero-emission power generation.",
       "website": "https://elcogen.com",
-      "careersUrl": null,
+      "careersUrl": "https://elcogen.jobs.personio.com/",
       "sizeRange": null,
       "sizeMin": null,
       "sizeMax": null,
@@ -34438,7 +34579,7 @@
       "openingsTotal": null,
       "history": [],
       "lastVerified": null,
-      "dataNotes": "Added from the curated seed list (Curated seed list)."
+      "dataNotes": "Live Personio-hosted job board, 4 open roles across Estonia and Finland offices. No remote-policy statement or total headcount found anywhere on the site. Read 2026-09-19."
     },
     {
       "id": "bikeep",
@@ -34509,7 +34650,7 @@
       "logoUrl": "/logos/thorgate.png",
       "description": "Top software development, web development and web design agency with offices in London, Oslo and Tallinn. Our skills include: Python, Django, React.js, React Native & UX/UI design.",
       "website": "https://thorgate.eu",
-      "careersUrl": null,
+      "careersUrl": "https://jobs.thorgate.eu/",
       "sizeRange": null,
       "sizeMin": null,
       "sizeMax": null,
@@ -34518,11 +34659,37 @@
       "remotePolicy": null,
       "remoteRegions": [],
       "keywords": [],
-      "currentOpenings": [],
-      "openingsTotal": null,
-      "history": [],
-      "lastVerified": null,
-      "dataNotes": "Added from the curated seed list (Curated seed list)."
+      "currentOpenings": [
+        {
+          "title": "Senior Full-Stack Developer",
+          "url": "https://jobs.thorgate.eu/jobs/2318823-senior-full-stack-developer",
+          "postedDate": "2022-12-27",
+          "detectedKeywords": [
+            "react",
+            "python",
+            "docker",
+            "machine-learning",
+            "ai"
+          ],
+          "location": "Tallinn, Estonia"
+        }
+      ],
+      "openingsTotal": 1,
+      "history": [
+        {
+          "weekOf": "2026-09-14",
+          "openCount": 1,
+          "keywordCounts": {
+            "react": 1,
+            "python": 1,
+            "docker": 1,
+            "machine-learning": 1,
+            "ai": 1
+          }
+        }
+      ],
+      "lastVerified": "2026-09-20T01:24:56.992Z",
+      "dataNotes": "Teamtailor board on their own jobs subdomain. Found 2026-09-19."
     },
     {
       "id": "lightyear",
@@ -34530,20 +34697,34 @@
       "logoUrl": "/logos/lightyear.png",
       "description": "Invest in stocks & funds from around the world with Lightyear. Low cost, no order fees for ETFs and AI-powered market data tools.",
       "website": "https://lightyear.com",
-      "careersUrl": null,
+      "careersUrl": "https://careers.lightyear.com",
       "sizeRange": null,
       "sizeMin": null,
       "sizeMax": null,
       "hqLocation": null,
-      "country": null,
-      "remotePolicy": null,
+      "country": "Estonia",
+      "remotePolicy": "hybrid",
       "remoteRegions": [],
       "keywords": [],
-      "currentOpenings": [],
-      "openingsTotal": null,
-      "history": [],
-      "lastVerified": null,
-      "dataNotes": "Estonian-founded investing app."
+      "currentOpenings": [
+        {
+          "title": "Partnership Marketing Specialist",
+          "url": "https://lightyear.teamtailor.com/jobs/8326332-partnership-marketing-specialist",
+          "postedDate": "2026-09-06",
+          "detectedKeywords": [],
+          "location": "Tallinn, Estonia"
+        }
+      ],
+      "openingsTotal": 1,
+      "history": [
+        {
+          "weekOf": "2026-09-14",
+          "openCount": 1,
+          "keywordCounts": {}
+        }
+      ],
+      "lastVerified": "2026-09-20T01:37:35.521Z",
+      "dataNotes": "Careers page, own words: 'flexible working hours with a relaxed hybrid office setup.' Country omitted — Lightyear operates two regulated entities with registered offices in London, UK and Tallinn, Estonia; no single-country HQ statement found to pick between them. Read 2026-09-19."
     },
     {
       "id": "fractory",
@@ -34551,7 +34732,7 @@
       "logoUrl": "/logos/fractory.png",
       "description": "Custom metal fabrication services | Prototyping, project & volume production | 1-1 engineering support, flexible payment terms, instant quotes & lead times.",
       "website": "https://fractory.com",
-      "careersUrl": null,
+      "careersUrl": "https://careers.fractory.com/",
       "sizeRange": null,
       "sizeMin": null,
       "sizeMax": null,
@@ -34560,11 +34741,99 @@
       "remotePolicy": null,
       "remoteRegions": [],
       "keywords": [],
-      "currentOpenings": [],
-      "openingsTotal": null,
-      "history": [],
-      "lastVerified": null,
-      "dataNotes": "Added from the curated seed list (Curated seed list)."
+      "currentOpenings": [
+        {
+          "title": "Project Engineer📍Manchester",
+          "url": "https://careers.fractory.com/jobs/8318216-project-engineer-manchester",
+          "postedDate": "2026-09-03",
+          "detectedKeywords": [],
+          "location": "Manchester, United Kingdom"
+        },
+        {
+          "title": "Senior BI Analyst - Tallinn or Tartu",
+          "url": "https://careers.fractory.com/jobs/8274170-senior-bi-analyst-tallinn-or-tartu",
+          "postedDate": "2026-08-26",
+          "detectedKeywords": [
+            "ai"
+          ],
+          "location": "Tallinn, Estonia · Tartu, Estonia"
+        },
+        {
+          "title": "Partner Network Manager (UK region)",
+          "url": "https://careers.fractory.com/jobs/8132313-partner-network-manager-uk-region",
+          "postedDate": "2026-07-27",
+          "detectedKeywords": [],
+          "location": "Manchester, United Kingdom"
+        },
+        {
+          "title": "Partner Network Manager (Baltics & Scandinavia region)",
+          "url": "https://careers.fractory.com/jobs/8132166-partner-network-manager-baltics-scandinavia-region",
+          "postedDate": "2026-07-27",
+          "detectedKeywords": [],
+          "location": "Tallinn, Estonia · Tartu, Estonia"
+        },
+        {
+          "title": "Regional Sourcing Manager (UK Market) 📍 Manchester",
+          "url": "https://careers.fractory.com/jobs/8056999-regional-sourcing-manager-uk-market-manchester",
+          "postedDate": "2026-07-13",
+          "detectedKeywords": [],
+          "location": "Manchester, United Kingdom"
+        },
+        {
+          "title": "Regional Sourcing Manager (Baltics & Scandinavia region) 📍 Tartu/Tallinn",
+          "url": "https://careers.fractory.com/jobs/8056992-regional-sourcing-manager-baltics-scandinavia-region-tartu-tallinn",
+          "postedDate": "2026-07-13",
+          "detectedKeywords": [],
+          "location": "Tallinn, Estonia · Tartu, Estonia"
+        },
+        {
+          "title": "Marketing & Sales Operations Manager📍 UK/Estonia",
+          "url": "https://careers.fractory.com/jobs/7993601-marketing-sales-operations-manager-uk-estonia",
+          "postedDate": "2026-06-30",
+          "detectedKeywords": [],
+          "location": "Tallinn, Estonia · Tartu, Estonia · Manchester, United Kingdom"
+        },
+        {
+          "title": "🇫🇷 Sales Engineer/Account Manager (France Market Expansion)",
+          "url": "https://careers.fractory.com/jobs/7917409-sales-engineer-account-manager-france-market-expansion",
+          "postedDate": "2026-06-16",
+          "detectedKeywords": [
+            "go"
+          ],
+          "location": "Tallinn, Estonia · Tartu, Estonia"
+        },
+        {
+          "title": "Sales Engineer/Account Manager (Swedish Market)📍Sweden",
+          "url": "https://careers.fractory.com/jobs/7329380-sales-engineer-account-manager-swedish-market-sweden",
+          "postedDate": "2026-03-04",
+          "detectedKeywords": [
+            "go"
+          ],
+          "location": "Stocholm, Sweden"
+        },
+        {
+          "title": "Sales Engineer/Account Manager (Swedish Market)📍Tallinn/Tartu",
+          "url": "https://careers.fractory.com/jobs/6376099-sales-engineer-account-manager-swedish-market-tallinn-tartu",
+          "postedDate": "2025-09-01",
+          "detectedKeywords": [
+            "go"
+          ],
+          "location": "Tallinn, Estonia · Tartu, Estonia"
+        }
+      ],
+      "openingsTotal": 10,
+      "history": [
+        {
+          "weekOf": "2026-09-14",
+          "openCount": 10,
+          "keywordCounts": {
+            "ai": 1,
+            "go": 3
+          }
+        }
+      ],
+      "lastVerified": "2026-09-20T01:24:58.380Z",
+      "dataNotes": "Teamtailor board on their own careers subdomain. Found 2026-09-19."
     },
     {
       "id": "toggl",
@@ -34572,20 +34841,20 @@
       "logoUrl": "/logos/toggl.png",
       "description": "The best time tracker and capacity planning software. Track employee time, plan capacity, manage tasks and projects, and calculate profitability. Try for free.",
       "website": "https://toggl.com",
-      "careersUrl": null,
+      "careersUrl": "https://toggl.com/jobs/",
       "sizeRange": null,
       "sizeMin": null,
       "sizeMax": null,
-      "hqLocation": null,
+      "hqLocation": "Anywhere in the World",
       "country": null,
-      "remotePolicy": null,
+      "remotePolicy": "remote",
       "remoteRegions": [],
       "keywords": [],
       "currentOpenings": [],
       "openingsTotal": null,
       "history": [],
       "lastVerified": null,
-      "dataNotes": "Estonian-founded and fully distributed."
+      "dataNotes": "Careers page states \"Fully remote since 2014\" (read 2026-09-19)."
     },
     {
       "id": "plausible-analytics",
@@ -34594,11 +34863,11 @@
       "description": "Plausible is a lightweight and open-source Google Analytics alternative. Your website data is 100% yours and the privacy of your visitors is respected.",
       "website": "https://plausible.io",
       "careersUrl": null,
-      "sizeRange": null,
-      "sizeMin": null,
-      "sizeMax": null,
+      "sizeRange": "10",
+      "sizeMin": 10,
+      "sizeMax": 10,
       "hqLocation": null,
-      "country": null,
+      "country": "Estonia",
       "remotePolicy": null,
       "remoteRegions": [],
       "keywords": [],
@@ -34606,7 +34875,7 @@
       "openingsTotal": null,
       "history": [],
       "lastVerified": null,
-      "dataNotes": "Estonian-registered, fully remote."
+      "dataNotes": "Imprint page: registered entity 'Plausible Insights OÜ', Västriku tn 2, Tartu, Estonia. About page: 'Today Plausible is a team of 10.' No careers page found anywhere on the site (nav/footer link dump checked, no /careers or /jobs). No explicit remote/hybrid/onsite word found — only 'based in the EU "
     },
     {
       "id": "doist",
@@ -34614,7 +34883,7 @@
       "logoUrl": "/logos/doist.ico",
       "description": "From Minneapolis to the Philippines, Brazil to Bratislava, the Todoist team is united by one goal: empowering humanity with simple yet powerful productivity tools.",
       "website": "https://doist.com",
-      "careersUrl": null,
+      "careersUrl": "https://www.todoist.com/careers",
       "sizeRange": null,
       "sizeMin": null,
       "sizeMax": null,
@@ -34627,7 +34896,7 @@
       "openingsTotal": null,
       "history": [],
       "lastVerified": null,
-      "dataNotes": "Remote-first since founding."
+      "dataNotes": "doist.com/careers 301s to todoist.com/careers, same company. Work model deliberately not recorded: the page shows remote-work awards, not a policy statement."
     },
     {
       "id": "remote",
@@ -34684,20 +34953,20 @@
       "logoUrl": "/logos/automattic.png",
       "description": "Making the web a better place",
       "website": "https://automattic.com",
-      "careersUrl": null,
-      "sizeRange": null,
-      "sizeMin": null,
-      "sizeMax": null,
+      "careersUrl": "https://automattic.com/work-with-us/",
+      "sizeRange": "1416",
+      "sizeMin": 1416,
+      "sizeMax": 1416,
       "hqLocation": null,
       "country": null,
-      "remotePolicy": null,
+      "remotePolicy": "remote",
       "remoteRegions": [],
       "keywords": [],
       "currentOpenings": [],
       "openingsTotal": null,
       "history": [],
       "lastVerified": null,
-      "dataNotes": "Added from the curated seed list (Curated seed list)."
+      "dataNotes": "Work-with-us page: 'Everyone works from the location they choose, during the hours they choose. We're spread out all over the world'; 'We're 1,416 Automatticians in 83 countries speaking 107 languages.' No single HQ country — company is explicitly distributed with no headquarters mentioned. Read 202"
     },
     {
       "id": "gitlab",
@@ -37420,7 +37689,7 @@
       "logoUrl": "/logos/deno.ico",
       "description": "A drop-in JavaScript runtime with built-in TypeScript, npm support, and security by default. Run your existing Node project on Deno with no setup.",
       "website": "https://deno.com",
-      "careersUrl": null,
+      "careersUrl": "https://deno.com/jobs",
       "sizeRange": null,
       "sizeMin": null,
       "sizeMax": null,
@@ -37433,7 +37702,7 @@
       "openingsTotal": null,
       "history": [],
       "lastVerified": null,
-      "dataNotes": "Added from the curated seed list (Curated seed list)."
+      "dataNotes": "deno.com/jobs 302-redirects to jobs.ashbyhq.com/Deno (Ashby-hosted board); the redirect target is client-rendered so content couldn't be read directly, but it confirms a live, company-specific board, and the company's own URL is recorded per project precedent (mixrank/onesignal). No careers link exi"
     },
     {
       "id": "prisma",
@@ -37441,20 +37710,20 @@
       "logoUrl": "/logos/prisma.png",
       "description": "Prisma gives TypeScript and Node.js teams Prisma ORM, Prisma Postgres, and Prisma Compute: a type-safe ORM, managed Postgres, and Compute for deploying TypeScript apps, from schema to deployed app.",
       "website": "https://prisma.io",
-      "careersUrl": null,
-      "sizeRange": null,
-      "sizeMin": null,
-      "sizeMax": null,
+      "careersUrl": "https://prisma.io/careers",
+      "sizeRange": "45",
+      "sizeMin": 45,
+      "sizeMax": 45,
       "hqLocation": null,
       "country": null,
-      "remotePolicy": null,
+      "remotePolicy": "remote",
       "remoteRegions": [],
       "keywords": [],
       "currentOpenings": [],
       "openingsTotal": null,
       "history": [],
       "lastVerified": null,
-      "dataNotes": "Added from the curated seed list (Curated seed list)."
+      "dataNotes": "Careers page: '100% Remote... globally distributed and everyone can work from any location within UTC-5 to UTC+3'; '45 Team members, 16 Countries'. No country recorded — legal entity 'Prisma Data, Inc.' is only tied to US FTC jurisdiction in the privacy policy with no address given, too weak given t"
     },
     {
       "id": "temporal",
@@ -38555,20 +38824,20 @@
       "logoUrl": "/logos/appwrite.png",
       "description": "Appwrite is an open-source developer platform with Auth, Databases, Storage, Functions, Messaging, and Sites. The open-source cloud for agents and developers.",
       "website": "https://appwrite.io",
-      "careersUrl": null,
+      "careersUrl": "https://appwrite.io/company#careers",
       "sizeRange": null,
       "sizeMin": null,
       "sizeMax": null,
       "hqLocation": null,
       "country": null,
-      "remotePolicy": null,
+      "remotePolicy": "remote",
       "remoteRegions": [],
       "keywords": [],
       "currentOpenings": [],
       "openingsTotal": null,
       "history": [],
       "lastVerified": null,
-      "dataNotes": "Added from the curated seed list (Curated seed list)."
+      "dataNotes": "appwrite.io/careers 404s; the real careers section lives at /company#careers: '100% Remote... remote-first, AI-native team... 15+ Countries'. No open roles right now but describes hiring/how-we-hire. Country omitted — privacy policy names entity 'Appwrite Code Ltd.' and references GDPR adequacy deci"
     },
     {
       "id": "strapi",
@@ -38576,20 +38845,20 @@
       "logoUrl": "/logos/strapi.png",
       "description": "Strapi is the next-gen headless CMS, open-source, JavaScript/TypeScript, enabling content-rich experiences to be created, managed and exposed to any device.",
       "website": "https://strapi.io",
-      "careersUrl": null,
-      "sizeRange": null,
-      "sizeMin": null,
-      "sizeMax": null,
+      "careersUrl": "https://strapi.io/careers",
+      "sizeRange": "58",
+      "sizeMin": 58,
+      "sizeMax": 58,
       "hqLocation": null,
       "country": null,
-      "remotePolicy": null,
+      "remotePolicy": "remote",
       "remoteRegions": [],
       "keywords": [],
       "currentOpenings": [],
       "openingsTotal": null,
       "history": [],
       "lastVerified": null,
-      "dataNotes": "Added from the curated seed list (Curated seed list)."
+      "dataNotes": "Careers page: 'We're a remote-first and completely distributed team, so we can work wherever home is'; '58 The current number of teammates, affectionately called Strapiers'. Country omitted — Terms of Use lists legal entity 'Strapi, Inc' at a Dover, DE address that reads as an incorporation/register"
     },
     {
       "id": "directus",
@@ -38597,20 +38866,20 @@
       "logoUrl": "/logos/directus.png",
       "description": "The collaborative backend and self-hostable headless CMS over any database. No-code interface, REST + GraphQL APIs, and MCP for Claude, ChatGPT, and Cursor.",
       "website": "https://directus.com",
-      "careersUrl": null,
+      "careersUrl": "https://directus.com/careers",
       "sizeRange": null,
       "sizeMin": null,
       "sizeMax": null,
       "hqLocation": null,
-      "country": null,
-      "remotePolicy": null,
+      "country": "United States",
+      "remotePolicy": "remote",
       "remoteRegions": [],
       "keywords": [],
       "currentOpenings": [],
       "openingsTotal": null,
       "history": [],
       "lastVerified": null,
-      "dataNotes": "Added from the curated seed list (Curated seed list)."
+      "dataNotes": "Careers page: 'Our global, all-remote team', 4 open remote roles (US/EMEA/Americas). Terms of Use gives a specific street address for the registered entity 'MONOSPACE, INC. /DBA/ DIRECTUS': 149 Cleveland Road, New Haven, CT 06515 — used as the country signal (more specific than a bare governing-law "
     },
     {
       "id": "mattermost",
@@ -38801,6 +39070,3160 @@
       ],
       "lastVerified": "2026-09-18T20:06:05.325Z",
       "dataNotes": "Added from the curated seed list (Curated seed list)."
+    },
+    {
+      "id": "characterquilt",
+      "name": "CharacterQuilt",
+      "logoUrl": null,
+      "description": "Computer use agents to deploy enterprise marketing campaigns",
+      "website": "https://characterquilt.com",
+      "careersUrl": "https://www.workatastartup.com/companies/characterquilt",
+      "sizeRange": "4",
+      "sizeMin": 4,
+      "sizeMax": 4,
+      "hqLocation": "San Francisco",
+      "country": "United States",
+      "remotePolicy": null,
+      "remoteRegions": [],
+      "keywords": [
+        "b2b-software-and-services",
+        "marketing"
+      ],
+      "currentOpenings": [
+        {
+          "title": "Founding Account Executive (NYC)",
+          "url": "https://www.workatastartup.com/jobs/101291",
+          "postedDate": null,
+          "detectedKeywords": [
+            "typescript",
+            "nextjs",
+            "python",
+            "postgres",
+            "aws"
+          ],
+          "location": "New York, NY, US"
+        },
+        {
+          "title": "Staff Software Engineer, Agent Systems and Product Quality",
+          "url": "https://www.workatastartup.com/jobs/100471",
+          "postedDate": null,
+          "detectedKeywords": [
+            "typescript",
+            "nextjs",
+            "python",
+            "postgres",
+            "aws"
+          ],
+          "location": "New York, NY, US"
+        },
+        {
+          "title": "Member of Technical Staff, Agent Infrastructure and Reliability",
+          "url": "https://www.workatastartup.com/jobs/100468",
+          "postedDate": null,
+          "detectedKeywords": [
+            "typescript",
+            "nextjs",
+            "python",
+            "postgres",
+            "aws"
+          ],
+          "location": "New York, NY, US"
+        },
+        {
+          "title": "Member of Technical Staff, Agent Systems",
+          "url": "https://www.workatastartup.com/jobs/100470",
+          "postedDate": null,
+          "detectedKeywords": [
+            "typescript",
+            "nextjs",
+            "python",
+            "postgres",
+            "aws"
+          ],
+          "location": "New York, NY, US"
+        },
+        {
+          "title": "Go-to-Market Engineer",
+          "url": "https://www.workatastartup.com/jobs/100472",
+          "postedDate": null,
+          "detectedKeywords": [
+            "typescript",
+            "nextjs",
+            "python",
+            "postgres",
+            "aws"
+          ],
+          "location": "New York, NY, US"
+        },
+        {
+          "title": "Staff Software Engineer, Agent Infrastructure and Reliability",
+          "url": "https://www.workatastartup.com/jobs/100469",
+          "postedDate": null,
+          "detectedKeywords": [
+            "typescript",
+            "nextjs",
+            "python",
+            "postgres",
+            "aws"
+          ],
+          "location": "New York, NY, US"
+        }
+      ],
+      "openingsTotal": 6,
+      "history": [
+        {
+          "weekOf": "2026-09-14",
+          "openCount": 6,
+          "keywordCounts": {
+            "typescript": 6,
+            "nextjs": 6,
+            "python": 6,
+            "postgres": 6,
+            "aws": 6
+          }
+        }
+      ],
+      "lastVerified": "2026-09-20T01:18:35.990Z",
+      "dataNotes": "Discovered via Y Combinator's Work at a Startup (P26 batch)."
+    },
+    {
+      "id": "entangl",
+      "name": "Entangl",
+      "logoUrl": null,
+      "description": "Find & resolve issues in data center engineering & operations using AI",
+      "website": "https://www.entangl.com",
+      "careersUrl": "https://www.workatastartup.com/companies/entangl",
+      "sizeRange": "15",
+      "sizeMin": 15,
+      "sizeMax": 15,
+      "hqLocation": "San Francisco",
+      "country": "United States",
+      "remotePolicy": "hybrid",
+      "remoteRegions": [],
+      "keywords": [
+        "b2b-software-and-services",
+        "engineering-product-and-design"
+      ],
+      "currentOpenings": [
+        {
+          "title": "Full Stack Engineer",
+          "url": "https://www.workatastartup.com/jobs/110929",
+          "postedDate": null,
+          "detectedKeywords": [],
+          "location": "San Francisco, CA, US / SG / Remote (US; SG)"
+        },
+        {
+          "title": "Jony Ive",
+          "url": "https://www.workatastartup.com/jobs/93501",
+          "postedDate": null,
+          "detectedKeywords": [],
+          "location": "San Francisco, CA, US"
+        },
+        {
+          "title": "Account Executive",
+          "url": "https://www.workatastartup.com/jobs/98981",
+          "postedDate": null,
+          "detectedKeywords": [],
+          "location": "San Francisco, CA, US / Remote (US)"
+        },
+        {
+          "title": "Sales Development Rep (SDR)",
+          "url": "https://www.workatastartup.com/jobs/98982",
+          "postedDate": null,
+          "detectedKeywords": [],
+          "location": "San Francisco, CA, US / Remote (US)"
+        },
+        {
+          "title": "Greg Brockman",
+          "url": "https://www.workatastartup.com/jobs/97630",
+          "postedDate": null,
+          "detectedKeywords": [],
+          "location": "San Francisco, CA, US"
+        },
+        {
+          "title": "Bill McDermott (Account Executive)",
+          "url": "https://www.workatastartup.com/jobs/97599",
+          "postedDate": null,
+          "detectedKeywords": [],
+          "location": "San Francisco, CA, US"
+        }
+      ],
+      "openingsTotal": 7,
+      "history": [
+        {
+          "weekOf": "2026-09-14",
+          "openCount": 6,
+          "keywordCounts": {}
+        }
+      ],
+      "lastVerified": "2026-09-20T01:18:44.295Z",
+      "dataNotes": "Discovered via Y Combinator's Work at a Startup (S24 batch)."
+    },
+    {
+      "id": "legion",
+      "name": "Legion",
+      "logoUrl": null,
+      "description": "Headquarters: Remote, United States Chief Architect Remote - US Legion Technologies is building the AI-powered operating system for the hourly workforce. We are hiring a Chief Architect to serve as Le…",
+      "website": "https://legion.co",
+      "careersUrl": null,
+      "sizeRange": null,
+      "sizeMin": null,
+      "sizeMax": null,
+      "hqLocation": "Anywhere in the World",
+      "country": null,
+      "remotePolicy": "remote",
+      "remoteRegions": [],
+      "keywords": [],
+      "currentOpenings": [
+        {
+          "title": "Chief Architect",
+          "url": "https://job-boards.greenhouse.io/legion/jobs/7763058003",
+          "postedDate": "2026-06-03",
+          "detectedKeywords": [
+            "go",
+            "python",
+            "java",
+            "kotlin",
+            "scala",
+            "aws",
+            "gcp",
+            "azure"
+          ],
+          "location": "Remote, United States"
+        },
+        {
+          "title": "Consultant or Senior Consultant",
+          "url": "https://job-boards.greenhouse.io/legion/jobs/7981592003",
+          "postedDate": "2026-08-31",
+          "detectedKeywords": [
+            "ai"
+          ],
+          "location": "Hybrid, Bangalore or Pune, India"
+        },
+        {
+          "title": "Director of Production Engineering",
+          "url": "https://job-boards.greenhouse.io/legion/jobs/7819549003",
+          "postedDate": "2026-08-06",
+          "detectedKeywords": [
+            "go",
+            "python",
+            "kubernetes",
+            "terraform",
+            "aws",
+            "gcp",
+            "ai",
+            "security"
+          ],
+          "location": "Remote, United States"
+        },
+        {
+          "title": "Enterprise Account Executive, East",
+          "url": "https://job-boards.greenhouse.io/legion/jobs/7805052003",
+          "postedDate": "2026-07-24",
+          "detectedKeywords": [
+            "ai"
+          ],
+          "location": "Remote, United States"
+        },
+        {
+          "title": "Enterprise Account Executive, West",
+          "url": "https://job-boards.greenhouse.io/legion/jobs/7810508003",
+          "postedDate": "2026-07-24",
+          "detectedKeywords": [
+            "ai"
+          ],
+          "location": "Remote, United States"
+        },
+        {
+          "title": "General Counsel",
+          "url": "https://job-boards.greenhouse.io/legion/jobs/7576484003",
+          "postedDate": "2026-07-16",
+          "detectedKeywords": [
+            "machine-learning",
+            "ai",
+            "security"
+          ],
+          "location": "Remote, United States"
+        },
+        {
+          "title": "Integration / Implementation Manager",
+          "url": "https://job-boards.greenhouse.io/legion/jobs/7800951003",
+          "postedDate": "2026-07-10",
+          "detectedKeywords": [
+            "java",
+            "mysql",
+            "aws",
+            "ai",
+            "data-engineering"
+          ],
+          "location": "Hybrid, Bucharest, Romania"
+        },
+        {
+          "title": "Principal Production Engineer",
+          "url": "https://job-boards.greenhouse.io/legion/jobs/7751528003",
+          "postedDate": "2026-05-28",
+          "detectedKeywords": [
+            "go",
+            "python",
+            "mysql",
+            "kubernetes",
+            "docker",
+            "terraform",
+            "aws",
+            "ai"
+          ],
+          "location": "Hybrid, Bangalore or Pune, India"
+        },
+        {
+          "title": "Principal Production Engineer (SRE)",
+          "url": "https://job-boards.greenhouse.io/legion/jobs/7653756003",
+          "postedDate": "2026-03-18",
+          "detectedKeywords": [
+            "go",
+            "python",
+            "mysql",
+            "kubernetes",
+            "docker",
+            "terraform",
+            "aws",
+            "ai"
+          ],
+          "location": "Hybrid, Bucharest, Romania"
+        },
+        {
+          "title": "Project Manager",
+          "url": "https://job-boards.greenhouse.io/legion/jobs/7704628003",
+          "postedDate": "2026-04-17",
+          "detectedKeywords": [
+            "ai"
+          ],
+          "location": "Hybrid, Bangalore or Pune, India"
+        },
+        {
+          "title": "Senior Accountant",
+          "url": "https://job-boards.greenhouse.io/legion/jobs/7984287003",
+          "postedDate": "2026-09-02",
+          "detectedKeywords": [
+            "ai"
+          ],
+          "location": "Hybrid, Bangalore or Pune, India"
+        },
+        {
+          "title": "Senior Frontend Engineer",
+          "url": "https://job-boards.greenhouse.io/legion/jobs/7788306003",
+          "postedDate": "2026-07-24",
+          "detectedKeywords": [
+            "typescript",
+            "javascript",
+            "react",
+            "java",
+            "swift",
+            "android",
+            "aws",
+            "ai"
+          ],
+          "location": "Hybrid, Bucharest, Romania"
+        },
+        {
+          "title": "Senior Software Engineer, Labor Planning & Forecasting",
+          "url": "https://job-boards.greenhouse.io/legion/jobs/7824842003",
+          "postedDate": "2026-09-07",
+          "detectedKeywords": [
+            "javascript",
+            "react",
+            "java",
+            "cpp",
+            "mysql",
+            "aws",
+            "gcp",
+            "azure"
+          ],
+          "location": "Hybrid, Bangalore or Pune, India"
+        },
+        {
+          "title": "Software Engineer, Labor Planning & Forecasting",
+          "url": "https://job-boards.greenhouse.io/legion/jobs/7982681003",
+          "postedDate": "2026-09-07",
+          "detectedKeywords": [
+            "javascript",
+            "react",
+            "java",
+            "cpp",
+            "mysql",
+            "aws",
+            "gcp",
+            "azure"
+          ],
+          "location": "Hybrid, Bangalore or Pune, India"
+        },
+        {
+          "title": "Technical Account Manager (TAM)",
+          "url": "https://job-boards.greenhouse.io/legion/jobs/7981582003",
+          "postedDate": "2026-08-31",
+          "detectedKeywords": [
+            "ai"
+          ],
+          "location": "Hybrid, Bangalore or Pune, India"
+        }
+      ],
+      "openingsTotal": 15,
+      "history": [
+        {
+          "weekOf": "2026-09-14",
+          "openCount": 15,
+          "keywordCounts": {
+            "go": 4,
+            "python": 4,
+            "java": 5,
+            "kotlin": 1,
+            "scala": 1,
+            "aws": 8,
+            "gcp": 4,
+            "azure": 3,
+            "ai": 12,
+            "kubernetes": 3,
+            "terraform": 3,
+            "security": 2,
+            "machine-learning": 1,
+            "mysql": 5,
+            "data-engineering": 1,
+            "docker": 2,
+            "typescript": 1,
+            "javascript": 3,
+            "react": 3,
+            "swift": 1,
+            "android": 1,
+            "cpp": 2
+          }
+        }
+      ],
+      "lastVerified": "2026-09-20T01:18:47.055Z",
+      "dataNotes": "Discovered via We Work Remotely (\"Chief Architect\" listing)."
+    },
+    {
+      "id": "track-it-forward",
+      "name": "Track it Forward",
+      "logoUrl": null,
+      "description": "Headquarters: Oakland, CA URL: https://www.trackitforward.com We are looking for a lead developer to do a greenfield rebuild of our legacy SaaS app, modernize our mobile apps, and lead the tech effort…",
+      "website": "https://trackitforward.com",
+      "careersUrl": null,
+      "sizeRange": null,
+      "sizeMin": null,
+      "sizeMax": null,
+      "hqLocation": "Anywhere in the World",
+      "country": null,
+      "remotePolicy": "remote",
+      "remoteRegions": [],
+      "keywords": [],
+      "currentOpenings": [],
+      "openingsTotal": null,
+      "history": [],
+      "lastVerified": null,
+      "dataNotes": "Discovered via We Work Remotely (\"Lead Developer — Rebuild, Modernize, &amp; Scale (Social Good SaaS, Remote)\" listing)."
+    },
+    {
+      "id": "prove",
+      "name": "Prove",
+      "logoUrl": null,
+      "description": "Headquarters: New York, NY; United States (Remote) About Prove As the world moves to a mobile-first economy, businesses need to modernize how they acquire, engage with and enable consumers. Prove’s ph…",
+      "website": "https://prove.com",
+      "careersUrl": null,
+      "sizeRange": null,
+      "sizeMin": null,
+      "sizeMax": null,
+      "hqLocation": "Anywhere in the World",
+      "country": null,
+      "remotePolicy": "remote",
+      "remoteRegions": [],
+      "keywords": [],
+      "currentOpenings": [
+        {
+          "title": "Data Science Lead",
+          "url": "https://job-boards.greenhouse.io/prove/jobs/5999200004",
+          "postedDate": "2026-05-28",
+          "detectedKeywords": [
+            "python",
+            "kafka",
+            "aws",
+            "gcp",
+            "azure",
+            "machine-learning",
+            "security",
+            "data-engineering"
+          ],
+          "location": "United States"
+        },
+        {
+          "title": "Director, Channel & Partnerships",
+          "url": "https://job-boards.greenhouse.io/prove/jobs/6132502004",
+          "postedDate": "2026-08-07",
+          "detectedKeywords": [
+            "security"
+          ],
+          "location": "New York, NY; United States (Remote)"
+        },
+        {
+          "title": "Director, Sales Compensation",
+          "url": "https://job-boards.greenhouse.io/prove/jobs/6107844004",
+          "postedDate": "2026-07-02",
+          "detectedKeywords": [
+            "ai",
+            "security"
+          ],
+          "location": "New York, NY; United States (Remote)"
+        },
+        {
+          "title": "Principal Product Marketing Manager",
+          "url": "https://job-boards.greenhouse.io/prove/jobs/6010626004",
+          "postedDate": "2026-06-15",
+          "detectedKeywords": [
+            "security"
+          ],
+          "location": "United States"
+        },
+        {
+          "title": "Product Operations Lead",
+          "url": "https://job-boards.greenhouse.io/prove/jobs/6141968004",
+          "postedDate": "2026-08-21",
+          "detectedKeywords": [
+            "ai",
+            "security"
+          ],
+          "location": "New York, NY"
+        },
+        {
+          "title": "Sales Engineer - Partnerships",
+          "url": "https://job-boards.greenhouse.io/prove/jobs/6179872004",
+          "postedDate": "2026-09-04",
+          "detectedKeywords": [
+            "javascript",
+            "python",
+            "java",
+            "cpp",
+            "security"
+          ],
+          "location": "United States (Remote)"
+        },
+        {
+          "title": "Senior Director, Global Support",
+          "url": "https://job-boards.greenhouse.io/prove/jobs/6146857004",
+          "postedDate": "2026-08-25",
+          "detectedKeywords": [
+            "ai",
+            "security"
+          ],
+          "location": "United States (Remote)"
+        },
+        {
+          "title": "Senior Manager, Platform Engineering",
+          "url": "https://job-boards.greenhouse.io/prove/jobs/6119569004",
+          "postedDate": "2026-07-28",
+          "detectedKeywords": [
+            "go",
+            "java",
+            "postgres",
+            "mysql",
+            "redis",
+            "mongodb",
+            "kafka",
+            "kubernetes"
+          ],
+          "location": "Dublin, Ireland"
+        },
+        {
+          "title": "Senior Software Engineer, Identity Platform",
+          "url": "https://job-boards.greenhouse.io/prove/jobs/6118819004",
+          "postedDate": "2026-07-17",
+          "detectedKeywords": [
+            "typescript",
+            "react",
+            "java",
+            "kafka",
+            "aws",
+            "gcp",
+            "azure",
+            "machine-learning"
+          ],
+          "location": "United States (Remote)"
+        },
+        {
+          "title": "Site Reliability Engineer, Sr. Site Reliability Engineer",
+          "url": "https://job-boards.greenhouse.io/prove/jobs/6102284004",
+          "postedDate": "2026-07-08",
+          "detectedKeywords": [
+            "go",
+            "python",
+            "kubernetes",
+            "terraform",
+            "aws",
+            "security"
+          ],
+          "location": "United States (Remote)"
+        },
+        {
+          "title": "Strategic Sales Director",
+          "url": "https://job-boards.greenhouse.io/prove/jobs/6181974004",
+          "postedDate": "2026-09-14",
+          "detectedKeywords": [
+            "ai",
+            "security"
+          ],
+          "location": "Bay Area, CA; United States (Remote)"
+        }
+      ],
+      "openingsTotal": 11,
+      "history": [
+        {
+          "weekOf": "2026-09-14",
+          "openCount": 11,
+          "keywordCounts": {
+            "python": 3,
+            "kafka": 3,
+            "aws": 3,
+            "gcp": 2,
+            "azure": 2,
+            "machine-learning": 2,
+            "security": 9,
+            "data-engineering": 1,
+            "ai": 4,
+            "javascript": 1,
+            "java": 3,
+            "cpp": 1,
+            "go": 2,
+            "postgres": 1,
+            "mysql": 1,
+            "redis": 1,
+            "mongodb": 1,
+            "kubernetes": 2,
+            "typescript": 1,
+            "react": 1,
+            "terraform": 1
+          }
+        }
+      ],
+      "lastVerified": "2026-09-20T01:18:57.706Z",
+      "dataNotes": "Discovered via We Work Remotely (\"Director, Channel &amp; Partnerships\" listing)."
+    },
+    {
+      "id": "yooli",
+      "name": "Yooli",
+      "logoUrl": null,
+      "description": "Headquarters: Australia URL: http://yooli.co Job description We are seeking a highly skilled Senior Software Engineer to join our team and contribute to the transformative tech evolution in healthcare…",
+      "website": "https://yooli.co",
+      "careersUrl": null,
+      "sizeRange": null,
+      "sizeMin": null,
+      "sizeMax": null,
+      "hqLocation": "Anywhere in the World",
+      "country": null,
+      "remotePolicy": "remote",
+      "remoteRegions": [],
+      "keywords": [],
+      "currentOpenings": [],
+      "openingsTotal": null,
+      "history": [],
+      "lastVerified": null,
+      "dataNotes": "Discovered via We Work Remotely (\"FULL TIME: Software Engineer Position - React and Rest\" listing)."
+    },
+    {
+      "id": "airbnb",
+      "name": "Airbnb",
+      "logoUrl": null,
+      "description": "Headquarters: Remote Airbnb was born in 2007 when two hosts welcomed three guests to their San Francisco home, and has since grown to over 5 million hosts who have welcomed over 2 billion guest arriva…",
+      "website": "https://airbnb.com",
+      "careersUrl": null,
+      "sizeRange": null,
+      "sizeMin": null,
+      "sizeMax": null,
+      "hqLocation": "Anywhere in the World",
+      "country": null,
+      "remotePolicy": "remote",
+      "remoteRegions": [],
+      "keywords": [],
+      "currentOpenings": [
+        {
+          "title": "Account Manager",
+          "url": "https://careers.airbnb.com/positions/8184174?gh_jid=8184174",
+          "postedDate": "2026-09-09",
+          "detectedKeywords": [
+            "security"
+          ],
+          "location": "London, United Kingdom"
+        },
+        {
+          "title": "Associate Legal Counsel, Japan",
+          "url": "https://careers.airbnb.com/positions/7789554?gh_jid=7789554",
+          "postedDate": "2026-04-13",
+          "detectedKeywords": [
+            "ai",
+            "security"
+          ],
+          "location": "Tokyo, Japan"
+        },
+        {
+          "title": "Business Development Manager",
+          "url": "https://careers.airbnb.com/positions/7995153?gh_jid=7995153",
+          "postedDate": "2026-06-10",
+          "detectedKeywords": [
+            "security"
+          ],
+          "location": "Berlin, Germany"
+        },
+        {
+          "title": "Business Operations and Growth Lead",
+          "url": "https://careers.airbnb.com/positions/7999656?gh_jid=7999656",
+          "postedDate": "2026-06-11",
+          "detectedKeywords": [
+            "ai",
+            "security"
+          ],
+          "location": "Sydney, Australia"
+        },
+        {
+          "title": "Business Systems Engineer, Tech Foundations",
+          "url": "https://careers.airbnb.com/positions/8214444?gh_jid=8214444",
+          "postedDate": "2026-09-18",
+          "detectedKeywords": [
+            "ai",
+            "security"
+          ],
+          "location": "San Francisco, CA"
+        },
+        {
+          "title": "Community Engagement Lead, Spain and Portugal",
+          "url": "https://careers.airbnb.com/positions/7982715?gh_jid=7982715",
+          "postedDate": "2026-06-04",
+          "detectedKeywords": [
+            "go",
+            "security"
+          ],
+          "location": "Barcelona, Spain"
+        },
+        {
+          "title": "Community Support Forecasting and Demand Planning Analyst",
+          "url": "https://careers.airbnb.com/positions/7839229?gh_jid=7839229",
+          "postedDate": "2026-04-24",
+          "detectedKeywords": [
+            "python",
+            "machine-learning",
+            "security",
+            "data-engineering"
+          ],
+          "location": "United States"
+        },
+        {
+          "title": "Complex Claims Manager",
+          "url": "https://careers.airbnb.com/positions/8152131?gh_jid=8152131",
+          "postedDate": "2026-08-24",
+          "detectedKeywords": [
+            "go",
+            "security"
+          ],
+          "location": "Canada · United States"
+        },
+        {
+          "title": "Customer Service Partner Operations Manager, Mandarin Speaking (Manila Based)",
+          "url": "https://careers.airbnb.com/positions/8172735?gh_jid=8172735",
+          "postedDate": "2026-09-02",
+          "detectedKeywords": [
+            "security"
+          ],
+          "location": "Manila, Philippines"
+        },
+        {
+          "title": "Customer Service Partner Operations Manager, Mandarin Speaking (Seoul Based)",
+          "url": "https://careers.airbnb.com/positions/8172732?gh_jid=8172732",
+          "postedDate": "2026-09-02",
+          "detectedKeywords": [
+            "security"
+          ],
+          "location": "Seoul, Korea"
+        },
+        {
+          "title": "Customer Service Partner Operations Manager, Mandarin Speaking (Singapore Based)",
+          "url": "https://careers.airbnb.com/positions/8172706?gh_jid=8172706",
+          "postedDate": "2026-09-02",
+          "detectedKeywords": [
+            "security"
+          ],
+          "location": "Singapore"
+        },
+        {
+          "title": "Customer Service Partner Operations Manager, Mandarin Speaking (Tokyo Based)",
+          "url": "https://careers.airbnb.com/positions/8172734?gh_jid=8172734",
+          "postedDate": "2026-09-02",
+          "detectedKeywords": [
+            "security"
+          ],
+          "location": "Tokyo, Japan"
+        },
+        {
+          "title": "Engineering Manager, Guest & Host",
+          "url": "https://careers.airbnb.com/positions/7532824?gh_jid=7532824",
+          "postedDate": "2026-01-23",
+          "detectedKeywords": [
+            "machine-learning",
+            "security"
+          ],
+          "location": "London, United Kingdom"
+        },
+        {
+          "title": "Enterprise Account Operations Associate",
+          "url": "https://careers.airbnb.com/positions/8066835?gh_jid=8066835",
+          "postedDate": "2026-07-16",
+          "detectedKeywords": [
+            "security"
+          ],
+          "location": "London, United Kingdom"
+        },
+        {
+          "title": "Gestionnaire des réclamations complexes",
+          "url": "https://careers.airbnb.com/positions/8152132?gh_jid=8152132",
+          "postedDate": "2026-08-24",
+          "detectedKeywords": [
+            "security"
+          ],
+          "location": "Canada"
+        },
+        {
+          "title": "Gestionnaire, Qualité, AirCover",
+          "url": "https://careers.airbnb.com/positions/8164421?gh_jid=8164421",
+          "postedDate": "2026-08-31",
+          "detectedKeywords": [
+            "ai",
+            "security"
+          ],
+          "location": "Canada"
+        },
+        {
+          "title": "Gestionnaire, Soutien Premium",
+          "url": "https://careers.airbnb.com/positions/7862110?gh_jid=7862110",
+          "postedDate": "2026-07-17",
+          "detectedKeywords": [
+            "vue",
+            "security"
+          ],
+          "location": "Canada"
+        },
+        {
+          "title": "Growth Marketing Lead, Japan",
+          "url": "https://careers.airbnb.com/positions/7590542?gh_jid=7590542",
+          "postedDate": "2026-02-05",
+          "detectedKeywords": [
+            "security"
+          ],
+          "location": "Tokyo, Japan"
+        },
+        {
+          "title": "Internal Communications Lead",
+          "url": "https://careers.airbnb.com/positions/8192330?gh_jid=8192330",
+          "postedDate": "2026-09-10",
+          "detectedKeywords": [
+            "ai",
+            "security"
+          ],
+          "location": "United States"
+        },
+        {
+          "title": "Lead Advanced Analyst, Integrated Marketing",
+          "url": "https://careers.airbnb.com/positions/8207084?gh_jid=8207084",
+          "postedDate": "2026-09-16",
+          "detectedKeywords": [
+            "python",
+            "ai",
+            "security"
+          ],
+          "location": "United States"
+        },
+        {
+          "title": "Lead, Advanced Analytics, Acquisition",
+          "url": "https://careers.airbnb.com/positions/7948314?gh_jid=7948314",
+          "postedDate": "2026-05-26",
+          "detectedKeywords": [
+            "python",
+            "ai",
+            "security"
+          ],
+          "location": "United States"
+        },
+        {
+          "title": "Lead, Advanced Analytics, Community Support",
+          "url": "https://careers.airbnb.com/positions/8125981?gh_jid=8125981",
+          "postedDate": "2026-08-13",
+          "detectedKeywords": [
+            "python",
+            "machine-learning",
+            "security",
+            "data-engineering"
+          ],
+          "location": "United States"
+        },
+        {
+          "title": "Lead - Advanced Analytics, Gurgaon",
+          "url": "https://careers.airbnb.com/positions/8009372?gh_jid=8009372",
+          "postedDate": "2026-06-16",
+          "detectedKeywords": [
+            "python",
+            "machine-learning",
+            "ai",
+            "security",
+            "data-engineering"
+          ],
+          "location": "Gurugram, India"
+        },
+        {
+          "title": "Lead, Advanced Analytics, Payments",
+          "url": "https://careers.airbnb.com/positions/7967712?gh_jid=7967712",
+          "postedDate": "2026-05-29",
+          "detectedKeywords": [
+            "python",
+            "machine-learning",
+            "ai",
+            "security",
+            "data-engineering"
+          ],
+          "location": "United States"
+        },
+        {
+          "title": "Lead Advanced Analytics, Product",
+          "url": "https://careers.airbnb.com/positions/8080954?gh_jid=8080954",
+          "postedDate": "2026-07-24",
+          "detectedKeywords": [
+            "python",
+            "ai",
+            "security"
+          ],
+          "location": "United States"
+        },
+        {
+          "title": "Lead Localization Operations Program Manager",
+          "url": "https://careers.airbnb.com/positions/8120458?gh_jid=8120458",
+          "postedDate": "2026-08-11",
+          "detectedKeywords": [
+            "machine-learning",
+            "ai",
+            "security"
+          ],
+          "location": "United States"
+        },
+        {
+          "title": "Lead Platform Manager, Tech Foundations",
+          "url": "https://careers.airbnb.com/positions/8211765?gh_jid=8211765",
+          "postedDate": "2026-09-18",
+          "detectedKeywords": [
+            "ai",
+            "security"
+          ],
+          "location": "United States"
+        },
+        {
+          "title": "Localization Manager, Italian",
+          "url": "https://careers.airbnb.com/positions/8165843?gh_jid=8165843",
+          "postedDate": "2026-09-01",
+          "detectedKeywords": [
+            "ai",
+            "security"
+          ],
+          "location": "Milan, Italy"
+        },
+        {
+          "title": "Machine Learning Engineer, AI Platform",
+          "url": "https://careers.airbnb.com/positions/7716341?gh_jid=7716341",
+          "postedDate": "2026-03-23",
+          "detectedKeywords": [
+            "machine-learning",
+            "ai",
+            "security"
+          ],
+          "location": "China"
+        },
+        {
+          "title": "Machine Learning Engineer, Relevance and Personalization",
+          "url": "https://careers.airbnb.com/positions/7708224?gh_jid=7708224",
+          "postedDate": "2026-05-08",
+          "detectedKeywords": [
+            "machine-learning",
+            "python",
+            "java",
+            "scala",
+            "cpp",
+            "kafka",
+            "kubernetes",
+            "ai"
+          ],
+          "location": "United States"
+        },
+        {
+          "title": "Manager, Premium Support",
+          "url": "https://careers.airbnb.com/positions/7862109?gh_jid=7862109",
+          "postedDate": "2026-07-17",
+          "detectedKeywords": [
+            "security"
+          ],
+          "location": "Canada"
+        },
+        {
+          "title": "Manager, Premium Support (French/English)",
+          "url": "https://careers.airbnb.com/positions/8071424?gh_jid=8071424",
+          "postedDate": "2026-07-17",
+          "detectedKeywords": [
+            "security"
+          ],
+          "location": "Ireland"
+        },
+        {
+          "title": "Manager, Public Policy, Southeast & Gulf",
+          "url": "https://careers.airbnb.com/positions/8160860?gh_jid=8160860",
+          "postedDate": "2026-08-27",
+          "detectedKeywords": [
+            "security"
+          ],
+          "location": "New Orleans or Baton Rouge, Louisiana, United States, Atlanta, Georgia, United States"
+        },
+        {
+          "title": "Manager, Quality, AirCover",
+          "url": "https://careers.airbnb.com/positions/8114339?gh_jid=8114339",
+          "postedDate": "2026-08-31",
+          "detectedKeywords": [
+            "ai",
+            "security"
+          ],
+          "location": "Canada"
+        },
+        {
+          "title": "Market Associate",
+          "url": "https://careers.airbnb.com/positions/8178505?gh_jid=8178505",
+          "postedDate": "2026-09-08",
+          "detectedKeywords": [
+            "security"
+          ],
+          "location": "Mexico City, Mexico · Milan, Italy"
+        },
+        {
+          "title": "Market Manager",
+          "url": "https://careers.airbnb.com/positions/8131269?gh_jid=8131269",
+          "postedDate": "2026-07-03",
+          "detectedKeywords": [
+            "security"
+          ],
+          "location": "Sao Paulo, Brazil · Mexico · Paris, France +1 more"
+        },
+        {
+          "title": "Market Manager, Australia",
+          "url": "https://careers.airbnb.com/positions/8140993?gh_jid=8140993",
+          "postedDate": "2026-08-19",
+          "detectedKeywords": [
+            "security"
+          ],
+          "location": "Sydney, Australia"
+        },
+        {
+          "title": "Market Manager - Vacation Rental",
+          "url": "https://careers.airbnb.com/positions/8000413?gh_jid=8000413",
+          "postedDate": "2026-06-15",
+          "detectedKeywords": [
+            "go",
+            "security"
+          ],
+          "location": "Tokyo, Japan"
+        },
+        {
+          "title": "Mobile Software Engineer, Quality Platform",
+          "url": "https://careers.airbnb.com/positions/8189374?gh_jid=8189374",
+          "postedDate": "2026-09-09",
+          "detectedKeywords": [
+            "kotlin",
+            "swift",
+            "android",
+            "ai",
+            "security"
+          ],
+          "location": "Brazil"
+        },
+        {
+          "title": "NextStay Fellow, Tech Ops & Programs",
+          "url": "https://careers.airbnb.com/positions/8108673?gh_jid=8108673",
+          "postedDate": "2026-09-17",
+          "detectedKeywords": [
+            "security"
+          ],
+          "location": "United States"
+        },
+        {
+          "title": "Office Manager, Mexico City",
+          "url": "https://careers.airbnb.com/positions/8038161?gh_jid=8038161",
+          "postedDate": "2026-07-01",
+          "detectedKeywords": [
+            "security"
+          ],
+          "location": "Mexico City, Mexico"
+        },
+        {
+          "title": "Payments Partnerships Manager, Host Payouts",
+          "url": "https://careers.airbnb.com/positions/8075714?gh_jid=8075714",
+          "postedDate": "2026-07-21",
+          "detectedKeywords": [
+            "security"
+          ],
+          "location": "United States"
+        },
+        {
+          "title": "Policy Manager, Korea",
+          "url": "https://careers.airbnb.com/positions/7859539?gh_jid=7859539",
+          "postedDate": "2026-05-07",
+          "detectedKeywords": [
+            "security"
+          ],
+          "location": "Seoul, South Korea"
+        },
+        {
+          "title": "Policy Manager, Quality",
+          "url": "https://careers.airbnb.com/positions/8185136?gh_jid=8185136",
+          "postedDate": "2026-09-08",
+          "detectedKeywords": [
+            "security"
+          ],
+          "location": "United States"
+        },
+        {
+          "title": "Principal Machine Learning Engineer- LLM Fine-tuning and Optimization",
+          "url": "https://careers.airbnb.com/positions/7955579?gh_jid=7955579",
+          "postedDate": "2026-05-24",
+          "detectedKeywords": [
+            "machine-learning",
+            "ai",
+            "python",
+            "security"
+          ],
+          "location": "United States"
+        },
+        {
+          "title": "Principal, Strategic Finance & Analytics, Acquisition",
+          "url": "https://careers.airbnb.com/positions/8209984?gh_jid=8209984",
+          "postedDate": "2026-09-18",
+          "detectedKeywords": [
+            "security"
+          ],
+          "location": "United States"
+        },
+        {
+          "title": "Product Manager, Community Support",
+          "url": "https://careers.airbnb.com/positions/8189782?gh_jid=8189782",
+          "postedDate": "2026-09-14",
+          "detectedKeywords": [
+            "security"
+          ],
+          "location": "San Francisco, CA"
+        },
+        {
+          "title": "Product Manager, Identity",
+          "url": "https://careers.airbnb.com/positions/8055637?gh_jid=8055637",
+          "postedDate": "2026-07-20",
+          "detectedKeywords": [
+            "security"
+          ],
+          "location": "United States"
+        },
+        {
+          "title": "Product Manager, Pricing",
+          "url": "https://careers.airbnb.com/positions/8096359?gh_jid=8096359",
+          "postedDate": "2026-08-04",
+          "detectedKeywords": [
+            "security"
+          ],
+          "location": "United States"
+        },
+        {
+          "title": "Product Manager, Relevance and Personalization",
+          "url": "https://careers.airbnb.com/positions/7905365?gh_jid=7905365",
+          "postedDate": "2026-05-07",
+          "detectedKeywords": [
+            "machine-learning",
+            "ai",
+            "security"
+          ],
+          "location": "San Francisco, United States"
+        },
+        {
+          "title": "Product Manager, Search",
+          "url": "https://careers.airbnb.com/positions/8104444?gh_jid=8104444",
+          "postedDate": "2026-08-05",
+          "detectedKeywords": [
+            "machine-learning",
+            "ai",
+            "security"
+          ],
+          "location": "San Francisco, United States"
+        },
+        {
+          "title": "Product Manager, Services",
+          "url": "https://careers.airbnb.com/positions/8081925?gh_jid=8081925",
+          "postedDate": "2026-07-23",
+          "detectedKeywords": [
+            "ai",
+            "security"
+          ],
+          "location": "San Francisco, CA, Seattle WA, New York, NY"
+        },
+        {
+          "title": "Product Program Manager, Roadmap Planning & Program Management",
+          "url": "https://careers.airbnb.com/positions/8094412?gh_jid=8094412",
+          "postedDate": "2026-07-29",
+          "detectedKeywords": [
+            "security"
+          ],
+          "location": "San Francisco, United States"
+        },
+        {
+          "title": "Program Manager, Community Support",
+          "url": "https://careers.airbnb.com/positions/7944540?gh_jid=7944540",
+          "postedDate": "2026-05-20",
+          "detectedKeywords": [
+            "security"
+          ],
+          "location": "United States"
+        },
+        {
+          "title": "Regional Operations Manager, Premium Support",
+          "url": "https://careers.airbnb.com/positions/8110189?gh_jid=8110189",
+          "postedDate": "2026-08-07",
+          "detectedKeywords": [
+            "security"
+          ],
+          "location": "Canada"
+        },
+        {
+          "title": "Responsable des opérations régionales, Support Premium",
+          "url": "https://careers.airbnb.com/positions/8110190?gh_jid=8110190",
+          "postedDate": "2026-08-07",
+          "detectedKeywords": [
+            "security"
+          ],
+          "location": "Canada"
+        },
+        {
+          "title": "Sales Operations Lead",
+          "url": "https://careers.airbnb.com/positions/8155005?gh_jid=8155005",
+          "postedDate": "2026-08-24",
+          "detectedKeywords": [
+            "ai",
+            "security",
+            "data-engineering"
+          ],
+          "location": "United States"
+        },
+        {
+          "title": "Senior Account Executive, Hotels (Milan-based)",
+          "url": "https://careers.airbnb.com/positions/8046210?gh_jid=8046210",
+          "postedDate": "2026-07-07",
+          "detectedKeywords": [
+            "security"
+          ],
+          "location": "Milan, Italy"
+        },
+        {
+          "title": "Senior Business Operations Lead",
+          "url": "https://careers.airbnb.com/positions/8207342?gh_jid=8207342",
+          "postedDate": "2026-09-16",
+          "detectedKeywords": [
+            "go",
+            "ai",
+            "security"
+          ],
+          "location": "London, United Kingdom"
+        },
+        {
+          "title": "Senior Business Solutions Engineer, BizTech(LegalTech)",
+          "url": "https://careers.airbnb.com/positions/8053132?gh_jid=8053132",
+          "postedDate": "2026-07-10",
+          "detectedKeywords": [
+            "ai",
+            "security"
+          ],
+          "location": "Bangalore, India"
+        }
+      ],
+      "openingsTotal": 168,
+      "history": [
+        {
+          "weekOf": "2026-09-14",
+          "openCount": 60,
+          "keywordCounts": {
+            "security": 59,
+            "ai": 24,
+            "go": 4,
+            "python": 9,
+            "machine-learning": 11,
+            "data-engineering": 5,
+            "vue": 1,
+            "java": 1,
+            "scala": 1,
+            "cpp": 1,
+            "kafka": 1,
+            "kubernetes": 1,
+            "kotlin": 1,
+            "swift": 1,
+            "android": 1
+          }
+        }
+      ],
+      "lastVerified": "2026-09-20T01:19:12.231Z",
+      "dataNotes": "Discovered via We Work Remotely (\"Senior Data Scientist, Guest &amp; Host\" listing)."
+    },
+    {
+      "id": "storetasker",
+      "name": "Storetasker",
+      "logoUrl": null,
+      "description": "Headquarters: Brooklyn, NY URL: https://resources.storetasker.com/become-an-expert?apply=true&source=weworkremotely_best_2021 Shopify developers love to freelance with Storetasker. Endless, quality cl…",
+      "website": "https://storetasker.com",
+      "careersUrl": null,
+      "sizeRange": null,
+      "sizeMin": null,
+      "sizeMax": null,
+      "hqLocation": "Anywhere in the World",
+      "country": null,
+      "remotePolicy": "remote",
+      "remoteRegions": [],
+      "keywords": [],
+      "currentOpenings": [],
+      "openingsTotal": null,
+      "history": [],
+      "lastVerified": null,
+      "dataNotes": "Discovered via We Work Remotely (\"Senior Shopify Developer (Remote + Flexible)\" listing)."
+    },
+    {
+      "id": "cribl",
+      "name": "Cribl",
+      "logoUrl": null,
+      "description": "Headquarters: Remote - United States Join the company that’s building the telemetry infrastructure for the AI era. At Cribl, we partner with IT and Security teams at many of the world’s biggest enterp…",
+      "website": "https://cribl.io",
+      "careersUrl": null,
+      "sizeRange": null,
+      "sizeMin": null,
+      "sizeMax": null,
+      "hqLocation": "Anywhere in the World",
+      "country": null,
+      "remotePolicy": "remote",
+      "remoteRegions": [],
+      "keywords": [],
+      "currentOpenings": [
+        {
+          "title": "Sales Engineer, San Francisco (Enterprise)",
+          "url": "https://jobs.ashbyhq.com/cribl/e55a7d11-d7d6-4cc2-a3cc-cad5ee7992e5",
+          "postedDate": "2026-03-11",
+          "detectedKeywords": [
+            "security"
+          ],
+          "location": "US - California"
+        },
+        {
+          "title": "Revenue Enablement Intern",
+          "url": "https://jobs.ashbyhq.com/cribl/194b6536-71fe-4135-aaa5-2a353eb56849",
+          "postedDate": "2026-06-16",
+          "detectedKeywords": [
+            "ai"
+          ],
+          "location": "Remote - United States"
+        },
+        {
+          "title": "Regional Sales Manager, Indianapolis (Enterprise)",
+          "url": "https://jobs.ashbyhq.com/cribl/837d64a4-5cd3-441f-90a4-009706c5ef61",
+          "postedDate": "2026-02-05",
+          "detectedKeywords": [
+            "security"
+          ],
+          "location": "US - Indiana"
+        },
+        {
+          "title": "Senior Revenue Enablement Manager",
+          "url": "https://jobs.ashbyhq.com/cribl/e47f8a6a-b5f1-41e4-91e3-9b1e3b4cb6b8",
+          "postedDate": "2026-07-16",
+          "detectedKeywords": [
+            "ai"
+          ],
+          "location": "United Kingdom"
+        },
+        {
+          "title": "Regional Sales Director, Midwest (Strategic)",
+          "url": "https://jobs.ashbyhq.com/cribl/8a622a66-0522-4375-b5ce-50ad4be2485c",
+          "postedDate": "2026-05-18",
+          "detectedKeywords": [
+            "machine-learning",
+            "security"
+          ],
+          "location": "US - Illinois"
+        },
+        {
+          "title": "Staff Software Engineer, Cribl AI",
+          "url": "https://jobs.ashbyhq.com/cribl/b15dc6ba-34ad-4001-9ee9-d958cceccdd2",
+          "postedDate": "2026-06-07",
+          "detectedKeywords": [
+            "ai",
+            "typescript",
+            "javascript",
+            "react",
+            "nodejs",
+            "machine-learning"
+          ],
+          "location": "US - California"
+        },
+        {
+          "title": "Regional Sales Director, Japan",
+          "url": "https://jobs.ashbyhq.com/cribl/aad95931-88a0-4a52-8635-9bf348152889",
+          "postedDate": "2026-07-07",
+          "detectedKeywords": [
+            "machine-learning",
+            "security"
+          ],
+          "location": "Japan"
+        },
+        {
+          "title": "Regional Sales Director, Australia (Enterprise)",
+          "url": "https://jobs.ashbyhq.com/cribl/53d0122d-2e8a-405b-8bd2-b58e8c713893",
+          "postedDate": "2026-06-11",
+          "detectedKeywords": [
+            "machine-learning",
+            "security"
+          ],
+          "location": "Australia - New South Wales"
+        },
+        {
+          "title": "Regional Sales Manager, Minneapolis (Enterprise)",
+          "url": "https://jobs.ashbyhq.com/cribl/b5522c3b-f211-4cc6-af1e-b4eb4fc82456",
+          "postedDate": "2026-04-16",
+          "detectedKeywords": [
+            "security"
+          ],
+          "location": "US - Minnesota"
+        },
+        {
+          "title": "Sr Software Engineer, Edge",
+          "url": "https://jobs.ashbyhq.com/cribl/6ee82bef-52e9-49db-a724-a28494b7e7b8",
+          "postedDate": "2026-06-10",
+          "detectedKeywords": [
+            "typescript",
+            "nodejs",
+            "kubernetes",
+            "docker",
+            "aws",
+            "gcp",
+            "azure",
+            "ai"
+          ],
+          "location": "US - California"
+        },
+        {
+          "title": "Regional Sales Manager, Mid Atlantic/DMV (Enterprise)",
+          "url": "https://jobs.ashbyhq.com/cribl/81b43e1a-8a3a-4f48-bc77-9ceaa306e9e5",
+          "postedDate": "2026-07-23",
+          "detectedKeywords": [
+            "security"
+          ],
+          "location": "US - Virginia"
+        },
+        {
+          "title": "Regional Sales Manager, Philadelphia (Enterprise)",
+          "url": "https://jobs.ashbyhq.com/cribl/70ceec20-d760-4bd4-b737-ed9e15e67cdf",
+          "postedDate": "2026-06-17",
+          "detectedKeywords": [
+            "security"
+          ],
+          "location": "US - Pennsylvania"
+        },
+        {
+          "title": "Regional Sales Manager, Minneapolis (Strategic)",
+          "url": "https://jobs.ashbyhq.com/cribl/c1fc508a-6463-4d1f-95f0-9922f9a5aeed",
+          "postedDate": "2026-06-05",
+          "detectedKeywords": [
+            "security"
+          ],
+          "location": "US - Minnesota"
+        },
+        {
+          "title": "Sr Revenue Operations Analyst",
+          "url": "https://jobs.ashbyhq.com/cribl/f3fb5632-c354-4638-b566-a0a45b38cc4d",
+          "postedDate": "2026-06-11",
+          "detectedKeywords": [],
+          "location": "US - California"
+        },
+        {
+          "title": "Technical Revenue Manager",
+          "url": "https://jobs.ashbyhq.com/cribl/6b444e8c-05ba-4550-b161-e95454c2496a",
+          "postedDate": "2026-08-03",
+          "detectedKeywords": [
+            "ai"
+          ],
+          "location": "US - California"
+        },
+        {
+          "title": "Regional Sales Manager, Bay Area (Enterprise)",
+          "url": "https://jobs.ashbyhq.com/cribl/1e2b138c-90d5-42df-b1a7-b989c5a18905",
+          "postedDate": "2026-07-27",
+          "detectedKeywords": [
+            "security"
+          ],
+          "location": "US - California"
+        },
+        {
+          "title": "Staff Data Engineer",
+          "url": "https://jobs.ashbyhq.com/cribl/f1899d91-bf9a-4ae4-8af3-e03a692fee6f",
+          "postedDate": "2026-08-06",
+          "detectedKeywords": [
+            "python",
+            "terraform",
+            "aws",
+            "ai",
+            "security",
+            "data-engineering"
+          ],
+          "location": "US - California"
+        },
+        {
+          "title": "Senior Sales Engineer, Poland",
+          "url": "https://jobs.ashbyhq.com/cribl/32e5ff77-554d-43e7-bcf3-ddc519cee0f9",
+          "postedDate": "2026-08-06",
+          "detectedKeywords": [
+            "security"
+          ],
+          "location": "Poland"
+        },
+        {
+          "title": "Regional Sales Manager, Ohio (Strategic)",
+          "url": "https://jobs.ashbyhq.com/cribl/5316b92f-ccf7-4b05-91c1-c6a5d02dac00",
+          "postedDate": "2026-08-06",
+          "detectedKeywords": [
+            "security"
+          ],
+          "location": "US - Ohio"
+        },
+        {
+          "title": "Regional Sales Manager, Bay Area (Strategic)",
+          "url": "https://jobs.ashbyhq.com/cribl/f2b6cbdb-7575-417d-aba6-aacf21091351",
+          "postedDate": "2026-08-31",
+          "detectedKeywords": [
+            "security"
+          ],
+          "location": "US - California"
+        },
+        {
+          "title": "Senior Partner Solutions Engineer - Federal Systems Integrators (FSI)",
+          "url": "https://jobs.ashbyhq.com/cribl/828f460d-1088-4f4c-9b56-d1702c0a33cd",
+          "postedDate": "2026-08-14",
+          "detectedKeywords": [
+            "security",
+            "data-engineering"
+          ],
+          "location": "US - Virginia"
+        },
+        {
+          "title": "Partner Solutions Engineer, Southern Europe",
+          "url": "https://jobs.ashbyhq.com/cribl/eb9f526f-84c5-479b-94bc-51a1f5be04ff",
+          "postedDate": "2026-08-11",
+          "detectedKeywords": [
+            "javascript",
+            "security"
+          ],
+          "location": "France"
+        },
+        {
+          "title": "Software Engineer, Edge",
+          "url": "https://jobs.ashbyhq.com/cribl/558cec28-ce05-4f64-92a4-fce994030ba0",
+          "postedDate": "2026-08-19",
+          "detectedKeywords": [
+            "typescript",
+            "nodejs",
+            "kubernetes",
+            "docker",
+            "aws",
+            "gcp",
+            "azure",
+            "ai"
+          ],
+          "location": "US - California"
+        },
+        {
+          "title": "Sr Dir Sales, East (Enterprise)",
+          "url": "https://jobs.ashbyhq.com/cribl/4fb4f6e3-6d11-4669-8689-2fe2712ec827",
+          "postedDate": "2026-07-14",
+          "detectedKeywords": [
+            "machine-learning",
+            "security"
+          ],
+          "location": "US - New York"
+        },
+        {
+          "title": "Regional Sales Manager, NYC (Enterprise)",
+          "url": "https://jobs.ashbyhq.com/cribl/6cb0a969-781b-4fe6-ab68-8c6155449283",
+          "postedDate": "2026-07-20",
+          "detectedKeywords": [
+            "security"
+          ],
+          "location": "US - New York"
+        },
+        {
+          "title": "Customer Support Manager",
+          "url": "https://jobs.ashbyhq.com/cribl/99389a3b-5951-4f0a-b72f-576ac970ffe0",
+          "postedDate": "2026-08-03",
+          "detectedKeywords": [
+            "kafka",
+            "aws",
+            "gcp",
+            "azure"
+          ],
+          "location": "US - Georgia"
+        },
+        {
+          "title": "Sales Development Representative, US",
+          "url": "https://jobs.ashbyhq.com/cribl/ce9967c8-7c10-4ee1-8716-167ae2583da0",
+          "postedDate": "2026-07-29",
+          "detectedKeywords": [],
+          "location": "Remote - United States"
+        },
+        {
+          "title": "Senior Software Engineer, Stream Control Plane",
+          "url": "https://jobs.ashbyhq.com/cribl/efe4d8bb-3d01-4794-9340-d43a3c5e0ec5",
+          "postedDate": "2026-08-06",
+          "detectedKeywords": [
+            "typescript",
+            "javascript",
+            "nodejs",
+            "aws",
+            "gcp",
+            "azure",
+            "ai",
+            "security"
+          ],
+          "location": "US - California"
+        },
+        {
+          "title": "Sr Software Engineer, Cribl AI",
+          "url": "https://jobs.ashbyhq.com/cribl/4af096f6-8558-42ce-81d7-9af13b02aa68",
+          "postedDate": "2026-08-12",
+          "detectedKeywords": [
+            "ai",
+            "typescript",
+            "javascript",
+            "react",
+            "nodejs",
+            "go",
+            "java",
+            "machine-learning"
+          ],
+          "location": "US - California"
+        },
+        {
+          "title": "Senior Commercial Sales Engineer, US West",
+          "url": "https://jobs.ashbyhq.com/cribl/6784917c-4d41-4b37-a2e9-b2e046563f65",
+          "postedDate": "2026-08-17",
+          "detectedKeywords": [
+            "security"
+          ],
+          "location": "US - California"
+        },
+        {
+          "title": "Regional Sales Manager, Sacramento (SLED)",
+          "url": "https://jobs.ashbyhq.com/cribl/04af1c9c-ec84-4855-ab9c-c9e2089b5b14",
+          "postedDate": "2026-08-19",
+          "detectedKeywords": [],
+          "location": "US - California"
+        },
+        {
+          "title": "Regional Sales Manager, Dallas/Fort Worth (Enterprise)",
+          "url": "https://jobs.ashbyhq.com/cribl/7051f27e-41d5-4a4e-9948-68fbed3e058a",
+          "postedDate": "2026-08-19",
+          "detectedKeywords": [
+            "security"
+          ],
+          "location": "US - Texas"
+        },
+        {
+          "title": "Revenue Strategy & Planning, Sr. Manager",
+          "url": "https://jobs.ashbyhq.com/cribl/eacd7589-fa2c-43d2-9e0b-c81a6e6d8db3",
+          "postedDate": "2026-08-19",
+          "detectedKeywords": [
+            "ai"
+          ],
+          "location": "US - California"
+        },
+        {
+          "title": "Sales Engineer, Italy",
+          "url": "https://jobs.ashbyhq.com/cribl/96cb8950-6092-4739-9b61-1a97939eecd2",
+          "postedDate": "2026-07-13",
+          "detectedKeywords": [
+            "security"
+          ],
+          "location": "Italy"
+        },
+        {
+          "title": "Senior Site Reliability Engineer",
+          "url": "https://jobs.ashbyhq.com/cribl/569e357f-9142-4d0e-949e-3d3d118025c3",
+          "postedDate": "2026-07-08",
+          "detectedKeywords": [
+            "typescript",
+            "javascript",
+            "nodejs",
+            "terraform",
+            "aws",
+            "azure",
+            "security"
+          ],
+          "location": "US - California"
+        },
+        {
+          "title": "Regional Sales Manager, Japan (Enterprise)",
+          "url": "https://jobs.ashbyhq.com/cribl/62dd505a-49d0-486f-ae7c-f41e2a767ca1",
+          "postedDate": "2026-07-08",
+          "detectedKeywords": [
+            "security"
+          ],
+          "location": "Japan"
+        },
+        {
+          "title": "Senior Technical Support Engineer",
+          "url": "https://jobs.ashbyhq.com/cribl/adffd2a5-0bc6-4097-82a9-c68df99a6ed0",
+          "postedDate": "2026-07-14",
+          "detectedKeywords": [
+            "javascript",
+            "aws",
+            "azure",
+            "security",
+            "elasticsearch"
+          ],
+          "location": "US - California"
+        },
+        {
+          "title": "Regional Sales Director, Bay (Enterprise)",
+          "url": "https://jobs.ashbyhq.com/cribl/73552fdd-01de-4bb9-98d2-456c419f980f",
+          "postedDate": "2026-07-16",
+          "detectedKeywords": [
+            "machine-learning",
+            "security"
+          ],
+          "location": "US - California"
+        },
+        {
+          "title": "Regional Sales Manager, North Carolina (Enterprise)",
+          "url": "https://jobs.ashbyhq.com/cribl/f0855085-771f-4736-a574-b78880247353",
+          "postedDate": "2026-08-19",
+          "detectedKeywords": [
+            "security"
+          ],
+          "location": "US - North Carolina"
+        },
+        {
+          "title": "Senior Solutions Engineer, UK",
+          "url": "https://jobs.ashbyhq.com/cribl/dfdc832d-9f2d-4a5d-8d21-48a4f1dab69b",
+          "postedDate": "2026-08-06",
+          "detectedKeywords": [
+            "security"
+          ],
+          "location": "United Kingdom"
+        },
+        {
+          "title": "Senior Commercial Counsel",
+          "url": "https://jobs.ashbyhq.com/cribl/a5958cff-c16a-4b3b-ab05-800483ba781e",
+          "postedDate": "2026-08-26",
+          "detectedKeywords": [
+            "security"
+          ],
+          "location": "US - Massachusetts"
+        },
+        {
+          "title": "Sr. Engineering Manager, SDET",
+          "url": "https://jobs.ashbyhq.com/cribl/87b85ac7-f434-4570-ae29-4b7c947bbd21",
+          "postedDate": "2026-09-09",
+          "detectedKeywords": [
+            "ai"
+          ],
+          "location": "US - California"
+        },
+        {
+          "title": "Staff Product Manager - Metrics/Tracing",
+          "url": "https://jobs.ashbyhq.com/cribl/173341e7-1a92-4329-9dec-c04d88b32e1c",
+          "postedDate": "2026-09-03",
+          "detectedKeywords": [
+            "security"
+          ],
+          "location": "US - California"
+        },
+        {
+          "title": "Solutions Engineer, Japan",
+          "url": "https://jobs.ashbyhq.com/cribl/2843ec5e-922a-4528-b69f-05ecafa69c1c",
+          "postedDate": "2026-09-02",
+          "detectedKeywords": [
+            "security"
+          ],
+          "location": "Japan"
+        },
+        {
+          "title": "Sr. UX Designer, Security",
+          "url": "https://jobs.ashbyhq.com/cribl/ba2bcdcf-8554-4f0f-9f1f-391c17f875d7",
+          "postedDate": "2026-09-09",
+          "detectedKeywords": [
+            "security",
+            "ai"
+          ],
+          "location": "US - California"
+        },
+        {
+          "title": "Head of Corporate Events",
+          "url": "https://jobs.ashbyhq.com/cribl/172a7bd0-46d3-4196-8525-09ee76f3136f",
+          "postedDate": "2026-09-14",
+          "detectedKeywords": [],
+          "location": "US - California"
+        },
+        {
+          "title": "Solutions Engineer, Sydney",
+          "url": "https://jobs.ashbyhq.com/cribl/b5505ed3-507f-4969-848c-a3cd6c81747d",
+          "postedDate": "2026-09-09",
+          "detectedKeywords": [
+            "security"
+          ],
+          "location": "Australia - Victoria"
+        },
+        {
+          "title": "Senior Legal AI Platform Engineer",
+          "url": "https://jobs.ashbyhq.com/cribl/aa0c7fc2-10f7-465f-a62c-d9d251a70bba",
+          "postedDate": "2026-09-09",
+          "detectedKeywords": [
+            "ai",
+            "python",
+            "aws",
+            "security"
+          ],
+          "location": "US - California"
+        },
+        {
+          "title": "Strategy & Operations Sr Manager",
+          "url": "https://jobs.ashbyhq.com/cribl/0e237c92-4337-4631-ad72-48edc8506c0a",
+          "postedDate": "2026-09-16",
+          "detectedKeywords": [
+            "ai",
+            "security"
+          ],
+          "location": "US - California"
+        },
+        {
+          "title": "Sr Software Engineer, Stream Integrations",
+          "url": "https://jobs.ashbyhq.com/cribl/23d44117-6f6d-4a8f-acaf-5f40b191f72d",
+          "postedDate": "2026-09-11",
+          "detectedKeywords": [
+            "typescript",
+            "nodejs",
+            "cpp",
+            "kafka",
+            "aws",
+            "gcp",
+            "azure",
+            "security"
+          ],
+          "location": "US - California"
+        },
+        {
+          "title": "Sales Engineer, Storage & Analysis (EMEA)",
+          "url": "https://jobs.ashbyhq.com/cribl/11e50d91-9c32-4629-b42f-e5080790cd9a",
+          "postedDate": "2026-09-15",
+          "detectedKeywords": [
+            "machine-learning",
+            "ai",
+            "security"
+          ],
+          "location": "United Kingdom"
+        },
+        {
+          "title": "Regional Sales Manager, Tallahassee (PubSec)",
+          "url": "https://jobs.ashbyhq.com/cribl/7ee122dd-9631-4488-9142-befada9d793a",
+          "postedDate": "2026-09-14",
+          "detectedKeywords": [],
+          "location": "US - Florida"
+        },
+        {
+          "title": "Solutions Engineer, Chicago (Enterprise)",
+          "url": "https://jobs.ashbyhq.com/cribl/d32f98ee-d2fd-467a-a2d3-3518136e1c54",
+          "postedDate": "2026-09-15",
+          "detectedKeywords": [
+            "security"
+          ],
+          "location": "US - Illinois"
+        },
+        {
+          "title": "Solutions Engineer, New York (Enterprise)",
+          "url": "https://jobs.ashbyhq.com/cribl/ce768d2e-5119-4e29-a9d6-a446285fdd5a",
+          "postedDate": "2026-09-17",
+          "detectedKeywords": [
+            "security"
+          ],
+          "location": "US - New York"
+        },
+        {
+          "title": "Sales Engineer, Eastern Canada (Strategic)",
+          "url": "https://jobs.ashbyhq.com/cribl/a179053e-dc96-4789-95f7-8a5e28e2c949",
+          "postedDate": "2026-09-17",
+          "detectedKeywords": [
+            "ai",
+            "security",
+            "data-engineering"
+          ],
+          "location": "Canada - Ontario"
+        }
+      ],
+      "openingsTotal": 55,
+      "history": [
+        {
+          "weekOf": "2026-09-14",
+          "openCount": 55,
+          "keywordCounts": {
+            "security": 40,
+            "ai": 16,
+            "machine-learning": 8,
+            "typescript": 7,
+            "javascript": 6,
+            "react": 2,
+            "nodejs": 7,
+            "kubernetes": 2,
+            "docker": 2,
+            "aws": 9,
+            "gcp": 5,
+            "azure": 7,
+            "python": 2,
+            "terraform": 2,
+            "data-engineering": 3,
+            "kafka": 2,
+            "go": 1,
+            "java": 1,
+            "elasticsearch": 1,
+            "cpp": 1
+          }
+        }
+      ],
+      "lastVerified": "2026-09-20T01:19:22.187Z",
+      "dataNotes": "Discovered via We Work Remotely (\"Customer Support Manager\" listing)."
+    },
+    {
+      "id": "reddit",
+      "name": "Reddit",
+      "logoUrl": null,
+      "description": "Headquarters: Remote - United States Reddit is a community of communities. It’s built on shared interests, passion, and trust, and is home to the most open and authentic conversations on the internet.…",
+      "website": "https://redditinc.com",
+      "careersUrl": null,
+      "sizeRange": null,
+      "sizeMin": null,
+      "sizeMax": null,
+      "hqLocation": "Anywhere in the World",
+      "country": null,
+      "remotePolicy": "remote",
+      "remoteRegions": [],
+      "keywords": [],
+      "currentOpenings": [
+        {
+          "title": "3rd Party Partnerships Manager - Signals",
+          "url": "https://job-boards.greenhouse.io/reddit/jobs/8089959",
+          "postedDate": "2026-07-29",
+          "detectedKeywords": [
+            "ai"
+          ],
+          "location": "New York City, NY"
+        },
+        {
+          "title": "Ads Conversion Modeling, Machine Learning Engineering Manager",
+          "url": "https://job-boards.greenhouse.io/reddit/jobs/7792848",
+          "postedDate": "2026-04-14",
+          "detectedKeywords": [
+            "machine-learning",
+            "ai"
+          ],
+          "location": "Remote - United States"
+        },
+        {
+          "title": "Backend Engineer, IAM",
+          "url": "https://job-boards.greenhouse.io/reddit/jobs/8189317",
+          "postedDate": "2026-09-10",
+          "detectedKeywords": [
+            "go",
+            "kubernetes",
+            "aws",
+            "gcp",
+            "ai",
+            "security"
+          ],
+          "location": "Remote - United States"
+        },
+        {
+          "title": "Backend Software Engineer, PDP Experience",
+          "url": "https://job-boards.greenhouse.io/reddit/jobs/8148431",
+          "postedDate": "2026-08-26",
+          "detectedKeywords": [
+            "go",
+            "rust",
+            "python",
+            "ruby",
+            "graphql",
+            "grpc",
+            "ai"
+          ],
+          "location": "Remote - United States"
+        },
+        {
+          "title": "Client Account Manager, Large Customer Sales (CPG)",
+          "url": "https://job-boards.greenhouse.io/reddit/jobs/8113265",
+          "postedDate": "2026-08-11",
+          "detectedKeywords": [
+            "ai"
+          ],
+          "location": "Chicago, IL; New York City, NY"
+        },
+        {
+          "title": "Client Account Manager, Large Customer Sales (Tech)",
+          "url": "https://job-boards.greenhouse.io/reddit/jobs/8049518",
+          "postedDate": "2026-09-09",
+          "detectedKeywords": [
+            "ai"
+          ],
+          "location": "Los Angeles, CA; San Francisco, CA"
+        },
+        {
+          "title": "Client Partner, Mid-Market Sales (B2B Services - Acquisitions)",
+          "url": "https://job-boards.greenhouse.io/reddit/jobs/8114666",
+          "postedDate": "2026-08-10",
+          "detectedKeywords": [
+            "ai"
+          ],
+          "location": "New York City, NY"
+        },
+        {
+          "title": "Client Partner, Mid-Market Sales (Goods)",
+          "url": "https://job-boards.greenhouse.io/reddit/jobs/8202510",
+          "postedDate": "2026-09-14",
+          "detectedKeywords": [
+            "ai"
+          ],
+          "location": "Toronto, Canada"
+        },
+        {
+          "title": "Community Manager, French Speaking (Contract)",
+          "url": "https://job-boards.greenhouse.io/reddit/jobs/8143677",
+          "postedDate": "2026-08-20",
+          "detectedKeywords": [
+            "ai"
+          ],
+          "location": "Remote - United Kingdom"
+        },
+        {
+          "title": "Country Lead, Business Marketing, UK",
+          "url": "https://job-boards.greenhouse.io/reddit/jobs/8121099",
+          "postedDate": "2026-08-11",
+          "detectedKeywords": [
+            "ai"
+          ],
+          "location": "London, United Kingdom"
+        },
+        {
+          "title": "Director, Intellectual Property",
+          "url": "https://job-boards.greenhouse.io/reddit/jobs/8142128",
+          "postedDate": "2026-08-21",
+          "detectedKeywords": [
+            "machine-learning",
+            "ai"
+          ],
+          "location": "Remote - United States"
+        },
+        {
+          "title": "Director, Privacy Legal",
+          "url": "https://job-boards.greenhouse.io/reddit/jobs/8164961",
+          "postedDate": "2026-09-02",
+          "detectedKeywords": [
+            "ai",
+            "security"
+          ],
+          "location": "Remote - United States"
+        },
+        {
+          "title": "Director, Revenue Strategy & Operations (Large Customer Sales)",
+          "url": "https://job-boards.greenhouse.io/reddit/jobs/8195620",
+          "postedDate": "2026-09-11",
+          "detectedKeywords": [
+            "ai"
+          ],
+          "location": "San Francisco, CA · Toronto, Canada · Los Angeles, CA +2 more"
+        },
+        {
+          "title": "EMEA Insights Lead, Consumer and Commercial Strategy",
+          "url": "https://job-boards.greenhouse.io/reddit/jobs/7957771",
+          "postedDate": "2026-05-26",
+          "detectedKeywords": [
+            "ai"
+          ],
+          "location": "Remote - Germany"
+        },
+        {
+          "title": "Engineering Manager, Notifications Platform",
+          "url": "https://job-boards.greenhouse.io/reddit/jobs/8095476",
+          "postedDate": "2026-08-27",
+          "detectedKeywords": [
+            "machine-learning",
+            "ai",
+            "security"
+          ],
+          "location": "Remote - United States"
+        },
+        {
+          "title": "Enterprise Architect, Finance Technology",
+          "url": "https://job-boards.greenhouse.io/reddit/jobs/8039702",
+          "postedDate": "2026-07-02",
+          "detectedKeywords": [
+            "ai",
+            "security",
+            "data-engineering"
+          ],
+          "location": "Remote - United States"
+        },
+        {
+          "title": "Frontend Engineer, Ads",
+          "url": "https://job-boards.greenhouse.io/reddit/jobs/8194576",
+          "postedDate": "2026-09-11",
+          "detectedKeywords": [
+            "typescript",
+            "javascript",
+            "react",
+            "go",
+            "grpc",
+            "kubernetes",
+            "docker",
+            "ai"
+          ],
+          "location": "Remote - United States"
+        },
+        {
+          "title": "Front End Software Engineer, Consumer Engineering",
+          "url": "https://job-boards.greenhouse.io/reddit/jobs/8147559",
+          "postedDate": "2026-09-17",
+          "detectedKeywords": [
+            "typescript",
+            "javascript",
+            "react",
+            "vue",
+            "swift",
+            "android",
+            "graphql",
+            "grpc"
+          ],
+          "location": "Remote - United States"
+        },
+        {
+          "title": "Front End Software Engineer, Media Player",
+          "url": "https://job-boards.greenhouse.io/reddit/jobs/8198102",
+          "postedDate": "2026-09-11",
+          "detectedKeywords": [
+            "typescript",
+            "javascript",
+            "react",
+            "nextjs",
+            "go",
+            "rust",
+            "python",
+            "ruby"
+          ],
+          "location": "Remote - United States"
+        },
+        {
+          "title": "Global Indirect Tax Manager",
+          "url": "https://job-boards.greenhouse.io/reddit/jobs/8189899",
+          "postedDate": "2026-09-09",
+          "detectedKeywords": [
+            "ai"
+          ],
+          "location": "Remote - Ireland · Remote - United Kingdom · Remote - United States"
+        },
+        {
+          "title": "Global Payroll Lead",
+          "url": "https://job-boards.greenhouse.io/reddit/jobs/8130311",
+          "postedDate": "2026-08-17",
+          "detectedKeywords": [
+            "ai"
+          ],
+          "location": "Remote - United States"
+        },
+        {
+          "title": "Group Product Manager, Finance Technology",
+          "url": "https://job-boards.greenhouse.io/reddit/jobs/8075185",
+          "postedDate": "2026-08-06",
+          "detectedKeywords": [
+            "ai"
+          ],
+          "location": "Remote - United States"
+        },
+        {
+          "title": "International Payroll Analyst",
+          "url": "https://job-boards.greenhouse.io/reddit/jobs/8192369",
+          "postedDate": "2026-09-14",
+          "detectedKeywords": [
+            "ai"
+          ],
+          "location": "Remote - United States"
+        },
+        {
+          "title": "Lead Client Partner, Global Strategic Accounts (Tech)",
+          "url": "https://job-boards.greenhouse.io/reddit/jobs/8196302",
+          "postedDate": "2026-09-15",
+          "detectedKeywords": [
+            "ai"
+          ],
+          "location": "New York City, NY"
+        },
+        {
+          "title": "Lead Physical Security Engineer",
+          "url": "https://job-boards.greenhouse.io/reddit/jobs/8108528",
+          "postedDate": "2026-08-05",
+          "detectedKeywords": [
+            "security",
+            "ai"
+          ],
+          "location": "Amsterdam, Netherlands"
+        },
+        {
+          "title": "Machine Learning Engineering Manager - Ads Engagement Modeling",
+          "url": "https://job-boards.greenhouse.io/reddit/jobs/7993514",
+          "postedDate": "2026-06-14",
+          "detectedKeywords": [
+            "machine-learning",
+            "ai"
+          ],
+          "location": "Remote - United States"
+        },
+        {
+          "title": "Machine Learning Manager, Feed Ecosystems",
+          "url": "https://job-boards.greenhouse.io/reddit/jobs/8095009",
+          "postedDate": "2026-07-29",
+          "detectedKeywords": [
+            "machine-learning",
+            "ai"
+          ],
+          "location": "Remote - United States"
+        },
+        {
+          "title": "Machine Learning Manager, Feed Relevance (Retrieval)",
+          "url": "https://job-boards.greenhouse.io/reddit/jobs/8094985",
+          "postedDate": "2026-07-29",
+          "detectedKeywords": [
+            "machine-learning",
+            "ai"
+          ],
+          "location": "Remote - United States"
+        },
+        {
+          "title": "Manager, Large Customer Sales - UK",
+          "url": "https://job-boards.greenhouse.io/reddit/jobs/8023926",
+          "postedDate": "2026-06-30",
+          "detectedKeywords": [
+            "ai"
+          ],
+          "location": "London, United Kingdom"
+        },
+        {
+          "title": "Manager, Technical Solutions",
+          "url": "https://job-boards.greenhouse.io/reddit/jobs/8016897",
+          "postedDate": "2026-07-15",
+          "detectedKeywords": [
+            "ai"
+          ],
+          "location": "San Francisco, CA · Los Angeles, CA"
+        },
+        {
+          "title": "Principal Data Scientist, Ads",
+          "url": "https://job-boards.greenhouse.io/reddit/jobs/7330347",
+          "postedDate": "2025-10-14",
+          "detectedKeywords": [
+            "python",
+            "machine-learning",
+            "ai"
+          ],
+          "location": "Remote - United States"
+        },
+        {
+          "title": "Principal Technical Program Manager, Performance",
+          "url": "https://job-boards.greenhouse.io/reddit/jobs/7947049",
+          "postedDate": "2026-05-20",
+          "detectedKeywords": [
+            "ai"
+          ],
+          "location": "Remote - United States"
+        },
+        {
+          "title": "Principal UX Engineer, Ads",
+          "url": "https://job-boards.greenhouse.io/reddit/jobs/8122887",
+          "postedDate": "2026-08-11",
+          "detectedKeywords": [
+            "typescript",
+            "react",
+            "ai"
+          ],
+          "location": "Remote - United States"
+        },
+        {
+          "title": "Product Manager, Developer Ecosystem",
+          "url": "https://job-boards.greenhouse.io/reddit/jobs/8088720",
+          "postedDate": "2026-09-01",
+          "detectedKeywords": [
+            "ai"
+          ],
+          "location": "Remote - United States"
+        },
+        {
+          "title": "Senior Android Engineer, Design System",
+          "url": "https://job-boards.greenhouse.io/reddit/jobs/8055374",
+          "postedDate": "2026-07-10",
+          "detectedKeywords": [
+            "android",
+            "kotlin",
+            "ai"
+          ],
+          "location": "Remote - United States"
+        },
+        {
+          "title": "Senior Backend Engineer, Compliance Engineering",
+          "url": "https://job-boards.greenhouse.io/reddit/jobs/8128860",
+          "postedDate": "2026-08-14",
+          "detectedKeywords": [
+            "go",
+            "python",
+            "postgres",
+            "redis",
+            "graphql",
+            "kubernetes",
+            "docker",
+            "aws"
+          ],
+          "location": "Remote - United States"
+        },
+        {
+          "title": "Senior Backend Engineer, IAM",
+          "url": "https://job-boards.greenhouse.io/reddit/jobs/8044767",
+          "postedDate": "2026-07-02",
+          "detectedKeywords": [
+            "go",
+            "kubernetes",
+            "aws",
+            "gcp",
+            "ai",
+            "security"
+          ],
+          "location": "Remote - United States"
+        },
+        {
+          "title": "Senior Backend Engineer, Safety",
+          "url": "https://job-boards.greenhouse.io/reddit/jobs/8093006",
+          "postedDate": "2026-08-18",
+          "detectedKeywords": [
+            "go",
+            "rust",
+            "python",
+            "ruby",
+            "graphql",
+            "grpc",
+            "ai"
+          ],
+          "location": "Remote - United States"
+        },
+        {
+          "title": "Senior Business Analyst, Revenue Analytics",
+          "url": "https://job-boards.greenhouse.io/reddit/jobs/8023563",
+          "postedDate": "2026-06-23",
+          "detectedKeywords": [
+            "ai",
+            "data-engineering"
+          ],
+          "location": "Remote - United States"
+        },
+        {
+          "title": "Senior Business Engineer - Ads",
+          "url": "https://job-boards.greenhouse.io/reddit/jobs/7954598",
+          "postedDate": "2026-05-22",
+          "detectedKeywords": [
+            "javascript",
+            "nodejs",
+            "python",
+            "java",
+            "ai"
+          ],
+          "location": "Remote - United States · Remote - British Columbia, Canada"
+        },
+        {
+          "title": "Senior, Business Risk & AI Automation",
+          "url": "https://job-boards.greenhouse.io/reddit/jobs/8074846",
+          "postedDate": "2026-07-20",
+          "detectedKeywords": [
+            "ai"
+          ],
+          "location": "Remote - Ontario, Canada · Remote - British Columbia, Canada"
+        },
+        {
+          "title": "Senior Client Account Manager, App Dev Enterprise",
+          "url": "https://job-boards.greenhouse.io/reddit/jobs/8171546",
+          "postedDate": "2026-09-09",
+          "detectedKeywords": [
+            "ai"
+          ],
+          "location": "New York City, NY"
+        },
+        {
+          "title": "Senior Client Account Manager, Global Strategic Accounts (Media & Entertainment)",
+          "url": "https://job-boards.greenhouse.io/reddit/jobs/8163400",
+          "postedDate": "2026-08-27",
+          "detectedKeywords": [
+            "ai"
+          ],
+          "location": "Los Angeles, CA; New York City, NY"
+        },
+        {
+          "title": "Senior Client Account Manager, Global Strategic Accounts (Tech/AI)",
+          "url": "https://job-boards.greenhouse.io/reddit/jobs/8017242",
+          "postedDate": "2026-08-27",
+          "detectedKeywords": [
+            "ai"
+          ],
+          "location": "San Francisco, CA"
+        },
+        {
+          "title": "Senior Client Account Manager, Global Strategic Accounts (UK)",
+          "url": "https://job-boards.greenhouse.io/reddit/jobs/8017263",
+          "postedDate": "2026-06-18",
+          "detectedKeywords": [
+            "ai"
+          ],
+          "location": "London, United Kingdom"
+        },
+        {
+          "title": "Senior Client Account Manager, Large Customer Sales (Pharma)",
+          "url": "https://job-boards.greenhouse.io/reddit/jobs/7746526",
+          "postedDate": "2026-06-02",
+          "detectedKeywords": [
+            "ai"
+          ],
+          "location": "New York City, NY · Chicago, IL"
+        },
+        {
+          "title": "Senior Client Partner, Acquisitions DACH",
+          "url": "https://job-boards.greenhouse.io/reddit/jobs/7420175",
+          "postedDate": "2025-12-03",
+          "detectedKeywords": [
+            "ai"
+          ],
+          "location": "Amsterdam, Netherlands"
+        },
+        {
+          "title": "Senior Client Partner, Global Strategic Accounts (UK)",
+          "url": "https://job-boards.greenhouse.io/reddit/jobs/8017196",
+          "postedDate": "2026-06-18",
+          "detectedKeywords": [
+            "ai"
+          ],
+          "location": "London, United Kingdom"
+        },
+        {
+          "title": "Senior Client Partner, Large Customer Sales (Big Box Retail)",
+          "url": "https://job-boards.greenhouse.io/reddit/jobs/8140121",
+          "postedDate": "2026-08-31",
+          "detectedKeywords": [
+            "ai"
+          ],
+          "location": "Chicago, IL; New York City, NY"
+        },
+        {
+          "title": "Senior Client Partner, Mid-Market (B2C Services Acquisitions)",
+          "url": "https://job-boards.greenhouse.io/reddit/jobs/8196990",
+          "postedDate": "2026-09-14",
+          "detectedKeywords": [
+            "ai"
+          ],
+          "location": "New York City, NY"
+        },
+        {
+          "title": "Senior Community Lifecycle Manager",
+          "url": "https://job-boards.greenhouse.io/reddit/jobs/8168390",
+          "postedDate": "2026-09-01",
+          "detectedKeywords": [
+            "ai"
+          ],
+          "location": "Remote - United States"
+        },
+        {
+          "title": "Senior Creative Strategist - App Dev",
+          "url": "https://job-boards.greenhouse.io/reddit/jobs/7769002",
+          "postedDate": "2026-05-19",
+          "detectedKeywords": [
+            "ai"
+          ],
+          "location": "New York City, NY"
+        },
+        {
+          "title": "Senior Data Scientist, Ads",
+          "url": "https://job-boards.greenhouse.io/reddit/jobs/8104403",
+          "postedDate": "2026-08-12",
+          "detectedKeywords": [
+            "python",
+            "machine-learning",
+            "ai",
+            "data-engineering"
+          ],
+          "location": "Remote - United States"
+        },
+        {
+          "title": "Senior Data Scientist, Ads Integrity",
+          "url": "https://job-boards.greenhouse.io/reddit/jobs/8157580",
+          "postedDate": "2026-08-27",
+          "detectedKeywords": [
+            "python",
+            "machine-learning",
+            "ai"
+          ],
+          "location": "Remote - United States"
+        },
+        {
+          "title": "Senior Data Scientist - Consumer",
+          "url": "https://job-boards.greenhouse.io/reddit/jobs/8126946",
+          "postedDate": "2026-08-12",
+          "detectedKeywords": [
+            "python",
+            "ai"
+          ],
+          "location": "Remote - United States"
+        },
+        {
+          "title": "Senior Director, Product & Technology Finance",
+          "url": "https://job-boards.greenhouse.io/reddit/jobs/8011163",
+          "postedDate": "2026-06-24",
+          "detectedKeywords": [
+            "aws",
+            "gcp",
+            "ai"
+          ],
+          "location": "Remote - United States"
+        },
+        {
+          "title": "Senior Frontend Engineer, Ads Creative",
+          "url": "https://job-boards.greenhouse.io/reddit/jobs/8175520",
+          "postedDate": "2026-09-02",
+          "detectedKeywords": [
+            "typescript",
+            "javascript",
+            "react",
+            "machine-learning",
+            "ai"
+          ],
+          "location": "Remote - United States"
+        },
+        {
+          "title": "Senior Frontend Engineer, Home Experience",
+          "url": "https://job-boards.greenhouse.io/reddit/jobs/8198130",
+          "postedDate": "2026-09-11",
+          "detectedKeywords": [
+            "typescript",
+            "javascript",
+            "react",
+            "vue",
+            "graphql",
+            "ai"
+          ],
+          "location": "Remote - United States"
+        },
+        {
+          "title": "Senior Frontend Software Engineer, Consumer Engineering",
+          "url": "https://job-boards.greenhouse.io/reddit/jobs/8147617",
+          "postedDate": "2026-09-17",
+          "detectedKeywords": [
+            "typescript",
+            "javascript",
+            "react",
+            "vue",
+            "swift",
+            "android",
+            "graphql",
+            "grpc"
+          ],
+          "location": "Remote - United States"
+        },
+        {
+          "title": "Senior Growth Manager (Contract)",
+          "url": "https://job-boards.greenhouse.io/reddit/jobs/8143702",
+          "postedDate": "2026-08-20",
+          "detectedKeywords": [
+            "ai"
+          ],
+          "location": "Remote - United Kingdom"
+        }
+      ],
+      "openingsTotal": 156,
+      "history": [
+        {
+          "weekOf": "2026-09-14",
+          "openCount": 60,
+          "keywordCounts": {
+            "ai": 56,
+            "machine-learning": 10,
+            "go": 7,
+            "kubernetes": 4,
+            "aws": 4,
+            "gcp": 3,
+            "security": 6,
+            "rust": 3,
+            "python": 9,
+            "ruby": 3,
+            "graphql": 6,
+            "grpc": 5,
+            "data-engineering": 3,
+            "typescript": 7,
+            "javascript": 7,
+            "react": 7,
+            "docker": 2,
+            "vue": 3,
+            "swift": 2,
+            "android": 3,
+            "nextjs": 1,
+            "kotlin": 1,
+            "postgres": 1,
+            "redis": 1,
+            "nodejs": 1,
+            "java": 1
+          }
+        }
+      ],
+      "lastVerified": "2026-09-20T01:19:24.502Z",
+      "dataNotes": "Discovered via We Work Remotely (\"Backend Software Engineer, PDP Experience\" listing)."
+    },
+    {
+      "id": "evident-change",
+      "name": "Evident Change",
+      "logoUrl": null,
+      "description": "Headquarters: Madison, WI URL: http://www.evidentchange.org Senior Full-Stack Software Engineer STATUS: Full time LOCATION: Remote; work from anywhere within the United States Are you interested in us…",
+      "website": "https://evidentchange.org",
+      "careersUrl": null,
+      "sizeRange": null,
+      "sizeMin": null,
+      "sizeMax": null,
+      "hqLocation": "Anywhere in the World",
+      "country": null,
+      "remotePolicy": "remote",
+      "remoteRegions": [],
+      "keywords": [],
+      "currentOpenings": [],
+      "openingsTotal": null,
+      "history": [],
+      "lastVerified": null,
+      "dataNotes": "Discovered via We Work Remotely (\"Senior Full-Stack Software Engineer\" listing)."
+    },
+    {
+      "id": "offerup",
+      "name": "OfferUp",
+      "logoUrl": null,
+      "description": "Headquarters: Remote @ Colombia About the role: The OfferUp Business team owns the platforms that power every business vertical on our marketplace; Storefronts, Auto Dealers, Services, Rentals, and Jo…",
+      "website": "https://about.offerup.com",
+      "careersUrl": null,
+      "sizeRange": null,
+      "sizeMin": null,
+      "sizeMax": null,
+      "hqLocation": "Anywhere in the World",
+      "country": null,
+      "remotePolicy": "remote",
+      "remoteRegions": [],
+      "keywords": [],
+      "currentOpenings": [
+        {
+          "title": "Marketing Manager, Paid Acquisition (Hybrid @ Bellevue, WA)",
+          "url": "https://job-boards.greenhouse.io/offerup/jobs/8080461",
+          "postedDate": "2026-07-22",
+          "detectedKeywords": [
+            "elixir",
+            "swift",
+            "android",
+            "data-engineering"
+          ],
+          "location": "Hybrid @ Bellevue, WA"
+        },
+        {
+          "title": "Principal Product Designer, Brand and Experience (Contract, Hands-On)",
+          "url": "https://job-boards.greenhouse.io/offerup/jobs/8180960",
+          "postedDate": "2026-09-04",
+          "detectedKeywords": [
+            "elixir",
+            "swift",
+            "android"
+          ],
+          "location": "California"
+        },
+        {
+          "title": "Principal Product Designer. Brand and Experience (Contract, Hands-On)",
+          "url": "https://job-boards.greenhouse.io/offerup/jobs/8180867",
+          "postedDate": "2026-09-04",
+          "detectedKeywords": [
+            "elixir",
+            "swift",
+            "android"
+          ],
+          "location": "Bellevue, WA"
+        },
+        {
+          "title": "Revenue Operations Systems Administrator (Hybrid @ Bellevue, WA)",
+          "url": "https://job-boards.greenhouse.io/offerup/jobs/8157624",
+          "postedDate": "2026-08-25",
+          "detectedKeywords": [
+            "elixir",
+            "swift",
+            "android",
+            "ai"
+          ],
+          "location": "Hybrid @ Bellevue, WA"
+        },
+        {
+          "title": "Senior Account Executive, SMB and B2B",
+          "url": "https://job-boards.greenhouse.io/offerup/jobs/8131215",
+          "postedDate": "2026-08-14",
+          "detectedKeywords": [
+            "elixir",
+            "swift",
+            "android"
+          ],
+          "location": "Bellevue/ Seattle"
+        },
+        {
+          "title": "Senior Bilingual (Spanish/English) Account Executive, SMB and B2B",
+          "url": "https://job-boards.greenhouse.io/offerup/jobs/8131216",
+          "postedDate": "2026-08-14",
+          "detectedKeywords": [
+            "elixir",
+            "swift",
+            "android"
+          ],
+          "location": "Texas"
+        },
+        {
+          "title": "Senior Manager, Product Marketing (Hybrid @ Bellevue, WA)",
+          "url": "https://job-boards.greenhouse.io/offerup/jobs/8116174",
+          "postedDate": "2026-08-08",
+          "detectedKeywords": [
+            "go",
+            "elixir",
+            "swift",
+            "android",
+            "ai",
+            "data-engineering"
+          ],
+          "location": "Hybrid @ Bellevue, WA"
+        },
+        {
+          "title": "Software Development Engineer II Full Stack - Business (Remote @ Mexico or Colombia)",
+          "url": "https://job-boards.greenhouse.io/offerup/jobs/8056317",
+          "postedDate": "2026-07-10",
+          "detectedKeywords": [
+            "typescript",
+            "react",
+            "nodejs",
+            "python",
+            "java",
+            "elixir",
+            "swift",
+            "android"
+          ],
+          "location": "Remote @ Mexico"
+        }
+      ],
+      "openingsTotal": 8,
+      "history": [
+        {
+          "weekOf": "2026-09-14",
+          "openCount": 8,
+          "keywordCounts": {
+            "elixir": 8,
+            "swift": 8,
+            "android": 8,
+            "data-engineering": 2,
+            "ai": 2,
+            "go": 1,
+            "typescript": 1,
+            "react": 1,
+            "nodejs": 1,
+            "python": 1,
+            "java": 1
+          }
+        }
+      ],
+      "lastVerified": "2026-09-20T01:19:40.672Z",
+      "dataNotes": "Discovered via We Work Remotely (\"Software Development Engineer II Full Stack - Business (Remote @ Colombia)\" listing)."
+    },
+    {
+      "id": "customer-io",
+      "name": "Customer.io",
+      "logoUrl": null,
+      "description": "Headquarters: Americas Remote About Customer.io Over 9,000 companies — from scrappy startups to global brands — use our platform to send billions of emails, push notifications, in-app messages, and SM…",
+      "website": "https://customer.io",
+      "careersUrl": null,
+      "sizeRange": null,
+      "sizeMin": null,
+      "sizeMax": null,
+      "hqLocation": "Anywhere in the World",
+      "country": null,
+      "remotePolicy": "remote",
+      "remoteRegions": [],
+      "keywords": [],
+      "currentOpenings": [
+        {
+          "title": "Contract Accounts Payable Manager",
+          "url": "https://job-boards.greenhouse.io/customerio/jobs/8196194",
+          "postedDate": "2026-09-11",
+          "detectedKeywords": [],
+          "location": "Americas Remote"
+        },
+        {
+          "title": "Contract IT Specialist",
+          "url": "https://job-boards.greenhouse.io/customerio/jobs/8209174",
+          "postedDate": "2026-09-16",
+          "detectedKeywords": [
+            "security"
+          ],
+          "location": "Americas Remote"
+        },
+        {
+          "title": "Director, GTM Finance",
+          "url": "https://job-boards.greenhouse.io/customerio/jobs/8097481",
+          "postedDate": "2026-07-30",
+          "detectedKeywords": [
+            "ai",
+            "data-engineering"
+          ],
+          "location": "Americas Remote"
+        },
+        {
+          "title": "Engineering Manager",
+          "url": "https://job-boards.greenhouse.io/customerio/jobs/8104418",
+          "postedDate": "2026-08-04",
+          "detectedKeywords": [
+            "react",
+            "go",
+            "ai"
+          ],
+          "location": "Americas Remote"
+        },
+        {
+          "title": "Global Controller",
+          "url": "https://job-boards.greenhouse.io/customerio/jobs/8171856",
+          "postedDate": "2026-09-01",
+          "detectedKeywords": [
+            "ai"
+          ],
+          "location": "Americas Remote"
+        },
+        {
+          "title": "GTM AI Engineer",
+          "url": "https://job-boards.greenhouse.io/customerio/jobs/8055540",
+          "postedDate": "2026-07-10",
+          "detectedKeywords": [
+            "ai",
+            "kubernetes",
+            "gcp"
+          ],
+          "location": "Americas Remote"
+        },
+        {
+          "title": "Mid-Market Account Executive, Americas",
+          "url": "https://job-boards.greenhouse.io/customerio/jobs/7971675",
+          "postedDate": "2026-06-02",
+          "detectedKeywords": [],
+          "location": "Americas Remote"
+        },
+        {
+          "title": "Mid-Market Account Executive, EMEA",
+          "url": "https://job-boards.greenhouse.io/customerio/jobs/8120574",
+          "postedDate": "2026-08-17",
+          "detectedKeywords": [],
+          "location": "EMEA Remote"
+        },
+        {
+          "title": "Partner Manager, AI Native Ecosystems",
+          "url": "https://job-boards.greenhouse.io/customerio/jobs/8209466",
+          "postedDate": "2026-09-16",
+          "detectedKeywords": [
+            "ai",
+            "aws"
+          ],
+          "location": "Americas Remote"
+        },
+        {
+          "title": "People Partner",
+          "url": "https://job-boards.greenhouse.io/customerio/jobs/8090074",
+          "postedDate": "2026-07-28",
+          "detectedKeywords": [],
+          "location": "Americas Remote"
+        },
+        {
+          "title": "Principal Product Designer",
+          "url": "https://job-boards.greenhouse.io/customerio/jobs/7931819",
+          "postedDate": "2026-05-15",
+          "detectedKeywords": [
+            "ai"
+          ],
+          "location": "Americas Remote"
+        },
+        {
+          "title": "Product Manager",
+          "url": "https://job-boards.greenhouse.io/customerio/jobs/8126049",
+          "postedDate": "2026-08-13",
+          "detectedKeywords": [
+            "ai"
+          ],
+          "location": "Americas Remote"
+        },
+        {
+          "title": "Revenue Manager",
+          "url": "https://job-boards.greenhouse.io/customerio/jobs/8070658",
+          "postedDate": "2026-07-16",
+          "detectedKeywords": [
+            "ai"
+          ],
+          "location": "Americas Remote"
+        },
+        {
+          "title": "Senior Data Scientist",
+          "url": "https://job-boards.greenhouse.io/customerio/jobs/7956880",
+          "postedDate": "2026-05-26",
+          "detectedKeywords": [
+            "python",
+            "machine-learning",
+            "ai",
+            "data-engineering"
+          ],
+          "location": "Americas Remote"
+        },
+        {
+          "title": "Senior Developer Experience Engineer, Integrations",
+          "url": "https://job-boards.greenhouse.io/customerio/jobs/8076081",
+          "postedDate": "2026-07-21",
+          "detectedKeywords": [
+            "react",
+            "nodejs",
+            "go",
+            "kotlin",
+            "swift",
+            "android",
+            "ai"
+          ],
+          "location": "Americas Remote"
+        },
+        {
+          "title": "Senior Manager, Data Science & Analytics",
+          "url": "https://job-boards.greenhouse.io/customerio/jobs/7991018",
+          "postedDate": "2026-06-10",
+          "detectedKeywords": [
+            "python",
+            "ai",
+            "data-engineering"
+          ],
+          "location": "Americas Remote"
+        },
+        {
+          "title": "Senior Product Designer",
+          "url": "https://job-boards.greenhouse.io/customerio/jobs/8039027",
+          "postedDate": "2026-06-30",
+          "detectedKeywords": [
+            "ai"
+          ],
+          "location": "Americas Remote"
+        },
+        {
+          "title": "Senior Recruiter - GTM - USA (Remote)",
+          "url": "https://job-boards.greenhouse.io/customerio/jobs/8160827",
+          "postedDate": "2026-08-26",
+          "detectedKeywords": [
+            "ai"
+          ],
+          "location": "Americas Remote"
+        },
+        {
+          "title": "Senior Software Engineer, Backend",
+          "url": "https://job-boards.greenhouse.io/customerio/jobs/7778291",
+          "postedDate": "2026-04-03",
+          "detectedKeywords": [
+            "react",
+            "go",
+            "mysql",
+            "aws",
+            "gcp",
+            "ai"
+          ],
+          "location": "EMEA Remote · Americas Remote"
+        },
+        {
+          "title": "Senior Software Engineer - Backend Platform",
+          "url": "https://job-boards.greenhouse.io/customerio/jobs/8055585",
+          "postedDate": "2026-07-10",
+          "detectedKeywords": [
+            "react",
+            "go",
+            "postgres",
+            "mysql",
+            "aws",
+            "gcp",
+            "ai"
+          ],
+          "location": "Americas Remote"
+        },
+        {
+          "title": "Senior Software Engineer - Email Channel",
+          "url": "https://job-boards.greenhouse.io/customerio/jobs/7914033",
+          "postedDate": "2026-05-11",
+          "detectedKeywords": [
+            "react",
+            "go",
+            "mysql",
+            "aws",
+            "gcp",
+            "ai"
+          ],
+          "location": "Americas Remote"
+        },
+        {
+          "title": "Senior Software Engineer, Full Stack",
+          "url": "https://job-boards.greenhouse.io/customerio/jobs/7776635",
+          "postedDate": "2026-04-02",
+          "detectedKeywords": [
+            "typescript",
+            "react",
+            "go",
+            "ai"
+          ],
+          "location": "EMEA Remote · Americas Remote"
+        },
+        {
+          "title": "Senior Technical Recruiter",
+          "url": "https://job-boards.greenhouse.io/customerio/jobs/8160829",
+          "postedDate": "2026-08-26",
+          "detectedKeywords": [
+            "ai"
+          ],
+          "location": "Americas Remote"
+        },
+        {
+          "title": "Sr Sales Manager, Mid-Market - USA (Remote)",
+          "url": "https://job-boards.greenhouse.io/customerio/jobs/8191310",
+          "postedDate": "2026-09-11",
+          "detectedKeywords": [],
+          "location": "Americas Remote"
+        },
+        {
+          "title": "Staff Software Engineer, Backend",
+          "url": "https://job-boards.greenhouse.io/customerio/jobs/8191498",
+          "postedDate": "2026-09-17",
+          "detectedKeywords": [
+            "react",
+            "go",
+            "mysql",
+            "aws",
+            "gcp",
+            "ai"
+          ],
+          "location": "Americas Remote"
+        }
+      ],
+      "openingsTotal": 27,
+      "history": [
+        {
+          "weekOf": "2026-09-14",
+          "openCount": 25,
+          "keywordCounts": {
+            "security": 1,
+            "ai": 19,
+            "data-engineering": 3,
+            "react": 7,
+            "go": 7,
+            "kubernetes": 1,
+            "gcp": 5,
+            "aws": 5,
+            "python": 2,
+            "machine-learning": 1,
+            "nodejs": 1,
+            "kotlin": 1,
+            "swift": 1,
+            "android": 1,
+            "mysql": 4,
+            "postgres": 1,
+            "typescript": 1
+          }
+        }
+      ],
+      "lastVerified": "2026-09-20T01:19:41.759Z",
+      "dataNotes": "Discovered via We Work Remotely (\"Director, GTM Finance\" listing)."
+    },
+    {
+      "id": "sanctuary-computer",
+      "name": "Sanctuary Computer",
+      "logoUrl": null,
+      "description": "Headquarters: New York City URL: https://sanctuary.computer We are hiring a contract-based Senior Shopify Developer to contribute to our Design and Development Team. Original job posting link **About…",
+      "website": "https://sanctuary.computer",
+      "careersUrl": null,
+      "sizeRange": null,
+      "sizeMin": null,
+      "sizeMax": null,
+      "hqLocation": "Anywhere in the World",
+      "country": "India",
+      "remotePolicy": "remote",
+      "remoteRegions": [],
+      "keywords": [],
+      "currentOpenings": [
+        {
+          "title": "Civil Engineer",
+          "url": "https://jobs.ashbyhq.com/sanctuary/5feed4e2-3007-43c6-8feb-d7ea0908af77",
+          "postedDate": "2025-11-28",
+          "detectedKeywords": [],
+          "location": "Dripping Springs, Texas"
+        },
+        {
+          "title": "Senior FP&A Associate",
+          "url": "https://jobs.ashbyhq.com/sanctuary/183fbdbe-ea60-4676-9438-124d9a4eca3b",
+          "postedDate": "2026-05-28",
+          "detectedKeywords": [],
+          "location": "Delhi"
+        },
+        {
+          "title": "Construction coordinator",
+          "url": "https://jobs.ashbyhq.com/sanctuary/5285df7f-7a25-49a0-9993-e620d11a6483",
+          "postedDate": "2026-04-24",
+          "detectedKeywords": [],
+          "location": "Delhi"
+        },
+        {
+          "title": "Finance Operations Lead",
+          "url": "https://jobs.ashbyhq.com/sanctuary/4d0cf131-0ed8-4ce5-81a8-8a995c33a055",
+          "postedDate": "2026-05-20",
+          "detectedKeywords": [],
+          "location": "Delhi"
+        },
+        {
+          "title": "Executive Recruiter",
+          "url": "https://jobs.ashbyhq.com/sanctuary/713568c5-9d19-4898-9ae9-5ef44c62f0ed",
+          "postedDate": "2026-07-28",
+          "detectedKeywords": [
+            "go"
+          ],
+          "location": "Austin, Texas"
+        },
+        {
+          "title": "Capital Markets Associate - Real Estate",
+          "url": "https://jobs.ashbyhq.com/sanctuary/5ab5693f-e8f9-4302-b92b-9f29d553ed13",
+          "postedDate": "2026-09-07",
+          "detectedKeywords": [],
+          "location": "Mumbai, India"
+        }
+      ],
+      "openingsTotal": 6,
+      "history": [
+        {
+          "weekOf": "2026-09-14",
+          "openCount": 6,
+          "keywordCounts": {
+            "go": 1
+          }
+        }
+      ],
+      "lastVerified": "2026-09-20T01:19:45.754Z",
+      "dataNotes": "Discovered via We Work Remotely (\"Senior Shopify Developer\" listing)."
     }
   ]
 }

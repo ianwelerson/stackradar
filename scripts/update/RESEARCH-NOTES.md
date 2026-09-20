@@ -247,3 +247,176 @@ schema requires a non-empty one. There is no honest way to synthesise it, so the
 was to read each company's own `og:description` (39 of 40 publish one; Helmes has only
 a `<title>`). `discover` now refuses to create a company without a description rather
 than writing a row that fails the next build.
+
+---
+
+## Round 3 — 2026-09-19
+
+### A vendor's own asset host can outvote the real board
+
+`scanMarkup` resolves an embedded board by picking the **most-referenced**
+`(platform, token)` pair on the page. That is the right heuristic for a careers
+page that mentions one board twenty times and another once — but it broke on
+Teamtailor boards running on a **custom domain**.
+
+A Teamtailor board serves its assets from `app.teamtailor.com`, which therefore
+appears dozens of times in the markup. The only thing naming the *real* host is
+the single "powered by" link carrying `utm_content=<host>`. Dozens beat one, so
+the token resolved to `app`, the adapter looked for a board called "app", and
+the company came back as **"no job board found"** despite having a perfectly
+good JSON feed.
+
+Fixed by adding `app` and `cdn` to `RESERVED_TOKENS`. Immediately unlocked:
+
+| company | board | openings |
+|---|---|---|
+| thorgate | `teamtailor/jobs.thorgate.eu` | 1 |
+| fractory | `teamtailor/careers.fractory.com` | 10 |
+| blackwall | `teamtailor/careers.blackwall.com` | 12 |
+
+Blackwall is the clearest case of the damage: round 1 recorded it as "subdomain
+ATS (platform not identified), 5 roles" and left it at that. The platform was
+Teamtailor all along — detection just could not name it, so a readable board sat
+unread for two rounds.
+
+**The general lesson:** when a company's careers page clearly *is* an ATS board
+but the scan reports nothing, check what token detection actually picked before
+assuming the adapter is broken. Fetch `https://<host>/jobs.json` directly — if
+that returns a JSON Feed with items, the board is real and the problem is
+detection, not the company.
+
+### `careers.<domain>` is worth probing in bulk, with one guard
+
+Sweeping `careers.<host>` and `jobs.<host>` across the no-board companies is
+cheap and found four real boards out of 50. But **two of the eight 2xx hits were
+wildcard DNS**: `careers.pocketsuite.io` and `jobs.yooli.co` both answer 200 and
+then redirect to the company homepage. They are not careers pages.
+
+The test that separates them is the *final* URL, not the status code:
+
+```sh
+curl -sS -o /dev/null -L --max-time 8 -w "%{http_code}|%{url_effective}" "https://careers.$host"
+```
+
+If `url_effective` has fallen back to the bare apex, reject it. If it stays on
+the `careers.`/`jobs.` host, it is worth reading.
+
+### More award badges, as predicted
+
+Round 1 flagged Cleveron's "Remote Work Pioneer" badge as an employer award
+rather than a policy. The same trap turned up again on **Doist**, whose careers
+page carries "Best Remote Team Culture" and "Remote Excellence Awards" — both
+prizes, neither a statement about how the company works. `careersUrl` recorded,
+`remotePolicy` deliberately left null.
+
+Confirmed the opposite way on two companies, where the firm states its own
+arrangement in its own words and the fact is clean:
+
+- **Toggl** — "Fully remote since 2014" on `toggl.com/jobs/`.
+- **MixRank** — careers page titled "the best 100% remote data company"
+  (the follow-up round 1 flagged; both turned out to already hold `remote`,
+  independently derived from their job postings, so this only corroborated it).
+
+### Re-checks that produced nothing (don't redo these next round)
+
+- **threod-systems** — careers page still "Nothing found, there are no posts
+  here yet". The infrastructure works; the board is genuinely empty. Third time
+  it has been checked.
+- **cleveron** — the alternate English URL `www.cleveron.com/careers` just
+  redirects to `cleveron.com/es/join-the-team/`, the page already on file.
+
+### Round 3 research batch — 40 companies, 30 with facts
+
+Confirmed 27 careers URLs, 12 countries, 8 work models and 8 headcounts, all at
+primary trust. Two headcounts were spot-checked against the source and matched
+verbatim: Automattic *"We're 1,416 Automatticians in 83 countries"*, Plausible
+*"Today Plausible is a team of 10."*
+
+**One submitted fact was rejected on review — worth knowing the shape of it.**
+`cyberatlas.ai/careers` 301s to the homepage, and that homepage contains the
+text *"0 Jobs / Active Jobs / Clear completed / No active jobs"*, which reads
+convincingly like an empty ATS board. It is not: CyberAtlas sells security
+scanning, and that is the **product's own job-queue widget**. A page whose
+"jobs" are the product's jobs is not a careers page. Check what the company
+sells before reading a jobs widget as a hiring board.
+
+#### Confirmed dead ends (do not re-research these)
+
+| id | why |
+|---|---|
+| openalex | whole-domain HTTP 403 on every path; `ourresearch.org` 301s into the same block. Same WAF pattern as tuum and wefunder |
+| quill | fully client-rendered SPA — only a bare `<title>` is reachable |
+| jawa-gg | site is a Notion page (`jawagg.notion.site`), no readable content |
+| proxybase | no careers link anywhere; `/careers` 404s |
+| furtim-modus | one-page site, no careers link, no location |
+| solution-street | "Join Us" is a nav dropdown, not a URL; `/join-us/` and `/who-we-are/` both 404 |
+| trustworthy-technology | small advocacy site, no careers link, no location |
+| ondeckglobal | thin/placeholder site — its own "Facts & Figures" shows literal 0s for every stat; `/about` 404s |
+| sportlyzer | no careers page; `careers.sportlyzer.com` does not resolve |
+
+#### Judgment calls where a fact was available but not good enough
+
+These are the reason the round is trustworthy, so they are worth preserving:
+
+- **Strapi and Prisma** both have US-registered entities (Strapi Inc., Dover DE;
+  Prisma Data, Inc.) but describe themselves as fully distributed. A Delaware
+  registered-agent address is an incorporation artefact, not an office — the same
+  trap as reading Cal.com's governing-law clause as an HQ. Country left null.
+- **Directus** *was* recorded as United States, on a stronger signal: its ToS
+  gives a specific street address (New Haven, CT), which is the Raycast precedent.
+- **Appwrite** — privacy policy names "Appwrite Code Ltd." and references GDPR
+  transfers to Israel. Suggestive, never stated. Omitted.
+- **Messente and Proekspert** — "total flexibility", "work where you like and how
+  you like". Never commits to remote/hybrid/onsite. Omitted, correctly: this is
+  the section-1 trap.
+- **Deya** — "NYC / Hybrid / Remote" appears on all three postings, but that is
+  job-level tagging, not a company HQ statement.
+- **Wise** — only a "Flexible working" nav link, and postings are tied to office
+  hubs. No work model recorded.
+- **No keywords were submitted for any company.** Not one of the 40 stated its
+  engineering stack in its own words; the only candidates were product copy
+  ("rebuilt in native TypeScript", "REST + GraphQL APIs"), which describes what
+  they sell, not what their engineers use. The job-board scanner fills this
+  field properly from real postings.
+
+#### URL patterns that paid off again
+
+`careers.<domain>` (Lightyear, DAT), `jobs.<domain>` (Channable, Wise), and an
+ATS on a branded subdomain (`elcogen.jobs.personio.com`). Also: **record the
+company's own `/careers` URL even when it forwards to a third-party ATS** — Deno's
+`deno.com/jobs` lands on Ashby, and the own-domain URL is the one that keeps
+working when they switch vendors.
+
+#### One fix for a future pass
+
+**mingla** — the `website` on file (`mingla.com`) 302s to `mingla.io`. Same
+company, not a hijack, but the record should point at the live domain.
+
+#### Personio: two feed shapes, and a placeholder to filter
+
+`elcogen.jobs.personio.com` is a real, live board, but the scan reports
+**"personio detected but unreadable"** and correctly leaves the record alone.
+The adapter reads the XML feed; for this tenant `/xml` 404s on both the `.com`
+and `.de` hosts, while `/search.json` answers 200 with well-formed JSON.
+
+Worth adding that fallback in a future pass — but with a filter, because the one
+entry Elcogen's board carries is `"Open Application"`, a speculative-application
+placeholder rather than a real role. Counting it would claim Elcogen has an
+opening when it has an invitation to send a CV. Ashby's `isListed` check exists
+for the same reason; Personio needs the equivalent before the fallback is safe.
+
+#### `website` and `careersUrl` cannot be changed through `apply` — by design
+
+They are absent from `SOFT_FIELDS` in `merge.mjs`, so they fill a blank once and
+are then fixed for good: **not even `trust: "primary"` overwrites them.** That is
+deliberate — a model quietly repointing a company at a different domain would
+redirect every later scan, logo fetch and position link with it.
+
+The cost is that a company which genuinely changes domain has to be corrected by
+hand in `data/companies.json`. This has now come up twice: Ampler
+(`ampler.bike` → `amplerbikes.com`) in round 1, and Mingla
+(`mingla.com` → `mingla.io`) in round 3. Both were edited directly.
+
+`apply` used to report this as "nothing new — the record already holds these
+values", which is simply false and cost a round-trip to diagnose. It now says
+the field is not overwritable even at primary trust.
