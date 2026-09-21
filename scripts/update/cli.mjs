@@ -444,6 +444,46 @@ async function cmdStatus() {
   console.log(`\n  ${gaps} companies have gaps ${dim('— node scripts/update/cli.mjs enrich')}\n`);
 }
 
+async function cmdLinkedin(flags) {
+  const mod = await importOptional('./lib/linkedin.mjs', 'The LinkedIn link finder');
+  if (mod === null) {
+    process.exitCode = 1;
+    return;
+  }
+  const { findLinkedin } = mod;
+  const config = loadConfig();
+  const dataset = loadDataset();
+  const http = createHttp(config.refresh);
+  const report = createReport('linkedin');
+
+  // Only companies that have none yet: this reads someone else's server, so
+  // re-reading a page whose answer we already hold is a request wasted.
+  const queue = dataset.companies
+    .filter((c) => (flags.only !== null ? flags.only.includes(c.id) : c.linkedinUrl === null))
+    .filter((c) => typeof c.website === 'string' && c.website !== '')
+    .slice(0, flags.limit ?? 150);
+
+  console.log(
+    `reading ${queue.length} company homepages ${dim('(linkedin.com is never fetched — only the link a company publishes itself)')}`,
+  );
+
+  for (const company of queue) {
+    const found = await findLinkedin(http, company);
+    if (found === null) {
+      report.skip(company.id, 'no LinkedIn link published on their own site');
+      continue;
+    }
+    if (company.linkedinUrl === found.url) {
+      report.skip(company.id, 'unchanged');
+      continue;
+    }
+    dataset.companies = upsertCompany(dataset.companies, { ...company, linkedinUrl: found.url });
+    report.change(company.id, `${found.url} ${dim(`(${found.source})`)}`);
+  }
+
+  commit(dataset, flags, report);
+}
+
 const COMMANDS = {
   refresh: cmdRefresh,
   discover: cmdDiscover,
@@ -451,6 +491,7 @@ const COMMANDS = {
   apply: cmdApply,
   history: cmdHistory,
   logos: cmdLogos,
+  linkedin: cmdLinkedin,
   status: cmdStatus,
 };
 

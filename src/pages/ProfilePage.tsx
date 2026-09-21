@@ -1,14 +1,19 @@
 import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
+import { directoryHref } from '@/lib/return-to';
 import { companies } from '@/lib/dataset';
+import { availableCountries } from '@/lib/filtering';
+import { ProfileEditor } from '@/components/ProfileEditor';
+import { isProfileEmpty, profileStrength } from '@/types/profile';
 import { useTracking } from '@/hooks/useTracking';
 import { CompanyTile } from '@/components/CompanyTile';
 import { Badge } from '@/components/Badge';
 import { STATUSES, STATUS_ICONS, STATUS_TOKENS } from '@/types/tracking';
-import { openingsLabel } from '@/lib/format';
+import { isTruncated, openingsLabel } from '@/lib/format';
 
-export function MyListPage({ onOpenStorage }: { readonly onOpenStorage: () => void }) {
-  const { tracking, connected, trackedIds } = useTracking();
+export function ProfilePage({ onOpenStorage }: { readonly onOpenStorage: () => void }) {
+  const { tracking, connected, failing, syncError, trackedIds, setProfile } = useTracking();
+  const countries = useMemo(() => availableCountries(companies), []);
 
   const rows = useMemo(
     () =>
@@ -32,18 +37,19 @@ export function MyListPage({ onOpenStorage }: { readonly onOpenStorage: () => vo
   const withNotes = rows.filter((row) => row.note.trim() !== '').length;
 
   return (
-    <main className="max-w-[1000px] mx-auto px-5 pt-[22px] pb-20 animate-[sp-in_.26s_ease_both]">
+    <main className="max-w-[1180px] mx-auto px-5 pt-[22px] pb-20 animate-[sp-in_.26s_ease_both]">
       <Link
-        to="/"
+        to={directoryHref()}
         className="inline-block text-ink-dim text-[12.5px] py-1 mb-[18px] font-mono no-underline hover:text-ink"
       >
         ← all companies
       </Link>
 
       <div className="flex items-end gap-3 flex-wrap mb-2">
-        <h1 className="m-0 text-[24px] font-semibold tracking-[-0.02em]">My list</h1>
+        <h1 className="m-0 text-[24px] font-semibold tracking-[-0.02em]">My profile</h1>
         <span className="font-mono text-[12px] text-ink-dimmer pb-[3px]">
-          {rows.length} {rows.length === 1 ? 'company' : 'companies'} · {withNotes} with notes
+          {profileStrength(tracking.profile)} of 4 preferences set · {rows.length}{' '}
+          {rows.length === 1 ? 'company tracked' : 'companies tracked'} · {withNotes} with notes
         </span>
       </div>
 
@@ -52,20 +58,46 @@ export function MyListPage({ onOpenStorage }: { readonly onOpenStorage: () => vo
           <span
             className="w-[6px] h-[6px] rounded-full flex-none"
             style={{
-              background: connected ? 'oklch(0.80 0.15 162)' : 'var(--color-dot-unknown)',
+              background: failing
+                ? 'var(--color-danger-bright)'
+                : connected
+                  ? 'oklch(0.80 0.15 162)'
+                  : 'var(--color-dot-unknown)',
             }}
           />
-          {connected
-            ? 'Synced to your own database. Everything below is read from your storage.'
-            : 'Held in this browser only. Connect your own database to keep this list across visits and devices.'}
+          {failing
+            ? (syncError ?? 'Your database could not be reached.') +
+              ' Saved in this browser, but not reaching your database.'
+            : connected
+              ? 'Synced to your own database — your profile and everything you track.'
+              : 'Held in this browser only. Connect your own database to keep your profile and list across visits and devices.'}
         </span>
         <button
           type="button"
           onClick={onOpenStorage}
           className="bg-control border border-line-control text-ink-soft rounded-[7px] px-3 py-[7px] text-[12.5px] cursor-pointer whitespace-nowrap hover:border-accent-line-hover transition-colors"
         >
-          {connected ? 'Storage connected' : 'Connect storage'}
+          {failing ? 'Fix storage' : connected ? 'Storage connected' : 'Connect storage'}
         </button>
+      </div>
+
+      <div className="flex items-baseline gap-[9px] mb-3">
+        <h2 className="m-0 text-[15px] font-semibold">What I&rsquo;m looking for</h2>
+        <span className="font-mono text-[11.5px] text-ink-faint">
+          {isProfileEmpty(tracking.profile)
+            ? 'the directory opens unfiltered until you set something'
+            : 'the directory opens filtered to this'}
+        </span>
+      </div>
+      <div className="mb-8">
+        <ProfileEditor profile={tracking.profile} countries={countries} onChange={setProfile} />
+      </div>
+
+      <div className="flex items-baseline gap-[9px] mb-3">
+        <h2 className="m-0 text-[15px] font-semibold">Companies I&rsquo;m tracking</h2>
+        <span className="font-mono text-[11.5px] text-ink-faint">
+          {rows.length === 0 ? 'nothing tracked yet' : `${rows.length} with a status`}
+        </span>
       </div>
 
       {rows.length > 0 ? (
@@ -108,7 +140,7 @@ export function MyListPage({ onOpenStorage }: { readonly onOpenStorage: () => vo
                         {STATUS_ICONS[status]} {status}
                       </Badge>
                       <span className="font-mono text-[10.5px] text-ink-faint">
-                        {openingsLabel(company.currentOpenings.length)}
+                        {openingsLabel(company.currentOpenings.length, isTruncated(company))}
                       </span>
                     </div>
                     <p className="text-ink-dim text-[12.5px] mt-1 text-pretty m-0">

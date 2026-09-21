@@ -16,6 +16,9 @@
  *    from a directory listing.
  */
 
+import { normalizeCountry } from './countries.mjs';
+import { cleanDescription } from './description.mjs';
+
 import { mondayOf } from './dataset.mjs';
 
 /** Fields the updater may fill when empty but must not overwrite when present
@@ -30,6 +33,7 @@ export function emptyCompany(id, name) {
     description: '',
     website: null,
     careersUrl: null,
+    linkedinUrl: null,
     sizeRange: null,
     sizeMin: null,
     sizeMax: null,
@@ -113,9 +117,23 @@ export function mergeFacts(company, facts, trust = 'directory') {
   // different messages to the person who just researched the company.
   const blocked = [];
 
-  for (const [key, value] of Object.entries(facts)) {
-    if (value === null || value === undefined || value === '') continue;
+  for (const [key, rawValue] of Object.entries(facts)) {
+    if (rawValue === null || rawValue === undefined || rawValue === '') continue;
     if (!(key in next)) continue;
+
+    // Country is the location filter's vocabulary, so one country must have
+    // exactly one spelling. Five sources write this field and each spells it
+    // differently; normalizing here catches all of them instead of relying on
+    // every current and future source to remember. A value that names no
+    // country ("EMEA", a city, a parsing accident) is dropped rather than
+    // stored, because it would appear in the filter as though it were real.
+    // Descriptions arrive with feed and thread furniture attached and at
+    // whatever length the source felt like; the card gives them two lines.
+    // Cleaning here covers every source at once — see description.mjs.
+    let value = rawValue;
+    if (key === 'country') value = normalizeCountry(rawValue);
+    else if (key === 'description') value = cleanDescription(rawValue, next.name) || null;
+    if (value === null) continue;
 
     const current = next[key];
     const isEmpty =

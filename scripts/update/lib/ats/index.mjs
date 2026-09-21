@@ -404,16 +404,24 @@ function summariseSignals(jobs) {
     }
   }
 
-  const countryTotal = Object.values(countries).reduce((a, b) => a + b, 0);
+  // The denominator is every job scanned, NOT just those that carried a country
+  // hint. Dividing by the hints alone is a selection bias that manufactures
+  // certainty: a board of eighteen roles where seventeen say only "London" and
+  // one says "Ireland" scores 1/1 and declares the company Irish. Counting the
+  // silent majority is what stops that. Same rule, and the same reasoning, as
+  // countryFromOpenings in ../locations.mjs.
+  const countryTotal = jobs.length;
   const topCountry = Object.entries(countries).sort((a, b) => b[1] - a[1])[0] ?? null;
   // Two thirds is the bar for "this is where they are" rather than "this is one
   // of several places they hire".
   const country =
-    topCountry !== null && countryTotal > 0 && topCountry[1] / countryTotal >= 0.66
+    topCountry !== null && countryTotal >= 5 && topCountry[1] / countryTotal >= 0.66
       ? topCountry[0]
       : null;
 
-  const workplaceTotal = Object.values(workplaces).reduce((a, b) => a + b, 0);
+  // Same reasoning for the work model: a single remote-tagged role among thirty
+  // office roles is not a remote company.
+  const workplaceTotal = jobs.length;
   let remotePolicy = null;
   if (workplaceTotal > 0) {
     const remote = workplaces.remote ?? 0;

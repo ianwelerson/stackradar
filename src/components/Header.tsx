@@ -7,7 +7,7 @@ interface Props {
 }
 
 export function Header({ indexLine, onOpenStorage }: Props) {
-  const { connected, trackedIds } = useTracking();
+  const { connected, failing, trackedIds } = useTracking();
   const navigate = useNavigate();
 
   return (
@@ -38,28 +38,36 @@ export function Header({ indexLine, onOpenStorage }: Props) {
           </span>
           <button
             type="button"
-            onClick={() => void navigate('/my-list')}
+            onClick={() => void navigate('/profile')}
             className="bg-control border border-line-control text-ink-muted rounded-[7px] px-[11px] py-[7px] text-[12.5px] cursor-pointer whitespace-nowrap hover:border-accent-line-hover hover:text-ink transition-colors"
           >
-            {trackedIds.length > 0 ? `My list · ${trackedIds.length}` : 'My list'}
+            {trackedIds.length > 0 ? `My profile · ${trackedIds.length}` : 'My profile'}
           </button>
           <button
             type="button"
             onClick={onOpenStorage}
-            className="flex items-center gap-[7px] bg-control border border-line-control text-ink-muted rounded-[7px] px-[11px] py-[7px] text-[12.5px] cursor-pointer hover:border-line-hover hover:text-ink transition-colors"
+            className={`flex items-center gap-[7px] rounded-[7px] px-[11px] py-[7px] text-[12.5px] cursor-pointer border transition-colors ${
+              failing
+                ? 'bg-danger-surface border-danger-line text-danger-text hover:border-danger-bright'
+                : 'bg-control border-line-control text-ink-muted hover:border-line-hover hover:text-ink'
+            }`}
           >
             <span
               className="w-[6px] h-[6px] rounded-full flex-none"
               style={{
-                background: connected
-                  ? 'oklch(0.80 0.15 162)'
-                  : 'var(--color-dot-unknown)',
+                background: failing
+                  ? 'var(--color-danger-bright)'
+                  : connected
+                    ? 'oklch(0.80 0.15 162)'
+                    : 'var(--color-dot-unknown)',
               }}
             />
             <span className="hidden sm:inline">
-              {connected ? 'Storage connected' : 'Connect storage'}
+              {failing ? 'Storage error' : connected ? 'Storage connected' : 'Connect storage'}
             </span>
-            <span className="sm:hidden">{connected ? 'Synced' : 'Storage'}</span>
+            <span className="sm:hidden">
+              {failing ? 'Error' : connected ? 'Synced' : 'Storage'}
+            </span>
           </button>
         </div>
       </div>

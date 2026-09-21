@@ -3,7 +3,8 @@ import type { Company } from '@/types/company';
 import type { ScoreResult } from '@/lib/scoring';
 import { CompanyTile } from './CompanyTile';
 import { Badge, Tag } from './Badge';
-import { openingsLabel, remoteLabel } from '@/lib/format';
+import { MatchBar } from './MatchBar';
+import { isTruncated, openingsLabel, remoteLabel } from '@/lib/format';
 import { STATUS_ICONS, STATUS_TOKENS, type Status } from '@/types/tracking';
 
 interface Props {
@@ -22,6 +23,7 @@ const REMOTE_DOTS = {
 export function CompanyCard({ company, match, status, queryTokens }: Props) {
   const openCount = company.currentOpenings.length;
   const hasOpenings = openCount > 0;
+  const truncated = isTruncated(company);
   const dot =
     company.remotePolicy !== null
       ? REMOTE_DOTS[company.remotePolicy]
@@ -49,7 +51,7 @@ export function CompanyCard({ company, match, status, queryTokens }: Props) {
               fg={hasOpenings ? 'var(--color-accent-text)' : 'var(--color-ink-faint)'}
               border={hasOpenings ? 'var(--color-accent-line)' : 'var(--color-line-strong)'}
             >
-              {openingsLabel(openCount)}
+              {openingsLabel(openCount, truncated)}
             </Badge>
             {status !== undefined && (
               <Badge
@@ -61,7 +63,10 @@ export function CompanyCard({ company, match, status, queryTokens }: Props) {
               </Badge>
             )}
           </div>
-          <p className="text-ink-dim text-[12.5px] mt-[3px] text-pretty m-0">
+          {/* Clamped so one wordy description cannot push this card's tags out
+              of view — and, because grid rows stretch to their tallest cell,
+              cannot stretch every other card in the row along with it. */}
+          <p className="text-ink-dim text-[12.5px] mt-[3px] text-pretty m-0 line-clamp-2">
             {company.description}
           </p>
         </div>
@@ -88,20 +93,7 @@ export function CompanyCard({ company, match, status, queryTokens }: Props) {
         <span className={company.country === null ? 'text-ink-fainter' : undefined}>
           {company.country ?? 'location unknown'}
         </span>
-        {match !== null && (
-          <span
-            className="ml-auto flex items-center gap-[7px]"
-            title={match.reasons.join(' · ')}
-          >
-            <span className="w-[42px] h-[4px] rounded-[2px] bg-line-strong overflow-hidden block">
-              <span
-                className="block h-[4px] bg-accent"
-                style={{ width: `${match.score}%` }}
-              />
-            </span>
-            <span className="text-accent">{match.score}% match</span>
-          </span>
-        )}
+        {match !== null && <MatchBar match={match} className="ml-auto" />}
       </div>
     </Link>
   );

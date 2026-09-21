@@ -278,13 +278,22 @@
     "userAgent": "stack-radar/1.0 (+https://github.com/; contact via repo issues)"
   },
   "positions": {
-    "$comment": "Titles matching excludePatterns are dropped; the directory is about engineering hiring.",
+    "$comment": "Titles matching excludePatterns are dropped. Two kinds: roles this directory does not cover (internships), and postings that are not roles at all — an 'Open Application' or 'Talent Pool' entry is an invitation to send a CV, and counting it claims a company is hiring for something specific when it is not. Matched case-insensitively as substrings, so anchored wording is used where a real title could collide.",
     "includeNonEngineering": true,
     "excludePatterns": [
       "internship",
       "intern ",
       "werkstudent",
-      "praktikum"
+      "praktikum",
+      "open application",
+      "spontaneous application",
+      "speculative application",
+      "general application",
+      "unsolicited application",
+      "talent pool",
+      "talent community",
+      "talent network",
+      "future opportunities"
     ],
     "maxPerCompany": 60
   },

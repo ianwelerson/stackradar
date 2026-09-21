@@ -15,6 +15,7 @@ import {
   type Status,
   type TrackingState,
 } from '@/types/tracking';
+import { isProfileEmpty, parseProfile, type Profile } from '@/types/profile';
 import { readLocal, writeLocal, removeLocal } from '@/lib/local-storage';
 import {
   deleteKey,
@@ -31,11 +32,27 @@ interface TrackingContextValue {
   readonly tracking: TrackingState;
   readonly credentials: UpstashCredentials | null;
   readonly connected: boolean;
+  /**
+   * Connected, but the last exchange with the database failed.
+   *
+   * Derived here rather than in each surface that shows connection state: the
+   * header dot, the storage dialog and the profile page all used `connected`
+   * alone, so a failing connection went on reporting itself as green and
+   * "syncing" while the error was only visible next to whatever field the
+   * reader had last touched. Telling someone their data is saved when it is not
+   * is the worst thing this app could get wrong, so the three surfaces now read
+   * one value instead of three copies of a rule.
+   */
+  readonly failing: boolean;
   readonly syncState: SyncState;
   readonly syncError: string | null;
   readonly maskedCredentials: string | null;
   readonly setStatus: (companyId: string, status: Status | null) => void;
   readonly setNote: (companyId: string, note: string) => void;
+  readonly setProfile: (profile: Profile) => void;
+  /** Re-attempt the last sync. The remedy for a transient failure should not be
+   *  "delete your credentials and set them up again". */
+  readonly retry: () => void;
   readonly connect: (creds: UpstashCredentials) => Promise<void>;
   readonly disconnect: () => void;
   readonly trackedIds: readonly string[];
@@ -65,7 +82,7 @@ function parseTracking(raw: unknown): TrackingState | null {
     }
   }
 
-  return { statuses, notes };
+  return { statuses, notes, profile: parseProfile(source['profile']) };
 }
 
 function parseCredentials(raw: unknown): UpstashCredentials | null {
@@ -195,6 +212,19 @@ export function TrackingProvider({ children }: { readonly children: ReactNode })
     [commit],
   );
 
+  const setProfile = useCallback(
+    (profile: Profile) => {
+      commit({ ...latest.current, profile });
+    },
+    [commit],
+  );
+
+  const retry = useCallback(() => {
+    if (credentials === null) return;
+    setSyncError(null);
+    scheduleRemoteSync(credentials);
+  }, [credentials, scheduleRemoteSync]);
+
   const connect = useCallback(async (creds: UpstashCredentials) => {
     connectionGeneration.current += 1;
     setSyncState('syncing');
@@ -206,9 +236,19 @@ export function TrackingProvider({ children }: { readonly children: ReactNode })
     // Union on connect: neither side's work is discarded. Where both hold a
     // value for the same company, the local one wins — it is what the user is
     // looking at right now.
+    // The profile is one object rather than a per-company map, so it cannot be
+    // unioned key by key. Local still wins — it is what the reader is looking
+    // at — unless this browser has no profile yet, in which case connecting a
+    // database should hand back the one already saved in it rather than
+    // overwriting it with nothing.
+    const localProfile = local.profile;
+    const profile =
+      isProfileEmpty(localProfile) && remote !== null ? remote.profile : localProfile;
+
     const merged: TrackingState = {
       statuses: { ...(remote?.statuses ?? {}), ...local.statuses },
       notes: { ...(remote?.notes ?? {}), ...local.notes },
+      profile,
     };
 
     await writeJson(creds, REMOTE_KEY, merged);
@@ -242,11 +282,14 @@ export function TrackingProvider({ children }: { readonly children: ReactNode })
       tracking,
       credentials,
       connected: credentials !== null,
+      failing: credentials !== null && syncState === 'error',
       syncState,
       syncError,
       maskedCredentials: credentials !== null ? maskCredentials(credentials) : null,
       setStatus,
       setNote,
+      setProfile,
+      retry,
       connect,
       disconnect,
       trackedIds,
@@ -258,6 +301,8 @@ export function TrackingProvider({ children }: { readonly children: ReactNode })
       syncError,
       setStatus,
       setNote,
+      setProfile,
+      retry,
       connect,
       disconnect,
       trackedIds,

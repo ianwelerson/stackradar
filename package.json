@@ -13,6 +13,8 @@
     "typecheck": "tsc -b --noEmit && tsc -p api/tsconfig.json --noEmit",
     "lint": "eslint .",
     "validate:data": "node scripts/validate-data.mjs",
+    "audit:data": "node scripts/audit-data.mjs",
+    "audit:data:live": "node scripts/audit-data.mjs --sample 60",
     "verify": "pnpm validate:data && pnpm typecheck && pnpm lint && pnpm build",
     "set-site-url": "node scripts/set-site-url.mjs",
     "typecheck:api": "tsc -p api/tsconfig.json --noEmit",

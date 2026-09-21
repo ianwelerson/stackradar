@@ -161,6 +161,24 @@
     border-radius: 4px;
   }
 
+  /* Fields already draw their own edge, so an outline offset outside that edge
+     reads as a second box around the first. Inset it instead: same 2px cue for
+     keyboard users, sitting on the border the control already has. */
+  input:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible {
+    outline-width: 1px;
+    outline-offset: -1px;
+  }
+
+  /* A field that is only a borderless input inside a styled wrapper — the
+     search box — has no edge of its own to inset onto, so the ring would float
+     in the middle of the wrapper. Those opt out here and light up the wrapper
+     with focus-within instead; see DirectoryFilters. */
+  [data-focus-ring="wrapper"] :focus-visible {
+    outline: none;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
       animation-duration: 0.01ms !important;

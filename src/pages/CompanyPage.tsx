@@ -1,7 +1,10 @@
 import { useMemo, useRef, useState, useId } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import { directoryHref } from '@/lib/return-to';
 import { getCompany } from '@/lib/dataset';
 import { useTracking } from '@/hooks/useTracking';
+import { scoreCompany, tokenize } from '@/lib/scoring';
+import { MatchBar } from '@/components/MatchBar';
 import { CompanyTile } from '@/components/CompanyTile';
 import { VerificationBadge } from '@/components/VerificationBadge';
 import { StatusMenu } from '@/components/StatusMenu';
@@ -11,7 +14,7 @@ import { Modal } from '@/components/Modal';
 import { NotFoundPage } from './NotFoundPage';
 import { ALL_ROLES, categoriesOf, categorizeAll } from '@/lib/categorize';
 import { displayHost, safeExternalUrl } from '@/lib/safe-url';
-import { remotePolicyLabel, sizeLabel } from '@/lib/format';
+import { POSITION_CAP, isTruncated, remotePolicyLabel, sizeLabel } from '@/lib/format';
 import { MAX_NOTE_LENGTH } from '@/types/tracking';
 
 const VISIBLE_POSITIONS = 5;
@@ -21,6 +24,17 @@ export function CompanyPage({ onOpenStorage }: { readonly onOpenStorage: () => v
   const company = id !== undefined ? getCompany(id) : undefined;
 
   const { tracking, setStatus, setNote, connected, syncState, syncError } = useTracking();
+
+  // Scored against the saved profile, so the number here means the same thing
+  // as the one on the card the reader clicked to get here.
+  const profileTokens = useMemo(
+    () => tokenize(tracking.profile.terms.join(', ')),
+    [tracking.profile.terms],
+  );
+  const match = useMemo(
+    () => (company === undefined ? null : scoreCompany(company, profileTokens)),
+    [company, profileTokens],
+  );
   const [menuOpen, setMenuOpen] = useState(false);
   const [category, setCategory] = useState(ALL_ROLES);
   const [allOpen, setAllOpen] = useState(false);
@@ -49,8 +63,10 @@ export function CompanyPage({ onOpenStorage }: { readonly onOpenStorage: () => v
       : openings.filter((o) => o.category === activeCategory);
   const visible = matched.slice(0, VISIBLE_POSITIONS);
 
+  const truncated = isTruncated(company);
   const website = safeExternalUrl(company.website);
   const careers = safeExternalUrl(company.careersUrl);
+  const linkedin = safeExternalUrl(company.linkedinUrl);
   const host = displayHost(company.website);
 
   // hqLocation holds the raw research string, which is often a work-model
@@ -79,9 +95,9 @@ export function CompanyPage({ onOpenStorage }: { readonly onOpenStorage: () => v
   ];
 
   return (
-    <main className="max-w-[1000px] mx-auto px-5 pt-[22px] pb-20 animate-[sp-in_.26s_ease_both]">
+    <main className="max-w-[1180px] mx-auto px-5 pt-[22px] pb-20 animate-[sp-in_.26s_ease_both]">
       <Link
-        to="/"
+        to={directoryHref()}
         className="inline-block text-ink-dim text-[12.5px] py-1 mb-[18px] font-mono no-underline hover:text-ink"
       >
         ← all companies
@@ -98,6 +114,9 @@ export function CompanyPage({ onOpenStorage }: { readonly onOpenStorage: () => v
           <div className="flex items-center gap-[10px] flex-wrap">
             <h1 className="m-0 text-[25px] font-semibold tracking-[-0.02em]">{company.name}</h1>
             <VerificationBadge company={company} />
+            {match !== null && (
+              <MatchBar match={match} className="font-mono text-[11.5px]" />
+            )}
           </div>
           <p className="text-ink-muted text-[14px] mt-[6px] max-w-[560px] text-pretty m-0">
             {company.description}
@@ -121,6 +140,16 @@ export function CompanyPage({ onOpenStorage }: { readonly onOpenStorage: () => v
                 className="text-accent-link hover:text-accent-link-hover no-underline"
               >
                 careers page ↗
+              </a>
+            )}
+            {linkedin !== null && (
+              <a
+                href={linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-accent-link hover:text-accent-link-hover no-underline"
+              >
+                linkedin ↗
               </a>
             )}
           </div>
@@ -210,13 +239,22 @@ export function CompanyPage({ onOpenStorage }: { readonly onOpenStorage: () => v
         <section>
           <div className="flex items-baseline gap-[9px] mb-3">
             <h2 className="m-0 text-[15px] font-semibold">Open positions</h2>
-            <span className="font-mono text-[11.5px] text-ink-faint">
+            <span
+              className="font-mono text-[11.5px] text-ink-faint"
+              title={
+                truncated
+                  ? `This board lists ${company.openingsTotal} roles. We store the first ${POSITION_CAP}, so the list below is a sample.`
+                  : undefined
+              }
+            >
               {openings.length === 0
                 ? 'none recorded'
                 : activeCategory === ALL_ROLES
-                  ? // A big board is sampled rather than stored whole, so say so
-                    // instead of presenting the sample as the full picture.
-                    company.openingsTotal !== null && company.openingsTotal > openings.length
+                  ? // Only a list that actually hit the cap is a sample. Saying
+                    // "20 of 40 listed" when the 40 is just the same roles
+                    // repeated per city would claim we are hiding something we
+                    // are not — see isTruncated.
+                    truncated
                     ? `${openings.length} of ${company.openingsTotal} listed`
                     : `${openings.length} open`
                   : `${matched.length} of ${openings.length} open`}

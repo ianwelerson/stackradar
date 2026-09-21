@@ -70,8 +70,33 @@ export function remoteLabel(company: Company): string {
   return remotePolicyLabel(company.remotePolicy);
 }
 
-export function openingsLabel(count: number): string {
+/**
+ * The per-company cap the update script applies when storing postings, mirrored
+ * from `positions.maxPerCompany` in research.config.json. Kept in step by
+ * scripts/validate-data.mjs, which fails the build if the two drift apart.
+ */
+export const POSITION_CAP = 60;
+
+/**
+ * True when a company's board held more roles than we stored.
+ *
+ * `openingsTotal > currentOpenings.length` is NOT enough on its own, and that
+ * distinction matters: for most companies the gap is duplicate titles being
+ * collapsed — Resend's board lists the same six roles across nine city-specific
+ * postings — and there the stored count is the honest number of distinct roles.
+ * Only a list that actually ran into the cap is truncated.
+ */
+export function isTruncated(company: Company): boolean {
+  return (
+    company.openingsTotal !== null &&
+    company.openingsTotal > company.currentOpenings.length &&
+    company.currentOpenings.length >= POSITION_CAP
+  );
+}
+
+export function openingsLabel(count: number, truncated = false): string {
   if (count === 0) return 'no roles listed';
+  if (truncated) return `${count}+ roles open`;
   return count === 1 ? '1 role open' : `${count} roles open`;
 }
 

@@ -1,4 +1,5 @@
 import type { RemotePolicy } from './company.js';
+import type { Discipline } from '../lib/discipline.js';
 
 /**
  * Imports here are relative, not `@/`-aliased, on purpose: this module is
@@ -26,20 +27,32 @@ export const SORT_OPTIONS = {
 
 export type SortKey = keyof typeof SORT_OPTIONS;
 
+/**
+ * One search. Plural on every dimension because a reader's real preference
+ * usually is — remote or hybrid, 11–50 or 51–200 — and because a saved profile
+ * (types/profile.ts) feeds straight into this shape.
+ */
 export interface Filters {
   readonly query: string;
-  readonly remote: RemotePolicy | null;
-  readonly country: string | null;
-  readonly size: SizeBandKey | null;
+  readonly remote: readonly RemotePolicy[];
+  readonly countries: readonly string[];
+  readonly sizes: readonly SizeBandKey[];
+  /** Role disciplines to keep. Empty means every kind of role. Only bites in
+   *  the roles view, where a row is a job rather than a company. */
+  readonly disciplines: readonly Discipline[];
   readonly sort: SortKey;
+  /** Keep companies whose value was never confirmed. See CompanyFilter. */
+  readonly includeUnknown: boolean;
 }
 
 export const EMPTY_FILTERS: Filters = {
   query: '',
-  remote: null,
-  country: null,
-  size: null,
+  remote: [],
+  countries: [],
+  sizes: [],
+  disciplines: [],
   sort: 'relevance',
+  includeUnknown: false,
 };
 
 /** A requested headcount window. Either bound may be open. */

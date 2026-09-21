@@ -139,6 +139,29 @@ is the honest answer.
 access outright, and its company API needs partner approval. The job boards give better
 data anyway, from the company itself, with no terms to violate.
 
+### Client-side routes on Vercel
+
+`vercel.json` ends with the catch-all SPA fallback:
+
+```json
+"rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+```
+
+Two things make this safe rather than a sledgehammer. Vercel resolves the
+**filesystem before rewrites**, so the 297 prerendered company pages,
+`/companies.json` and everything under `/assets/` are served as real files and
+never reach this rule — it only catches paths with no file behind them, such as
+`/my-list`. And serverless functions are resolved in that same filesystem phase,
+so this stays correct if the JSON API is switched back on; it does not need an
+`api/` exclusion.
+
+That exclusion is in fact what broke it. The rule previously read
+`/((?!api\/).*)`, and `source` is parsed as **path-to-regexp**, not a raw
+regular expression — the `\/` escape that is a no-op in JavaScript is not one
+there, so the pattern failed to match and every route without a prerendered file
+fell through to Vercel's own 404 page on reload. The symptom was that the site
+worked while navigating but any inner path errored when refreshed.
+
 ### Logos
 
 `node scripts/update/cli.mjs logos --write` downloads each company's logo from its own site

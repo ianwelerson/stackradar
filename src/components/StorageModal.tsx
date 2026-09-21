@@ -22,7 +22,8 @@ const SETUP_STEPS: readonly string[] = [
 ];
 
 export function StorageModal({ open, onClose }: Props) {
-  const { connected, connect, disconnect, maskedCredentials, tracking } = useTracking();
+  const { connected, failing, syncError, syncState, connect, disconnect, retry, maskedCredentials, tracking } =
+    useTracking();
   const [url, setUrl] = useState('');
   const [token, setToken] = useState('');
   const [error, setError] = useState<string | null>(null);
@@ -89,18 +90,42 @@ export function StorageModal({ open, onClose }: Props) {
       <div className="overflow-auto scrollbar-thin">
         {connected ? (
           <div className="p-5 flex flex-col gap-4">
-            <div className="flex items-center gap-[10px] bg-accent-surface border border-accent-line rounded-[10px] px-[14px] py-[13px]">
+            <div
+              className={`flex items-start gap-[10px] rounded-[10px] px-[14px] py-[13px] border ${
+                failing
+                  ? 'bg-danger-surface border-danger-line'
+                  : 'bg-accent-surface border-accent-line'
+              }`}
+            >
               <span
-                className="w-[7px] h-[7px] rounded-full flex-none"
-                style={{ background: 'oklch(0.80 0.15 162)' }}
+                className="w-[7px] h-[7px] rounded-full flex-none mt-[6px]"
+                style={{
+                  background: failing ? 'var(--color-danger-bright)' : 'oklch(0.80 0.15 162)',
+                }}
               />
               <div className="flex-1 min-w-0">
-                <div className="text-[13.5px] font-medium text-accent-text-bright">
-                  Connected and syncing
+                <div
+                  className={`text-[13.5px] font-medium ${
+                    failing ? 'text-danger-bright' : 'text-accent-text-bright'
+                  }`}
+                >
+                  {failing ? 'Connected, but not syncing' : 'Connected and syncing'}
                 </div>
-                <div className="font-mono text-[11px] text-accent-text-soft mt-[3px] truncate">
+                <div
+                  className={`font-mono text-[11px] mt-[3px] truncate ${
+                    failing ? 'text-danger-text' : 'text-accent-text-soft'
+                  }`}
+                >
                   {maskedCredentials}
                 </div>
+                {failing && (
+                  <p className="text-[12.5px] text-danger-text m-0 mt-[8px] text-pretty leading-[1.5]">
+                    {syncError ??
+                      'The last write to your database did not go through.'}{' '}
+                    Your changes are still saved in this browser, so nothing is lost — but they
+                    are not reaching your database until this is fixed.
+                  </p>
+                )}
               </div>
             </div>
 
@@ -108,7 +133,7 @@ export function StorageModal({ open, onClose }: Props) {
               {[
                 { k: 'Notes', v: String(noteCount) },
                 { k: 'Tracked', v: String(trackedCount) },
-                { k: 'Stored at', v: 'your database' },
+                { k: 'Stored at', v: failing ? 'this browser' : 'your database' },
               ].map((stat) => (
                 <div key={stat.k} className="bg-surface-alt px-[14px] py-3">
                   <div className="font-mono text-[10.5px] text-ink-faint uppercase tracking-[0.06em]">
@@ -120,11 +145,22 @@ export function StorageModal({ open, onClose }: Props) {
             </div>
 
             <p className="text-[12.5px] text-ink-dim text-pretty m-0">
-              Your notes and tracked companies are written to your own database. Disconnecting
-              clears the credentials from this browser; the data stays in your Redis instance.
+              Your profile, notes and tracked companies are written to your own database.
+              Disconnecting clears the credentials from this browser; the data stays in your Redis
+              instance.
             </p>
 
             <div className="flex gap-2 flex-wrap">
+              {failing && (
+                <button
+                  type="button"
+                  onClick={retry}
+                  disabled={syncState === 'syncing'}
+                  className="bg-accent-surface border border-accent-line text-accent-text-bright rounded-[8px] px-[14px] py-[9px] text-[12.5px] cursor-pointer disabled:opacity-50 disabled:cursor-default hover:bg-accent-surface-strong transition-colors"
+                >
+                  {syncState === 'syncing' ? 'Retrying…' : 'Retry now'}
+                </button>
+              )}
               <button
                 type="button"
                 onClick={() => {

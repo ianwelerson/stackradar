@@ -63,13 +63,16 @@ export function filterCompanies(query: CompanyQuery): FilterOutcome {
   // company unscored, which is exactly the unfiltered-list behaviour we want.
   const scored = searchCompanies(companies, query.keyword ?? '');
 
+  // The HTTP surface takes one value per dimension; `partition` takes lists so
+  // the UI can offer multi-select. A single value is just a list of one, and
+  // the API's contract is unchanged.
   const { results, excluded } = partition(scored, {
-    remote: query.remote,
-    country: query.country,
-    size:
+    remote: query.remote === null ? [] : [query.remote],
+    countries: query.country === null ? [] : [query.country],
+    sizes:
       query.minSize === null && query.maxSize === null
-        ? null
-        : { min: query.minSize, max: query.maxSize },
+        ? []
+        : [{ min: query.minSize, max: query.maxSize }],
   });
 
   return {

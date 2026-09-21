@@ -38,6 +38,7 @@
         "description",
         "website",
         "careersUrl",
+        "linkedinUrl",
         "sizeRange",
         "sizeMin",
         "sizeMax",
@@ -92,12 +93,20 @@
           "pattern": "^https://",
           "description": "Careers page URL. Non-null only where the research explicitly recorded one."
         },
+        "linkedinUrl": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^https://(www\\.)?linkedin\\.com/company/",
+          "description": "The company's own LinkedIn page, harvested from a link the company publishes on its own website. LinkedIn itself is never fetched or scraped — its robots.txt prohibits automated access — so this is a link out, never a data source. Null when the company does not link one."
+        },
         "sizeRange": {
           "type": [
             "string",
             "null"
           ],
-          "description": "The original free-text size from the research, preserved verbatim (e.g. \"~45\", \"51\u2013200\", \"1,000+\", \"Small, YC-backed\"). Null when no size was recorded."
+          "description": "The original free-text size from the research, preserved verbatim (e.g. \"~45\", \"51–200\", \"1,000+\", \"Small, YC-backed\"). Null when no size was recorded."
         },
         "sizeMin": {
           "type": [
@@ -170,7 +179,7 @@
           "items": {
             "$ref": "#/$defs/historyEntry"
           },
-          "description": "Append-only weekly scan log written by the update script. Always empty in the seed data \u2014 no synthetic history is shipped."
+          "description": "Append-only weekly scan log written by the update script. Always empty in the seed data — no synthetic history is shipped."
         },
         "lastVerified": {
           "type": [
@@ -218,7 +227,7 @@
             "string",
             "null"
           ],
-          "description": "Direct link to the role posting. Null in the seed data \u2014 no per-role URLs were recorded."
+          "description": "Direct link to the role posting. Null in the seed data — no per-role URLs were recorded."
         },
         "postedDate": {
           "type": [
@@ -226,7 +235,7 @@
             "null"
           ],
           "format": "date",
-          "description": "Posting date. Null in the seed data \u2014 no posting dates were recorded."
+          "description": "Posting date. Null in the seed data — no posting dates were recorded."
         },
         "detectedKeywords": {
           "type": "array",

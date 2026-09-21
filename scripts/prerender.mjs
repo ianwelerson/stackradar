@@ -50,18 +50,10 @@ function describe(company) {
   return bits.length > 0 ? `${base}. ${bits.join(' · ')}.` : `${base}.`;
 }
 
-let written = 0;
-
-for (const company of companies) {
-  const title = `${company.name} — hiring on Stack Radar`;
-  const description = describe(company);
-  const canonical = `/company/${company.id}`;
-
-  const html = shell
-    .replace(
-      /<title>[\s\S]*?<\/title>/,
-      `<title>${text(title)}</title>`,
-    )
+/** Apply per-route metadata to the built shell. */
+function render({ title, description, canonical }) {
+  return shell
+    .replace(/<title>[\s\S]*?<\/title>/, `<title>${text(title)}</title>`)
     .replace(
       /<meta\s+name="description"[\s\S]*?\/>/,
       `<meta name="description" content="${attr(description)}" />`,
@@ -74,6 +66,37 @@ for (const company of companies) {
       /<meta property="og:description"[^>]*\/>/,
       `<meta property="og:description" content="${attr(description)}" />`,
     );
+}
+
+let written = 0;
+
+// The methodology page is the one non-company route worth a real shell: it is
+// what a reader lands on when they want to know whether to trust any of this,
+// and it should carry its own title and description when shared or indexed.
+{
+  const target = resolve(dist, 'data.html');
+  await mkdir(dirname(target), { recursive: true });
+  await writeFile(
+    target,
+    render({
+      title: 'Where this data comes from — Stack Radar',
+      description:
+        'How Stack Radar gathers companies and open roles: the sources, why fields are left '
+        + 'empty rather than guessed, what is deliberately not collected, and the full dataset '
+        + 'as one JSON file.',
+      canonical: '/data',
+    }),
+    'utf8',
+  );
+  written += 1;
+}
+
+for (const company of companies) {
+  const title = `${company.name} — hiring on Stack Radar`;
+  const description = describe(company);
+  const canonical = `/company/${company.id}`;
+
+  const html = render({ title, description, canonical });
 
   const target = resolve(dist, 'company', `${company.id}.html`);
   await mkdir(dirname(target), { recursive: true });
@@ -81,4 +104,4 @@ for (const company of companies) {
   written += 1;
 }
 
-console.log(`prerendered ${written} company pages`);
+console.log(`prerendered ${written} pages (${written - 1} companies + /data)`);

@@ -1,3 +1,5 @@
+import { EMPTY_PROFILE, type Profile } from './profile.js';
+
 export const STATUSES = [
   'Tracked',
   'Applied',
@@ -55,13 +57,25 @@ export const STATUS_TOKENS: Record<Status, { bg: string; fg: string; border: str
   },
 };
 
-/** Personal tracking state, persisted locally and optionally synced. */
+/**
+ * Everything personal, persisted locally and optionally synced.
+ *
+ * The saved profile lives here rather than in its own store so it inherits the
+ * behaviour already built and tested for tracking: written to localStorage
+ * first so it survives without a database, debounced into Upstash when one is
+ * connected, and reconciled on load. One person's data, one record.
+ */
 export interface TrackingState {
   readonly statuses: Readonly<Record<string, Status>>;
   readonly notes: Readonly<Record<string, string>>;
+  readonly profile: Profile;
 }
 
-export const EMPTY_TRACKING: TrackingState = { statuses: {}, notes: {} };
+export const EMPTY_TRACKING: TrackingState = {
+  statuses: {},
+  notes: {},
+  profile: EMPTY_PROFILE,
+};
 
 /** Notes are capped so a runaway paste cannot fill the user's database. */
 export const MAX_NOTE_LENGTH = 4000;

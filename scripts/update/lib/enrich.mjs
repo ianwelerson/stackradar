@@ -18,6 +18,7 @@ export const ENRICHABLE_FIELDS = [
   'description',
   'website',
   'careersUrl',
+  'linkedinUrl',
   'sizeRange',
   'sizeMin',
   'sizeMax',
@@ -107,6 +108,17 @@ function validateFacts(facts, errors, id) {
       case 'remotePolicy': {
         if (!REMOTE_POLICIES.has(value)) {
           errors.push(`${id}: remotePolicy must be remote|hybrid|onsite, got ${JSON.stringify(value)}`);
+          continue;
+        }
+        clean[key] = value;
+        break;
+      }
+      case 'linkedinUrl': {
+        // Constrained to a company page. Anything else — a personal profile, a
+        // job post, some other site entirely — is not what this field links to,
+        // and the reader would have no way to tell before clicking.
+        if (typeof value !== 'string' || !/^https:\/\/(www\.)?linkedin\.com\/company\/[^\s/]+/.test(value)) {
+          errors.push(`${id}: linkedinUrl must be an https linkedin.com/company URL, got ${JSON.stringify(value)}`);
           continue;
         }
         clean[key] = value;

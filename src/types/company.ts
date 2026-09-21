@@ -33,6 +33,12 @@ export interface Company {
   readonly description: string;
   readonly website: string | null;
   readonly careersUrl: string | null;
+  /**
+   * The company's own LinkedIn page, taken from a link it publishes on its own
+   * site. LinkedIn is never fetched — its robots.txt prohibits automated
+   * access — so this is a link out for the reader, never a source of data.
+   */
+  readonly linkedinUrl: string | null;
   /** Original free-text size from research, preserved verbatim for display. */
   readonly sizeRange: string | null;
   readonly sizeMin: number | null;

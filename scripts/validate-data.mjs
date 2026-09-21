@@ -49,6 +49,12 @@ const Company = z.object({
   description: z.string().min(1),
   website: httpsUrl.nullable(),
   careersUrl: httpsUrl.nullable(),
+  // Constrained to a LinkedIn company page: this field is a link out, and a
+  // stray URL here would send readers somewhere we never vetted.
+  linkedinUrl: z
+    .string()
+    .regex(/^https:\/\/(www\.)?linkedin\.com\/company\//, 'must be a linkedin.com/company URL')
+    .nullable(),
   sizeRange: z.string().nullable(),
   sizeMin: z.number().int().positive().nullable(),
   sizeMax: z.number().int().positive().nullable(),
@@ -110,6 +116,30 @@ if (!parsed.success) {
     if ([...weeks].sort().join() !== weeks.join()) {
       problems.push(`${c.id}: history is not in chronological order`);
     }
+  }
+}
+
+// The UI decides whether a company's list is a truncated sample by comparing
+// its stored count against a cap it holds as a constant (POSITION_CAP in
+// src/lib/format.ts). That constant mirrors research.config.json, and nothing
+// links the two at runtime — so if they drift, every capped company silently
+// stops showing its "60+" and starts claiming a sample is the whole board.
+{
+  const configPath = new URL('../research.config.json', import.meta.url);
+  const formatPath = new URL('../src/lib/format.ts', import.meta.url);
+  try {
+    const configured = JSON.parse(readFileSync(configPath, 'utf8'))?.positions?.maxPerCompany;
+    const declared = readFileSync(formatPath, 'utf8').match(/POSITION_CAP\s*=\s*(\d+)/);
+    if (Number.isInteger(configured) && declared !== null) {
+      if (Number(declared[1]) !== configured) {
+        problems.push(
+          `POSITION_CAP in src/lib/format.ts is ${declared[1]} but `
+          + `positions.maxPerCompany in research.config.json is ${configured}`,
+        );
+      }
+    }
+  } catch {
+    /* config or source unreadable — not this check's business to fail over */
   }
 }
 

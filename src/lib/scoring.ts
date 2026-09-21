@@ -63,13 +63,53 @@ export function tokenize(input: string): string[] {
   return splitTerms(input).map((term) => term.toLowerCase());
 }
 
-const contains = (haystack: string | null | undefined, needle: string): boolean =>
-  typeof haystack === 'string' && haystack.toLowerCase().includes(needle);
+/**
+ * Characters that continue a word. `+` and `#` are included so "c++" and "c#"
+ * are single terms; `.` is not, so "node.js" is reachable by "node" and by
+ * "js" — both of which people type.
+ */
+function isWordChar(char: string): boolean {
+  return char !== '' && /[a-z0-9+#]/.test(char);
+}
+
+/**
+ * Whole-term containment.
+ *
+ * Plain substring matching looked fine on company names and fell apart the
+ * moment roles were searchable: the term "r" appeared in 2,955 of 3,126 role
+ * titles — every "Engineer" — and "go" matched Ridango, Algolia and
+ * "Go-to-Market". A 90% match on a term the role does not use is worse than no
+ * score at all, because the number is what the reader trusts.
+ *
+ * Deliberately scanned by hand rather than with a RegExp: nothing in this
+ * codebase compiles a pattern from user input, which is what keeps ReDoS off
+ * the table entirely. The fixed single-character test above is not user input.
+ *
+ * Synonyms are not this function's job and do not need to be — "golang" is
+ * normalised to the `go` keyword by the update script, so a Go role matches the
+ * term through its structured keywords rather than through a lucky substring.
+ */
+export function containsTerm(haystack: string | null | undefined, needle: string): boolean {
+  if (typeof haystack !== 'string' || needle === '') return false;
+  const hay = haystack.toLowerCase();
+
+  let index = hay.indexOf(needle);
+  while (index !== -1) {
+    const before = index === 0 ? '' : hay[index - 1] ?? '';
+    const afterIndex = index + needle.length;
+    const after = afterIndex >= hay.length ? '' : hay[afterIndex] ?? '';
+    if (!isWordChar(before) && !isWordChar(after)) return true;
+    index = hay.indexOf(needle, index + 1);
+  }
+  return false;
+}
 
 /**
  * Score one company against pre-tokenized query terms.
  * Returns null when nothing matched, so callers can filter non-matches out.
  */
+const contains = containsTerm;
+
 export function scoreCompany(company: Company, tokens: readonly string[]): ScoreResult | null {
   if (tokens.length === 0) return null;
 
