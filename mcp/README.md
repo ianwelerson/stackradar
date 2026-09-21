@@ -42,7 +42,7 @@ npm run build      # bundles src/ + the shared scoring/filtering modules into di
 ## Add it to Claude Code
 
 ```bash
-claude mcp add stack-radar -e STACK_RADAR_API=https://stack-radar.vercel.app -- node /absolute/path/to/stackradar/mcp/dist/index.js
+claude mcp add stack-radar -e STACK_RADAR_API=https://stackradar.strukt.app -- node /absolute/path/to/stackradar/mcp/dist/index.js
 ```
 
 Or commit it to the project by putting this in `.mcp.json` at the repository root:
@@ -54,7 +54,7 @@ Or commit it to the project by putting this in `.mcp.json` at the repository roo
       "command": "node",
       "args": ["/absolute/path/to/stackradar/mcp/dist/index.js"],
       "env": {
-        "STACK_RADAR_API": "https://stack-radar.vercel.app"
+        "STACK_RADAR_API": "https://stackradar.strukt.app"
       }
     }
   }
@@ -74,7 +74,7 @@ Edit `claude_desktop_config.json` — on macOS
       "command": "node",
       "args": ["/absolute/path/to/stackradar/mcp/dist/index.js"],
       "env": {
-        "STACK_RADAR_API": "https://stack-radar.vercel.app"
+        "STACK_RADAR_API": "https://stackradar.strukt.app"
       }
     }
   }
@@ -88,7 +88,7 @@ without a predictable working directory.
 
 | Variable | Default | Effect |
 | --- | --- | --- |
-| `STACK_RADAR_API` | `https://stack-radar.vercel.app` | Base URL of the JSON API. Point it at `http://localhost:3000` to develop against `vercel dev`. Trailing slashes are trimmed. |
+| `STACK_RADAR_API` | `https://stackradar.strukt.app` | Base URL of the JSON API. Point it at `http://localhost:3000` to develop against `vercel dev`. Trailing slashes are trimmed. |
 
 The variable is optional; with nothing set, the server talks to the production deployment.
 

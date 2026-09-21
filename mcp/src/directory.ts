@@ -23,7 +23,7 @@ import {
  * difference is freshness, and callers are told which one answered.
  */
 
-const DEFAULT_BASE_URL = 'https://stack-radar.vercel.app';
+const DEFAULT_BASE_URL = 'https://stackradar.strukt.app';
 
 /** Short enough that a dead host degrades to the snapshot fast, not eventually. */
 const REQUEST_TIMEOUT_MS = 8000;

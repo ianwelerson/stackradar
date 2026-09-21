@@ -32,9 +32,9 @@ that a specific role is open today on the strength of this dataset alone.
 
 ## Data access
 
-Base URL: `https://stack-radar.vercel.app`.
+Base URL: `https://stackradar.strukt.app`.
 
-- [/companies.json](https://stack-radar.vercel.app/companies.json): **the entire dataset** as one
+- [/companies.json](https://stackradar.strukt.app/companies.json): **the entire dataset** as one
   static JSON file, roughly 6 KB gzipped. No key, no rate limit, any origin. This is the intended way
   to consume it — fetch once and filter locally rather than issuing a request per query.
 
@@ -68,9 +68,9 @@ Setup instructions and the exact client configuration block are in `mcp/README.m
 
 ## Site
 
-- [Directory](https://stack-radar.vercel.app/): Browse and filter companies by keyword, country,
+- [Directory](https://stackradar.strukt.app/): Browse and filter companies by keyword, country,
   remote policy and size.
-- [Company pages](https://stack-radar.vercel.app/company/resend): Full record for one company plus a
+- [Company pages](https://stackradar.strukt.app/company/resend): Full record for one company plus a
   weekly chart of its open-role history.
 
 ## Optional
