@@ -2,6 +2,7 @@ import type { Filters } from '@/types/filters';
 import { SIZE_BANDS, SORT_OPTIONS, type SizeBandKey, type SortKey } from '@/types/filters';
 import type { RemotePolicy } from '@/types/company';
 import { DISCIPLINE_LABELS, TECHNICAL, type Discipline } from '@/lib/discipline';
+import { LocationPicker } from './LocationPicker';
 
 /**
  * The filter bar.
@@ -20,7 +21,6 @@ import { DISCIPLINE_LABELS, TECHNICAL, type Discipline } from '@/lib/discipline'
 
 interface Props {
   readonly filters: Filters;
-  readonly countries: readonly string[];
   readonly onChange: (patch: Partial<Filters>) => void;
   readonly view: 'companies' | 'roles';
   readonly onViewChange: (view: 'companies' | 'roles') => void;
@@ -83,7 +83,7 @@ function Pill({
   );
 }
 
-export function DirectoryFilters({ filters, countries, onChange, view, onViewChange }: Props) {
+export function DirectoryFilters({ filters, onChange, view, onViewChange }: Props) {
   return (
     <div className="flex flex-col gap-[14px]">
       <div
@@ -171,27 +171,11 @@ export function DirectoryFilters({ filters, countries, onChange, view, onViewCha
       {/* Row 2 — selects. Sort sits at the far end on desktop: it orders the
           result of the other two, rather than narrowing anything itself. */}
       <div className="flex gap-2 items-center min-w-0 flex-wrap">
-        {/* A profile may select several locations; one <select> cannot show that
-            honestly, so it says how many and picking one replaces the set. */}
-        <select
-          value={filters.countries.length === 1 ? filters.countries[0] : ''}
-          onChange={(event) =>
-            onChange({ countries: event.target.value ? [event.target.value] : [] })
-          }
-          aria-label="Location"
-          className={SELECT_CLASS}
-        >
-          <option value="">
-            {filters.countries.length > 1
-              ? `${filters.countries.length} locations`
-              : 'Any location'}
-          </option>
-          {countries.map((country) => (
-            <option key={country} value={country}>
-              {country}
-            </option>
-          ))}
-        </select>
+        <LocationPicker
+          value={filters.countries}
+          onChange={(countries) => onChange({ countries })}
+          className="flex-1 min-w-0 basis-[160px] md:flex-none md:basis-auto md:min-w-[190px]"
+        />
 
         <select
           value={filters.sizes.length === 1 ? filters.sizes[0] : ''}

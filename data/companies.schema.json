@@ -214,7 +214,8 @@
         "url",
         "location",
         "postedDate",
-        "detectedKeywords"
+        "detectedKeywords",
+        "workplace"
       ],
       "properties": {
         "title": {
@@ -251,6 +252,35 @@
             "null"
           ],
           "description": "Where the role is advertised, as the job board states it. Null when the board gives no location."
+        },
+        "workplace": {
+          "type": "array",
+          "description": "How and where the role can be done, derived from the posting's own location text. One slot per place the posting names. `mode` is only 'remote', 'hybrid' or 'onsite' when the posting says so; a place with no stated model is 'unknown', left for the company's own policy to resolve. `where` holds canonical country names and region keys (worldwide, europe, emea, americas, north-america, latin-america, south-america, apac). An empty `where` means the posting did not say — never 'anywhere'. An empty array means the posting had no location at all.",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "mode",
+              "where"
+            ],
+            "properties": {
+              "mode": {
+                "enum": [
+                  "remote",
+                  "hybrid",
+                  "onsite",
+                  "unknown"
+                ]
+              },
+              "where": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            }
+          }
         }
       }
     },

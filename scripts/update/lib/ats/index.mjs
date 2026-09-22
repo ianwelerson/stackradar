@@ -15,6 +15,7 @@
  */
 import { toSlug } from '../slug.mjs';
 import { extractFromPosition } from '../keywords.mjs';
+import { workplaceOfMany } from '../workplace.mjs';
 import * as ashby from './ashby.mjs';
 import * as greenhouse from './greenhouse.mjs';
 import * as lever from './lever.mjs';
@@ -93,9 +94,24 @@ const RESERVED_TOKENS = new Set([
   // picks the most-referenced token, so without this the board at
   // jobs.thorgate.eu resolved to the token "app" and the scan found nothing.
   'app', 'cdn',
+  // Aggregators that repost other companies' jobs on a board of their own.
+  // remote.com links Jobgether's Lever board from its jobs marketplace, and the
+  // scan recorded sixty strangers' roles — "Academic and Athletic Compliance
+  // Coordinator" — as Remote's own.
+  'jobgether',
 ]);
 
 const TOKEN_SHAPE = /^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$/;
+
+/**
+ * Ashby org names may contain spaces — Flock Safety's board is
+ * jobs.ashbyhq.com/Flock%20Safety. A token cut off at the "%20" is not a
+ * shorter spelling of the same board, it is a different company: "Flock" is an
+ * insurer, and reading it put "Senior Motor Fleet Underwriter" on Flock
+ * Safety's page. So Ashby tokens are decoded and may carry inner spaces, and
+ * the patterns below capture the encoded form whole instead of stopping at %.
+ */
+const ASHBY_TOKEN_SHAPE = /^[A-Za-z0-9][A-Za-z0-9._ -]{0,63}$/;
 
 /**
  * Direct host rules. `path` takes the first path segment as the token,
@@ -135,8 +151,8 @@ const EMBED_PATTERNS = [
   { platform: 'greenhouse', regex: /greenhouse\.io\/embed\/job_board(?:\/js)?\?for=([A-Za-z0-9][A-Za-z0-9._-]{0,63})/gi },
   { platform: 'greenhouse', regex: /(?:boards|job-boards)(?:\.eu)?\.greenhouse\.io\/([A-Za-z0-9][A-Za-z0-9._-]{0,63})/gi },
   // Ashby ships both the hosted board link and an embed script with ?org=.
-  { platform: 'ashby', regex: /jobs\.ashbyhq\.com\/embed\?org=([A-Za-z0-9][A-Za-z0-9._-]{0,63})/gi },
-  { platform: 'ashby', regex: /jobs\.ashbyhq\.com\/([A-Za-z0-9][A-Za-z0-9._-]{0,63})/gi },
+  { platform: 'ashby', regex: /jobs\.ashbyhq\.com\/embed\?org=([A-Za-z0-9][A-Za-z0-9._%-]{0,90})/gi },
+  { platform: 'ashby', regex: /jobs\.ashbyhq\.com\/([A-Za-z0-9][A-Za-z0-9._%-]{0,90})/gi },
   { platform: 'lever', regex: /jobs\.(?:eu\.)?lever\.co\/([A-Za-z0-9][A-Za-z0-9._-]{0,63})/gi },
   { platform: 'workable', regex: /apply\.workable\.com\/([A-Za-z0-9][A-Za-z0-9._-]{0,63})/gi },
   { platform: 'recruitee', regex: /([A-Za-z0-9-]+)\.recruitee\.com/gi },
@@ -160,10 +176,17 @@ const EMBED_PATTERNS = [
 /** Careers pages routinely run to a megabyte of inlined app state. */
 const MAX_SCAN_BYTES = 1500000;
 
-function validToken(token) {
+function validToken(token, platform) {
   if (typeof token !== 'string') return null;
-  const trimmed = token.trim().replace(/\/+$/, '');
-  if (!TOKEN_SHAPE.test(trimmed)) return null;
+  let trimmed = token.trim().replace(/\/+$/, '');
+  if (platform === 'ashby' && trimmed.includes('%')) {
+    try {
+      trimmed = decodeURIComponent(trimmed).trim();
+    } catch {
+      return null;
+    }
+  }
+  if (!(platform === 'ashby' ? ASHBY_TOKEN_SHAPE : TOKEN_SHAPE).test(trimmed)) return null;
   if (RESERVED_TOKENS.has(trimmed.toLowerCase())) return null;
   return trimmed;
 }
@@ -196,7 +219,7 @@ function matchUrl(value) {
     const token =
       rule.platform === 'greenhouse' && (raw === 'embed' || raw === null)
         ? validToken(url.searchParams.get('for'))
-        : validToken(raw);
+        : validToken(raw, rule.platform);
 
     if (token !== null) return { platform: rule.platform, token };
   }
@@ -239,9 +262,10 @@ function scanMarkup(html) {
 
   for (const { platform, regex } of EMBED_PATTERNS) {
     for (const match of body.matchAll(regex)) {
-      const token = validToken(match[1]);
+      const token = validToken(match[1], platform);
       if (token === null) continue;
-      const key = `${platform} ${token}`;
+      // Not a space: an Ashby token may contain one.
+      const key = `${platform}\u0000${token}`;
       counts.set(key, (counts.get(key) ?? 0) + 1);
     }
   }
@@ -249,7 +273,7 @@ function scanMarkup(html) {
   if (counts.size === 0) return null;
 
   const [best] = [...counts].sort((a, b) => b[1] - a[1]);
-  const [platform, token] = best[0].split(' ');
+  const [platform, token] = best[0].split('\u0000');
   return { platform, token };
 }
 
@@ -346,6 +370,7 @@ function buildOpenings(jobs, config) {
       if (typeof job.location === 'string' && job.location !== '') {
         existing.locations.add(job.location);
       }
+      existing.postings.push({ location: job.location ?? null, hint: job.remoteHint ?? null });
       // Keep the earliest posting date; a role re-listed per city should read
       // as old as it actually is.
       if (job.postedDate !== null && (existing.postedDate === null || job.postedDate < existing.postedDate)) {
@@ -360,13 +385,19 @@ function buildOpenings(jobs, config) {
       locations: new Set(typeof job.location === 'string' && job.location !== '' ? [job.location] : []),
       postedDate: job.postedDate ?? null,
       detectedKeywords: extractFromPosition({ title: job.title, description: job.text }, vocabulary),
+      postings: [{ location: job.location ?? null, hint: job.remoteHint ?? null }],
     };
     seen.set(key, entry);
     openings.push(entry);
   }
 
-  // Flatten the gathered locations into the stored shape.
+  // Flatten the gathered locations into the stored shape. The workplace is
+  // derived from every posting first — the display string below keeps only
+  // three places, and a role's remote scope often lives in the fourth.
   for (const opening of openings) {
+    opening.workplace = workplaceOfMany(opening.postings);
+    delete opening.postings;
+
     const list = [...opening.locations];
     opening.location = list.length === 0 ? null : list.length <= 3 ? list.join(' · ') : `${list.slice(0, 3).join(' · ')} +${list.length - 3} more`;
     delete opening.locations;

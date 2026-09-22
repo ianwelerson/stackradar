@@ -4,6 +4,7 @@ import { MAX_TERMS, MAX_TERM_LENGTH, type Profile } from '@/types/profile';
 import type { RemotePolicy } from '@/types/company';
 import { splitTerms } from '@/lib/scoring';
 import { DISCIPLINE_LABELS, TECHNICAL, type Discipline } from '@/lib/discipline';
+import { LocationPicker } from './LocationPicker';
 
 /**
  * Editing the saved profile.
@@ -93,11 +94,9 @@ function Chip({
 
 export function ProfileEditor({
   profile,
-  countries,
   onChange,
 }: {
   readonly profile: Profile;
-  readonly countries: readonly string[];
   readonly onChange: (next: Profile) => void;
 }) {
   const [termDraft, setTermDraft] = useState('');
@@ -225,8 +224,8 @@ export function ProfileEditor({
       </Field>
 
       <Field
-        label="Company location"
-        hint="Anywhere by default. Add countries to narrow it — you can pick several."
+        label="Where you can work from"
+        hint="Anywhere by default. Add every country you could work from. A remote role only counts when it is open to one of them — or to a region, or the world, that includes them."
       >
         <div className="flex gap-[6px] flex-wrap mb-[10px]">
           {profile.countries.length === 0 && (
@@ -248,25 +247,11 @@ export function ProfileEditor({
             </button>
           ))}
         </div>
-        <select
-          value=""
-          onChange={(event) => {
-            const value = event.target.value;
-            if (value === '' || profile.countries.includes(value)) return;
-            onChange({ ...profile, countries: [...profile.countries, value] });
-          }}
-          aria-label="Add a country"
-          className="bg-surface border border-line-strong rounded-[8px] text-ink-soft px-[11px] py-2 text-[12.5px] cursor-pointer appearance-none min-w-[180px]"
-        >
-          <option value="">Add a country…</option>
-          {countries
-            .filter((country) => !profile.countries.includes(country))
-            .map((country) => (
-              <option key={country} value={country}>
-                {country}
-              </option>
-            ))}
-        </select>
+        <LocationPicker
+          value={profile.countries}
+          onChange={(countries) => onChange({ ...profile, countries })}
+          className="w-full max-w-[280px]"
+        />
       </Field>
 
       <Field

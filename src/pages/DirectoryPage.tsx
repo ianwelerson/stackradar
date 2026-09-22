@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo } from 'react';
 import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import { companies } from '@/lib/dataset';
-import { applyFilters, availableCountries } from '@/lib/filtering';
+import { applyFilters, evaluateOpening } from '@/lib/filtering';
 import { splitTerms, tokenize } from '@/lib/scoring';
 import { ROLE_SORTERS, searchRoles } from '@/lib/roles';
 import { useFilters } from '@/hooks/useFilters';
@@ -9,9 +9,9 @@ import { useTracking } from '@/hooks/useTracking';
 import { DirectoryFilters } from '@/components/DirectoryFilters';
 import { CompanyCard } from '@/components/CompanyCard';
 import { RoleResults } from '@/components/RoleResults';
-import { SIZE_BANDS } from '@/types/filters';
+import { SIZE_BANDS, sizeRangeOfBand } from '@/types/filters';
 import { isProfileEmpty } from '@/types/profile';
-import { DISCIPLINE_LABELS, disciplineOf } from '@/lib/discipline';
+import { DISCIPLINE_LABELS } from '@/lib/discipline';
 import { remotePolicyLabel } from '@/lib/format';
 import { rememberDirectorySearch } from '@/lib/return-to';
 
@@ -50,7 +50,6 @@ export function DirectoryPage() {
   // they actually built, rather than a bare index.
   useEffect(() => rememberDirectorySearch(search), [search]);
 
-  const countries = useMemo(() => availableCountries(companies), []);
   const outcome = useMemo(() => applyFilters(companies, filters), [filters]);
   const queryTokens = useMemo(() => tokenize(filters.query), [filters.query]);
 
@@ -64,16 +63,35 @@ export function DirectoryPage() {
     if (view !== 'roles') return [];
     const matching = results.map((entry) => entry.company);
     const found = searchRoles(matching, queryTokens);
-    // Discipline is applied to roles only. A company filter cannot express
-    // "I want the backend job, not the account executive job" — that is a
-    // property of the role, and this view is the one whose rows are roles.
-    const wanted = filters.disciplines;
-    const kept =
-      wanted.length === 0
-        ? found
-        : found.filter((entry) => wanted.includes(disciplineOf(entry.opening.title)));
-    return kept.sort(ROLE_SORTERS[filters.sort] ?? ROLE_SORTERS['relevance']);
-  }, [view, results, queryTokens, filters.sort, filters.disciplines]);
+    // A company passes when *any* of its roles fits; here every row is a role,
+    // so each is tested on its own. Without this, choosing Remote + Estonia
+    // would show a company's US-only remote roles simply because one other
+    // role of theirs is open to Estonia.
+    const roleFilter = {
+      remote: filters.remote,
+      countries: filters.countries,
+      sizes: filters.sizes.map(sizeRangeOfBand),
+      disciplines: filters.disciplines,
+      includeUnknown: filters.includeUnknown,
+    };
+    const sorter = ROLE_SORTERS[filters.sort] ?? ROLE_SORTERS['relevance'];
+    const kept = [];
+    for (const entry of found) {
+      const verdict = evaluateOpening(entry.company, entry.opening, roleFilter);
+      if (verdict === 'pass') kept.push({ ...entry, confirmed: true });
+      else if (verdict !== 'mismatch' && filters.includeUnknown) {
+        kept.push({ ...entry, confirmed: false });
+      }
+    }
+    // Confirmed roles first, whatever the chosen order within each group. A
+    // role that only "might" be open to you — a plain "Remote" that never said
+    // where — must not outrank one that says it is.
+    return kept.sort(
+      (a, b) => Number(b.confirmed) - Number(a.confirmed) || (sorter ? sorter(a, b) : 0),
+    );
+  }, [view, results, queryTokens, filters]);
+
+  const unconfirmedRoles = roles.filter((role) => !role.confirmed).length;
 
   // Name what each filter hid for missing data, rather than letting a large
   // unverified slice of the index disappear without explanation.
@@ -82,10 +100,15 @@ export function DirectoryPage() {
     hiddenNotes.push(`${outcome.excluded.unknownSize} whose team size we haven't confirmed`);
   }
   if (outcome.excluded.unknownCountry > 0) {
-    hiddenNotes.push(`${outcome.excluded.unknownCountry} whose location we haven't confirmed`);
+    // Location is now matched per role, so this is no longer "we don't know
+    // where the company is" but "its roles don't say who can apply" — most
+    // often a posting that reads just "Remote".
+    hiddenNotes.push(
+      `${outcome.excluded.unknownCountry} whose roles don't say which countries can apply`,
+    );
   }
   if (outcome.excluded.unknownRemote > 0) {
-    hiddenNotes.push(`${outcome.excluded.unknownRemote} whose work model we haven't confirmed`);
+    hiddenNotes.push(`${outcome.excluded.unknownRemote} whose roles don't state a work model`);
   }
   if (outcome.excluded.unknownRoles > 0) {
     hiddenNotes.push(`${outcome.excluded.unknownRoles} with no readable list of open roles`);
@@ -158,7 +181,6 @@ export function DirectoryPage() {
       <div className="flex flex-col gap-[14px] mb-[26px]">
         <DirectoryFilters
           filters={filters}
-          countries={countries}
           onChange={update}
           view={view}
           onViewChange={setView}
@@ -193,7 +215,9 @@ export function DirectoryPage() {
         <div className="flex gap-2 flex-wrap items-center min-h-[22px]">
           <span className="font-mono text-[11.5px] text-ink-dimmer">
             {view === 'roles'
-              ? `${roles.length} open roles at ${results.length} companies`
+              ? `${roles.length} open roles at ${results.length} companies${
+                  unconfirmedRoles > 0 ? ` · ${unconfirmedRoles} not confirmed` : ''
+                }`
               : `${results.length} of ${companies.length} companies${
                   results.length > 0 ? ` · ${openRoles} open roles` : ''
                 }`}

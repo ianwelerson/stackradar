@@ -22,13 +22,82 @@ const SETUP_STEPS: readonly string[] = [
 ];
 
 export function StorageModal({ open, onClose }: Props) {
-  const { connected, failing, syncError, syncState, connect, disconnect, retry, maskedCredentials, tracking } =
-    useTracking();
+  const {
+    connected,
+    failing,
+    syncError,
+    syncState,
+    connect,
+    disconnect,
+    retry,
+    maskedCredentials,
+    credentials,
+    tracking,
+  } = useTracking();
   const [url, setUrl] = useState('');
   const [token, setToken] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
   const titleId = useId();
+
+  // Editing an existing connection. `null` means the URL field is untouched and
+  // shows the one in use — it is not a secret, and retyping a long REST URL to
+  // fix one character is exactly the chore this should remove.
+  const [editing, setEditing] = useState(false);
+  const [editUrl, setEditUrl] = useState<string | null>(null);
+  const [editToken, setEditToken] = useState('');
+  const [editError, setEditError] = useState<string | null>(null);
+  const [editBusy, setEditBusy] = useState(false);
+  const [reconnected, setReconnected] = useState(false);
+  // A failing connection is the main reason to be here, so the form opens itself.
+  const showEditor = editing || failing;
+  const urlValue = editUrl ?? credentials?.url ?? '';
+
+  async function handleUpdate(event: FormEvent) {
+    event.preventDefault();
+    setEditError(null);
+    setReconnected(false);
+    if (credentials === null) return;
+    // Pinned open for the attempt. When the form was opened by a failing
+    // connection rather than by a click, a failed attempt briefly restores the
+    // old connection to "idle" before its re-sync reports the error again —
+    // and without this the form, and the message explaining what went wrong,
+    // would vanish for that moment and reappear.
+    setEditing(true);
+
+    let next;
+    try {
+      next = {
+        url: normalizeRestUrl(urlValue),
+        // Blank keeps the token already in use; only a new one is validated.
+        token: editToken.trim() === '' ? credentials.token : validateToken(editToken),
+      };
+    } catch (validationError) {
+      setEditError(
+        validationError instanceof UpstashError
+          ? validationError.message
+          : 'Those credentials look wrong.',
+      );
+      return;
+    }
+
+    setEditBusy(true);
+    try {
+      await connect(next);
+      setEditing(false);
+      setEditUrl(null);
+      setEditToken('');
+      setReconnected(true);
+    } catch (connectError) {
+      setEditError(
+        connectError instanceof UpstashError
+          ? connectError.message
+          : 'Could not connect with those credentials. The previous connection is unchanged.',
+      );
+    } finally {
+      setEditBusy(false);
+    }
+  }
 
   const noteCount = Object.keys(tracking.notes).length;
   const trackedCount = Object.keys(tracking.statuses).length;
@@ -144,6 +213,90 @@ export function StorageModal({ open, onClose }: Props) {
               ))}
             </div>
 
+            {reconnected && !failing && (
+              <div role="status" className="text-[12px] text-accent-text font-mono">
+                Reconnected — your data is syncing with the updated credentials.
+              </div>
+            )}
+
+            {showEditor ? (
+              <form
+                onSubmit={(event) => void handleUpdate(event)}
+                className="border border-line-strong bg-surface-alt rounded-[10px] px-[15px] py-[14px] flex flex-col gap-[10px]"
+              >
+                <div className="font-mono text-[10.5px] text-ink-faint uppercase tracking-[0.06em]">
+                  Update connection
+                </div>
+                <label className="flex flex-col gap-[6px]">
+                  <span className="font-mono text-[11px] text-ink-dimmer">UPSTASH_REDIS_REST_URL</span>
+                  <input
+                    value={urlValue}
+                    onChange={(event) => setEditUrl(event.target.value)}
+                    autoComplete="off"
+                    spellCheck={false}
+                    className="bg-input border border-line-control rounded-[8px] px-3 py-[10px] text-ink-strong font-mono text-[12.5px] w-full focus:border-accent-bar"
+                  />
+                </label>
+                <label className="flex flex-col gap-[6px]">
+                  <span className="font-mono text-[11px] text-ink-dimmer">
+                    UPSTASH_REDIS_REST_TOKEN
+                  </span>
+                  <input
+                    value={editToken}
+                    onChange={(event) => setEditToken(event.target.value)}
+                    type="password"
+                    placeholder="leave blank to keep the current token"
+                    autoComplete="off"
+                    spellCheck={false}
+                    className="bg-input border border-line-control rounded-[8px] px-3 py-[10px] text-ink-strong font-mono text-[12.5px] w-full focus:border-accent-bar"
+                  />
+                </label>
+                {editError !== null && (
+                  <div role="alert" className="text-[12px] text-danger-bright font-mono">
+                    {editError}
+                  </div>
+                )}
+                <div className="flex gap-2 flex-wrap">
+                  <button
+                    type="submit"
+                    disabled={editBusy}
+                    className="bg-accent border-none text-accent-ink rounded-[8px] px-[14px] py-[9px] text-[12.5px] font-medium cursor-pointer hover:bg-accent-hover disabled:opacity-60 disabled:cursor-wait transition-colors"
+                  >
+                    {editBusy ? 'Reconnecting…' : 'Save & reconnect'}
+                  </button>
+                  {!failing && (
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setEditing(false);
+                        setEditUrl(null);
+                        setEditToken('');
+                        setEditError(null);
+                      }}
+                      className="bg-transparent border border-line-strong text-ink-muted rounded-[8px] px-[14px] py-[9px] text-[12.5px] cursor-pointer hover:text-ink-strong"
+                    >
+                      Cancel
+                    </button>
+                  )}
+                </div>
+                <p className="font-mono text-[10.5px] text-ink-fainter leading-[1.5] m-0">
+                  Nothing is replaced until the new credentials connect. If they fail, the current
+                  connection stays exactly as it is.
+                </p>
+              </form>
+            ) : (
+              <button
+                type="button"
+                onClick={() => {
+                  setEditing(true);
+                  setReconnected(false);
+                }}
+                className="self-start bg-transparent border-none text-accent-link p-0 font-mono text-[12px] cursor-pointer hover:text-accent-link-hover"
+              >
+                Update credentials →
+              </button>
+            )}
+
             <p className="text-[12.5px] text-ink-dim text-pretty m-0">
               Your profile, notes and tracked companies are written to your own database.
               Disconnecting clears the credentials from this browser; the data stays in your Redis
@@ -186,7 +339,7 @@ export function StorageModal({ open, onClose }: Props) {
               Stack Radar works fine without this. Connecting a database of your own adds
               persistence:{' '}
               <span className="text-ink-strong">
-                notes on companies and your tracked list
+                your profile, notes on companies and your tracked list
               </span>{' '}
               come back the next time you visit — on any browser you connect.
             </p>

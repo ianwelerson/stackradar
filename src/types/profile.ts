@@ -72,6 +72,9 @@ export function isProfileEmpty(profile: Profile): boolean {
   );
 }
 
+/** The dimensions profileStrength counts. Kept beside it so the two cannot drift. */
+export const PROFILE_DIMENSIONS = 5;
+
 /** How many dimensions the profile constrains — for a badge on the nav. */
 export function profileStrength(profile: Profile): number {
   return (
@@ -126,10 +129,10 @@ export function parseProfile(raw: unknown): Profile {
 
   return {
     terms: uniqueStrings(source['terms'], MAX_TERMS, MAX_TERM_LENGTH),
-    disciplines,
     remote,
     countries: uniqueStrings(source['countries'], MAX_COUNTRIES, 80),
     sizes,
+    disciplines,
     // Absent means the stored profile predates the field; the safe reading of a
     // missing preference is the permissive one.
     includeUnknown: source['includeUnknown'] !== false,

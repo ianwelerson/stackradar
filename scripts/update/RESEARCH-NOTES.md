@@ -420,3 +420,119 @@ hand in `data/companies.json`. This has now come up twice: Ampler
 `apply` used to report this as "nothing new — the record already holds these
 values", which is simply false and cost a round-trip to diagnose. It now says
 the field is not overwritable even at primary trust.
+
+## Round 4 — 2026-09-22: a full refresh, and the errors it turned up
+
+A refresh of every board plus 102 new companies. Most of the value came from
+finding data that was confidently **wrong**, not from filling gaps.
+
+### Wrong data found, and where it came from
+
+- **Job ads as descriptions (24 records).** Hacker News and We Work Remotely
+  hand over the body of a post, which is written to one role's applicants:
+  *"Keeper is hiring a driven, Arabic speaking Channel Account Manager…"*,
+  *"New York, NY URL: https://…"*. `description.mjs` now refuses that text
+  (`looksLikeJobAd`), `describe` replaces it with the homepage's own meta
+  description, and discovery reads the homepage first for those two sources.
+  The audit reports any that remain as `description-job-ad` (high).
+- **"Remote" stamped from one listing (68 records).** Every We Work Remotely
+  item, and every HN post headed `REMOTE`, wrote `remotePolicy: "remote"` for the
+  whole company. Datadog had 5 of 60 roles remote, Airbnb 0 of 60. Both sources
+  now leave it null; the 68 labels were cleared and the board scan re-derived 37
+  of them from the companies' own postings (22 hybrid, 13 remote, 2 on-site).
+  The audit reports `remote-label-contradicted` (medium) when a remote label
+  faces a board where under a third of roles say remote.
+- **Another company's roles.** Two boards belonged to someone else:
+  - `jobs.ashbyhq.com/Flock%20Safety` was cut at the `%20` and read the board
+    `Flock` — an insurer — so Flock Safety showed "Senior Motor Fleet
+    Underwriter". Ashby tokens are now decoded and may contain spaces.
+  - Remote (remote.com) links Jobgether's Lever board from its own jobs
+    marketplace, and sixty of Jobgether's reposts were recorded as Remote's.
+    Before that it held one role from `greenhouse/remote` — which is General
+    Assembly's board. Remote's is `greenhouse/remotecom` (board name "Remote").
+    `jobgether` is now a reserved token.
+  A one-off check read the display name of all 154 hosted boards (Greenhouse
+  board metadata, Ashby and Lever page titles) against the company name. Only
+  Remote was wrong; the other four mismatches were real: Creem's board is filed
+  under its legal entity **Armitage Labs OÜ**, People.ai has **rebranded as
+  Backstory** (people.ai redirects to backstory.ai — the record's name is now
+  out of date), and Postscript and BioRender were transient fetch misses.
+- **Records that could not be described honestly — removed.** GovStar's HN post
+  linked `govstar.us`, an unrelated design studio (the real company's
+  `govstar.ai` served an expired TLS certificate); Furtim Modus's entire site is
+  a recruiting tagline; Track It Forward blocks every fetch. All three had no
+  roles and no verified data, and are in `excludeNames`.
+- **Out of scope:** St. Jude Children's Research Hospital, Miltenyi Biotec and
+  Natera came in from HN / We Work Remotely and were excluded by name.
+
+### Research agents are confidently wrong about boards
+
+Board-finding agents were right about most boards but not all. Two of nine
+"supported" boards they reported were 404s when read (`jobs.ashbyhq.com/toggl`,
+`jobs.ashbyhq.com/Deno`), and three were confirmed only through search results
+because Workable rate-limited them (and us — `apply.workable.com` answered 429
+with a Retry-After of ~20 hours). **Never write a board URL an agent found
+without the scan reading it.** Those five were reverted; Doist, Xolo and
+Routable are worth a retry once Workable lets us back in.
+
+### Boards on platforms we cannot read yet
+
+Real, company-owned boards the scan has no adapter for — the biggest remaining
+source of missing roles:
+
+| system | companies |
+|---|---|
+| Rippling | vouch, just-appraised, community-phone-company |
+| Workday | rappi |
+| Kula | cashfree-payments (35 roles) |
+| Gem | onesignal |
+| Teamdash | helmes |
+| RevolutPeople | aspire |
+| Notion page | activeloop, keeper |
+| own custom page | retool (23), automattic (15), bolt, playtech-estonia, odoo (153), serpapi (28), estuary (10), alpha-vantage, fondo, ledger-investing (0), chainsecurity, puma-tech, klarasystems-com, sudowrite, nimble, we-the-flywheel (60), nestor, first, shovels, this-dot-labs, cardog, akkio, crossref |
+
+Their `careersUrl` now points at those pages, so a reader has the right link
+even though the roles are not listed here. A Rippling adapter would cover three
+at once.
+
+### Dead ends this round (don't redo)
+
+| company | what happened |
+|---|---|
+| plausible-analytics | no careers link anywhere; `/careers` and `/jobs` 404 |
+| smartcat, prisma, directus, appwrite, safetywing, zenysis, drip-capital, dreamcraft-entertainment-inc, statecraft, flockjay | careers page is a client-rendered SPA with no ATS trace in the HTML; guessed slugs all 404 |
+| strapi | `/careers` lists nothing; the old `jobs.lever.co/strapi` board is deactivated |
+| bloom-institute-of-technology | page calls Lever for `BloomTech`, which now returns "Document not found" |
+| oxygen | `getoxygen.com/careers` answers HTTP 525 (Cloudflare SSL failure) |
+| joy | careers page has only mailto links |
+| onefin | nav "Careers" links back to the homepage |
+| mooncascade | `/career` is portfolio copy with a mailto |
+| planet42 | no jobs page in the nav or the sitemap |
+| bikeep | `/careers` redirects to `/contact` |
+| swadesh, numero, pagelove | no careers page at all |
+| toggl, deno | the Ashby boards on record in earlier notes now 404 |
+
+### Gap research — 113 companies, 43 with a confirmed fact
+
+Country, size and work model, researched from each company's own site (YC company
+profiles at directory trust where a startup's own site says nothing). Yield was
+~38%, and the misses are worth knowing:
+
+- **Headcount is the hardest field.** Most sites quote customers, users or
+  community members — never staff. glia, sift, victoriametrics, mintmcp,
+  sanctuary-computer, odin and yeet all display a big number that is not a
+  headcount. deepnote, checkly and lightyear have a team-size widget filled in
+  by JavaScript, invisible to a fetch.
+- **Companies with genuinely no HQ**: cal.com ("We have no physical headquarter
+  and don't plan to have one"), buffer, remote (Netherlands B.V. + Delaware Inc.)
+  and tailscale (Canada Inc. + US Inc.) — country correctly left null rather than
+  picking an entity at random.
+- **Whole-domain blocks**: reddit, toast, renthop and customer-io answer 403 or
+  404 on every legal/about path. renthop's country came from its YC profile.
+- **Wrong `website` fields found while researching** (all hand-fixed): Ashby was
+  pointed at a Substack newsletter linked from its HN post, Jawa at its Notion
+  page, Vistulo at its ATS subdomain, MintMCP at a landing subdomain, and 3C
+  Digital Solutions at one of its products. Fixing Ashby's and MintMCP's domains
+  let the next scan find their boards by slug probe.
+- People.ai has **rebranded to Backstory** (people.ai → backstory.ai, and its
+  Lever board is titled Backstory). Renamed, id kept so the page URL survives.

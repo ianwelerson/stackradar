@@ -53,6 +53,12 @@ interface TrackingContextValue {
   /** Re-attempt the last sync. The remedy for a transient failure should not be
    *  "delete your credentials and set them up again". */
   readonly retry: () => void;
+  /**
+   * Merge an imported backup into what is here. The file wins where both hold a
+   * value — importing it was a deliberate act — and nothing local that the file
+   * does not mention is removed.
+   */
+  readonly importData: (incoming: TrackingState) => void;
   readonly connect: (creds: UpstashCredentials) => Promise<void>;
   readonly disconnect: () => void;
   readonly trackedIds: readonly string[];
@@ -64,7 +70,7 @@ const REMOTE_KEY = ['tracking'] as const;
 const SYNC_DEBOUNCE_MS = 800;
 
 /** Parse persisted tracking data defensively — never trust stored shape. */
-function parseTracking(raw: unknown): TrackingState | null {
+export function parseTracking(raw: unknown): TrackingState | null {
   if (typeof raw !== 'object' || raw === null) return null;
   const source = raw as Record<string, unknown>;
 
@@ -101,6 +107,8 @@ export function TrackingProvider({ children }: { readonly children: ReactNode })
   const pendingSync = useRef<ReturnType<typeof setTimeout> | null>(null);
   const latest = useRef<TrackingState>(EMPTY_TRACKING);
   latest.current = tracking;
+  const latestCredentials = useRef<UpstashCredentials | null>(null);
+  latestCredentials.current = credentials;
 
   /**
    * Bumped whenever the connection changes. A write that was already in flight
@@ -219,18 +227,64 @@ export function TrackingProvider({ children }: { readonly children: ReactNode })
     [commit],
   );
 
+  const importData = useCallback(
+    (incoming: TrackingState) => {
+      const local = latest.current;
+      commit({
+        statuses: { ...local.statuses, ...incoming.statuses },
+        notes: { ...local.notes, ...incoming.notes },
+        // An empty profile in the file means it was exported before one was
+        // set, not that the reader wants theirs wiped.
+        profile: isProfileEmpty(incoming.profile) ? local.profile : incoming.profile,
+      });
+    },
+    [commit],
+  );
+
   const retry = useCallback(() => {
     if (credentials === null) return;
     setSyncError(null);
     scheduleRemoteSync(credentials);
   }, [credentials, scheduleRemoteSync]);
 
+  /**
+   * Put the connection back as it was after a connect attempt fails.
+   *
+   * With no previous connection that is simply "offline". With one, the old
+   * credentials are still in force, so a sync is re-queued against them: it
+   * re-establishes their true status — which, since the usual reason to change
+   * credentials is that the old ones stopped working, is often an error again —
+   * and it re-sends any change whose pending write the attempt cancelled.
+   */
+  const restoreAfterFailedConnect = useCallback(
+    (previous: UpstashCredentials | null) => {
+      if (previous === null) {
+        setSyncState('offline');
+        return;
+      }
+      setSyncState('idle');
+      scheduleRemoteSync(previous);
+    },
+    [scheduleRemoteSync],
+  );
+
   const connect = useCallback(async (creds: UpstashCredentials) => {
+    // Captured before anything changes: if these new credentials fail, the
+    // connection that was already here is still the live one, and the reader
+    // must go on seeing its real state rather than a spinner that never ends.
+    const previous = latestCredentials.current;
+
     connectionGeneration.current += 1;
     setSyncState('syncing');
     setSyncError(null);
 
-    const remote = parseTracking(await readJson<unknown>(creds, REMOTE_KEY));
+    let remote: TrackingState | null;
+    try {
+      remote = parseTracking(await readJson<unknown>(creds, REMOTE_KEY));
+    } catch (error) {
+      restoreAfterFailedConnect(previous);
+      throw error;
+    }
     const local = latest.current;
 
     // Union on connect: neither side's work is discarded. Where both hold a
@@ -251,7 +305,12 @@ export function TrackingProvider({ children }: { readonly children: ReactNode })
       profile,
     };
 
-    await writeJson(creds, REMOTE_KEY, merged);
+    try {
+      await writeJson(creds, REMOTE_KEY, merged);
+    } catch (error) {
+      restoreAfterFailedConnect(previous);
+      throw error;
+    }
 
     setCredentials(creds);
     setTracking(merged);
@@ -259,7 +318,7 @@ export function TrackingProvider({ children }: { readonly children: ReactNode })
     writeLocal('tracking', merged);
     writeLocal('upstash', creds);
     setSyncState('idle');
-  }, []);
+  }, [restoreAfterFailedConnect]);
 
   const disconnect = useCallback(() => {
     connectionGeneration.current += 1;
@@ -290,6 +349,7 @@ export function TrackingProvider({ children }: { readonly children: ReactNode })
       setNote,
       setProfile,
       retry,
+      importData,
       connect,
       disconnect,
       trackedIds,
@@ -303,6 +363,7 @@ export function TrackingProvider({ children }: { readonly children: ReactNode })
       setNote,
       setProfile,
       retry,
+      importData,
       connect,
       disconnect,
       trackedIds,

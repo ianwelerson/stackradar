@@ -17,6 +17,25 @@ export interface Opening {
   /** ISO date. Null when the posting date could not be determined. */
   readonly postedDate: string | null;
   readonly detectedKeywords: readonly string[];
+  /**
+   * How and where the role can be done, one slot per place the posting names.
+   * See WorkplaceSlot. Empty when the posting gave no location at all, in which
+   * case the company's own recorded policy stands in.
+   */
+  readonly workplace: readonly WorkplaceSlot[];
+}
+
+/**
+ * One place a role is offered, and in what mode.
+ *
+ * `mode` is only asserted when the posting states it; 'unknown' means a place
+ * was named without a work model, and the company's policy resolves it.
+ * `where` holds canonical country names and region keys ('worldwide', 'europe',
+ * 'americas'…); empty means not stated, which is never the same as anywhere.
+ */
+export interface WorkplaceSlot {
+  readonly mode: 'remote' | 'hybrid' | 'onsite' | 'unknown';
+  readonly where: readonly string[];
 }
 
 export interface HistoryEntry {

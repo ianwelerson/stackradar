@@ -30,9 +30,15 @@
     "requireWebsite": true,
     "requireActive": true,
     "excludeNames": [
-      "Y Combinator"
+      "Y Combinator",
+      "St. Jude Children's Research Hospital",
+      "Miltenyi Biotec",
+      "Natera",
+      "GovStar",
+      "Furtim Modus",
+      "Track It Forward"
     ],
-    "$comment_exclude": "excludeNames drops directory entries that are not companies we want to list (YC lists itself, for instance).",
+    "$comment_exclude": "excludeNames drops directory entries that are not companies we want to list (YC lists itself, for instance). Round 4 (2026-09-22): St. Jude, Miltenyi Biotec and Natera are not tech companies. GovStar's HN post linked govstar.us, an unrelated design studio, and the real company's govstar.ai had an expired TLS certificate; Furtim Modus's whole site is one recruiting tagline and Track It Forward blocks every fetch — none could be described from their own words, and the schema rightly will not take a job ad instead.",
     "preferHiring": true,
     "seeds": {
       "$comment": "Companies added by hand, for ecosystems with no reachable directory feed. Startup Estonia publishes its database through a Cloudflare-protected Dealroom portal (ecosystem.startupestonia.ee) that blocks every automated request, including robots.txt, so Estonian coverage is curated here instead. A seed is a pointer, not a claim: name and website are required and everything else is established by the refresh scan. Descriptions are each company's own meta description, read from its homepage on 2026-09-18, not written by us. Every domain was checked live the same day; Grünfin was dropped because its site now says only \"Grünfin is closed\".",

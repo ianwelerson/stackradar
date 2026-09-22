@@ -365,8 +365,15 @@ export async function discover(http, config) {
         // verified fact about the company's stack; the position scanner
         // owns `keywords` and derives it from real postings, not this.
         keywords: [],
-        // Every category feed here lists remote-only roles by construction.
-        remotePolicy: 'remote',
+        // Every feed here lists remote roles by construction, but one remote
+        // listing is a fact about that role, not about the company: Datadog,
+        // Airbnb and Cribl all arrived this way and were labelled remote while
+        // almost every role on their own boards names an office. The board
+        // scan and research establish the company's policy instead.
+        remotePolicy: null,
+        // The description is a post written to candidates; discover asks the
+        // company's own homepage first and falls back to this only when it must.
+        descriptionFromPost: true,
         sourceNote: `Discovered via We Work Remotely ("${role || parsed.title}" listing).`,
       });
     }

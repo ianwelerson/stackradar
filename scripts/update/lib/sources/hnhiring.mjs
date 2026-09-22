@@ -479,7 +479,17 @@ function parseComment(rawText, sourceNote, rejected) {
     // "who is hiring" comment for tech names would just duplicate that work
     // on noisier input and could plant a keyword the scanner never confirms.
     keywords: [],
-    remotePolicy: parseRemotePolicy(headerText),
+    // The header's work model describes the roles in this one post, and it is
+    // what the remoteOnly filter below selects on. It is NOT written to the
+    // company: "REMOTE" above a post for two roles said nothing about the other
+    // eighteen on the board, and treating it as company policy labelled
+    // Starbridge and Astronomer remote while none of their listed roles were.
+    // The board scan and research establish the company's policy instead.
+    postWorkModel: parseRemotePolicy(headerText),
+    // The description is a post written to candidates; discover asks the
+    // company's own homepage first and falls back to this only when it must.
+    descriptionFromPost: true,
+    remotePolicy: null,
     sourceNote,
   };
 }
@@ -582,7 +592,7 @@ export async function discover(http, config) {
       const candidate = parseComment(comment?.text, sourceNote, rejected);
       if (candidate === null) continue;
 
-      if (remoteOnly && candidate.remotePolicy !== 'remote' && candidate.remotePolicy !== 'hybrid') {
+      if (remoteOnly && candidate.postWorkModel !== 'remote' && candidate.postWorkModel !== 'hybrid') {
         rejected.notRemote += 1;
         continue;
       }
@@ -620,8 +630,8 @@ export async function discover(http, config) {
     if (matched.length >= cap) break;
   }
 
-  const remoteCount = matched.filter((c) => c.remotePolicy === 'remote').length;
-  const hybridCount = matched.filter((c) => c.remotePolicy === 'hybrid').length;
+  const remoteCount = matched.filter((c) => c.postWorkModel === 'remote').length;
+  const hybridCount = matched.filter((c) => c.postWorkModel === 'hybrid').length;
   const nullCount = matched.length - remoteCount - hybridCount;
 
   const diagnostics =

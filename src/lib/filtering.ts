@@ -1,8 +1,9 @@
-import type { Company } from '../types/company.js';
+import type { Company, Opening, WorkplaceSlot } from '../types/company.js';
 import type { Filters, SizeRange, SortKey } from '../types/filters.js';
 import { sizeRangeOfBand } from '../types/filters.js';
 import { searchCompanies, type ScoredCompany } from './scoring.js';
 import { disciplineOf, type Discipline } from './discipline.js';
+import { COUNTRIES, covers, regionFromLabel } from './regions.js';
 
 /**
  * Filtering and sorting, shared by the UI and the public API.
@@ -67,51 +68,161 @@ export function overlapsSizeRange(company: Company, wanted: SizeRange): boolean 
   return companyMin <= wantedMax && companyMax >= wantedMin;
 }
 
+/**
+ * The slot that stands in for a company with no usable posting locations.
+ *
+ * Company records store readable labels ("Europe", "Global") and a single
+ * country, so they are translated into the same shape a posting produces.
+ * A remote company with no recorded regions gets an empty `where` — its remote
+ * scope was never stated, which is not the same as worldwide.
+ */
+function companySlot(company: Company): WorkplaceSlot {
+  if (company.remotePolicy === 'remote') {
+    const where = company.remoteRegions
+      .map(regionFromLabel)
+      .filter((value): value is string => value !== null);
+    return { mode: 'remote', where };
+  }
+  return {
+    mode: company.remotePolicy ?? 'unknown',
+    where: company.country === null ? [] : [company.country],
+  };
+}
+
+const COUNTRY_BY_LOWER = new Map(COUNTRIES.map((name) => [name.toLowerCase(), name]));
+
+type Verdict = FilterVerdict;
+
+/** pass beats an unknown, an unknown beats a mismatch. */
+function better(a: Verdict, b: Verdict): Verdict {
+  if (a === 'pass' || b === 'pass') return 'pass';
+  if (a !== 'mismatch') return a;
+  return b;
+}
+
+/**
+ * One slot against the wanted work models and countries — together.
+ *
+ * This is the whole point of slots. Checking "is the company remote?" and "is
+ * the company in Estonia?" separately answered a question nobody asked: a US
+ * company with remote roles *restricted to the US* passed a search for remote
+ * roles from Estonia. The two have to be true of the same place at once.
+ */
+function evaluateSlot(
+  company: Company,
+  slot: WorkplaceSlot,
+  remote: CompanyFilter['remote'],
+  countries: readonly string[],
+): Verdict {
+  let modeUnknown = false;
+  if (remote.length > 0) {
+    // A place named without a work model borrows the company's policy — but
+    // only toward the office. "Tallinn" at a hybrid company is a hybrid role in
+    // Tallinn. "London" at a remote-first company is genuinely ambiguous: such
+    // companies still hire into offices, and the posting did not say remote.
+    // Resolving it as remote anyway inflated remote roles from 1,161 the
+    // postings state to 2,082 — the same overstatement this model exists to
+    // stop — so it stays unknown and the reader's profile decides.
+    const policy = company.remotePolicy;
+    const mode =
+      slot.mode !== 'unknown'
+        ? slot.mode
+        : policy === 'hybrid' || policy === 'onsite'
+          ? policy
+          : null;
+    if (mode === null) modeUnknown = true;
+    else if (!remote.includes(mode)) return 'mismatch';
+  }
+
+  let placeUnknown = false;
+  if (countries.length > 0) {
+    // Empty `where` is "not stated", never "anywhere" — plain "Remote" says
+    // nothing about who may apply.
+    if (slot.where.length === 0) placeUnknown = true;
+    else if (!countries.some((country) => covers(slot.where, country))) return 'mismatch';
+  }
+
+  if (modeUnknown) return 'unknownRemote';
+  if (placeUnknown) return 'unknownCountry';
+  return 'pass';
+}
+
+/**
+ * One opening against the role-level parts of a filter: its discipline, and
+ * whether any place it is offered satisfies the work model and location at
+ * once. Exported for the roles view, whose rows are openings.
+ */
+export function evaluateOpening(
+  company: Company,
+  opening: Opening,
+  filter: CompanyFilter,
+): Verdict {
+  const disciplines = filter.disciplines ?? [];
+  if (disciplines.length > 0 && !disciplines.includes(disciplineOf(opening.title))) {
+    return 'mismatch';
+  }
+
+  const countries = filter.countries.map(canonicalCountry);
+  if (filter.remote.length === 0 && countries.length === 0) return 'pass';
+
+  const slots = opening.workplace.length > 0 ? opening.workplace : [companySlot(company)];
+  let verdict: Verdict = 'mismatch';
+  for (const slot of slots) {
+    verdict = better(verdict, evaluateSlot(company, slot, filter.remote, countries));
+    if (verdict === 'pass') break;
+  }
+  return verdict;
+}
+
+/**
+ * Filter countries arrive from URLs and agents in any case — `?country=estonia`.
+ * `where` uses canonical names, so the wanted list is matched case-insensitively
+ * against them rather than compared raw.
+ */
+function canonicalCountry(value: string): string {
+  const wanted = value.trim().toLowerCase();
+  return COUNTRY_BY_LOWER.get(wanted) ?? value.trim();
+}
+
 /** Evaluate one company against one filter set. The single source of truth. */
 export function evaluateFilter(company: Company, filter: CompanyFilter): FilterVerdict {
   const lenient = filter.includeUnknown === true;
-
-  if (filter.remote.length > 0) {
-    if (company.remotePolicy === null) {
-      if (!lenient) return 'unknownRemote';
-    } else if (!filter.remote.includes(company.remotePolicy)) {
-      return 'mismatch';
-    }
-  }
-
-  if (filter.countries.length > 0) {
-    if (company.country === null) {
-      if (!lenient) return 'unknownCountry';
-    } else {
-      // Case-insensitive so `?country=estonia` works from a URL bar or an agent.
-      const wanted = filter.countries.map((c) => c.toLowerCase());
-      if (!wanted.includes(company.country.toLowerCase())) return 'mismatch';
-    }
-  }
+  let verdict: Verdict = 'pass';
 
   if (filter.sizes.length > 0) {
-    if (company.sizeMin === null && company.sizeMax === null) {
-      if (!lenient) return 'unknownSize';
-    } else if (!filter.sizes.some((range) => overlapsSizeRange(company, range))) {
-      return 'mismatch';
-    }
+    if (company.sizeMin === null && company.sizeMax === null) verdict = 'unknownSize';
+    else if (!filter.sizes.some((range) => overlapsSizeRange(company, range))) return 'mismatch';
   }
 
-  const disciplines = filter.disciplines ?? [];
-  if (disciplines.length > 0) {
-    // A company with no readable board has no roles to judge, which is an
-    // absence of evidence rather than a mismatch — the same distinction the
-    // other three dimensions make, handled the same way.
-    if (company.currentOpenings.length === 0) {
-      if (!lenient) return 'unknownRoles';
-    } else if (
-      !company.currentOpenings.some((opening) => disciplines.includes(disciplineOf(opening.title)))
-    ) {
-      return 'mismatch';
+  const roleLevel =
+    filter.remote.length > 0 || filter.countries.length > 0 || (filter.disciplines ?? []).length > 0;
+
+  if (roleLevel) {
+    let roles: Verdict;
+    if (company.currentOpenings.length > 0) {
+      // A company matches when it has at least one role that satisfies every
+      // role-level constraint at once. An engineering role that is US-only and
+      // a sales role open worldwide do not add up to "remote engineering from
+      // Estonia", however each looks on its own.
+      roles = 'mismatch';
+      for (const opening of company.currentOpenings) {
+        roles = better(roles, evaluateOpening(company, opening, filter));
+        if (roles === 'pass') break;
+      }
+    } else if ((filter.disciplines ?? []).length > 0) {
+      // No readable board: there are no roles to classify.
+      roles = 'unknownRoles';
+    } else {
+      const countries = filter.countries.map(canonicalCountry);
+      roles = evaluateSlot(company, companySlot(company), filter.remote, countries);
     }
+
+    if (roles === 'mismatch') return 'mismatch';
+    if (roles !== 'pass' && verdict === 'pass') verdict = roles;
   }
 
-  return 'pass';
+  if (verdict !== 'pass' && lenient) return 'pass';
+  return verdict;
 }
 
 export interface ExclusionCounts {

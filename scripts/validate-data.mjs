@@ -28,12 +28,18 @@ const httpsUrl = z
 const localLogoPath = z.string().regex(/^\/logos\/[a-z0-9][a-z0-9-]*\.[a-z0-9]+$/, 'must be /logos/<slug>.<ext>');
 const logoUrl = z.union([httpsUrl, localLogoPath]);
 
+const WorkplaceSlot = z.object({
+  mode: z.enum(['remote', 'hybrid', 'onsite', 'unknown']),
+  where: z.array(z.string().min(1)),
+});
+
 const Opening = z.object({
   title: z.string().min(1),
   url: httpsUrl.nullable(),
   location: z.string().nullable(),
   postedDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).nullable(),
   detectedKeywords: z.array(z.string()),
+  workplace: z.array(WorkplaceSlot),
 });
 
 const HistoryEntry = z.object({

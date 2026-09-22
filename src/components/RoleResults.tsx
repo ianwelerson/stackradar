@@ -24,13 +24,13 @@ export function RoleResults({
   statuses,
   queryTokens,
 }: {
-  readonly roles: readonly ScoredRole[];
+  readonly roles: readonly (ScoredRole & { readonly confirmed?: boolean })[];
   readonly statuses: Readonly<Record<string, Status>>;
   readonly queryTokens: readonly string[];
 }) {
   return (
     <div className="grid gap-3 grid-cols-[repeat(auto-fill,minmax(min(100%,335px),1fr))]">
-      {roles.map(({ company, opening, match }) => {
+      {roles.map(({ company, opening, match, confirmed = true }) => {
         const href = safeExternalUrl(opening.url);
         const status = statuses[company.id];
 
@@ -99,6 +99,14 @@ export function RoleResults({
                   <span className="text-ink-separator">·</span>
                   <span>{opening.postedDate}</span>
                 </>
+              )}
+              {!confirmed && (
+                <span
+                  className="text-stale-text"
+                  title="The posting does not say which countries it is open to, or does not state a work model. It is shown because your profile includes unconfirmed matches."
+                >
+                  · not confirmed
+                </span>
               )}
               {match !== null && <MatchBar match={match} className="ml-auto" />}
             </div>

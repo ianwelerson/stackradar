@@ -72,15 +72,21 @@ export function createHttp(config) {
           redirect: 'follow',
           headers: { 'User-Agent': userAgent, Accept: accept },
         });
-        clearTimeout(timer);
 
         if (!response.ok && RETRYABLE_STATUS.has(response.status) && attempt < maxRetries) {
+          clearTimeout(timer);
+          await response.body?.cancel().catch(() => {});
           attempt += 1;
           await sleep(500 * 2 ** attempt);
           continue;
         }
 
+        // The timeout covers the body as well as the headers, as getBinary's
+        // does. Clearing it once headers arrived left the body read unbounded,
+        // so a server that sends headers and then trickles the body could hold
+        // a whole scan open.
         const body = await response.text();
+        clearTimeout(timer);
         return new FetchResult({
           ok: response.ok,
           status: response.status,

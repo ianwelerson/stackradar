@@ -32,6 +32,16 @@ export const ENRICHABLE_FIELDS = [
 
 const REMOTE_POLICIES = new Set(['remote', 'hybrid', 'onsite']);
 
+/**
+ * Fields research may reset to unknown. A fact can be wrong without the right
+ * value being findable — a "remote" label its own careers page contradicts,
+ * with no stated policy to put in its place — and before this existed the only
+ * options were to leave the wrong value standing or to guess a replacement.
+ * Both are worse than null. Identity fields and the description (which the
+ * schema requires) are deliberately not clearable.
+ */
+export const CLEARABLE_FIELDS = ['country', 'hqLocation', 'remotePolicy', 'remoteRegions', 'sizeMin', 'sizeMax', 'sizeRange'];
+
 /** Which fields are missing and worth asking about. */
 export function gapsFor(company) {
   const gaps = [];
@@ -67,7 +77,8 @@ export function buildTasks(companies, { limit = 20, only = null } = {}) {
       'The "missing" list on each task names gaps, not field names — two of its labels have no matching ' +
       'field: report a headcount as "sizeMin" and "sizeMax" (plus "sizeRange" for display) rather than ' +
       '"size", and "neverVerified" is not something you can supply at all — it means no job-board scan has ' +
-      'confirmed this company yet, which only a refresh run can change.',
+      'confirmed this company yet, which only a refresh run can change. ' +
+      `If the company's own site shows a recorded value is wrong but does not state the right one, list the field in "clear" (one of: ${CLEARABLE_FIELDS.join(', ')}) with trust "primary" and a note saying what contradicted it.`,
     tasks: candidates.map(({ company, gaps }) => ({
       id: company.id,
       name: company.name,
@@ -210,7 +221,7 @@ export function validateResults(payload, companies) {
       errors.push('a result entry was not an object');
       continue;
     }
-    const { id, facts, trust, note } = entry;
+    const { id, facts, trust, note, clear } = entry;
 
     if (typeof id !== 'string' || !byId.has(id)) {
       // Never create a record from model output — enrichment fills gaps in
@@ -235,12 +246,38 @@ export function validateResults(payload, companies) {
       continue;
     }
 
+    // Clearing overwrites a value, so it needs the same standing an overwrite
+    // does: the company's own site said otherwise.
+    let cleared = [];
+    if (clear !== undefined) {
+      if (!Array.isArray(clear) || clear.some((f) => !CLEARABLE_FIELDS.includes(f))) {
+        errors.push(`${id}: "clear" must be an array of ${CLEARABLE_FIELDS.join(', ')}`);
+        continue;
+      }
+      if (trust !== 'primary') {
+        errors.push(`${id}: "clear" needs trust "primary" — only the company's own site can overturn a value`);
+        continue;
+      }
+      if (typeof note !== 'string' || note.trim() === '') {
+        errors.push(`${id}: "clear" needs a "note" saying what contradicted the old value`);
+        continue;
+      }
+      cleared = [...new Set(clear)];
+    }
+
     const clean = validateFacts(facts, errors, id);
-    if (Object.keys(clean).length === 0) continue;
+    for (const field of cleared) {
+      if (field in clean) {
+        errors.push(`${id}: "${field}" is both supplied and cleared`);
+        delete clean[field];
+      }
+    }
+    if (Object.keys(clean).length === 0 && cleared.length === 0) continue;
 
     accepted.push({
       id,
       facts: clean,
+      clear: cleared,
       trust: trust === 'primary' ? 'primary' : 'directory',
       note: typeof note === 'string' ? note.slice(0, 300) : null,
     });

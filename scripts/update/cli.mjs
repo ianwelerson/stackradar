@@ -13,6 +13,7 @@
  *   enrich     emit the gaps that need research, for a model to fill
  *   apply      validate a model's findings and merge them
  *   history    record this week's open counts without re-scanning
+ *   describe   replace job-ad text in descriptions with the company's own words
  *   status     dataset health report
  */
 
@@ -24,6 +25,7 @@ import { applyScan, mergeFacts, upsertCompany, emptyCompany, upsertWeek } from '
 import { findExisting, allocateId } from './lib/slug.mjs';
 import { buildTasks, validateResults, gapsFor } from './lib/enrich.mjs';
 import { createReport, ok, warn, bad, dim } from './lib/report.mjs';
+import { cleanDescription, looksLikeJobAd, metaDescriptionOf } from './lib/description.mjs';
 
 const TASKS_DIR = resolve(ROOT, 'scripts/update/tasks');
 
@@ -176,6 +178,17 @@ async function cmdRefresh(flags) {
   commit(dataset, flags, report);
 }
 
+/**
+ * The company's own one-line description, read from its homepage's meta tags,
+ * or '' when the page is unreachable or offers nothing usable.
+ */
+async function homepageDescription(http, website, name) {
+  if (typeof website !== 'string' || website === '') return '';
+  const page = await http.get(website, { accept: 'text/html,application/xhtml+xml;q=0.9' });
+  if (!page.ok || typeof page.body !== 'string') return '';
+  return metaDescriptionOf(page.body, name);
+}
+
 async function cmdDiscover(flags) {
   const registry = await importOptional('./lib/sources/index.mjs', 'Discovery sources');
   if (registry === null) {
@@ -190,6 +203,13 @@ async function cmdDiscover(flags) {
 
   const wanted = flags.source !== null ? [flags.source] : config.discovery.sources;
 
+  // The cap applies to NEW companies, not to what a source hands back. Capping
+  // the source instead meant every run received the same head of its list —
+  // round 4 got 243 candidates and every one was already known — so the source
+  // now returns everything it matched and the limit is counted here.
+  const newPerSource = flags.limit ?? config.discovery.maxNewPerRun ?? 60;
+  const sourceConfig = { ...config, discovery: { ...config.discovery, maxNewPerRun: 5000 } };
+
   for (const sourceId of wanted) {
     const source = sources[sourceId];
     if (source === undefined) {
@@ -197,8 +217,9 @@ async function cmdDiscover(flags) {
       continue;
     }
 
-    const { candidates, diagnostics } = await source.discover(http, config);
+    const { candidates, diagnostics } = await source.discover(http, sourceConfig);
     console.log(`${sourceId}: ${candidates.length} candidates ${dim(diagnostics ?? '')}`);
+    let newCount = 0;
 
     for (const candidate of candidates) {
       const existing = findExisting(dataset.companies, candidate);
@@ -215,15 +236,36 @@ async function cmdDiscover(flags) {
         continue;
       }
 
+      if (newCount >= newPerSource) {
+        report.skip(candidate.name, `over this run's limit of ${newPerSource} new from ${sourceId}`);
+        continue;
+      }
+
       // The dataset schema requires a non-empty description, and there is no
       // honest way to manufacture one — inventing a sentence about a company we
       // have not read is exactly what this pipeline refuses to do. So a
       // candidate that arrives without one is reported and skipped rather than
       // written as a record that fails validation on the next build.
-      if (typeof candidate.description !== 'string' || candidate.description.trim() === '') {
-        report.skip(candidate.name, 'no description from the source — not created');
+      // A source's text that is really a job posting ("We're hiring a…",
+      // "Remote URL: https://…") is not a description either. Before giving up,
+      // ask the company's own homepage, whose meta description is written for
+      // exactly this job.
+      // Sources whose text is a post rather than a listing (Hacker News, We Work
+      // Remotely) go to the homepage first: "We are software builders at :heart:"
+      // is addressed to an applicant, and the company's own one-liner is not.
+      let description = '';
+      if (candidate.descriptionFromPost === true) {
+        description = await homepageDescription(http, candidate.website, candidate.name);
+      }
+      if (description === '') description = cleanDescription(candidate.description, candidate.name);
+      if (description === '' && candidate.descriptionFromPost !== true) {
+        description = await homepageDescription(http, candidate.website, candidate.name);
+      }
+      if (description === '') {
+        report.skip(candidate.name, 'no usable description from the source or its homepage — not created');
         continue;
       }
+      candidate.description = description;
 
       const id = allocateId(dataset.companies, candidate.name);
       const created = emptyCompany(id, candidate.name);
@@ -232,6 +274,7 @@ async function cmdDiscover(flags) {
       // New records start unverified with no history: nothing has been checked
       // against the company's own careers page yet.
       dataset.companies = upsertCompany(dataset.companies, filled);
+      newCount += 1;
       report.change(id, `${ok('new')} — ${candidate.name}`);
     }
   }
@@ -294,6 +337,12 @@ function cmdApply(flags) {
   for (const entry of accepted) {
     const existing = dataset.companies.find((c) => c.id === entry.id);
     const { company: merged, filled, blocked } = mergeFacts(existing, entry.facts, entry.trust);
+    for (const field of entry.clear) {
+      const empty = field === 'remoteRegions' ? [] : null;
+      if (JSON.stringify(merged[field]) === JSON.stringify(empty)) continue;
+      merged[field] = empty;
+      filled.push(`cleared ${field}`);
+    }
     if (filled.length === 0) {
       // Three genuinely different outcomes, which must not share a message:
       // the record already agrees; directory trust was refused and primary
@@ -484,6 +533,72 @@ async function cmdLinkedin(flags) {
   commit(dataset, flags, report);
 }
 
+async function cmdWorkplace(flags) {
+  const { workplaceOf } = await import('./lib/workplace.mjs');
+  const dataset = loadDataset();
+  const report = createReport('workplace');
+
+  // Re-derived from the stored `location`, with no network. That string is cut
+  // to three places for display, so a role listed in more cities than that gets
+  // its full picture only on the next refresh, which reads every posting — this
+  // is for backfilling, and for picking up parser improvements in between.
+  dataset.companies = dataset.companies.map((company) => {
+    if (flags.only !== null && !flags.only.includes(company.id)) return company;
+    let touched = 0;
+    const currentOpenings = company.currentOpenings.map((opening) => {
+      const workplace = workplaceOf(opening.location);
+      if (JSON.stringify(workplace) === JSON.stringify(opening.workplace ?? null)) return opening;
+      touched += 1;
+      return { ...opening, workplace };
+    });
+    if (touched === 0) {
+      report.skip(company.id, 'unchanged');
+      return company;
+    }
+    report.change(company.id, `${touched} of ${company.currentOpenings.length} openings re-derived`);
+    return { ...company, currentOpenings };
+  });
+
+  commit(dataset, flags, report);
+}
+
+async function cmdDescribe(flags) {
+  const config = loadConfig();
+  const dataset = loadDataset();
+  const http = createHttp(config.refresh);
+  const report = createReport('describe');
+
+  // Only descriptions that read as a job posting, unless named explicitly.
+  // A description the company wrote is never replaced by this command.
+  const queue = dataset.companies.filter((c) =>
+    flags.only !== null ? flags.only.includes(c.id) : looksLikeJobAd(c.description),
+  );
+  console.log(`checking ${queue.length} descriptions ${dim('(job-ad text replaced with the company\'s own meta description)')}`);
+
+  for (const company of queue) {
+    // Some are only wrapped in furniture — an HN post that opens on the
+    // company's link — and cleaning alone recovers the real sentence.
+    let next = cleanDescription(company.description, company.name);
+    let source = 'cleaned';
+    if (next === '') {
+      next = await homepageDescription(http, company.website, company.name);
+      source = 'homepage meta description';
+    }
+    if (next === '') {
+      report.fail(company.id, 'job-ad text, and the homepage offers no usable description — needs research');
+      continue;
+    }
+    if (next === company.description) {
+      report.skip(company.id, 'unchanged');
+      continue;
+    }
+    dataset.companies = upsertCompany(dataset.companies, { ...company, description: next });
+    report.change(company.id, `${next} ${dim(`(${source})`)}`);
+  }
+
+  commit(dataset, flags, report);
+}
+
 const COMMANDS = {
   refresh: cmdRefresh,
   discover: cmdDiscover,
@@ -492,6 +607,8 @@ const COMMANDS = {
   history: cmdHistory,
   logos: cmdLogos,
   linkedin: cmdLinkedin,
+  workplace: cmdWorkplace,
+  describe: cmdDescribe,
   status: cmdStatus,
 };
 
@@ -506,11 +623,14 @@ ${ok('stack radar updater')}
 commands
   status                 dataset health report
   refresh                re-scan careers pages, update positions + this week's history
-  discover               find new companies from configured sources
+  discover               find new companies from configured sources (--limit = new per source)
   enrich                 write out the gaps that need research
   apply --file <f>       validate and merge researched findings
   history                record this week's open counts without re-scanning
   logos                  download company logos into public/logos/
+  linkedin               find each company's own LinkedIn link on its homepage
+  workplace              re-derive every role's workplace from its location, offline
+  describe               replace job-ad descriptions with the company's own meta description
 
 options
   --write                actually save (everything is a dry run otherwise)

@@ -2,9 +2,9 @@ import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { directoryHref } from '@/lib/return-to';
 import { companies } from '@/lib/dataset';
-import { availableCountries } from '@/lib/filtering';
 import { ProfileEditor } from '@/components/ProfileEditor';
-import { isProfileEmpty, profileStrength } from '@/types/profile';
+import { BackupPanel } from '@/components/BackupPanel';
+import { isProfileEmpty, PROFILE_DIMENSIONS, profileStrength } from '@/types/profile';
 import { useTracking } from '@/hooks/useTracking';
 import { CompanyTile } from '@/components/CompanyTile';
 import { Badge } from '@/components/Badge';
@@ -13,7 +13,6 @@ import { isTruncated, openingsLabel } from '@/lib/format';
 
 export function ProfilePage({ onOpenStorage }: { readonly onOpenStorage: () => void }) {
   const { tracking, connected, failing, syncError, trackedIds, setProfile } = useTracking();
-  const countries = useMemo(() => availableCountries(companies), []);
 
   const rows = useMemo(
     () =>
@@ -48,7 +47,7 @@ export function ProfilePage({ onOpenStorage }: { readonly onOpenStorage: () => v
       <div className="flex items-end gap-3 flex-wrap mb-2">
         <h1 className="m-0 text-[24px] font-semibold tracking-[-0.02em]">My profile</h1>
         <span className="font-mono text-[12px] text-ink-dimmer pb-[3px]">
-          {profileStrength(tracking.profile)} of 4 preferences set · {rows.length}{' '}
+          {profileStrength(tracking.profile)} of {PROFILE_DIMENSIONS} preferences set · {rows.length}{' '}
           {rows.length === 1 ? 'company tracked' : 'companies tracked'} · {withNotes} with notes
         </span>
       </div>
@@ -90,7 +89,7 @@ export function ProfilePage({ onOpenStorage }: { readonly onOpenStorage: () => v
         </span>
       </div>
       <div className="mb-8">
-        <ProfileEditor profile={tracking.profile} countries={countries} onChange={setProfile} />
+        <ProfileEditor profile={tracking.profile} onChange={setProfile} />
       </div>
 
       <div className="flex items-baseline gap-[9px] mb-3">
@@ -172,6 +171,12 @@ export function ProfilePage({ onOpenStorage }: { readonly onOpenStorage: () => v
           </Link>
         </div>
       )}
+
+      <div className="flex items-baseline gap-[9px] mb-3 mt-9">
+        <h2 className="m-0 text-[15px] font-semibold">Back up &amp; restore</h2>
+        <span className="font-mono text-[11.5px] text-ink-faint">one JSON file</span>
+      </div>
+      <BackupPanel />
     </main>
   );
 }

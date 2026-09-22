@@ -162,6 +162,15 @@ export function MethodologyPage() {
           name a role are left out.
         </p>
         <p className="m-0">
+          Each role&rsquo;s location is read into where, and in what mode, it can be done.
+          &ldquo;Remote - US&rdquo; is remote for people in the United States; &ldquo;Home based -
+          EMEA&rdquo; is remote across Europe, the Middle East and Africa. That is what the location
+          filter matches against — where <em>you</em> can work from — so a remote role closed to
+          your country is not shown as one you can take. A work model is only recorded when the
+          posting states it, and a plain &ldquo;Remote&rdquo; that never says who may apply is
+          marked not confirmed rather than read as worldwide.
+        </p>
+        <p className="m-0">
           A scan that fails changes nothing. An unreachable careers page is indistinguishable from a
           company that stopped hiring, so a failed read leaves the record exactly as it was — still
           showing its age.
@@ -177,9 +186,10 @@ export function MethodologyPage() {
           you, not a source for us.
         </p>
         <p className="m-0">
-          <strong className="text-ink-soft">No third-party requests, analytics or cookies.</strong>{' '}
-          Logos are stored here rather than hot-linked, so reading the directory does not disclose
-          your address to every company in it. Anything you track stays in your own browser.
+          <strong className="text-ink-soft">Companies never see your visit.</strong> Logos are
+          stored here rather than hot-linked, so reading the directory does not disclose your
+          address to every company in it. Page views are counted with Vercel Web Analytics, which
+          sets no cookies, and anything you track stays in your own browser or your own database.
         </p>
       </Panel>
 

@@ -19,6 +19,7 @@
 import { readFileSync, existsSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { looksLikeJobAd } from './update/lib/description.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const dataset = JSON.parse(readFileSync(resolve(ROOT, 'data/companies.json'), 'utf8'));
@@ -137,6 +138,36 @@ for (const c of companies) {
   }
   if (c.openingsTotal !== null && c.openingsTotal < c.currentOpenings.length) {
     note('medium', 'total-below-stored', `${c.id}: openingsTotal ${c.openingsTotal} < ${c.currentOpenings.length} stored`);
+  }
+}
+
+// -------------------------------------------- descriptions that are job ads
+
+// Hacker News and We Work Remotely hand over the body of a post, and 24 records
+// once carried one as their description — "Keeper is hiring a driven, Arabic
+// speaking Channel Account Manager…". It is the first line a reader sees about
+// a company, so text written to one role's applicants is actively misleading.
+// `node scripts/update/cli.mjs describe` replaces them from the company's own
+// homepage.
+for (const c of companies) {
+  if (looksLikeJobAd(c.description)) {
+    note('high', 'description-job-ad', `${c.id}: "${c.description.slice(0, 70)}…"`);
+  }
+}
+
+// ------------------------------------------ work model its own board refutes
+
+// A company labelled remote whose own postings are overwhelmingly tied to an
+// office. One remote listing on a job board once stamped Datadog, Airbnb and
+// Cribl "remote" while almost none of their roles were. Medium, not high: a
+// company can be remote-first and still advertise by city, so this asks for a
+// look rather than asserting the label is wrong.
+for (const c of companies) {
+  const n = c.currentOpenings.length;
+  if (c.remotePolicy !== 'remote' || n < 8) continue;
+  const remote = c.currentOpenings.filter((o) => (o.workplace ?? []).some((s) => s.mode === 'remote')).length;
+  if (remote / n < 1 / 3) {
+    note('medium', 'remote-label-contradicted', `${c.id}: labelled remote, ${remote} of ${n} roles say remote`);
   }
 }
 

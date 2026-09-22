@@ -48,7 +48,17 @@ enough and should be `null`.
 ```bash
 node scripts/update/cli.mjs discover                      # every source in config
 node scripts/update/cli.mjs discover --source hnhiring    # or one at a time
+node scripts/update/cli.mjs discover --limit 40           # at most 40 NEW companies per source
 ```
+
+`--limit` counts **new** companies. Sources return everything they match and known
+companies are skipped before the limit is counted — capping the source instead meant
+every run got the same, already-known head of its list.
+
+Descriptions from Hacker News and We Work Remotely are posts written to applicants, so
+discovery reads the company's own homepage meta description first. Anything that still
+reads as a job ad ("We're hiring…", "URL: https://…", "Key requirements:") is refused
+by `cleanDescription` rather than stored.
 
 **Read `scripts/update/SOURCES.md` first.** It records every source's verified endpoint
 and record shape, the parsing traps that have already bitten, the sources that were
@@ -133,6 +143,23 @@ Then:
 ```bash
 node scripts/update/cli.mjs apply --file <your-results.json>
 ```
+
+When research shows a recorded value is **wrong** but the company doesn't state the
+right one — a "remote" label its own careers page contradicts, with no policy written
+anywhere — list the field in `"clear"` instead of guessing a replacement:
+
+```json
+{ "id": "tavus", "facts": {}, "clear": ["remotePolicy"], "trust": "primary",
+  "note": "No company-wide work model stated; most roles on their board name an office." }
+```
+
+`clear` needs `trust: "primary"` and a `note`, and only covers the soft facts (country,
+hqLocation, remotePolicy, remoteRegions, size). The note is shown to readers as the
+company's research note, so write it for them.
+
+If `pnpm audit:data` reports `description-job-ad`, run
+`node scripts/update/cli.mjs describe --write` — it replaces those descriptions with the
+company's own homepage meta description, and lists any it couldn't fix for research.
 
 Anything rejected is printed with the reason. Fix and re-run; nothing partial is written.
 Add `--write` when clean.

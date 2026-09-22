@@ -267,7 +267,24 @@ export async function discover(http, config) {
   // runs over an unchanged directory return the same companies.
   const hiring = matched.filter((record) => record.isHiring === true);
   const rest = matched.filter((record) => record.isHiring !== true);
-  const ordered = discovery.preferHiring === false ? matched : [...hiring, ...rest];
+  const byHiring = discovery.preferHiring === false ? matched : [...hiring, ...rest];
+  // Within that, companies that say they hire remotely, then startups and
+  // mid-size teams, come first — the directory is for them. A stable sort, so
+  // directory order still breaks ties and repeated runs agree.
+  const rank = (record) => {
+    const regions = Array.isArray(record.regions) ? record.regions : [];
+    const remote = regions.includes('Fully Remote') || regions.includes('Remote')
+      || /\bremote\b/i.test(String(record.all_locations ?? ''));
+    const size = Number.isInteger(record.team_size) ? record.team_size : null;
+    return (remote ? 0 : 2) + (size === null || size <= 500 ? 0 : 1);
+  };
+  const ordered = byHiring
+    .map((record, index) => ({ record, index, hiring: record.isHiring === true }))
+    .sort((a, b) => {
+      if (discovery.preferHiring !== false && a.hiring !== b.hiring) return a.hiring ? -1 : 1;
+      return rank(a.record) - rank(b.record) || a.index - b.index;
+    })
+    .map(({ record }) => record);
   const selected = ordered.slice(0, cap);
 
   const candidates = selected.map((record) => toCandidate(record, technologyTags));

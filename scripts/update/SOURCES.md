@@ -121,6 +121,20 @@ followed, and the parsing traps are all real comments from live threads:
 `keywords` is deliberately left empty — the position scanner owns that field,
 and a technology named in a recruiting post is not evidence about the stack.
 
+Two more fields this source used to fill and no longer does, both learned the
+hard way in round 4:
+
+- **`remotePolicy` stays null.** The `REMOTE` in a post's header describes the
+  roles in that post, and it is kept only as `postWorkModel` for the
+  `remoteOnly` filter. Written to the company it labelled Starbridge and
+  Astronomer "remote" while none of their listed roles were. The board scan
+  derives the company's policy from every posting instead.
+- **The description comes from the homepage first.** A post is written to an
+  applicant — *"I'm hiring for a frontline EM…"*, *"Key requirements: up to 50%
+  travel…"* — so `discover` reads the company's own meta description and only
+  falls back to the cleaned post text when the homepage offers none
+  (`descriptionFromPost: true` on the candidate).
+
 ### `weworkremotely` — RSS category feeds
 
 ```
@@ -144,6 +158,11 @@ Two things to know:
   `learn.datadoghq.com`. `sources/host.mjs` strips that leading label — without
   it, `website` poisons every `/careers` probe downstream and the ATS detector
   starts guessing board tokens named "blog" and "trust".
+- **A listing is not a company policy.** Every item here is remote, and this
+  source once wrote `remotePolicy: "remote"` for each employer. Datadog (5 of 60
+  roles remote), Airbnb (0 of 60) and Cribl (2 of 55) were labelled remote-first
+  as a result. It now leaves `remotePolicy` null and, like `hnhiring`, prefers
+  the homepage's own description over the RSS body.
 - **It skews large.** Datadog, Discord, Pinterest, Fastly and ZoomInfo all came
   through. They are genuine remote employers, but if the directory is meant to
   favour startups and mid-size companies, this is the source that pulls the other
