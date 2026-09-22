@@ -39,7 +39,7 @@ const FILTER_PARAMS: readonly Param[] = [
     name: 'country',
     type: 'string, ≤80 chars',
     detail:
-      'Exact country match, case-insensitive. <code>location</code> is accepted as an alias. Companies with no recorded country are excluded and counted under <code>excluded.unknownCountry</code>.',
+      'Exact country match, case-insensitive. <code>location</code> is accepted as an alias. It asks where <em>you</em> can work from, so a company matches when one of its roles is open to that country — directly, through a region containing it, or worldwide. <code>worldwide</code> is accepted in place of a country and means the opposite of leaving this out: only roles open with no country restriction. Companies whose roles do not say who may apply are excluded and counted under <code>excluded.unknownCountry</code>.',
   },
   {
     name: 'remote',

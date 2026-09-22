@@ -1,6 +1,6 @@
 import type { Company, Opening, WorkplaceSlot } from '../types/company.js';
 import type { Filters, SizeRange, SortKey } from '../types/filters.js';
-import { sizeRangeOfBand } from '../types/filters.js';
+import { ANYWHERE, sizeRangeOfBand } from '../types/filters.js';
 import { searchCompanies, type ScoredCompany } from './scoring.js';
 import { disciplineOf, type Discipline } from './discipline.js';
 import { COUNTRIES, covers, regionFromLabel } from './regions.js';
@@ -137,7 +137,9 @@ function evaluateSlot(
   let placeUnknown = false;
   if (countries.length > 0) {
     // Empty `where` is "not stated", never "anywhere" — plain "Remote" says
-    // nothing about who may apply.
+    // nothing about who may apply. That matters most when the reader asked for
+    // ANYWHERE: that is a narrowing to roles their employer opened to the whole
+    // world, so a role that never said cannot be counted as one of them.
     if (slot.where.length === 0) placeUnknown = true;
     else if (!countries.some((country) => covers(slot.where, country))) return 'mismatch';
   }
@@ -178,9 +180,13 @@ export function evaluateOpening(
  * Filter countries arrive from URLs and agents in any case — `?country=estonia`.
  * `where` uses canonical names, so the wanted list is matched case-insensitively
  * against them rather than compared raw.
+ *
+ * `anywhere` and `global` are accepted as spellings of ANYWHERE, since a caller
+ * writing the filter by hand has no reason to know which word the parser chose.
  */
 function canonicalCountry(value: string): string {
   const wanted = value.trim().toLowerCase();
+  if (wanted === ANYWHERE || wanted === 'anywhere' || wanted === 'global') return ANYWHERE;
   return COUNTRY_BY_LOWER.get(wanted) ?? value.trim();
 }
 

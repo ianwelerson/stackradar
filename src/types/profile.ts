@@ -26,7 +26,8 @@ export interface Profile {
   readonly terms: readonly string[];
   /** Acceptable work models. Empty means no preference. */
   readonly remote: readonly RemotePolicy[];
-  /** Acceptable countries. Empty means anywhere. */
+  /** Places you could work from. Empty means no location filter; the single
+   *  entry `ANYWHERE` means only roles open worldwide. */
   readonly countries: readonly string[];
   /** Acceptable headcount bands. Empty means any size. */
   readonly sizes: readonly SizeBandKey[];

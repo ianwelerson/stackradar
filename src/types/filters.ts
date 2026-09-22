@@ -28,6 +28,23 @@ export const SORT_OPTIONS = {
 export type SortKey = keyof typeof SORT_OPTIONS;
 
 /**
+ * The one location choice that is not a place.
+ *
+ * `countries` answers "where can you work from", and every other entry in it is
+ * somewhere you could live. This entry is the reader saying they are not tied
+ * to anywhere — so it keeps only the roles the employer opened to the whole
+ * world, and drops the ones open to a country or a region.
+ *
+ * It is deliberately the same token postings are parsed into (`workplace.where`
+ * holds `'worldwide'` for "Anywhere in the world"), which is what lets the
+ * ordinary country match answer it with no special case: `covers` already
+ * treats `worldwide` as covering everyone, and no country or region covers
+ * `worldwide` in return. An empty `countries` list remains "no location
+ * filter", which is the opposite of this and used to share its name.
+ */
+export const ANYWHERE = 'worldwide';
+
+/**
  * One search. Plural on every dimension because a reader's real preference
  * usually is — remote or hybrid, 11–50 or 51–200 — and because a saved profile
  * (types/profile.ts) feeds straight into this shape.
@@ -35,6 +52,8 @@ export type SortKey = keyof typeof SORT_OPTIONS;
 export interface Filters {
   readonly query: string;
   readonly remote: readonly RemotePolicy[];
+  /** Places the reader could work from. Empty means no location filter; the
+   *  single entry `ANYWHERE` means only roles open with no country restriction. */
   readonly countries: readonly string[];
   readonly sizes: readonly SizeBandKey[];
   /** Role disciplines to keep. Empty means every kind of role. Only bites in

@@ -41,7 +41,7 @@ const filtersSchema = z
       .max(MAX_COUNTRY_LENGTH)
       .optional()
       .describe(
-        'Exact country name, case-insensitive (e.g. "Estonia", "United States"). Companies with no recorded country are excluded, not assumed to match.',
+        'Where the candidate can work from, as an exact country name, case-insensitive (e.g. "Estonia", "United States"). A company matches when one of its roles is open to that country — directly, through a region containing it, or worldwide. Pass "worldwide" instead of a country to keep only roles open with no country restriction; that is a narrowing, not the same as omitting this. Companies whose roles do not say who may apply are excluded, not assumed to match.',
       ),
     remote: z
       .enum(['remote', 'hybrid', 'onsite'])

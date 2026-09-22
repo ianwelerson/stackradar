@@ -90,7 +90,7 @@ company's page. Switch between them at any time; the search stays exactly as it 
 | --- | --- |
 | **Work model** | Remote · Hybrid · On-site — pick any combination |
 | **Role type** | Engineering · Data & ML · Design · Product |
-| **Location** | Anywhere, or any set of countries you can work from |
+| **Location** | Any set of countries you can work from — or *Anywhere*, meaning only roles open worldwide |
 | **Company size** | 1–10 · 11–50 · 51–200 · 200+ people |
 | **Sort** | Best match · Most open roles · Recently verified · Company name |
 
@@ -99,15 +99,20 @@ company page lands you exactly where you left off.
 
 ### Location means *where you can work from*
 
-<img src=".github/assets/location-picker.png" align="right" width="250" alt="The location picker: Anywhere, or a searchable checklist of countries.">
+<img src=".github/assets/location-picker.png" align="right" width="250" alt="The location picker: Any location, Anywhere, and a searchable checklist of countries.">
 
 A remote role open only to US residents is no use to someone in Lisbon, however remote it is.
 So location isn't matched against a company's head office — it's matched against **each role's
-own stated availability**. Pick *Anywhere*, or every country you could work from.
+own stated availability**. Name every country you could work from, and a role counts when it is
+open to one of them, directly or through a region that contains it.
+
+*Anywhere* is the other question, and it **narrows**: it keeps only the roles a company opened
+to the whole world — 89 of the 1,847 that say remote. The rest are tied to a country or a
+region, however permissive that region is, so a search for "anywhere" no longer returns roles
+you could take from exactly one place.
 
 Work model and location are then evaluated **together, per role**: a company matches only when
-one of its roles satisfies both. That matters — of 1,847 roles that say remote, only 89 are
-open worldwide; the rest are tied to a country or a region, and the filter knows which.
+one of its roles satisfies both.
 
 A plain "Remote" that never says who may apply is shown as *not confirmed* rather than read as
 "anywhere", and an office city on its own is never taken as evidence that a role is remote.

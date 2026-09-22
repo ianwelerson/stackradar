@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { SIZE_BANDS, type SizeBandKey } from '@/types/filters';
+import { locationLabel } from '@/lib/format';
 import { MAX_TERMS, MAX_TERM_LENGTH, type Profile } from '@/types/profile';
 import type { RemotePolicy } from '@/types/company';
 import { splitTerms } from '@/lib/scoring';
@@ -225,11 +226,11 @@ export function ProfileEditor({
 
       <Field
         label="Where you can work from"
-        hint="Anywhere by default. Add every country you could work from. A remote role only counts when it is open to one of them — or to a region, or the world, that includes them."
+        hint="Unset by default, which filters nothing. Add every country you could work from and a remote role only counts when it is open to one of them — or to a region, or the world, that includes them. Choose Anywhere instead to keep only the roles open worldwide."
       >
         <div className="flex gap-[6px] flex-wrap mb-[10px]">
           {profile.countries.length === 0 && (
-            <span className="text-[12.5px] text-ink-fainter font-mono">anywhere</span>
+            <span className="text-[12.5px] text-ink-fainter font-mono">any location</span>
           )}
           {profile.countries.map((country) => (
             <button
@@ -243,7 +244,7 @@ export function ProfileEditor({
               }
               className="flex items-center gap-[6px] bg-accent-surface border border-accent-line text-accent-text rounded-[20px] px-[10px] py-[4px] text-[12px] cursor-pointer font-mono hover:bg-accent-surface-strong transition-colors"
             >
-              {country} <span className="opacity-60">✕</span>
+              {locationLabel(country)} <span className="opacity-60">✕</span>
             </button>
           ))}
         </div>

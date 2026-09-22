@@ -1,4 +1,5 @@
 import type { Company, RemotePolicy, VerificationState } from '@/types/company';
+import { ANYWHERE } from '@/types/filters';
 
 /** Days past `lastVerified` after which data is shown as stale. */
 export const STALE_AFTER_DAYS = 14;
@@ -68,6 +69,18 @@ export function remotePolicyLabel(policy: RemotePolicy | null): string {
 
 export function remoteLabel(company: Company): string {
   return remotePolicyLabel(company.remotePolicy);
+}
+
+/**
+ * How a chosen location reads on a chip or a button.
+ *
+ * Every entry but one is a country and reads as itself. ANYWHERE is stored as
+ * the same token postings are parsed into, `worldwide`, which is the right word
+ * for what the *employer* said and the wrong one for what the *reader* asked:
+ * they said they can work from anywhere.
+ */
+export function locationLabel(value: string): string {
+  return value === ANYWHERE ? 'Anywhere' : value;
 }
 
 /**

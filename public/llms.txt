@@ -8,8 +8,9 @@
 
 Stack Radar is a general-purpose research tool. The dataset is intentionally unfiltered: companies of
 every size, remote policy and location are included, and narrowing happens through query parameters
-rather than through what was allowed into the data. At the time of writing it holds 58 companies,
-mostly developer-tools and SaaS companies plus a substantial Estonian startup cohort.
+rather than through what was allowed into the data. At the time of writing it holds 396 companies
+and 4,062 open roles, mostly developer-tools and SaaS companies plus a substantial Estonian startup
+cohort.
 
 ## Data honesty — read this before using the data
 
@@ -35,7 +36,7 @@ that a specific role is open today on the strength of this dataset alone.
 Base URL: `https://stackradar.strukt.app`.
 
 - [/companies.json](https://stackradar.strukt.app/companies.json): **the entire dataset** as one
-  static JSON file, roughly 6 KB gzipped. No key, no rate limit, any origin. This is the intended way
+  static JSON file, roughly 255 KB gzipped. No key, no rate limit, any origin. This is the intended way
   to consume it — fetch once and filter locally rather than issuing a request per query.
 
 The shape is `{ "generatedAt": ..., "companies": [ ... ] }`, each company carrying the fields
@@ -59,6 +60,10 @@ Tools:
 
 - `search_companies(query, filters?)` — ranked company matches for a free-text query, with scores and
   match reasons. Filters: `country`, `remote`, `minSize`, `maxSize`, `limit`.
+  `country` asks where the candidate can work from, not where the company is: a company matches when
+  one of its roles is open to that country, directly or through a region that contains it. Pass
+  `worldwide` to keep only roles open with no country restriction — a narrowing, and not the same as
+  omitting the filter.
 - `get_company(id)` — one company's full record, including all current openings and the weekly
   open-role history.
 - `list_open_positions(filters?)` — every open role across the dataset, flattened, each annotated

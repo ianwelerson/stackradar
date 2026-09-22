@@ -12,7 +12,7 @@ import { RoleResults } from '@/components/RoleResults';
 import { SIZE_BANDS, sizeRangeOfBand } from '@/types/filters';
 import { isProfileEmpty } from '@/types/profile';
 import { DISCIPLINE_LABELS } from '@/lib/discipline';
-import { remotePolicyLabel } from '@/lib/format';
+import { locationLabel, remotePolicyLabel } from '@/lib/format';
 import { rememberDirectorySearch } from '@/lib/return-to';
 
 // The highest-yield keywords actually present in the dataset, so a suggestion
@@ -125,7 +125,7 @@ export function DirectoryPage() {
   for (const country of filters.countries) {
     chips.push({
       key: `country-${country}`,
-      label: country,
+      label: locationLabel(country),
       clear: () => update({ countries: filters.countries.filter((c) => c !== country) }),
     });
   }

@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { companies, generatedAt, totalOpenings, verifiedCount } from '@/lib/dataset';
 import { directoryHref } from '@/lib/return-to';
 import { POSITION_CAP } from '@/lib/format';
+import { ANYWHERE } from '@/types/filters';
 
 /**
  * How the data is gathered, in the reader's own interest.
@@ -69,6 +70,10 @@ export function MethodologyPage() {
   const withLink = openings.filter((o) => o.url !== null).length;
   const withBoard = companies.filter((c) => c.currentOpenings.length > 0).length;
   const unknownCountry = companies.filter((c) => c.country === null).length;
+  const remoteRoles = openings.filter((o) => o.workplace.some((s) => s.mode === 'remote')).length;
+  const worldwideRoles = openings.filter((o) =>
+    o.workplace.some((s) => s.where.includes(ANYWHERE)),
+  ).length;
   const unknownRemote = companies.filter((c) => c.remotePolicy === null).length;
 
   const stats: { key: string; value: string }[] = [
@@ -169,6 +174,14 @@ export function MethodologyPage() {
           your country is not shown as one you can take. A work model is only recorded when the
           posting states it, and a plain &ldquo;Remote&rdquo; that never says who may apply is
           marked not confirmed rather than read as worldwide.
+        </p>
+        <p className="m-0">
+          <strong className="text-ink-soft">&ldquo;Anywhere&rdquo; narrows rather than widens.</strong>{' '}
+          Asking for it keeps only the roles a company opened to the whole world — {worldwideRoles}{' '}
+          of the {remoteRoles} that say remote. Every other remote role is tied to a country or a
+          region, however permissive that region is, so it is left out rather than passed off as one
+          you could take from anywhere. Naming the countries you can work from is the other
+          question, and it is the one most people mean.
         </p>
         <p className="m-0">
           A scan that fails changes nothing. An unreachable careers page is indistinguishable from a

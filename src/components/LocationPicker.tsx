@@ -1,5 +1,7 @@
 import { useEffect, useId, useMemo, useRef, useState } from 'react';
 import { COUNTRIES } from '@/lib/regions';
+import { locationLabel } from '@/lib/format';
+import { ANYWHERE } from '@/types/filters';
 
 /**
  * Where you can work from.
@@ -10,8 +12,22 @@ import { COUNTRIES } from '@/lib/regions';
  * office" but "which of its roles could I actually do from here" — a remote
  * role open only to US residents is no use to someone in Tallinn, however
  * remote it is. So the choice is plural (people can often work from more than
- * one country) and it is matched against each role's own stated availability,
- * with "Anywhere" meaning no constraint at all.
+ * one country) and it is matched against each role's own stated availability.
+ *
+ * Two different answers were once both called "Anywhere":
+ *
+ *   - *Any location* — I have not said where I am. No location filter runs, and
+ *     a role open only to Berlin is still listed.
+ *   - *Anywhere* — I am not tied to a country. Only roles the employer opened
+ *     to the whole world qualify, which is a **narrowing**: today 89 of the
+ *     1,847 roles that say remote, and none of the ones scoped to a country or
+ *     a region, however permissive that region is.
+ *
+ * Sharing one label made the second unreachable and the first a lie, since
+ * "Anywhere" listed roles you could take from exactly one country. They are now
+ * two choices, exclusive with each other and with the country list — picking a
+ * country is itself a statement that you are tied to somewhere, and it already
+ * admits worldwide roles, since those are open to that country too.
  *
  * Every country is offered, not only the ones companies here are based in: a
  * reader in Portugal can take a role open to "Europe" from a company in
@@ -65,15 +81,38 @@ export function LocationPicker({
     return { chosen, rest };
   }, [query, selected]);
 
+  const [first] = value;
   const summary =
-    value.length === 0
-      ? 'Anywhere'
+    first === undefined
+      ? 'Any location'
       : value.length === 1
-        ? value[0]
-        : `${value[0]} +${value.length - 1}`;
+        ? locationLabel(first)
+        : `${locationLabel(first)} +${value.length - 1}`;
 
+  // Choosing a country drops "Anywhere": you cannot both be tied to somewhere
+  // and not be, and leaving it in would widen the search back out silently.
   const toggle = (country: string) =>
-    onChange(selected.has(country) ? value.filter((c) => c !== country) : [...value, country]);
+    onChange(
+      selected.has(country)
+        ? value.filter((c) => c !== country)
+        : [...value.filter((c) => c !== ANYWHERE), country],
+    );
+
+  const scope = (label: string, hint: string, checked: boolean, next: string[]) => (
+    <label className="flex items-center gap-[9px] px-[10px] py-[7px] rounded-[6px] cursor-pointer text-[12.5px] text-ink-soft hover:bg-control">
+      <input
+        type="radio"
+        name={`${panelId}-scope`}
+        checked={checked}
+        onChange={() => onChange(next)}
+        className="accent-[var(--color-accent)] w-[13px] h-[13px] cursor-pointer"
+      />
+      <span>
+        {label}
+        <span className="block font-mono text-[10.5px] text-ink-faint mt-px">{hint}</span>
+      </span>
+    </label>
+  );
 
   const option = (country: string) => (
     <label
@@ -119,20 +158,8 @@ export function LocationPicker({
             align === 'end' ? 'right-0' : 'left-0'
           }`}
         >
-          <label className="flex items-center gap-[9px] px-[10px] py-[7px] rounded-[6px] cursor-pointer text-[12.5px] text-ink-soft hover:bg-control">
-            <input
-              type="radio"
-              checked={value.length === 0}
-              onChange={() => onChange([])}
-              className="accent-[var(--color-accent)] w-[13px] h-[13px] cursor-pointer"
-            />
-            <span>
-              Anywhere
-              <span className="block font-mono text-[10.5px] text-ink-faint mt-px">
-                no location constraint
-              </span>
-            </span>
-          </label>
+          {scope('Any location', 'no location filter', value.length === 0, [])}
+          {scope('Anywhere', 'only roles open worldwide', selected.has(ANYWHERE), [ANYWHERE])}
 
           <div className="h-px bg-line mx-[4px] my-[2px]" aria-hidden="true" />
 
@@ -159,8 +186,9 @@ export function LocationPicker({
           </div>
 
           <p className="font-mono text-[10.5px] text-ink-faint leading-[1.5] m-0 px-[8px] pt-[4px] pb-[2px] text-pretty">
-            Matched against each role: a remote role counts only if it is open to one of these
-            countries — or to a region or the world that includes them.
+            {selected.has(ANYWHERE)
+              ? 'Matched against each role: only postings open to the whole world. A role open to a region — even one as wide as EMEA — is tied to somewhere, so it is not one of them.'
+              : 'Matched against each role: a remote role counts only if it is open to one of these countries — or to a region or the world that includes them.'}
           </p>
         </div>
       )}
